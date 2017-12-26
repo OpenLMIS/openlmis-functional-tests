@@ -29,9 +29,9 @@ This test suite has these goals:
 ## Quick start (running suite)
 
 ### Docker - containerized
-1. `docker-compose run funtest`
 
-To cleanup:  `docker-compose down`
+1. Run tests: `docker-compose run funtest`
+1. To cleanup:  `docker-compose down`
 
 ### Local by installing dev tools
 
@@ -39,11 +39,9 @@ Install (once):
 1. Install [yarn](https://yarnpkg.com).
 1. Run: `yarn install`
 
-Start (once as needed before testing):
-1. Run: `yarn run local-webserver`
-
 Test:
-1. Run: `yarn run wdio`
+1. Start (once before): `yarn run local-webserver`
+1. Test: `yarn run wdio`
 
 Use [REPL](http://webdriver.io/guide/usage/repl.html) (Install and Start first):
 1. Start Selenium: `yarn run selenium-standalone start`
@@ -51,8 +49,8 @@ Use [REPL](http://webdriver.io/guide/usage/repl.html) (Install and Start first):
 
 ### Reports
 
-Feature acceptance: `./build/WDIO.xunit...xml`
-Network Requests (HAR): `./build/openlmis.har`
+* Feature acceptance: `./build/WDIO.xunit...xml`
+* Network Requests (HAR): `./build/openlmis.har`
 
 ## Development
 
