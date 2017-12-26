@@ -51,6 +51,7 @@ Use [REPL](http://webdriver.io/guide/usage/repl.html) (Install and Start first):
 
 * Feature acceptance: `./build/WDIO.xunit...xml`
 * Network Requests (HAR): `./build/openlmis.har`
+  * Paste results to [HAR Viewer](http://www.softwareishard.com/har/viewer/)
 
 ## Development
 
