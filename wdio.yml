@@ -1,0 +1,19 @@
+services:
+- module: virtual-display
+  width: 1024
+  height: 768
+- module: shellexec
+  prepare:
+  - yarn install
+  - command: yarn run local-webserver
+    background: true
+
+modules:
+  console:
+    disable: true
+
+execution:
+- executor: wdio
+  iterations: 1
+  scenario:
+    script: wdio.conf.js

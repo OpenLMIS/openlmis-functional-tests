@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  bmp:
+    image: openlmis/bmp
+
+  funtest:
+    image: openlmis/bzt-yarn
+    environment:
+      BMP_PRESENT: 'true' # for our wdio.conf.js
+    volumes:
+      - './:/bzt-configs'
+      - './build/bzt-artifacts:/tmp/artifacts'
+      - './resources:/tmp/resources'
+    entrypoint:
+      - 'bash'
+    command:
+      - "testWithTaurusAndBmp.sh"
+    depends_on:
+      - bmp
