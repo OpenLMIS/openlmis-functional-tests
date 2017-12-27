@@ -3,6 +3,9 @@ pipeline {
   triggers {
     cron('H H/6 * * *')
   }
+  environment {
+    PATH = "/usr/local/bin:$PATH"
+  }
   stages {
     stage ('pull images') {
       steps {
