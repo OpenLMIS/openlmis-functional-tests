@@ -20,7 +20,7 @@ pipeline {
         sh 'docker-compose run --no-deps funtest -c \'yarn clean\''
         sh 'docker-compose run funtest'
         sh 'docker-compose down -v'
-        archiveArtifacts 'build/openlmis.har,build/errorShots/**,build/WDIO*.xml'
+        archiveArtifacts 'build/openlmis.har*,build/errorShots/**,build/WDIO*.xml'
       }
     }
   }
@@ -29,7 +29,7 @@ pipeline {
       junit 'build/WDIO*.xml'
     }
     success {
-      echo "http://www.softwareishard.com/har/viewer/?inputUrl=${env.BUILD_URL}artifact/build/openlmis.har"
+      echo "http://www.softwareishard.com/har/viewer/?inputUrl=${env.BUILD_URL}artifact/build/openlmis.har.jsonp"
     }
     unstable {
       slackSend channel: '#build',
