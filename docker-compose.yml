@@ -12,9 +12,7 @@ services:
       - './:/bzt-configs'
       - './build/bzt-artifacts:/tmp/artifacts'
       - './resources:/tmp/resources'
-    entrypoint:
-      - 'bash'
-    command:
-      - "testWithTaurusAndBmp.sh"
+    entrypoint: '/bin/bash'
+    command: 'testWithTaurusAndBmp.sh'
     depends_on:
       - bmp
