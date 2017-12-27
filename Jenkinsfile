@@ -28,5 +28,10 @@ pipeline {
     always {
       junit 'build/WDIO*.xml'
     }
+    unstable {
+      slackSend channel: '#dev',
+        color: 'bad',
+        message: 'Attention @here ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed'
+    }
   }
 }
