@@ -3,6 +3,9 @@ pipeline {
   triggers {
     cron('H H/6 * * *')
   }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
+  }
   environment {
     PATH = "/usr/local/bin:$PATH"
   }
