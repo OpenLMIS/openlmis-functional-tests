@@ -28,6 +28,9 @@ pipeline {
     always {
       junit 'build/WDIO*.xml'
     }
+    success {
+      echo "http://www.softwareishard.com/har/viewer/?inputUrl=${env.BUILD_URL}artifact/build/openlmis.har"
+    }
     unstable {
       slackSend channel: '#build',
         color: 'danger',
