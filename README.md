@@ -5,7 +5,7 @@ OpenLMIS [Ref Distro](http://github.com/openlmis/openlmis-ref-distro).
 
 This test suite has these goals:
 
-* Verifies that high-level functional "happy-path" for OpenLMIS features works.
+* Verifies high-level functional OpenLMIS feature requirements.
 * Living documentation for feature acceptance.
 * Reports on suitability of OpenLMIS feature use in high-latency (i.e. typical last mile) networks.
 
@@ -13,8 +13,7 @@ This test suite has these goals:
 
 1. Taurus in Docker - Dockerized environment for running tests, and defining test context
   (iterations, provisioning, etc).  Also supports virtual display for headless testing.
-1. Cucumber - Allows our tests to be written in human-readable prose, and should help anyone looking
-  at functional test coverage to better see how a Requisition grid is being used.
+1. Cucumber - Allows our tests to be written in human-readable prose and how tabular data is input.
 1. JUnit - reporting on test cases ran.
 1. Webdriver.io - Node.js wrapper of Selenium's WebDriver.  Allows our code for WebDriver to be
   written in Javascript and includes a basic REPL.
@@ -22,7 +21,7 @@ This test suite has these goals:
 1. Selenium WebDriver - Drives browser so that a Selenium test may use a browser directly though
   an API.
 1. BrowserMob-Proxy - Captures all network traffic for reporting on connections, payload size,
-  timing, etc.  May also simulate slow networks.
+  timing, etc.  Also used to simulate slow networks.
 1. Appium (Planned) - API extension to WebDriver for testing mobile (iOS/Android) applications
   (native or hybrid).
 
