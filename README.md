@@ -66,7 +66,7 @@ Features are written in [Gherkin](https://cucumber.io/docs/reference) to describ
 acceptance criteria for a particular piece of user expected behavior.  Each feature may have one or
 more scenarios which outline specific uses of that feature.
 
-Features are in `src/features/`:
+Features are in `src/features/featureName/` (where featureName is the name of the feature):
 * Define a feature file per feature - ideally one feature per user-story.
 * Append the filename with `.feature`.
 * Scenarios of a feature are different aspects or uses of that feature.
@@ -82,10 +82,12 @@ Steps follow the typical
 * When: the behavior to test
 * Then: the expected outcome of the behavior.
 
-Steps are in `src/steps`:
+Steps are located alongside their features in `src/features/featureName/`:
 * Break given, when, then into seperate files.
-* Prepend the step filenames with the name of the feature.  e.g. if the feature is `login.feature`,
-  then the steps should be `loginGiven.js`, `loginWhen.js` and `loginThen.js`.
+* Append `.steps.js` to the end of the filename.  e.g. `given.steps.js`.
+* Don't declare the same step definition more than once.  Steps in Cucumber are in a global
+  namespace - even though the step definition files are located near their `.feature`, no two
+  features may declare the same step definition.
 
 ### Page Objects and Selectors
 

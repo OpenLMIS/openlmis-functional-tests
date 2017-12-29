@@ -1,7 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
-import HomePage from '../pages/home.page';
-import LoginPage from '../pages/login.page';
+import HomePage from '../../pages/home.page';
+import LoginPage from '../../pages/login.page';
 
 defineSupportCode(({ Then }) => {
     Then(

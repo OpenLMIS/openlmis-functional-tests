@@ -2,7 +2,7 @@
 
 // workaround from https://github.com/webdriverio/wdio-cucumber-framework/issues/79
 const glob = require('glob');
-const steps = glob.sync('src/steps/*.steps.js');
+const steps = glob.sync('src/features/**/*.steps.js');
 const features = glob.sync('src/features/**/*.feature');
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
