@@ -26,4 +26,19 @@ defineSupportCode(({ Given }) => {
         /^I am on the home page$/,
         () => HomePage.isVisible()
     );
+
+    Given(
+      /^I have logged with username "([^"]*)?" and password "([^"]*)?"$/,
+      (username, password) => {
+        LoginPage.open();
+
+        LoginPage.username = username;
+        LoginPage.password = password;
+
+        LoginPage.clickSubmit();
+        HomePage.waitForIsVisible();
+        HomePage.isVisible();
+      }
+    );
+
 });
