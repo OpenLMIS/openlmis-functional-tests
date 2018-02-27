@@ -48,6 +48,20 @@ class HomePage extends Page {
     isVisible() {
         checkInURLPath(false, '#!/home');
     }
+
+    /**
+     * Is in offline mode?
+     */
+    isOffline() {
+        waitForVisible('.status-offline');
+    }
+
+    /**
+     * Is in offline mode?
+     */
+    isOnline() {
+        waitForVisible('.status-offline', true);
+    }
 }
 
 export default new HomePage();
