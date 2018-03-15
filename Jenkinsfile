@@ -34,10 +34,12 @@ pipeline {
         message: "Attention @here ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed"
     }
     changed {
-      if(currentBuild.result == 'SUCCESS') {
-        slackSend channel: '#build',
-        color: 'good',
-        message: "${env.JOB_NAME} #${env.BUILD_NUMBER} has switched to succeeded"
+      script {
+        if(currentBuild.result == 'SUCCESS') {
+         slackSend channel: '#build',
+         color: 'good',
+         message: "${env.JOB_NAME} #${env.BUILD_NUMBER} has switched to succeeded"
+        }
       }
     }
   }
