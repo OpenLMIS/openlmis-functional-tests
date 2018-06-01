@@ -13,10 +13,10 @@ Feature: Reason Add
         And I click on the "Add" button
         Then I should see assignment for "Family Planning" program and "Warehouse" facility type
 
-        When I enter "Functional Test Reason 2" as "Name"
+        When I enter "Functional Test Reason" as "Name"
         And I select "Transfer" from the "Category" list
         And I select "Debit" as "Type"
         And I enter "adjustment" as "Tags"
         And I click on the "Add New Reason" button
-        Then I should see a reason with "Functional Test Reason 2" name, "Transfer" category and "Debit" type inside the table
-        And I should see a successful notification saying "Reason created successfully"
+        Then I should see a successful notification saying "Reason saved successfully"
+        And I should see a reason with "Functional Test Reason" name, "Transfer" category and "Debit" type inside the table
