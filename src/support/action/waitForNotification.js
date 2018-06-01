@@ -6,6 +6,6 @@ import waitForVisible from './waitForVisible';
  * @param {String} message the message to wait for
  */
 module.exports = (message) => {
-    browser.waitForVisible('.loading-modal', true);
     browser.waitForVisible('//div[contains(@class, "notification") and contains(@class, "is-success") and normalize-space(text())="' + message + '"]');
+    browser.waitForVisible('//div[contains(@class, "notification") and contains(@class, "is-success") and normalize-space(text())="' + message + '"]', true);
 };
