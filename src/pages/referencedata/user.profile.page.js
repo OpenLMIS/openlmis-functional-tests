@@ -1,5 +1,6 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
+import getButtonSelector from "../../support/lib/getButtonSelector";
 
 /**
  * User Profile Page object represents the related view in OpenLMIS UI.
@@ -17,7 +18,7 @@ class ReasonListPage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('//input[contains(@value, "Update Profile")]');
+        waitForVisible(getButtonSelector('Update Profile'));
     }
 }
 
