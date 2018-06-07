@@ -31,16 +31,12 @@ pipeline {
     unstable {
       slackSend channel: '#build',
         color: 'danger',
-        message: "Attention @here ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed"
+        message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} FAILED (<${env.BUILD_URL}|Open>)"
     }
-    changed {
-      script {
-        if(currentBuild.result == 'SUCCESS') {
-         slackSend channel: '#build',
-         color: 'good',
-         message: "${env.JOB_NAME} #${env.BUILD_NUMBER} has switched to succeeded"
-        }
-      }
+    fixed {
+      slackSend channel: '#build',
+        color: 'good',
+        message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal"
     }
   }
 }
