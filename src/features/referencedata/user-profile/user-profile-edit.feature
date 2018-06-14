@@ -21,5 +21,5 @@ Feature: User Profile
         Then I should see a successful notification saying "Basic information restored successfully"
         And Value of the "First Name" should be "Luke"
         And Value of the "Last Name" should be "Skywalker"
-        And Value of the "Email" should be "luksky@away.com"
+        And There should be the pending verification note for "luksky@away.com"
         And Value of the "Phone Number" should be "123 456 789"
