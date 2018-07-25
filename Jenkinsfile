@@ -7,6 +7,11 @@ pipeline {
     PATH = "/usr/local/bin:$PATH"
   }
   stages {
+    stage ('wait for test server') {
+      steps {
+        sh 'sleep 450'
+      }
+    }
     stage ('pull images') {
       steps {
         sh 'docker-compose pull'
