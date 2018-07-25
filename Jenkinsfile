@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage ('wait for test server') {
       steps {
-        sh 'sleep 450'
+        sh 'sleep 600'
       }
     }
     stage ('pull images') {
