@@ -1,9 +1,9 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../login/when.steps.js';
-import '../common/when.steps.js';
+import '../../login/when.steps';
+import '../../common/when.steps';
 
-import ViewRequisitionsPage from '../../pages/view.requisitions.page';
+import ViewRequisitionsPage from '../../../pages/requisition/view.requisitions.page';
 
 defineSupportCode(({ When }) => {
 
