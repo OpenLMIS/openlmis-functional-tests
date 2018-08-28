@@ -1,6 +1,6 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/given.steps';
+import '../login/given.steps.js';
 
 defineSupportCode(({ Given }) => {
 

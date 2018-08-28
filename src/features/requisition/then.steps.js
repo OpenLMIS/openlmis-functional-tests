@@ -1,10 +1,10 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/then.steps';
-import '../../common/then.steps';
+import '../login/then.steps.js';
+import '../common/then.steps.js';
 
-import ViewRequisitionsPage from '../../../pages/requisition/view.requisitions.page';
-import ViewRequisitionPage from '../../../pages/requisition/view.requisition.page';
+import ViewRequisitionsPage from '../../pages/view.requisitions.page';
+import ProductGridPage from '../../pages/product.grid.page';
 
 defineSupportCode(({ Then }) => {
 
@@ -20,7 +20,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be brought to the product grid screen$/,
-        () => ViewRequisitionPage.waitForIsVisible()
+        () => ProductGridPage.waitForIsVisible()
     );
 
 });

@@ -36,14 +36,6 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I click on the "([^"]*)?" button$/,
-        name => clickButton(name)
-    );
-
-    When(
-        /^I refresh page$/,
-        () => {
-            browser.refresh();
-            waitForVisible('//h2');
-        }
-    );
+        (name) => clickButton(name)
+    )
 });
