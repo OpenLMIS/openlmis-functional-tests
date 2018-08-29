@@ -19,8 +19,6 @@ class ViewRequisitionPage extends Page {
      * Clears all enabled inputs in the requisition as well as total loses and adjustments.
      */
     clearForm() {
-        browser.scroll('//table/parent::*');
-
         browser.elements('tr a:enabled').value.forEach((element) => {
             this.scrollToCell(element);
             element.click();
@@ -71,37 +69,20 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
 
-        browser.saveScreenshot(`./${column}-${product}.png`);
         return browser.element(selector).getValue();
     }
 
     scrollToCell(target) {
         browser.execute((selector, index) => {
             const element = $($(selector)[index]).parents('td')[0];
-            const tableContainer = $('table').parent();
-            const offsetLeft = element.offsetLeft + $(element).width() - tableContainer.width();
-            const actualOffset = offsetLeft < 0 ? 0 : offsetLeft;
-
-            $('table').parent()[0].scrollLeft = actualOffset;
-
-            return {
-                offsetLeft: actualOffset,
-            };
+            element.focus();
         }, target.selector, target.index);
     }
 
     scrollToSelector(target) {
         browser.selectorExecute(target, (elements) => {
             const element = $(elements[0]).parents('td')[0];
-            const tableContainer = $('table').parent();
-            const offsetLeft = element.offsetLeft + $(element).width() - tableContainer.width();
-            const actualOffset = offsetLeft < 0 ? 0 : offsetLeft;
-
-            $('table').parent()[0].scrollLeft = actualOffset;
-
-            return {
-                offsetLeft: actualOffset,
-            };
+            element.focus();
         });
     }
 
