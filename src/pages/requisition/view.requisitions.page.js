@@ -1,6 +1,6 @@
-import Page from './page';
-import waitForVisible from '../support/action/waitForVisible';
-import checkInURLPath from '../support/check/checkInURLPath';
+import Page from '../page';
+import waitForVisible from '../../support/action/waitForVisible';
+import checkInURLPath from '../../support/check/checkInURLPath';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.

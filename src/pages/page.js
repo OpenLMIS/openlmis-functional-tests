@@ -1,3 +1,5 @@
+import waitForVisible from '../support/action/waitForVisible';
+
 /**
  * Base Page Object.
  */
@@ -15,5 +17,9 @@ export default class Page {
      */
     open(path) {
         browser.url(path);
+    }
+
+    waitForLoadingModalToFade() {
+        waitForVisible('modal-backdrop', true);
     }
 }
