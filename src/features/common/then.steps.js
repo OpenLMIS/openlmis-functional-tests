@@ -27,4 +27,8 @@ defineSupportCode(({ Then }) => {
         (name, value) => checkInputValue(name, value)
     );
 
+    Then(
+        /^I should not see "([^"]*)?" tab under "([^"]*)?"$/,
+        (tab, parent) => HomePage.checkIfScreenIsNotVisibleInNavbar(tab, parent)
+    );
 });

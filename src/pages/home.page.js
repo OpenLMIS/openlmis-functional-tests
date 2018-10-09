@@ -62,6 +62,17 @@ class HomePage extends Page {
     isOnline() {
         waitForVisible('.status-offline', true);
     }
+
+    /**
+     * Checks whether specific tab is not available in navigation under given parent.
+     */
+    checkIfScreenIsNotVisibleInNavbar(tabName, parent) {
+        const parentSelector = '//a[normalize-space(text())="' + parent + '"]';
+        waitForVisible(parentSelector);
+        browser.click(parentSelector);
+        const tabSelector = parentSelector + '/parent::*//a[normalize-space(text())="' + tabName + '"]';
+        waitForVisible(tabSelector, true);
+    }
 }
 
 export default new HomePage();
