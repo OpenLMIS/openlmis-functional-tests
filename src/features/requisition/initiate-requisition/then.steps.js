@@ -15,7 +15,10 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should see periods table$/,
-        () => InitiateRequisitionPage.waitForTable()
+        () => {
+            InitiateRequisitionPage.waitForTable()
+            browser.saveScreenshot('./screenshot20.png');
+        }
     );
 
     Then(

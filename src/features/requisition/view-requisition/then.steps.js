@@ -29,5 +29,4 @@ defineSupportCode(({ Then }) => {
             expect(ViewRequisitionPage.getColumnForProduct(column, product)).to.equal(value);
         }
     );
-
 });
