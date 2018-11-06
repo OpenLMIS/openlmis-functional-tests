@@ -1,7 +1,7 @@
 Feature: Submit Requisition
 
   Scenario: Storeroom Manager should be able to submit requisition for home facility
-    Given I have logged with username "srmanager2" and password "password"
+    Given I have logged with username "srmanager4" and password "password"
     And I have initiated a requisition for "Family Planning" program
 
     When I clear the form

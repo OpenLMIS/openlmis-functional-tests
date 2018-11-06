@@ -20,7 +20,6 @@ defineSupportCode(({ When }) => {
         /^I navigate to the Full supply products tab$/,
         () => {
             SubmitRequisitionPage.openFullSupplyProduct();
-            browser.saveScreenshot('./screenshot14.png');
         }
     );
 
@@ -28,7 +27,6 @@ defineSupportCode(({ When }) => {
         /^I wait for the Submit confirmation modal$/,
         () => {
             waitForVisible('//*[normalize-space(text())="Are you sure you want to submit this R&R?"]');
-            browser.saveScreenshot("./screenshot9.png");
         }
     );
 
@@ -36,7 +34,6 @@ defineSupportCode(({ When }) => {
         /^I confirm the submit$/,
         () => {
             SubmitRequisitionPage.confirmSubmit();
-            browser.saveScreenshot("./screenshot16.png");
         }
     );
 
@@ -44,7 +41,6 @@ defineSupportCode(({ When }) => {
         /^I check a product with "([^"]*)?" as code$/,
         (code) => {
             ProductAddPage.markCheckbox(code);
-            browser.saveScreenshot('./screenshot12.png');
         }
     );
 
@@ -52,7 +48,6 @@ defineSupportCode(({ When }) => {
         /^I go to the "([^"]*)?" page$/,
         (pageNumber) => {
             SubmitRequisitionPage.switchToPage(pageNumber);
-            browser.saveScreenshot('./screenshot121.png');
         }
     );
 
@@ -60,7 +55,6 @@ defineSupportCode(({ When }) => {
         /^I proceed to the requisition with "([^"]*)?" status$/,
         (status) => {
             SubmitRequisitionPage.proceedToRequisition(status);
-            browser.saveScreenshot('./screenshot122.png');
         }
     );
 });
