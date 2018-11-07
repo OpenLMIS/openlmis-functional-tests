@@ -7,6 +7,13 @@ import waitForVisible from '../../support/action/waitForVisible';
 class ProductListPage extends Page {
 
     /**
+    * Open the Non full supply product(s) page.
+    */
+    openNonFullSupplyProduct() {
+        browser.execute(() => $('ul a:contains("Non full supply product(s)")').click());
+    }
+
+    /**
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
