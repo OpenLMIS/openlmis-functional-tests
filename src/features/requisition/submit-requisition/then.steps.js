@@ -40,6 +40,7 @@ defineSupportCode(({ Then }) => {
         /^I should see a product with "([^"]*)?" code and "([^"]*)?" product name inside the table$/,
         (code, product) => {
             ProductListPage.waitForAddedProducts(code, product);
+            browser.saveScreenshot('./screenshot13.png');
         }
     );
 
@@ -47,6 +48,7 @@ defineSupportCode(({ Then }) => {
         /^I can set "([^"]*)?" as "([^"]*)?" for "([^"]*)?" product$/,
         (column, value, product) => {
             ViewRequisitionPage.setColumnForProduct(column, product, value);
+            browser.saveScreenshot('./screenshot15.png');
         }
     );
 
@@ -63,6 +65,7 @@ defineSupportCode(({ Then }) => {
         /^I should not be able to edit the requisition$/,
         () => {
             expect(ViewRequisitionPage.checkIfIsEditable()).to.equal(false);
+            browser.saveScreenshot('./screenshot21.png');
         }
     );
 });

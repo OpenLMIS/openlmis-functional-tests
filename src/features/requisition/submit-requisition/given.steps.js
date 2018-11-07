@@ -16,9 +16,14 @@ defineSupportCode(({ Given }) => {
             InitiateRequisitionPage.waitForIsVisible();
             chooseSelectOption("Program", program);
             clickButton("Search");
-            waitForVisible('modal-backdrop', true);
+            browser.saveScreenshot("./screenshot4.png");
+            setTimeout(() => {
+                browser.saveScreenshot("./screenshot5.png");
+            }, 20000);
             waitForVisible('table tr td');
+            browser.saveScreenshot("./screenshot6.png");
             clickButton("Proceed");
+            browser.saveScreenshot("./screenshot7.png");
             ViewRequisitionPage.waitForIsVisible();
         }
     );
