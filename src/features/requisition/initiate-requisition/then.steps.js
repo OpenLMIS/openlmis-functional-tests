@@ -15,9 +15,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should see periods table$/,
-        () => {
-            InitiateRequisitionPage.waitForTable()
-        }
+        () => InitiateRequisitionPage.waitForTable()
     );
 
     Then(
