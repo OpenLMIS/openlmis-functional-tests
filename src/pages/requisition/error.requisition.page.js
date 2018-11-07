@@ -4,7 +4,7 @@ import waitForVisible from '../../support/action/waitForVisible';
 /**
  * Submit Requisition Page object represents the related view in OpenLMIS UI.
  */
-class AlertModal extends Page {
+class ErrorRequisitionPage extends Page {
     
     /**
      * Wait for this page to be visible.
@@ -14,4 +14,4 @@ class AlertModal extends Page {
     }
 }
 
-export default new AlertModal();
+export default new ErrorRequisitionPage();

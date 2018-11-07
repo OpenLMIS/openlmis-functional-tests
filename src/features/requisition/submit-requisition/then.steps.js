@@ -3,26 +3,27 @@ import { defineSupportCode } from 'cucumber';
 import '../../login/then.steps';
 import '../../common/then.steps';
 
+import SubmitRequisitionPage from '../../../pages/requisition/submit.requisition.page';
 import ViewRequisitionPage from '../../../pages/requisition/view.requisition.page';
-import AlertModal from '../../../pages/requisition/alert.modal';
-import ProductAddModal from '../../../pages/requisition/product.add.modal';
+import ErrorRequisitionPage from '../../../pages/requisition/error.requisition.page';
+import ProductAddPage from '../../../pages/requisition/product.add.page';
 import ProductListPage from '../../../pages/requisition/product.list.page';
 
 defineSupportCode(({ Then }) => {
 
     Then(
         /^I should get a requisition with "([^"]*)?" status$/,
-        (status) => ViewRequisitionPage.checkStatus(status)
+        (status) => SubmitRequisitionPage.checkStatus(status)
     );
 
     Then(
         /^I should get an error message$/,
-        () => AlertModal.waitForIsVisible()
+        () => ErrorRequisitionPage.waitForIsVisible()
     );
 
     Then(
         /^I should not see "([^"]*)?" button$/,
-        (button) => ViewRequisitionPage.checkIfButtonIsHidden(button)
+        (button) => SubmitRequisitionPage.checkIfButtonIsNotVisible(button)
     );
 
     Then(
@@ -32,7 +33,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be brought to the add products list page$/,
-        () => ProductAddModal.waitForIsVisible()
+        () => ProductAddPage.waitForIsVisible()
     );
 
     Then(
@@ -46,6 +47,15 @@ defineSupportCode(({ Then }) => {
         /^I can set "([^"]*)?" as "([^"]*)?" for "([^"]*)?" product$/,
         (column, value, product) => {
             ViewRequisitionPage.setColumnForProduct(column, product, value);
+        }
+    );
+
+    Then(
+        /^I should see a notification saying "([^"]*)?"$/,
+        (message) => {
+            setTimeout(() => {
+                waitForNotification(message)
+            }, 100000);
         }
     );
 

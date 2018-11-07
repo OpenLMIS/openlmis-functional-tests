@@ -29,7 +29,7 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I unskip all products$/,
+        /^I unskip products$/,
         () => {
             ViewRequisitionPage.skipNone();
         }

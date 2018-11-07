@@ -13,9 +13,9 @@ Feature: View Requisition
     And I skip remaining products
     And I click on the "Sync with Server" button
     Then I should see a successful notification saying "Requisition has been synchronized!"
-    And "Beginning balance" column for "Levora" product should be "16"
-    And "Total received quantity" column for "Levora" product should be "11"
+    And "Beginning balance" for "Levora" should be "16"
+    And "Total received quantity" for "Levora" should be "11"
 
     When I refresh page
-    Then "Beginning balance" column for "Levora" product should be "16"
-    And "Total received quantity" column for "Levora" product should be "11"
+    Then "Beginning balance" for "Levora" should be "16"
+    And "Total received quantity" for "Levora" should be "11"

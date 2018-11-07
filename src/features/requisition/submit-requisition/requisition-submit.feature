@@ -35,7 +35,7 @@ Feature: Submit Requisition
     When I set "Requested quantity" as "10" for "Implanon" product
     And I set "Requested quantity explanation" as empty for "Implanon" product
     And I navigate to the Full supply products tab
-    And I unskip all products
+    And I unskip products
     Then I can set "Total received quantity" as "10" for "Tonica" product
 
     When I skip remaining products
@@ -44,7 +44,7 @@ Feature: Submit Requisition
     And I click on the "Submit" button
     And I wait for the Submit confirmation modal
     And I confirm the submit
-    Then I should see a successful notification saying "Requisition has been submitted"
+    Then I should see a notification saying "Requisition has been submitted"
     And I should see periods table
 
     When I proceed to the requisition with "SUBMITTED" status

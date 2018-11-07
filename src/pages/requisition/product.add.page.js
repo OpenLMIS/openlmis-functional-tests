@@ -1,10 +1,11 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
+import fillInput from '../../support/action/fillInput';
 
 /**
- * Product Add Modal object represents the related view in OpenLMIS UI.
+ * Product Add Page object represents the related view in OpenLMIS UI.
  */
-class ProductAddModal extends Page {
+class ProductAddPage extends Page {
 
     /**
      * Wait for this page to be visible.
@@ -16,10 +17,9 @@ class ProductAddModal extends Page {
     /**
      * Check the checkbox option.
      */
-    selectProduct(code) {
-        browser.saveScreenshot('./screenshot14.png');
+    markCheckbox(code) {
         browser.element('//td[text()="' + code + '"]/preceding-sibling::td/label/input[@type="checkbox"]').click();
     }
 }
 
-export default new ProductAddModal();
+export default new ProductAddPage();
