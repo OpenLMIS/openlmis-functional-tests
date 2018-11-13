@@ -58,34 +58,3 @@ Feature: Submit Requisition
     And I should not be able to edit the requisition
     And I should not see "Authorize" button
     And I should not see "Delete" button
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
