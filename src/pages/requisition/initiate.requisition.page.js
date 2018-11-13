@@ -31,6 +31,7 @@ class InitiateRequisitionPage extends Page {
      * Wait for the table to be visible.
      */
     waitForTable() {
+        this.waitForLoadingModalToFade();
         waitForVisible('table tr td');
     }
 }
