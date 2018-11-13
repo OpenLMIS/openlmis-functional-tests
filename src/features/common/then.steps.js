@@ -19,7 +19,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should see a successful notification saying "([^"]*)?"$/,
-        message => waitForNotification(message)
+        (message) => waitForNotification(message)
     );
 
     Then(

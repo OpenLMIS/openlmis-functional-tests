@@ -16,7 +16,6 @@ defineSupportCode(({ Given }) => {
             InitiateRequisitionPage.waitForIsVisible();
             chooseSelectOption("Program", program);
             clickButton("Search");
-            waitForVisible('modal-backdrop', true);
             InitiateRequisitionPage.waitForTable();
             clickButton("Proceed");
             ViewRequisitionPage.waitForIsVisible();

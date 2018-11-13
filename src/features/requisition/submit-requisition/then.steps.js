@@ -11,11 +11,6 @@ import ProductListPage from '../../../pages/requisition/product.list.page';
 defineSupportCode(({ Then }) => {
 
     Then(
-        /^I should get a requisition with "([^"]*)?" status$/,
-        (status) => ViewRequisitionPage.checkStatus(status)
-    );
-
-    Then(
         /^I should get an error message$/,
         () => AlertModal.waitForIsVisible()
     );
@@ -46,6 +41,20 @@ defineSupportCode(({ Then }) => {
         /^I can set "([^"]*)?" as "([^"]*)?" for "([^"]*)?" product$/,
         (column, value, product) => {
             ViewRequisitionPage.setColumnForProduct(column, product, value);
+        }
+    );
+
+    Then(
+        /^I can set "([^"]*)?" as empty for "([^"]*)?" product$/,
+        (column, product) => {
+            ViewRequisitionPage.clearColumnForProduct(column, product);
+        }
+    );
+
+    Then(
+        /^I can skip all remaining products$/,
+        () => {
+            ViewRequisitionPage.skipAll();
         }
     );
 

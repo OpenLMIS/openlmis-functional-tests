@@ -167,6 +167,7 @@ class ViewRequisitionPage extends Page {
      */
     confirmSubmit() {
         browser.element('//*[contains(@class, "modal-footer")]/button[contains(text(), "Submit")]').click();
+        this.waitForLoadingModalToFade();
     }
 
     /**

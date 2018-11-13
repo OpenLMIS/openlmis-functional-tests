@@ -17,7 +17,6 @@ class ProductAddModal extends Page {
      * Check the checkbox option.
      */
     selectProduct(code) {
-        browser.saveScreenshot('./screenshot14.png');
         browser.element('//td[text()="' + code + '"]/preceding-sibling::td/label/input[@type="checkbox"]').click();
     }
 }
