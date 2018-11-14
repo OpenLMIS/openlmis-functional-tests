@@ -49,7 +49,7 @@ Feature: Submit Requisition
     When I click on the "Submit" button
     And I wait for the Submit confirmation modal
     And I confirm the submit
-    Then I should see a successful notification saying "Requisition has been submitted"
+    Then I should see a successful notification saying "Requisition has been submitted!"
     And I should see periods table
 
   Scenario: Storeroom Manager should not be able to edit the submitted requisition nor to authorize/delete the requisition

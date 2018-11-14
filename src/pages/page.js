@@ -20,6 +20,7 @@ export default class Page {
     }
 
     waitForLoadingModalToFade() {
-        waitForVisible('modal-backdrop', true);
+        browser.pause(1000);
+        waitForVisible('.loading-modal', true);
     }
 }

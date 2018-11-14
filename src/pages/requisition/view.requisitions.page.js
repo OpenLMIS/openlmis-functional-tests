@@ -67,7 +67,7 @@ class ViewRequisitionsPage extends Page {
   * Wait for the table to be visible.
   */
   waitForTable() {
-    waitForVisible('table tr td');
+    waitForVisible('//table/tbody/tr/td');
   }
 }
 

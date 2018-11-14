@@ -1,5 +1,6 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
+import getButtonSelector from '../../support/lib/getButtonSelector';
 
 /**
  * Initiate Requisition Page object represents the related view in OpenLMIS UI.
@@ -32,7 +33,7 @@ class InitiateRequisitionPage extends Page {
      */
     waitForTable() {
         this.waitForLoadingModalToFade();
-        waitForVisible('table tr td');
+        waitForVisible('table');
     }
 }
 
