@@ -42,6 +42,10 @@ Test:
 1. Start (once before): `yarn run local-webserver`
 1. Test: `yarn run wdio`
 
+To run single feature:
+1. Start (once before): `yarn run local-webserver`
+1. Test: `yarn run wdio --spec src/path/to/feature/featureName.feature`
+
 Use [REPL](http://webdriver.io/guide/usage/repl.html) (Install and Start first):
 1. Start Selenium: `yarn run selenium-standalone start`
 1. Run REPL: `yarn run wdio repl`
