@@ -15,7 +15,7 @@ Feature: Requisition
     When I enable offline mode
     Then the offline mode should be enabled
 
-    When I go to view requisition screen
+    When I navigate to view requisition screen
     Then I should be brought to the view requisition screen
 
     When I search for my requisitions

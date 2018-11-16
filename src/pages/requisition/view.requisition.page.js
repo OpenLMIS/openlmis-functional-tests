@@ -13,8 +13,7 @@ class ViewRequisitionPage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('div.openlmis-table-container');
-        waitForVisible('div.openlmis-flex-table');
+        waitForVisible('//h2[contains(normalize-space(text()), "Report and Requisition for")]');
     }
 
     /**

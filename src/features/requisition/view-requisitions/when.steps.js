@@ -22,4 +22,9 @@ defineSupportCode(({ When }) => {
         (program, period) => ViewRequisitionsPage.viewRequisition(program, period)
     );
 
+    When(
+        /^I navigate to view requisition screen$/,
+        () => ViewRequisitionsPage.navigateToPage('Requisitions', 'View')
+    );
+
 });
