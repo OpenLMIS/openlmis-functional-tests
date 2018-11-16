@@ -2,6 +2,7 @@ pipeline {
   agent any
   options {
     buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
+    disableConcurrentBuilds()
   }
   environment {
     PATH = "/usr/local/bin:$PATH"
