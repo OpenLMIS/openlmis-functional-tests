@@ -1,6 +1,6 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/given.steps.js';
+import '../../login/given.steps';
 
 import ReasonListPage from '../../../pages/administration/reason.list.page';
 

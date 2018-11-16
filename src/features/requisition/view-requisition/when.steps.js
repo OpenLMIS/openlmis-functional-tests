@@ -9,37 +9,27 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I set "([^"]*)?" as "([^"]*)?" for "([^"]*)?" product$/,
-        (column, value, product) => {
-            ViewRequisitionPage.setColumnForProduct(column, product, value);
-        }
+        (column, value, product) => ViewRequisitionPage.setColumnForProduct(column, product, value)
     );
 
     When(
         /^I set "([^"]*)?" as empty for "([^"]*)?" product$/,
-        (column, product) => {
-            ViewRequisitionPage.clearColumnForProduct(column, product);
-        }
+        (column, product) => ViewRequisitionPage.clearColumnForProduct(column, product)
     );
 
     When(
         /^I skip remaining products$/,
-        () => {
-            ViewRequisitionPage.skipAll();
-        }
+        () => ViewRequisitionPage.skipAll()
     );
 
     When(
         /^I unskip all products$/,
-        () => {
-            ViewRequisitionPage.skipNone();
-        }
+        () => ViewRequisitionPage.skipNone()
     );
 
     When(
         /^I clear the form$/,
-        () => {
-            ViewRequisitionPage.clearForm();
-        }
+        () => ViewRequisitionPage.clearForm()
     );
 
 });

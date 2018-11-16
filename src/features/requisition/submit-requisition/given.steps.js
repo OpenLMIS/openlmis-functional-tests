@@ -2,11 +2,10 @@ import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../pages/requisition/view.requisition.page';
 import InitiateRequisitionPage from '../../../pages/requisition/initiate.requisition.page';
-import clickButton from '../../../support/action/clickButton';
-import waitForVisible from '../../../support/action/waitForVisible';
 import chooseSelectOption from '../../../support/action/chooseSelectOption';
 
 import '../../login/given.steps';
+import Button from '../../../components/button';
 
 defineSupportCode(({ Given }) => {
     Given(
@@ -14,10 +13,11 @@ defineSupportCode(({ Given }) => {
         (program) => {
             InitiateRequisitionPage.open();
             InitiateRequisitionPage.waitForIsVisible();
-            chooseSelectOption("Program", program);
-            clickButton("Search");
+
+            InitiateRequisitionPage.searchForProgram(program);
             InitiateRequisitionPage.waitForTable();
-            clickButton("Proceed");
+
+            InitiateRequisitionPage.clickProceedButton();
             ViewRequisitionPage.waitForIsVisible();
         }
     );

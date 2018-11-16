@@ -1,23 +1,21 @@
-import Page from '../page';
-import waitForVisible from '../../support/action/waitForVisible';
+import Modal from '../../components/modal';
 
 /**
  * Product Add Modal object represents the related view in OpenLMIS UI.
  */
-class ProductAddModal extends Page {
+class ProductAddModal extends Modal {
 
-    /**
-     * Wait for this page to be visible.
-     */
-    waitForIsVisible() {
-        waitForVisible('//*[normalize-space(text())="Add Products"]');
+    constructor() {
+        super({
+            header: 'Add Products'
+        });
     }
 
     /**
      * Check the checkbox option.
      */
     selectProduct(code) {
-        browser.element('//td[text()="' + code + '"]/preceding-sibling::td/label/input[@type="checkbox"]').click();
+        browser.element(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
     }
 }
 

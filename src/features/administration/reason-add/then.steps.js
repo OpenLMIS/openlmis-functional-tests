@@ -1,7 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/then.steps.js';
-import '../../common/then.steps.js';
+import '../../login/then.steps';
+import '../../common/then.steps';
 
 import ReasonAddPage from '../../../pages/administration/reason.add.page';
 

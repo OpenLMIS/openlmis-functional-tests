@@ -1,4 +1,5 @@
 import waitForVisible from '../support/action/waitForVisible';
+import Action from '../components/action';
 
 /**
  * Base Page Object.
@@ -7,20 +8,21 @@ export default class Page {
     /**
      * Construct an new Page, with a default title.
      */
-    constructor() {
-        this.title = 'Default Page';
+    constructor(config) {
+        if (config) {
+            this.header = config.header;
+            this.uri = config.uri;
+        }
     }
 
     /**
      * Opens the URL for this path, relative links work fine.
-     * @param {String} path relative path to this page.
      */
-    open(path) {
-        browser.url(path);
+    open() {
+        new Action(() => browser.url(`/#!/${this.uri}`)).execute();
     }
 
-    waitForLoadingModalToFade() {
-        browser.pause(1000);
-        waitForVisible('.loading-modal', true);
+    waitForIsVisible() {
+        waitForVisible(`//h2[normalize-space(text())="${this.header}"]`);
     }
 }

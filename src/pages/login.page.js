@@ -1,10 +1,23 @@
 import Page from './page';
 import waitForVisible from '../support/action/waitForVisible';
+import Action from '../components/action';
+import Button from '../components/button';
 
 /**
  * Login page / modal
  */
 class LoginPage extends Page {
+
+    constructor() {
+        super({
+            uri: 'login',
+        });
+    }
+
+    get submitButton() {
+        return new Button('Sign In');
+    }
+
     /**
      * Get the Username input
      */
@@ -36,20 +49,6 @@ class LoginPage extends Page {
     }
 
     /**
-     * Get the Submit button.
-     */
-    get submitButton() {
-        return browser.element("//form//input[@type='submit']");
-    }
-
-    /**
-     * Get the form.
-     */
-    get form() {
-        return browser.element('//form');
-    }
-
-    /**
      * Click the submit button to login.
      */
     clickSubmit() {
@@ -60,14 +59,7 @@ class LoginPage extends Page {
      * Press the enter key on the keyboard when the login form has focus.
      */
     pressEnterInForm() {
-        this.password.addValue('Enter');
-    }
-
-    /**
-     * Open this page/modal.
-     */
-    open() {
-        super.open('/#!/login');
+        new Action(() => this.password.addValue('Enter')).execute();
     }
 
     /**

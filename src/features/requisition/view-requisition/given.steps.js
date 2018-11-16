@@ -11,8 +11,10 @@ defineSupportCode(({ Given }) => {
         (program, period) => {
             ViewRequisitionsPage.open();
             ViewRequisitionsPage.waitForIsVisible();
+
             ViewRequisitionsPage.clickSearch();
             ViewRequisitionsPage.waitForTable();
+
             ViewRequisitionsPage.viewRequisition(program, period);
             ProductGridPage.waitForIsVisible();
         }

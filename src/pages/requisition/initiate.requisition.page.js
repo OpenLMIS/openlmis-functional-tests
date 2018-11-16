@@ -1,38 +1,41 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
-import getButtonSelector from '../../support/lib/getButtonSelector';
+import chooseSelectOption from '../../support/action/chooseSelectOption';
+import Button from '../../components/button';
 
 /**
  * Initiate Requisition Page object represents the related view in OpenLMIS UI.
  */
 class InitiateRequisitionPage extends Page {
 
-    /**
-     * Wait for this page to be visible.
-     */
-    waitForIsVisible() {
-        waitForVisible('.navbar');
+    constructor() {
+        super({
+            header: 'Initiate Report and Requisition',
+            uri: 'requisitions/initiate',
+        });
     }
 
-    /**
-     * Open the view requisitions page.
-     */
-    open() {
-        browser.execute(() => $('.navbar a:contains("Requisition")').parent().find('a:contains("Create/Authorize")').click());
+    get searchButton() {
+        return new Button('Search');
     }
 
-    /**
-     * Is this page visibile?
-     */
-    isVisible() {
-        checkInURLPath(false, '#!/requisitions/initiate');
+    get proceedButton() {
+        return new Button('Proceed');
+    }
+
+    searchForProgram(program) {
+        chooseSelectOption('Program', program);
+        this.searchButton.click();
+    }
+
+    clickProceedButton() {
+        this.proceedButton.click();
     }
 
     /**
      * Wait for the table to be visible.
      */
     waitForTable() {
-        this.waitForLoadingModalToFade();
         waitForVisible('table');
     }
 }

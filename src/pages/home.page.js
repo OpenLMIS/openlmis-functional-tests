@@ -1,6 +1,7 @@
 import Page from './page';
 import waitForVisible from '../support/action/waitForVisible';
 import checkInURLPath from '../support/check/checkInURLPath';
+import Action from '../components/action';
 
 /**
  * Home Page object which user's land on and has navigation to further
@@ -25,7 +26,7 @@ class HomePage extends Page {
      * Open the home page.
      */
     open() {
-        super.open('/#!/home');
+        new Action(() => super.open('/#!/home')).execute();
     }
 
     /**

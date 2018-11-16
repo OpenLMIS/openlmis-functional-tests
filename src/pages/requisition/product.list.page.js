@@ -17,7 +17,10 @@ class ProductListPage extends Page {
      * Wait for the product to be visible in the table.
      */
     waitForAddedProducts(code, product) {
-        waitForVisible('//td[text()="' + code + '"]/following-sibling::td[text()="' + product + '"]');
+        waitForVisible(
+            `//td[text()="${code}"]` +
+            `/following-sibling::td[text()="${product}"]`
+        );
     }
 }
 

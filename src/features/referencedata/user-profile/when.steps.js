@@ -1,6 +1,6 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/when.steps.js';
+import '../../login/when.steps';
 
 import UserProfilePage from '../../../pages/referencedata/user.profile.page';
 

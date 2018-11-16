@@ -1,6 +1,8 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
 import getButtonSelector from '../../support/lib/getButtonSelector';
+import loadingModal from '../../components/loading-modal';
+import Action from '../../components/action';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -25,7 +27,7 @@ class ViewRequisitionPage extends Page {
 
             browser.elements(getButtonSelector('Remove')).value.forEach(button => button.click());
             browser.element(getButtonSelector('Update')).click();
-            this.waitForLoadingModalToFade();
+            loadingModal.waitForHide();
         });
 
         browser.elements('td input[type="text"]:enabled').value.forEach((element) => {
@@ -127,7 +129,7 @@ class ViewRequisitionPage extends Page {
             this.scrollToCell(element);
             this.numberOfEditableInputs++;
         });
-        return numberOfEditableInputs > 0 ? true : false;
+        return numberOfEditableInputs > 0;
     }
 
     /**
@@ -150,7 +152,9 @@ class ViewRequisitionPage extends Page {
      * @param {String} button the name of the button
      */
     checkIfButtonIsHidden(button) {
-        const buttonSelector = browser.element('//*[contains(@class, "button-group")]/button[contains(text(), "'+ button + '")]');
+        const buttonSelector = browser.element(
+            `//*[contains(@class, "button-group")]/button[contains(text(), "${button}")]`
+        );
         this.waitForIsVisible(buttonSelector, true);
     }
 
@@ -166,8 +170,9 @@ class ViewRequisitionPage extends Page {
      * Submit the confirmation modal
      */
     confirmSubmit() {
-        browser.element('//*[contains(@class, "modal-footer")]/button[contains(text(), "Submit")]').click();
-        this.waitForLoadingModalToFade();
+        new Action(
+            () => browser.element('//*[contains(@class, "modal-footer")]/button[contains(text(), "Submit")]').click()
+        ).execute();
     }
 
     /**
@@ -176,10 +181,10 @@ class ViewRequisitionPage extends Page {
      * @param {String} status  Period name.
      */
     proceedToRequisition(status) {
-        browser.execute(function (status) {
+        browser.execute((status) => {
             $('table tr')
                 .filter((index, element) => {
-                    var that = $(element),
+                    const that = $(element),
                         statusCell = that.find('td:nth-child(4)').text();
 
                     return status === statusCell;

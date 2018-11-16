@@ -31,16 +31,16 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I check a product with "([^"]*)?" as code$/,
-        (code) => ProductAddModal.selectProduct(code)
+        code => ProductAddModal.selectProduct(code)
     );
 
     When(
         /^I go to the "([^"]*)?" page$/,
-        (pageNumber) => ViewRequisitionPage.switchToPage(pageNumber)
+        pageNumber => ViewRequisitionPage.switchToPage(pageNumber)
     );
 
     When(
         /^I proceed to the requisition with "([^"]*)?" status$/,
-        (status) => ViewRequisitionPage.proceedToRequisition(status)
+        status => ViewRequisitionPage.proceedToRequisition(status)
     );
 });

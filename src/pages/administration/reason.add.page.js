@@ -1,23 +1,25 @@
-import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
+import Modal from '../../components/modal';
 
 /**
  * Reason Add Page object represents the related view in OpenLMIS UI.
  */
-class ReasonAddPage extends Page {
+class ReasonAddPage extends Modal {
 
-    /**
-     * Wait for this page to be visible.
-     */
-    waitForIsVisible() {
-        waitForVisible('//*[normalize-space(text())="Add New Reason"]');
+    constructor() {
+        super({
+            header: 'Add New Reason',
+        });
     }
 
     /**
      * Wait for the assignment to be added.
      */
     waitForAssignment(program, facilityType) {
-        waitForVisible('//td[text()="' + program + '"]/following-sibling::td[text()="' + facilityType + '"]');
+        waitForVisible(
+            `//td[text()="${program}"]` +
+            `/following-sibling::td[text()="${facilityType}"]`
+        );
     }
 }
 

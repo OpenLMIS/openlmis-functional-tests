@@ -11,7 +11,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^There should be the pending verification note for "([^"]*)"$/,
-        (value) => UserProfilePage.verifyPendingVerificationNode(value)
+        value => UserProfilePage.verifyPendingVerificationNode(value)
     );
 
 });

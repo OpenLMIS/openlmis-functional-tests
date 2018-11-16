@@ -1,7 +1,5 @@
 import { defineSupportCode } from 'cucumber';
-
-import '../../login/given.steps.js';
-
+import '../../login/given.steps';
 import UserProfilePage from '../../../pages/referencedata/user.profile.page';
 
 defineSupportCode(({ Given }) => {

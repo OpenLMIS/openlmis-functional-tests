@@ -6,7 +6,7 @@ import HomePage from '../../pages/home.page';
 defineSupportCode(({ Given }) => {
     Given(
         /^I navigate to the login page$/,
-        LoginPage.open
+        () => LoginPage.open()
     );
     Given(
         /^I enter the username "([^"]*)?"$/,
@@ -28,18 +28,18 @@ defineSupportCode(({ Given }) => {
     );
 
     Given(
-      /^I have logged with username "([^"]*)?" and password "([^"]*)?"$/,
-      (username, password) => {
-        LoginPage.open();
-        LoginPage.waitForIsVisible();
+        /^I have logged with username "([^"]*)?" and password "([^"]*)?"$/,
+        (username, password) => {
+            LoginPage.open();
+            LoginPage.waitForIsVisible();
 
-        LoginPage.username = username;
-        LoginPage.password = password;
+            LoginPage.username = username;
+            LoginPage.password = password;
 
-        LoginPage.clickSubmit();
-        HomePage.waitForIsVisible();
-        HomePage.isVisible();
-      }
+            LoginPage.clickSubmit();
+            HomePage.waitForIsVisible();
+            HomePage.isVisible();
+        }
     );
 
 });

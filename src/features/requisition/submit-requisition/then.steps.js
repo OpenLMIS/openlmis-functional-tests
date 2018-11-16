@@ -17,7 +17,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should not see "([^"]*)?" button$/,
-        (button) => ViewRequisitionPage.checkIfButtonIsHidden(button)
+        button => ViewRequisitionPage.checkIfButtonIsHidden(button)
     );
 
     Then(
@@ -60,8 +60,6 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should not be able to edit the requisition$/,
-        () => {
-            expect(ViewRequisitionPage.checkIfIsEditable()).to.equal(false);
-        }
+        () => expect(ViewRequisitionPage.checkIfIsEditable()).to.equal(false)
     );
 });

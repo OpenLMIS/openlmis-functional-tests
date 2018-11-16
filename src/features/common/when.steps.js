@@ -4,8 +4,8 @@ import waitForVisible from '../../support/action/waitForVisible';
 import fillInput from '../../support/action/fillInput';
 import clickRadioInput from '../../support/action/clickRadioInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
-import clickButton from '../../support/action/clickButton';
 import offlineMode from '../../support/action/offlineMode';
+import Button from '../../components/button';
 
 defineSupportCode(({ When }) => {
 
@@ -36,7 +36,7 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I click on the "([^"]*)?" button$/,
-        name => clickButton(name)
+        name => new Button(name).click()
     );
 
     When(
