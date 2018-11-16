@@ -1,7 +1,7 @@
 Feature: Submit Requisition
 
   Scenario: Storeroom Manager should not be able to submit form when there is any required field left empty
-    Given I have logged with username "srmanager4" and password "password"
+    Given I have logged with username "srmanager3" and password "password"
     And I have initiated a requisition for "Family Planning" program
 
     When I clear the form
