@@ -175,6 +175,15 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Authorize the confirmation modal
+     */
+    confirmAuthorize() {
+        new Action(
+            () => browser.element('//*[contains(@class, "modal-footer")]/button[contains(text(), "Authorize")]').click()
+        ).execute();
+    }
+
+    /**
      * Click on 'Proceed' button for the submitted requisition.
      *
      * @param {String} status  Period name.
