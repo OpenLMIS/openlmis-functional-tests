@@ -1,6 +1,7 @@
 import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
 import Button from '../../components/button';
+import chooseSelectOption from '../../support/action/chooseSelectOption';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.
@@ -25,6 +26,16 @@ class ViewRequisitionsPage extends Page {
      * Click to search.
      */
     clickSearch() {
+        this.searchButton.click();
+    }
+
+    /**
+     * Select the given facility and click on "Search" button.
+     *
+     * @param {String} facility  Facility name.
+     */
+    searchForFacility(facility) {
+        chooseSelectOption('Facility', facility);
         this.searchButton.click();
     }
 
