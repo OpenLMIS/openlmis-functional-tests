@@ -3,6 +3,7 @@ import waitForVisible from '../../support/action/waitForVisible';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import Action from '../../components/action';
+import ConfirmationModal from '../../components/confirmation-modal';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -166,12 +167,17 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
-     * Submit the confirmation modal
+     * Submit the confirmation modal.
      */
     confirmSubmit() {
-        new Action(
-            () => browser.element('//*[contains(@class, "modal-footer")]/button[contains(text(), "Submit")]').click()
-        ).execute();
+        ConfirmationModal.confirm('Are you sure you want to submit this R&R?', 'Submit');
+    }
+
+    /**
+     * Authorize the confirmation modal.
+     */
+    confirmAuthorize() {
+        ConfirmationModal.confirm('Are you sure you want to authorize this R&R?', 'Authorize');
     }
 
     /**

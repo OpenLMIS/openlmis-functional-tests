@@ -3,14 +3,14 @@ import { defineSupportCode } from 'cucumber';
 import '../../login/when.steps';
 import '../../common/when.steps';
 
-import ConfirmationModal from '../../../pages/requisition/confirmation.modal';
+import ViewRequisitionPage from '../../../pages/requisition/view.requisition.page';
 
 defineSupportCode(({ When }) => {
 
     When(
         /^I confirm the authorize/,
         () => {
-            ConfirmationModal.confirmAuthorize();
+            ViewRequisitionPage.confirmAuthorize();
         }
     );
 });

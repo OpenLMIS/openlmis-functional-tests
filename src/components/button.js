@@ -3,11 +3,11 @@ import getButtonSelector from '../support/lib/getButtonSelector';
 
 export default class Button {
 
-    constructor(label) {
-        this.label = label;
+    constructor(label, path) {
+        this.selector = path ? path : getButtonSelector(label);
     }
 
     click() {
-        new Action(() => browser.element(getButtonSelector(this.label)).click()).execute();
+        new Action(() => browser.element(this.selector).click()).execute();
     }
 }
