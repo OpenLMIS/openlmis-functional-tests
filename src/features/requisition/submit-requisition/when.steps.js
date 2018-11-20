@@ -28,7 +28,7 @@ defineSupportCode(({ When }) => {
         /^I confirm the submit$/,
         () => ViewRequisitionPage.confirmSubmit()
     );
-
+    
     When(
         /^I check a product with "([^"]*)?" as code$/,
         code => ProductAddModal.selectProduct(code)

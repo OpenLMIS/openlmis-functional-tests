@@ -4,6 +4,7 @@ import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import Action from '../../components/action';
 import ConfirmationModal from '../../components/confirmation-modal';
+import Button from '../../components/button';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -166,6 +167,14 @@ class ViewRequisitionPage extends Page {
         browser.execute((pageNumber) => $(`ul a:contains('${pageNumber}')`).click(), page);
     }
 
+    get submitButton() {
+        return new Button('Submit');
+    }
+
+    clickSubmitButton() {
+        this.submitButton.click();
+    }
+
     /**
      * Submit the confirmation modal.
      */
@@ -178,6 +187,17 @@ class ViewRequisitionPage extends Page {
      */
     confirmAuthorize() {
         ConfirmationModal.confirm('Are you sure you want to authorize this R&R?', 'Authorize');
+    }
+
+    /**
+     * Delete the confirmation modal
+     */
+    confirmDelete() {
+        ConfirmationModal.confirm('Are you sure you want to delete this R&R?', 'Delete');
+    }
+
+    waitForConfirmationModal(modalName) {
+        waitForVisible('//*[normalize-space(text())="Are you sure you want to ' + modalName + ' this R&R?"]')
     }
 
     /**
