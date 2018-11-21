@@ -189,7 +189,7 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
-     * Get delete confirmation button.
+     * Get delete confirmation modal.
      */
     get deleteConfirmationModal() {
         return new ConfirmationModal('Are you sure you want to delete this R&R?', 'Delete');
