@@ -189,6 +189,13 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Get delete confirmation button.
+     */
+    get deleteConfirmationButton() {
+        return new ConfirmationModal('Are you sure you want to delete this R&R?', 'Delete');
+    }
+
+    /**
      * Submit the confirmation modal.
      */
     confirmSubmit() {
@@ -206,11 +213,7 @@ class ViewRequisitionPage extends Page {
      * Delete the confirmation modal
      */
     confirmDelete() {
-        ConfirmationModal.confirm('Are you sure you want to delete this R&R?', 'Delete');
-    }
-
-    waitForConfirmationModal(modalName) {
-        waitForVisible('//*[normalize-space(text())="Are you sure you want to ' + modalName + ' this R&R?"]')
+        this.deleteConfirmationButton.confirm();
     }
 
     /**
