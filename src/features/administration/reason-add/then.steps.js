@@ -1,20 +1,17 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/then.steps';
-import '../../common/then.steps';
-
-import ReasonAddPage from '../../../pages/administration/reason.add.page';
+import ReasonAddModal from '../../../pages/administration/reason.add.modal';
 
 defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be brought to the reason creation page$/,
-        () => ReasonAddPage.waitForIsVisible()
+        () => ReasonAddModal.waitForIsVisible()
     );
 
     Then(
         /^I should see assignment for "([^"]*)?" program and "([^"]*)?" facility type$/,
-        (program, facilityType) => ReasonAddPage.waitForAssignment(program, facilityType)
+        (program, facilityType) => ReasonAddModal.waitForAssignment(program, facilityType)
     );
 
 });

@@ -1,7 +1,5 @@
 import { defineSupportCode } from 'cucumber';
 
-import '../../login/given.steps';
-
 import ReasonListPage from '../../../pages/administration/reason.list.page';
 
 defineSupportCode(({ Given }) => {

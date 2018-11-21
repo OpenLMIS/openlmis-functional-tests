@@ -1,4 +1,4 @@
-import Page from './page';
+import Page from '../components/page';
 import waitForVisible from '../support/action/waitForVisible';
 import Action from '../components/action';
 import Button from '../components/button';
@@ -63,7 +63,7 @@ class LoginPage extends Page {
     }
 
     /**
-     * Wait for this page/modal to be visisble.
+     * Wait for this page/modal to be visible.
      */
     waitForIsVisible() {
         waitForVisible('.auth-modal');

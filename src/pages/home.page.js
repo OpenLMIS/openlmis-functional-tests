@@ -1,4 +1,4 @@
-import Page from './page';
+import Page from '../components/page';
 import waitForVisible from '../support/action/waitForVisible';
 import checkInURLPath from '../support/check/checkInURLPath';
 import Action from '../components/action';
