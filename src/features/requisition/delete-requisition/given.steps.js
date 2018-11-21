@@ -68,7 +68,6 @@ defineSupportCode(({ Given }) => {
     
             ViewRequisitionPage.skipAll();
             ViewRequisitionPage.clickSubmitButton();
-            ViewRequisitionPage.waitForConfirmationModal("submit");
             ViewRequisitionPage.confirmSubmit();
             waitForNotification("Requisition has been submitted!");
         }

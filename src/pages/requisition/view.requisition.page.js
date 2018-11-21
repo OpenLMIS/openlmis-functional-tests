@@ -175,16 +175,16 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
-     * Get authorize button.
+     * Get authorize confirmation button.
      */
-    get authorizeButton() {
+    get authorizeConfirmationButton() {
         return new ConfirmationModal('Are you sure you want to authorize this R&R?', 'Authorize');
     }
 
     /**
-     * Get submit button.
+     * Get submit confirmation button.
      */
-    get submitButton() {
+    get submitConfirmationButton() {
         return new ConfirmationModal('Are you sure you want to submit this R&R?', 'Submit');
     }
 
@@ -192,14 +192,14 @@ class ViewRequisitionPage extends Page {
      * Submit the confirmation modal.
      */
     confirmSubmit() {
-        this.submitButton.confirm();
+        this.submitConfirmationButton.confirm();
     }
 
     /**
      * Authorize the confirmation modal.
      */
     confirmAuthorize() {
-        this.authorizeButton.confirm();
+        this.authorizeConfirmationButton.confirm();
     }
 
     /**
