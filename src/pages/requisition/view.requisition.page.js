@@ -191,7 +191,7 @@ class ViewRequisitionPage extends Page {
     /**
      * Get delete confirmation button.
      */
-    get deleteConfirmationButton() {
+    get deleteConfirmationModal() {
         return new ConfirmationModal('Are you sure you want to delete this R&R?', 'Delete');
     }
 
@@ -213,7 +213,7 @@ class ViewRequisitionPage extends Page {
      * Delete the confirmation modal
      */
     confirmDelete() {
-        this.deleteConfirmationButton.confirm();
+        this.deleteConfirmationModal.confirm();
     }
 
     /**
