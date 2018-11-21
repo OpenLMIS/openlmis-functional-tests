@@ -16,7 +16,6 @@ Feature: Submit Requisition
     And I set "Requested quantity explanation" as empty for "Levora" product
     And I skip remaining products
     And I click on the "Submit" button
-    And I wait for the Submit confirmation modal
     And I confirm the submit
     Then I should get an error message
     When I click on the "Close" button
@@ -47,7 +46,6 @@ Feature: Submit Requisition
 
   Scenario: Storeroom Manager should be able to submit requisition for home facility
     When I click on the "Submit" button
-    And I wait for the Submit confirmation modal
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
     And I should see periods table

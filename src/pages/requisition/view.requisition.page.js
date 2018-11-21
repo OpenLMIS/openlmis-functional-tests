@@ -2,7 +2,6 @@ import Page from '../page';
 import waitForVisible from '../../support/action/waitForVisible';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
-import Action from '../../components/action';
 import ConfirmationModal from '../../components/confirmation-modal';
 import Button from '../../components/button';
 
@@ -176,17 +175,31 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Get authorize button.
+     */
+    get authorizeButton() {
+        return new ConfirmationModal('Are you sure you want to authorize this R&R?', 'Authorize');
+    }
+
+    /**
+     * Get submit button.
+     */
+    get submitButton() {
+        return new ConfirmationModal('Are you sure you want to submit this R&R?', 'Submit');
+    }
+
+    /**
      * Submit the confirmation modal.
      */
     confirmSubmit() {
-        ConfirmationModal.confirm('Are you sure you want to submit this R&R?', 'Submit');
+        this.submitButton.confirm();
     }
 
     /**
      * Authorize the confirmation modal.
      */
     confirmAuthorize() {
-        ConfirmationModal.confirm('Are you sure you want to authorize this R&R?', 'Authorize');
+        this.authorizeButton.confirm();
     }
 
     /**

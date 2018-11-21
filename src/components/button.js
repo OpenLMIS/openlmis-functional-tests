@@ -3,8 +3,8 @@ import getButtonSelector from '../support/lib/getButtonSelector';
 
 export default class Button {
 
-    constructor(label, path) {
-        this.selector = path ? path : getButtonSelector(label);
+    constructor(label, selector) {
+        this.selector = selector ? selector : getButtonSelector(label);
     }
 
     click() {

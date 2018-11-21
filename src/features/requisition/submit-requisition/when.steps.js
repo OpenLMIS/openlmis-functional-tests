@@ -5,7 +5,6 @@ import '../../common/when.steps';
 
 import ViewRequisitionPage from '../../../pages/requisition/view.requisition.page';
 import ProductAddModal from '../../../pages/requisition/product.add.modal';
-import waitForVisible from '../../../support/action/waitForVisible';
 
 defineSupportCode(({ When }) => {
 
@@ -17,11 +16,6 @@ defineSupportCode(({ When }) => {
     When(
         /^I navigate to the Full supply products tab$/,
         () => ViewRequisitionPage.openFullSupplyProduct()
-    );
-
-    When(
-        /^I wait for the Submit confirmation modal$/,
-        () => waitForVisible('//*[normalize-space(text())="Are you sure you want to submit this R&R?"]')
     );
 
     When(
