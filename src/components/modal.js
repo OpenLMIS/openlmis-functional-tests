@@ -22,7 +22,7 @@ export default class Modal {
      * Waits for the modal to be visible. The modal is considered as loaded once the header is visible.
      */
     waitForIsVisible() {
-        waitForVisible(`//*[contains(@class,"modal")]/*/h4[normalize-space(text())= "${this.header}"]`);
+        waitForVisible(`//*[contains(@class,"modal")]/*[(self::h1 or self::h4) and normalize-space(text())= "${this.header}"]`);
     }
 
 }

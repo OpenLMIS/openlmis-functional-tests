@@ -1,16 +1,10 @@
 import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
-import AlertModal from '../../../../components/alert-modal';
 import ProductAddModal from '../../../../pages/requisitions/product.add.modal';
 import ProductListPage from '../../../../pages/requisitions/product.list.page';
 
 defineSupportCode(({ Then }) => {
-
-    Then(
-        /^I should get an error message$/,
-        () => new AlertModal().waitForIsVisible()
-    );
 
     Then(
         /^I should not see "([^"]*)?" button$/,

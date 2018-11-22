@@ -1,7 +1,8 @@
 import { defineSupportCode } from 'cucumber';
 
-import waitForNotification from "../../support/action/waitForNotification";
-import checkInputValue from "../../support/check/checkInputValue";
+import waitForNotification from '../../support/action/waitForNotification';
+import checkInputValue from '../../support/check/checkInputValue';
+import AlertModal from '../../components/alert-modal';
 
 import HomePage from '../../pages/home.page';
 
@@ -30,5 +31,10 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should not see "([^"]*)?" tab under "([^"]*)?"$/,
         (tab, parent) => HomePage.checkIfScreenIsNotVisibleInNavbar(tab, parent)
+    );
+
+    Then(
+        /^I should get an error message$/,
+        () => new AlertModal().waitForIsVisible()
     );
 });
