@@ -18,7 +18,8 @@ Feature: Submit Requisition
     And I click on the "Submit" button
     And I confirm the submit
     Then I should get an error message
-    When I click on the "Close" button
+
+    When I close the error message
     Then I can set "Requested quantity explanation" as "1" for "Levora" product
 
   Scenario: Storeroom Manager should be able to add non-full supply products without completing the Requested quantity explanation field
