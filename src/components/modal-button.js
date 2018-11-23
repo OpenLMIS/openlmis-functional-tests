@@ -8,7 +8,7 @@ export default class ModalButton extends Button {
     constructor(label) {
         super(
             label,
-            `//*[contains(@class, "modal")]/button[contains(text(), ${label})]`
+            `//*[contains(@class, "modal")]/button[contains(text(), "${label}")]`
         );
     }
 }
