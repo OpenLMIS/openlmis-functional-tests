@@ -6,7 +6,6 @@ import clickRadioInput from '../../support/action/clickRadioInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import Button from '../../components/button';
-import AlertModal from '../../components/alert-modal';
 
 defineSupportCode(({ When }) => {
 
@@ -38,11 +37,6 @@ defineSupportCode(({ When }) => {
     When(
         /^I click on the "([^"]*)?" button$/,
         name => new Button(name).click()
-    );
-
-    When(
-        /^I close the error message$/,
-        () => new AlertModal().close()
     );
 
     When(
