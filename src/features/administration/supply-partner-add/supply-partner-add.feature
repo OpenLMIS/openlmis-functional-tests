@@ -33,7 +33,7 @@ Feature: Supply Partner Add
 
         When I enter "SP-CHAZ" as "Code"
         And I enter "Functional Test Supply Partner #3" as "Name"
-        And I click on the "Add Supply Partner" button in modal
+        And I add supply partner
         Then I should get an error message
 
     Scenario: Administrator should be able to close modal without creating a resource
