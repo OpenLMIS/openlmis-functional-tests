@@ -9,4 +9,9 @@ defineSupportCode(({ When }) => {
         () => SupplyPartnerListPage.open()
     );
 
+    When(
+        /^I navigate to the supply partner list page$/,
+        () => SupplyPartnerListPage.navigateToPage()
+    );
+
 });

@@ -10,6 +10,8 @@ class SupplyPartnerListPage extends Page {
         super({
             header: 'Supply Partners',
             uri: 'administration/supplyPartners',
+            navParent: 'Administration',
+            navChild: 'Supply Partners',
         });
     }
 
