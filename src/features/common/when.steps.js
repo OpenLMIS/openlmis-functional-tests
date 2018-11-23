@@ -40,12 +40,6 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I click on the "([^"]*)?" button in modal$/,
-        name => new Button(name, `//*[contains(@class, "modal-footer")]/button[normalize-space(text())="${name}"]`)
-            .click()
-    );
-
-    When(
         /^I refresh page$/,
         () => {
             browser.refresh();

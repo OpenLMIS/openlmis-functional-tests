@@ -9,8 +9,8 @@ Feature: Supply Partner Add
 
         When I enter "FTSP1" as "Code"
         And I enter "Functional Test Supply Partner #1" as "Name"
-        And I click on the "Add Supply Partner" button in modal
-        And I click on the "No" button in modal
+        And I add supply partner
+        And I don't want to add associations
         Then I should see a supply partner with "FTSP1" code, "Functional Test Supply Partner #1" name inside the table
 
     Scenario: Administrator should be able to add new supply partner and move to view page
@@ -21,8 +21,8 @@ Feature: Supply Partner Add
 
         When I enter "FTSP2" as "Code"
         And I enter "Functional Test Supply Partner #2" as "Name"
-        And I click on the "Add Supply Partner" button in modal
-        And I click on the "Yes, add association" button in modal
+        And I add supply partner
+        And I want to add associations
         Then I should be brought to the supply partner view page
 
     Scenario: Administrator should not be able to add new supply partner with existing code

@@ -151,21 +151,30 @@ class ViewRequisitionPage extends Page {
      * Get authorize confirmation modal.
      */
     get authorizeConfirmationModal() {
-        return new ConfirmationModal('Are you sure you want to authorize this R&R?', 'Authorize');
+        return new ConfirmationModal({
+            header: 'Are you sure you want to authorize this R&R?',
+            confirmButtonLabel: 'Authorize',
+        });
     }
 
     /**
      * Get submit confirmation modal.
      */
     get submitConfirmationModal() {
-        return new ConfirmationModal('Are you sure you want to submit this R&R?', 'Submit');
+        return new ConfirmationModal({
+            header: 'Are you sure you want to submit this R&R?',
+            confirmButtonLabel: 'Submit',
+        });
     }
 
     /**
      * Get delete confirmation modal.
      */
     get deleteConfirmationModal() {
-        return new ConfirmationModal('Are you sure you want to delete this R&R?', 'Delete');
+        return new ConfirmationModal({
+            header: 'Are you sure you want to delete this R&R?',
+            confirmButtonLabel: 'Delete',
+        });
     }
 
     /**

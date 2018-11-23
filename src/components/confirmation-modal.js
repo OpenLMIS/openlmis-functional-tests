@@ -1,27 +1,32 @@
 import Modal from './modal';
-import Button from './button';
+import ModalButton from './modal-button';
 
 /**
  * Confirmation Modal object represents the related modal in OpenLMIS UI.
  */
 export default class ConfirmationModal extends Modal {
 
-    constructor(header, buttonLabel) {
-        super({
-            header: header,
-        });
-        this.buttonLabel = buttonLabel;
+    constructor(config) {
+        super(config);
+
+        if (config) {
+            this.confirmButtonLabel = config.confirmButtonLabel;
+            this.cancelButtonLabel = config.cancelButtonLabel || 'Cancel';
+        }
     }
 
     /**
      * Get this confirmation button.
      */
     get confirmationButton() {
-        return new Button(
-            this.buttonLabel,
-            '//*[contains(@class, "modal-footer")]' +
-            '/button[contains(text(), ' + this.buttonLabel + ')]'
-        );
+        return new ModalButton(this.confirmButtonLabel);
+    }
+
+    /**
+     * Get this cancel button.
+     */
+    get cancelButton() {
+        return new ModalButton(this.cancelButtonLabel);
     }
 
     /**
@@ -29,5 +34,12 @@ export default class ConfirmationModal extends Modal {
      */
     confirm() {
         this.confirmationButton.click();
+    }
+
+    /**
+     * Cancel the confirmation modal.
+     */
+    cancel() {
+        this.cancelButton.click();
     }
 }
