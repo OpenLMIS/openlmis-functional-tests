@@ -5,6 +5,8 @@
  * @param {String} value the expected value of the input
  */
 module.exports = (label, value) => {
-    expect(browser.element('//label[normalize-space(text())="' + label + '"]/following-sibling::*//input').getValue())
+    expect(browser
+        .element(`//label[normalize-space(text())="${label}"]/following-sibling::*//*[self::input or self::textarea]`)
+        .getValue())
         .to.equal(value);
 };

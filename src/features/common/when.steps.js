@@ -25,6 +25,11 @@ defineSupportCode(({ When }) => {
     );
 
     When(
+        /^I enter an empty value as "([^"]*)?"$/,
+        label => fillInput(label, '')
+    );
+
+    When(
         /^I select "([^"]*)?" as "([^"]*)?"$/,
         (option, label) => clickRadioInput(label, option)
     );

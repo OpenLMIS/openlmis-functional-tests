@@ -29,6 +29,11 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
+        /^Value of the "([^"]*)" should be an empty value$/,
+        name => checkInputValue(name, '')
+    );
+
+    Then(
         /^I should not see "([^"]*)?" tab under "([^"]*)?"$/,
         (tab, parent) => HomePage.checkIfScreenIsNotVisibleInNavbar(tab, parent)
     );

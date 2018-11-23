@@ -14,4 +14,9 @@ defineSupportCode(({ When }) => {
         () => SupervisoryNodeListPage.navigateToPage()
     );
 
+    When(
+        /^I select "([^"]*)?" supervisory node for edition$/,
+        code => SupervisoryNodeListPage.clickEdit(code)
+    );
+
 });
