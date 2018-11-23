@@ -10,6 +10,11 @@ defineSupportCode(({ When }) => {
     );
 
     When(
+        /^I don't add supply partner$/,
+        () => SupplyPartnerAddModal.cancel()
+    );
+
+    When(
         /^I want to add associations$/,
         () => SupplyPartnerAddModal.confirmAddAssociations()
     );

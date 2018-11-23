@@ -35,3 +35,14 @@ Feature: Supply Partner Add
         And I enter "Functional Test Supply Partner #3" as "Name"
         And I click on the "Add Supply Partner" button in modal
         Then I should get an error message
+
+    Scenario: Administrator should be able to close modal without creating a resource
+        Given I have navigated to the supply partner list page
+
+        When I click on the "Add Supply Partner" button
+        Then I should be brought to the supply partner creation page
+
+        When I enter "FTSP3" as "Code"
+        And I enter "Functional Test Supply Partner #3" as "Name"
+        And I don't add supply partner
+        Then I should not see a supply partner with "FTSP3" code, "Functional Test Supply Partner #3" name inside the table

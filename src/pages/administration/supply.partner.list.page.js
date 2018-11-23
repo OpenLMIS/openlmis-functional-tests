@@ -18,9 +18,10 @@ class SupplyPartnerListPage extends Page {
     /**
      * Wait for the supply partner to be visible in the table.
      */
-    waitForSupplyPartner(code, name) {
+    waitForSupplyPartner(code, name, hidden) {
         waitForVisible(
-            `//td[text()="${code}"]/following-sibling::td[text()="${name}"]`
+            `//td[text()="${code}"]/following-sibling::td[text()="${name}"]`,
+            hidden
         );
     }
 }

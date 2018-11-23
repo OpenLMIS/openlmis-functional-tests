@@ -10,8 +10,8 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^I should see a supply partner with "([^"]*)?" code, "([^"]*)?" name inside the table$/,
-        (code, name) => SupplyPartnerListPage.waitForSupplyPartner(code, name)
+        /^I should (not)? see a supply partner with "([^"]*)?" code, "([^"]*)?" name inside the table$/,
+        (hidden, code, name) => SupplyPartnerListPage.waitForSupplyPartner(code, name, hidden === 'not')
     );
 
 });
