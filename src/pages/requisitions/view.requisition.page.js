@@ -142,6 +142,13 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Authorizes the requisition.
+     */
+    clickAuthorizeButton() {
+        this.authorizeButton.click();
+    }
+
+    /**
      * Get authorize confirmation modal.
      */
     get authorizeConfirmationModal() {
@@ -210,6 +217,26 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Get approve confirmation modal.
+     */
+    get approveConfirmationModal() {
+        return new ConfirmationModal({
+            header: 'Are you sure you want to approve this R&R?',
+            confirmButtonLabel: 'Approve',
+        });
+    }
+
+    /**
+     * Get reject confirmation modal.
+     */
+    get rejectConfirmationModal() {
+        return new ConfirmationModal({
+            header: 'Are you sure you want to reject this R&R?',
+            confirmButtonLabel: 'Reject',
+        });
+    }
+
+    /**
      * Get authorize confirmation button.
      */
     confirmSubmit() {
@@ -228,6 +255,20 @@ class ViewRequisitionPage extends Page {
      */
     confirmDelete() {
         this.deleteConfirmationModal.confirm();
+    }
+
+    /**
+     * Get approve confirmation button.
+     */
+    confirmApproval() {
+        this.approveConfirmationModal.confirm();
+    }
+
+    /**
+     * Get reject confirmation button.
+     */
+    confirmReject() {
+        this.rejectConfirmationModal.confirm();
     }
 
     /**
@@ -251,6 +292,11 @@ class ViewRequisitionPage extends Page {
 
     get submitButton() {
         return new Button('Submit');
+    }
+
+
+    get authorizeButton() {
+        return new Button('Authorize');
     }
 
     scrollToCell(target) {
