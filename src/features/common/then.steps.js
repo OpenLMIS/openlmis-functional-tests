@@ -3,6 +3,7 @@ import { defineSupportCode } from 'cucumber';
 import waitForNotification from '../../support/action/waitForNotification';
 import checkInputValue from '../../support/check/checkInputValue';
 import verifyCheckboxValue from '../../support/check/verifyCheckboxValue';
+import checkSelectValue from '../../support/check/checkSelectValue';
 import AlertModal from '../../components/alert-modal';
 
 import HomePage from '../../pages/home.page';
@@ -45,6 +46,16 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
+        /^Value of the "([^"]*)" list should be "([^"]*)"$/,
+        (name, value) => checkSelectValue(name, value)
+    );
+
+    Then(
+        /^Value of the "([^"]*)" list should be an empty value$/,
+        name => checkSelectValue(name, '')
+    );
+
+    Then(
         /^I should not see "([^"]*)?" tab under "([^"]*)?"$/,
         (tab, parent) => HomePage.checkIfScreenIsNotVisibleInNavbar(tab, parent)
     );
@@ -52,5 +63,5 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should get an error message$/,
         () => new AlertModal().waitForIsVisible()
-    ); 
+    );
 });

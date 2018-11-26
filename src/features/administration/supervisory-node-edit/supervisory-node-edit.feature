@@ -10,6 +10,7 @@ Feature: Supervisory Node Edit
         When I enter "SN1-FT" as "Code"
         And I enter "FP approval point (Functional Test)" as "Supervisory Node Name"
         And I enter "Functional Test" as "Description"
+        And I select nothing from the "Associated Facility" list
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
@@ -18,10 +19,12 @@ Feature: Supervisory Node Edit
         And Value of the "Code" should be "SN1-FT"
         And Value of the "Supervisory Node Name" should be "FP approval point (Functional Test)"
         And Value of the "Description" should be "Functional Test"
+        And Value of the "Associated Facility" list should be an empty value
 
         When I enter "SN1" as "Code"
         And I enter "FP approval point" as "Supervisory Node Name"
         And I enter an empty value as "Description"
+        And I select "Comfort Health Clinic" from the "Associated Facility" list
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
@@ -30,6 +33,7 @@ Feature: Supervisory Node Edit
         And Value of the "Code" should be "SN1"
         And Value of the "Supervisory Node Name" should be "FP approval point"
         And Value of the "Description" should be an empty value
+        And Value of the "Associated Facility" list should be "Comfort Health Clinic"
 
     Scenario: Administrator should not be able to change supervisory node code to existing one
         When I enter "SN2" as "Code"

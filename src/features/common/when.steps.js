@@ -46,6 +46,11 @@ defineSupportCode(({ When }) => {
     );
 
     When(
+        /^I select nothing from the "([^"]*)?" list$/,
+        label => chooseSelectOption(label)
+    );
+
+    When(
         /^I click on the "([^"]*)?" button$/,
         name => new Button(name).click()
     );
