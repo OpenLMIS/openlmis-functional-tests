@@ -2,6 +2,7 @@ import { defineSupportCode } from 'cucumber';
 
 import waitForNotification from '../../support/action/waitForNotification';
 import checkInputValue from '../../support/check/checkInputValue';
+import verifyCheckboxValue from '../../support/check/verifyCheckboxValue';
 import AlertModal from '../../components/alert-modal';
 
 import HomePage from '../../pages/home.page';
@@ -34,6 +35,16 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
+        /^checkbox with label "([^"]*)" should be checked$/,
+        label => verifyCheckboxValue(label, true)
+    );
+
+    Then(
+        /^checkbox with label "([^"]*)" should be unchecked$/,
+        label => verifyCheckboxValue(label, false)
+    );
+
+    Then(
         /^I should not see "([^"]*)?" tab under "([^"]*)?"$/,
         (tab, parent) => HomePage.checkIfScreenIsNotVisibleInNavbar(tab, parent)
     );
@@ -41,5 +52,5 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should get an error message$/,
         () => new AlertModal().waitForIsVisible()
-    );
+    ); 
 });

@@ -3,6 +3,7 @@ import { defineSupportCode } from 'cucumber';
 import waitForVisible from '../../support/action/waitForVisible';
 import fillInput from '../../support/action/fillInput';
 import clickRadioInput from '../../support/action/clickRadioInput';
+import clickCheckboxInput from '../../support/action/clickCheckboxInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import Button from '../../components/button';
@@ -32,6 +33,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I select "([^"]*)?" as "([^"]*)?"$/,
         (option, label) => clickRadioInput(label, option)
+    );
+
+    When(
+        /^I select "([^"]*)?" checkbox$/,
+        (label) => clickCheckboxInput(label)
     );
 
     When(
