@@ -177,6 +177,41 @@ class ViewRequisitionPage extends Page {
         });
     }
 
+    get physicalDateSubmitConfirmationModal() {
+        return new ConfirmationModal({
+            header: 'Submit Requisition',
+            confirmButtonLabel: 'Submit',
+        });
+    }
+
+    get physicalDateAuthorizeConfirmationModal() {
+        return new ConfirmationModal({
+            header: 'Authorize Requisition',
+            confirmButtonLabel: 'Authorize',
+        });
+    }
+
+
+    selectDatePhysicalStockCountCompleted() {
+        browser.element('//input[@id="date"]').click();
+        browser.element('//td[contains(@class, "today")]').click();
+    }
+
+    selectDatePhysicalStockCountCompletedInFuture() {
+        var tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+
+        browser.element('//input[@id="date"]').setValue([tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join("/"));
+    }
+
+    checkDatePhysicalStockCountCompleted() {
+        var tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+
+        browser.isVisible('//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "' + 
+            [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join("/") + '")]');
+    }
+
     /**
      * Get authorize confirmation button.
      */
