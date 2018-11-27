@@ -3,6 +3,7 @@ import ConfirmationModal from '../../components/confirmation-modal';
 import waitForVisible from '../../support/action/waitForVisible';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Button from '../../components/button';
+import scroll from '../../support/action/scroll';
 
 /**
  * Supervisory Node Edit Page object represents the related view in OpenLMIS UI.
@@ -40,13 +41,6 @@ class SupervisoryNodeEditPage extends Page {
     }
 
     addPartnerNode(name) {
-        // Workaround for an issue with rendering a list of available options for this select.
-        // Without it the list is rendered below the select instead of above it. Because of that,
-        // a test can not select an option based on the name.
-        this.scrollToBottom();
-        this.scrollToTop();
-        this.scrollToBottom();
-
         this.addNode('Partner Nodes', name);
     }
 
@@ -61,7 +55,6 @@ class SupervisoryNodeEditPage extends Page {
     addNode(sectionName, nodeName) {
         const prefix = `//label[text()="${sectionName}"]/following-sibling`;
 
-        this.scrollToBottom();
         chooseSelectOption('Supervisory Node', nodeName, `${prefix}::*`);
         new Button('Add', `${prefix}::section[1]//child::button[text()="Add"]`).click();
     }
@@ -73,18 +66,10 @@ class SupervisoryNodeEditPage extends Page {
             '/following-sibling::td' +
             `//button[text()="${buttonLabel}"]`;
 
-        this.scrollToBottom();
+        scroll('bottom');
         browser.element(selector).click();
 
         modal.confirm();
-    }
-
-    scrollToTop() {
-        browser.execute(() => $('html, body').scrollTop(0));
-    }
-
-    scrollToBottom() {
-        browser.execute(() => $('html, body').scrollTop($(document).height()));
     }
 
     waitForNode(sectionName, nodeName, hidden) {
