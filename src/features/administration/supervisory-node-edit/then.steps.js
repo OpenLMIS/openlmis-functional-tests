@@ -9,4 +9,14 @@ defineSupportCode(({ Then }) => {
         () => SupervisoryNodeEditPage.waitForIsVisible()
     );
 
+    Then(
+        /^I should see "([^"]*)?" supervisory node in child nodes$/,
+        name => SupervisoryNodeEditPage.waitForChildNode(name, false)
+    );
+
+    Then(
+        /^I should not see "([^"]*)?" supervisory node in child nodes$/,
+        name => SupervisoryNodeEditPage.waitForChildNode(name, true)
+    );
+
 });

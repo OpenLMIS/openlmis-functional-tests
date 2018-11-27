@@ -9,6 +9,7 @@ globals:
   browser: true
   expect: true
   $: true
+  document: true
 
 parserOptions:
   ecmaVersion: 6
