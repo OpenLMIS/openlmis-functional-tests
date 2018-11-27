@@ -14,4 +14,14 @@ defineSupportCode(({ When }) => {
         name => SupervisoryNodeEditPage.removeChildNode(name)
     );
 
+    When(
+        /^I add "([^"]*)?" supervisory node to partner nodes$/,
+        name => SupervisoryNodeEditPage.addPartnerNode(name)
+    );
+
+    When(
+        /^I remove "([^"]*)?" supervisory node from partner nodes$/,
+        name => SupervisoryNodeEditPage.removePartnerNode(name)
+    );
+
 });

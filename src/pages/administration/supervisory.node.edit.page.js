@@ -21,6 +21,12 @@ class SupervisoryNodeEditPage extends Page {
         });
     }
 
+    get removePartnerNodeModal() {
+        return new ConfirmationModal({
+            confirmButtonLabel: 'Remove Partner Node',
+        });
+    }
+
     addChildNode(name) {
         this.addNode('Child Nodes', name);
     }
@@ -31,6 +37,25 @@ class SupervisoryNodeEditPage extends Page {
 
     waitForChildNode(name, hidden) {
         this.waitForNode('Child Nodes', name, hidden);
+    }
+
+    addPartnerNode(name) {
+        // Workaround for an issue with rendering a list of available options for this select.
+        // Without it the list is rendered below the select instead of above it. Because of that,
+        // a test can not select an option based on the name.
+        this.scrollToBottom();
+        this.scrollToTop();
+        this.scrollToBottom();
+
+        this.addNode('Partner Nodes', name);
+    }
+
+    removePartnerNode(name) {
+        this.removeNode('Partner Nodes', name, 'Remove Partner Node', this.removePartnerNodeModal);
+    }
+
+    waitForPartnerNode(name, hidden) {
+        this.waitForNode('Partner Nodes', name, hidden);
     }
 
     addNode(sectionName, nodeName) {
@@ -52,6 +77,10 @@ class SupervisoryNodeEditPage extends Page {
         browser.element(selector).click();
 
         modal.confirm();
+    }
+
+    scrollToTop() {
+        browser.execute(() => $('html, body').scrollTop(0));
     }
 
     scrollToBottom() {

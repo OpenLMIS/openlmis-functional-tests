@@ -86,3 +86,26 @@ Feature: Supervisory Node Edit
         When I select "SN-CUAMBA-DIST" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Parent Node" list should be "Niassa province approval point (EPI)"
+
+    Scenario: Administrator should be able to remove partner nodes
+        Given I have navigated to the supervisory node list page
+
+        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        Then I should be brought to the supervisory node edit page
+
+        When I remove "CHAZ Lilongwe" supervisory node from partner nodes
+        And I click on the "Update Supervisory Node" button
+        Then I should be brought to the supervisory node list page
+
+        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        Then I should be brought to the supervisory node edit page
+        And I should not see "CHAZ Lilongwe" supervisory node in partner nodes
+
+    Scenario: Administrator should be able to add partner nodes
+        When I add "CHAZ Lilongwe" supervisory node to partner nodes
+        And I click on the "Update Supervisory Node" button
+        Then I should be brought to the supervisory node list page
+
+        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        Then I should be brought to the supervisory node edit page
+        And I should see "CHAZ Lilongwe" supervisory node in partner nodes
