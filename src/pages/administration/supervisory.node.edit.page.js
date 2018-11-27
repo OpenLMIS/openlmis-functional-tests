@@ -67,7 +67,7 @@ class SupervisoryNodeEditPage extends Page {
             `//button[text()="${buttonLabel}"]`;
 
         scroll('bottom');
-        browser.element(selector).click();
+        new Button(buttonLabel, selector).click();
 
         modal.confirm();
     }

@@ -10,11 +10,11 @@ export default class Button {
      * Creates an instance of the Button class.
      *
      * @param {string} label     the label of the button
-     * @param {string} selector  (optional) the custom selector for the button, it should be used when there is are 
+     * @param {string} selector  (optional) the custom selector for the button, it should be used when there is are
      *                           multiple buttons with the same label visible at a time
      */
-    constructor(label, selector) {
-        this.selector = selector ? selector : getButtonSelector(label);
+    constructor(label, selector = getButtonSelector(label)) {
+        this.selector = selector;
     }
 
     /**
