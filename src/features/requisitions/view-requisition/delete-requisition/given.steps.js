@@ -6,6 +6,7 @@ import HomePage from '../../../../pages/home.page';
 import LoginPage from '../../../../pages/login.page';
 
 import waitForNotification from '../../../../support/action/waitForNotification';
+import switchToPage from '../../../../support/action/switchToPage';
 
 defineSupportCode(({ Given }) => {
     Given(
@@ -21,7 +22,7 @@ defineSupportCode(({ Given }) => {
 
     Given(
         /^I have logged out$/,
-        () => {          
+        () => {
             HomePage.clickLogout();
             LoginPage.waitForIsVisible();
         }
@@ -49,22 +50,22 @@ defineSupportCode(({ Given }) => {
 
             InitiateRequisitionPage.searchForProgram(program);
             InitiateRequisitionPage.waitForTable();
-            
+
             InitiateRequisitionPage.clickProceedButton();
             ViewRequisitionPage.waitForIsVisible();
-    
+
             ViewRequisitionPage.clearForm();
-            ViewRequisitionPage.switchToPage("2");
+            switchToPage('2');
             ViewRequisitionPage.clearForm();
-            ViewRequisitionPage.switchToPage("1");
-    
+            switchToPage('1');
+
             ViewRequisitionPage.setColumnForProduct("Total received quantity", "Levora", "21");
             ViewRequisitionPage.setColumnForProduct("Beginning balance", "Levora", "26");
             ViewRequisitionPage.setColumnForProduct("Total consumed quantity", "Levora", "4");
             ViewRequisitionPage.setColumnForProduct("Total stockout days", "Levora", "4");
             ViewRequisitionPage.setColumnForProduct("Requested quantity", "Levora", "20");
             ViewRequisitionPage.setColumnForProduct("Requested quantity explanation", "Levora", "2");
-    
+
             ViewRequisitionPage.skipAll();
             ViewRequisitionPage.clickSubmitButton();
             ViewRequisitionPage.confirmSubmit();
