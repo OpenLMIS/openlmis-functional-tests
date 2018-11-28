@@ -6,13 +6,17 @@ import checkTableSort from '../support/check/checkTableSort';
  */
 export default class Table {
     /**
-     * Constructs and object of the Action class.
-     * @param {Function} action  the function to be executed.
+     * Constructs and object of the Table class.
+     *
+     * @param {string} selector  the selector for the table
      */
     constructor(selector) {
         this.selector = selector;
     }
 
+    /**
+     * Gets the table data.
+     */
     get data() {
         return retrieveTableData(this.selector);
     }
