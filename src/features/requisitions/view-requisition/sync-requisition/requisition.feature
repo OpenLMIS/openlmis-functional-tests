@@ -2,7 +2,7 @@ Feature: View Requisition
 
   Scenario: Storeroom Manager should be able to sync requisition with the server
     Given I have logged with username "srmanager2" and password "password"
-    And I have navigated to the view requisition page for "Family Planning" program and "Apr2017" period
+    And I have navigated to the view requisition page for "Family Planning" program and "May2017" period
 
     When I click on the "Sync with Server" button
     Then I should see a successful notification saying "Requisition has been synchronized!"

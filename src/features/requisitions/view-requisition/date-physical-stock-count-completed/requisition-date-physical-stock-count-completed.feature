@@ -21,7 +21,7 @@ Feature: Date Physical Stock Count Completed
     And I set "Total stockout days" as "2" for "Male Condom" product
     And I set "Requested quantity" as "10" for "Male Condom" product
     And I set "Requested quantity explanation" as "1" for "Male Condom" product
-    
+
     And I skip remaining products
     And I click on the "Submit" button
     And I confirm the submit
@@ -35,7 +35,7 @@ Feature: Date Physical Stock Count Completed
     And I select Today's date on Date Physical Stock Count Completed modal
     And I confirm Submit Date Physical Stock Count Completed modal
     Then I should be brought to the initiate requisition screen
-  
+
   Scenario: Administrator should be able to authorize form with date physical stock count completed
 
     When I scroll to Proceed button
