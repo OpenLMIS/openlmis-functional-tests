@@ -9,7 +9,7 @@ Feature: User List
         When I navigate to user list page
         Then I should be brought to the user list page
 
-    Scenario: Administrator should be able to sort list by username
+    Scenario: Administrator should be able to sort user list by username
         When I go to the "1" page
         And I sort list by "Username"
         Then I should see sorted user list by "Username"
@@ -26,7 +26,7 @@ Feature: User List
         When I go to the "5" page
         Then I should see sorted user list by "Username"
 
-    Scenario: Administrator should be able to sort list by first name
+    Scenario: Administrator should be able to sort user list by first name
         When I go to the "1" page
         And I sort list by "First name"
         Then I should see sorted user list by "First name"
@@ -43,7 +43,7 @@ Feature: User List
         When I go to the "5" page
         Then I should see sorted user list by "First name"
 
-    Scenario: Administrator should be able to sort list by last name
+    Scenario: Administrator should be able to sort user list by last name
         When I go to the "1" page
         And I sort list by "Last name"
         Then I should see sorted user list by "Last name"
