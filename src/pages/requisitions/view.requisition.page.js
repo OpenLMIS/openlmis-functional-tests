@@ -1,5 +1,7 @@
 import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
+import datepickerSelectTodayDate from '../../support/action/datepickerSelectTodayDate';
+import datepickerSetDateInFuture from '../../support/action/datepickerSetDateInFuture';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
@@ -183,17 +185,20 @@ class ViewRequisitionPage extends Page {
         });
     }
 
+    confirmPhysicalDateSubmitConfirmationModal() {
+        this.physicalDateSubmitConfirmationModal.confirm();
+    }
+    
+    confirmPhysicalDateAuthorizeConfirmationModal() {
+        this.physicalDateAuthorizeConfirmationModal.confirm();
+    }
 
     selectDatePhysicalStockCountCompleted() {
-        browser.element('//input[@id="date"]').click();
-        browser.element('//td[contains(@class, "today")]').click();
+        datepickerSelectTodayDate();
     }
 
     selectDatePhysicalStockCountCompletedInFuture() {
-        var tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
-
-        browser.element('//input[@id="date"]').setValue([tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join("/"));
+        datepickerSetDateInFuture();
     }
 
     checkDatePhysicalStockCountCompleted() {

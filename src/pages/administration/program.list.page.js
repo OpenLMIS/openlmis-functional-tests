@@ -11,6 +11,8 @@ class ProgramListPage extends Page {
         super({
             header: 'Programs',
             uri: 'administration/programs',
+            navParent: 'Administration',
+            navChild: 'Programs'
         });
     }
 

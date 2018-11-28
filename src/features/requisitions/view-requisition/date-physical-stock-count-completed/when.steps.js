@@ -6,12 +6,12 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I confirm Submit Date Physical Stock Count Completed modal$/,
-        () => ViewRequisitionPage.physicalDateSubmitConfirmationModal.confirm()
+        () => ViewRequisitionPage.confirmPhysicalDateSubmitConfirmationModal()
     );
 
     When(
         /^I confirm Authorize Date Physical Stock Count Completed modal$/,
-        () => ViewRequisitionPage.physicalDateAuthorizeConfirmationModal.confirm()
+        () => ViewRequisitionPage.confirmPhysicalDateAuthorizeConfirmationModal()
     );
 
     When(

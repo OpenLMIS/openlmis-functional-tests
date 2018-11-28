@@ -3,6 +3,7 @@ import { defineSupportCode } from 'cucumber';
 import ProgramListPage from '../../../../pages/administration/program.list.page';
 import ProgramEditPage from '../../../../pages/administration/program.edit.page';
 import clickCheckboxInput from '../../../../support/action/clickCheckboxInput';
+import checkCheckboxValue from '../../../../support/check/checkCheckboxValue';
 import Button from '../../../../components/button';
 
 defineSupportCode(({ Given }) => {
@@ -14,8 +15,9 @@ defineSupportCode(({ Given }) => {
             ProgramListPage.waitForIsVisible();
             ProgramListPage.clickEditProgram(program);
             ProgramEditPage.waitForIsVisible();
-            if (!browser.element(`//label[contains(text()[normalize-space()], "Enable field for Date Physical Stock Count Completed")]/child::input`).isSelected()) {
-                clickCheckboxInput("Enable field for Date Physical Stock Count Completed");
+            var enableStockDateLabel = 'Enable field for Date Physical Stock Count Completed';
+            if (!checkCheckboxValue(enableStockDateLabel)) {
+                clickCheckboxInput(enableStockDateLabel);
             }
             new Button("Save").click();
             ProgramEditPage.confirmSave();
