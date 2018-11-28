@@ -4,27 +4,8 @@ Feature: Date Physical Stock Count Completed
 
     Given I have logged with username "administrator" and password "password"
     And I have enabled Date Physical Stock Count Completed for "Family Planning" program
-    And I have initiated a requisition for "Family Planning" program
+    And I have submitted a requisition for "Family Planning" program for date stock count completed
 
-    When I clear the form
-
-    And I set "Total received quantity" as "11" for "Levora" product
-    And I set "Beginning balance" as "16" for "Levora" product
-    And I set "Total consumed quantity" as "2" for "Levora" product
-    And I set "Total stockout days" as "2" for "Levora" product
-    And I set "Requested quantity" as "10" for "Levora" product
-    And I set "Requested quantity explanation" as "1" for "Levora" product
-
-    And I set "Total received quantity" as "11" for "Male Condom" product
-    And I set "Beginning balance" as "26" for "Male Condom" product
-    And I set "Total consumed quantity" as "2" for "Male Condom" product
-    And I set "Total stockout days" as "2" for "Male Condom" product
-    And I set "Requested quantity" as "10" for "Male Condom" product
-    And I set "Requested quantity explanation" as "1" for "Male Condom" product
-
-    And I skip remaining products
-    And I click on the "Submit" button
-    And I confirm the submit
     Then I should see Submit Date Physical Stock Count Completed modal
 
     When I select date in the future on Date Physical Stock Count Completed modal
