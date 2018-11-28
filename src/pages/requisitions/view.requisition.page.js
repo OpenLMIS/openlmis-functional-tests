@@ -133,14 +133,6 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
-     *
-     * @param {String} page the number of a page to open
-     */
-    switchToPage(page) {
-        browser.execute((pageNumber) => $(`ul a:contains('${pageNumber}')`).click(), page);
-    }
-
-    /**
      * Submits the requisition.
      */
     clickSubmitButton() {

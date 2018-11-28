@@ -1,12 +1,16 @@
 import { defineSupportCode } from 'cucumber';
 
+import Button from '../../components/button';
+import Action from '../../components/action';
+
 import waitForVisible from '../../support/action/waitForVisible';
 import fillInput from '../../support/action/fillInput';
 import clickRadioInput from '../../support/action/clickRadioInput';
 import clickCheckboxInput from '../../support/action/clickCheckboxInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
-import Button from '../../components/button';
+import switchToPage from '../../support/action/switchToPage';
+import sortBy from '../../support/action/sortBy';
 
 defineSupportCode(({ When }) => {
 
@@ -37,7 +41,7 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I select "([^"]*)?" checkbox$/,
-        (label) => clickCheckboxInput(label)
+        label => clickCheckboxInput(label)
     );
 
     When(
@@ -62,4 +66,15 @@ defineSupportCode(({ When }) => {
             waitForVisible('//h2');
         }
     );
+
+    When(
+        /^I go to the "([^"]*)?" page$/,
+        pageNumber => new Action(() => switchToPage(pageNumber)).execute()
+    );
+
+    When(
+        /^I sort list by "([^"]*)?"$/,
+        sortOption => new Action(() => sortBy(sortOption)).execute()
+    );
+
 });

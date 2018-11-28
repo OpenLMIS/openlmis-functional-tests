@@ -9,4 +9,9 @@ defineSupportCode(({ Then }) => {
         () => UserListPage.waitForIsVisible()
     );
 
+    Then(
+        /^I should see sorted user list by "([^"]*)?"$/,
+        sortOption => UserListPage.sortedBy(sortOption)
+    );
+
 });
