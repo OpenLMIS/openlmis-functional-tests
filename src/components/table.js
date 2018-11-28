@@ -2,7 +2,7 @@ import retrieveTableData from '../support/lib/retrieveTableData';
 import checkTableSort from '../support/check/checkTableSort';
 
 /**
- * Represents a single action user can take on the UI. Adds waiting for the loading modal to fade.
+ * Represents a single table on the UI.
  */
 export default class Table {
     /**

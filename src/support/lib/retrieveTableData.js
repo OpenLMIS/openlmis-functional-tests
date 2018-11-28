@@ -27,7 +27,7 @@ module.exports = tableSelector => browser.selectorExecute(tableSelector, (table)
     for (let i = 0; i < rows.length; i += 1) {
         const index = i % header.length;
 
-        // we don't want to add an empty json
+        /* we don't want to add an empty json */
         if (i !== 0 && index === 0) {
             result.push(json);
             json = {};
