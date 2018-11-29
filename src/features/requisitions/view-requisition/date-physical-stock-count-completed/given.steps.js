@@ -42,9 +42,6 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.waitForIsVisible();
 
             ViewRequisitionPage.clearForm();
-            switchToPage('2');
-            ViewRequisitionPage.clearForm();
-            switchToPage('1');
 
             ViewRequisitionPage.setColumnForProduct("Total received quantity", "Levora", "21");
             ViewRequisitionPage.setColumnForProduct("Beginning balance", "Levora", "26");
@@ -52,6 +49,13 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.setColumnForProduct("Total stockout days", "Levora", "4");
             ViewRequisitionPage.setColumnForProduct("Requested quantity", "Levora", "20");
             ViewRequisitionPage.setColumnForProduct("Requested quantity explanation", "Levora", "2");
+
+            ViewRequisitionPage.setColumnForProduct("Total received quantity", "Male Condom", "21");
+            ViewRequisitionPage.setColumnForProduct("Beginning balance", "Male Condom", "26");
+            ViewRequisitionPage.setColumnForProduct("Total consumed quantity", "Male Condom", "4");
+            ViewRequisitionPage.setColumnForProduct("Total stockout days", "Male Condom", "4");
+            ViewRequisitionPage.setColumnForProduct("Requested quantity", "Male Condom", "20");
+            ViewRequisitionPage.setColumnForProduct("Requested quantity explanation", "Male Condom", "2");
 
             ViewRequisitionPage.skipAll();
             ViewRequisitionPage.clickSubmitButton();
