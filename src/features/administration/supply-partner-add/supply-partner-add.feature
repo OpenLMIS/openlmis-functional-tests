@@ -23,7 +23,7 @@ Feature: Supply Partner Add
         And I enter "Functional Test Supply Partner #2" as "Name"
         And I add supply partner
         And I want to add associations
-        Then I should be brought to the supply partner view page
+        Then I should be brought to the supply partner edit page
 
     Scenario: Administrator should not be able to add new supply partner with existing code
         Given I have navigated to the supply partner list page

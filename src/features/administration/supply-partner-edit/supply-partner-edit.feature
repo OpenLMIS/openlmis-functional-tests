@@ -8,3 +8,8 @@ Feature: Supply Partner Edit
         When I select "FTSPE" supply partner for edition
         Then I should be brought to the supply partner edit page
         And The "Code" input should be disabled
+
+        When I enter an empty value as "Name"
+        And I click on the "Update Supply Partner" button
+        Then I should get an error message
+        And I click on the "Close" button
