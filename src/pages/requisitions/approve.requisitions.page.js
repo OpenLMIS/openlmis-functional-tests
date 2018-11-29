@@ -1,7 +1,5 @@
 import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
-import Button from '../../components/button';
-import chooseSelectOption from '../../support/action/chooseSelectOption';
 
 /**
  * Approve Requisitions Page object represents the related view in OpenLMIS UI.
@@ -45,9 +43,14 @@ class ApproveRequisitionsPage extends Page {
         waitForVisible('//table/tbody/tr/td');
     }
 
-    compareTotalCost(cost) {
-        let actualCost = browser.element(`//dd/parent::dl`).value();
-        return cost === actualCost;
+    /**
+     * Get the Total requisition cost.
+     */
+    getTotalCost() {
+        const selector = '//dd';
+        browser.scroll(selector);
+        browser.pause(1000);
+        return browser.element(selector).getText();
     }
 }
 
