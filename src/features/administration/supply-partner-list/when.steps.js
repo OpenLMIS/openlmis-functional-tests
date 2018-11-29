@@ -14,4 +14,9 @@ defineSupportCode(({ When }) => {
         () => SupplyPartnerListPage.navigateToPage()
     );
 
+    When(
+        /^I select "([^"]*)?" supply partner for edition$/,
+        code => SupplyPartnerListPage.clickEdit(code)
+    );
+
 });

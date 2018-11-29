@@ -1,4 +1,5 @@
 import Page from '../../components/page';
+import Button from '../../components/button';
 import waitForVisible from '../../support/action/waitForVisible';
 
 /**
@@ -23,6 +24,13 @@ class SupplyPartnerListPage extends Page {
             `//td[text()="${code}"]/following-sibling::td[text()="${name}"]`,
             hidden
         );
+    }
+
+    clickEdit(code) {
+        new Button(
+            'Edit',
+            `//td[normalize-space(text())="${code}"]/following-sibling::td/button[text()="Edit"]`
+        ).click();
     }
 }
 

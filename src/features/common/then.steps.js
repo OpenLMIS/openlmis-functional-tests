@@ -1,13 +1,15 @@
 import { defineSupportCode } from 'cucumber';
 
+import HomePage from '../../pages/home.page';
+
+import AlertModal from '../../components/alert-modal';
+
 import waitForNotification from '../../support/action/waitForNotification';
+
 import checkInputValue from '../../support/check/checkInputValue';
 import verifyCheckboxValue from '../../support/check/verifyCheckboxValue';
 import checkSelectValue from '../../support/check/checkSelectValue';
-import AlertModal from '../../components/alert-modal';
-
-import HomePage from '../../pages/home.page';
-
+import checkInputEnable from '../../support/check/checkInputEnable';
 
 defineSupportCode(({ Then }) => {
     Then(
@@ -63,5 +65,10 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should get an error message$/,
         () => new AlertModal().waitForIsVisible()
+    );
+
+    Then(
+        /^The "([^"]*)" input should be disabled$/,
+        name => checkInputEnable(name, false)
     );
 });

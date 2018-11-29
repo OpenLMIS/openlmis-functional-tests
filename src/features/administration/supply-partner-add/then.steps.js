@@ -1,7 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
 import SupplyPartnerAddModal from '../../../pages/administration/supply.partner.add.modal';
-import SupplyPartnerViewPage from '../../../pages/administration/supply.partner.view.page';
+import SupplyPartnerEditPage from '../../../pages/administration/supply.partner.edit.page';
 
 defineSupportCode(({ Then }) => {
 
@@ -11,8 +11,8 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^I should be brought to the supply partner view page$/,
-        () => SupplyPartnerViewPage.waitForIsVisible()
+        /^I should be brought to the supply partner edit page$/,
+        () => SupplyPartnerEditPage.waitForIsVisible()
     );
 
 });
