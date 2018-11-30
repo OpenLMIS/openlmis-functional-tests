@@ -26,12 +26,12 @@ class ApproveRequisitionsPage extends Page {
             $('table tr')
                 .filter((index, element) => {
                     var that = $(element),
-                        programCell = that.find('td:nth-child(1)').text(),
-                        periodCell = that.find('td:nth-child(3)').text();
+                        programCell = that.find('td:nth-child(2)').text(),
+                        periodCell = that.find('td:nth-child(4)').text();
 
                     return program === programCell && period === periodCell;
                 })
-                .find('td:nth-child(10) button:nth-child(1)')
+                .find('td:nth-child(11) button:nth-child(1)')
                 .click();
         }, program, period);
     }

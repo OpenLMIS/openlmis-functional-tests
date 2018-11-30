@@ -23,7 +23,7 @@ Feature: Approving and rejecting Requisitions
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
 
-    When I select requisition for program "Family Planning" and period "2017Q4"
+    When I select requisition for program "Family Planning" and period "2017Q4" for approve requisitions
     Then I should be brought to the product grid screen
 
     When I set "Approved quantity" as "0" for "Levora" product
@@ -50,7 +50,7 @@ Feature: Approving and rejecting Requisitions
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
 
-    When I select requisition for program "Family Planning" and period "2018Q1"
+    When I select requisition for program "Family Planning" and period "2018Q1" for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click on the "Reject" button
