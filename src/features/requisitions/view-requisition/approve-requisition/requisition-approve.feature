@@ -2,16 +2,17 @@ Feature: Approving and rejecting Requisitions
 
   Scenario: Storeroom manager should not be able to navigate to Approve Requisitions screen
     Given I have logged with username "srmanager4" and password "password"
-    And I have submitted a requisition for "Family Planning" program
+    When I click on the "Requisitions" tab
+    Then I should not see "Approve" tab under "Requisitions"
+
+  Scenario: Storeroom manager should not be able to edit/approve/reject an authorized requisition
+    Given I have submitted a requisition for "Family Planning" program
     And I have logged out
     And I have logged with username "smanager4" and password "password"
     And I have authorized a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
     And I have logged out
     And I have logged with username "srmanager4" and password "password"
-    Then I should not see "Approve" tab under "Requisitions"
-
-  Scenario: Storeroom manager should not be able to edit/approve/reject an authorized requisition
-    Given I have proceeded to requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
+    And I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
     Then I should not be able to edit the requisition
     And I should not see "Approve" button
     And I should not see "Reject" button 
@@ -70,6 +71,7 @@ Feature: Approving and rejecting Requisitions
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
 
+  Scenario: Store Manager should be able to see the correct Total requisition cost
     Given I have logged out
     And I have logged with username "smanager4" and password "password"
     And I have proceeded to requisition for "Family Planning" program with "SUBMITTED" status

@@ -22,18 +22,4 @@ defineSupportCode(({ Given }) => {
             waitForNotification("Requisition has been authorized!");
         }
     );
-
-    Given(
-        /^I have proceeded to requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
-        (facility, program, period) => {
-            ViewRequisitionsPage.open();
-            ViewRequisitionsPage.waitForIsVisible();
-
-            ViewRequisitionsPage.searchForFacility(facility);
-            ViewRequisitionsPage.waitForTable();
-
-            ViewRequisitionsPage.viewRequisition(program, period);
-            ViewRequisitionPage.waitForIsVisible();
-        }
-    );
 });

@@ -11,6 +11,7 @@ import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import switchToPage from '../../support/action/switchToPage';
 import sortBy from '../../support/action/sortBy';
+import homePage from '../../pages/home.page';
 
 defineSupportCode(({ When }) => {
 
@@ -75,6 +76,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I sort list by "([^"]*)?"$/,
         sortOption => new Action(() => sortBy(sortOption)).execute()
+    );
+
+    When(
+        /^I click on the "([^"]*)?" tab$/,
+        name => homePage.clickTabInNavbar(name)
     );
 
 });

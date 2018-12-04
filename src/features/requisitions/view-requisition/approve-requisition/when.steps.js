@@ -1,6 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
+import ViewRequisitionsPage from '../../../../pages/requisitions/view.requisitions.page';
 import approveRequisitionsPage from '../../../../pages/requisitions/approve.requisitions.page';
 
 defineSupportCode(({ When }) => {
@@ -23,5 +24,19 @@ defineSupportCode(({ When }) => {
     When(
         /^I select requisition for program "([^"]*)?" and period "([^"]*)?" for approve requisitions$/,
         (program, period) => approveRequisitionsPage.viewRequisition(program, period)
+    );
+
+    When(
+        /^I proceed to requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
+        (facility, program, period) => {
+            ViewRequisitionsPage.open();
+            ViewRequisitionsPage.waitForIsVisible();
+
+            ViewRequisitionsPage.searchForFacility(facility);
+            ViewRequisitionsPage.waitForTable();
+
+            ViewRequisitionsPage.viewRequisition(program, period);
+            ViewRequisitionPage.waitForIsVisible();
+        }
     );
 });
