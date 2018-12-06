@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+    agent {
+        node {
+            label '!master'
+        }
+    }
   options {
     buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
     disableConcurrentBuilds()
