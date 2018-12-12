@@ -3,10 +3,6 @@ import { defineSupportCode } from 'cucumber';
 import SupplyPartnerListPage from '../../../pages/administration/supply.partner.list.page';
 import SupplyPartnerAddModal from '../../../pages/administration/supply.partner.add.modal';
 
-import Button from '../../../components/button';
-
-import fillInput from '../../../support/action/fillInput';
-
 defineSupportCode(({ Given }) => {
 
     Given(
@@ -14,10 +10,10 @@ defineSupportCode(({ Given }) => {
         (code, name) => {
             SupplyPartnerListPage.open();
             SupplyPartnerListPage.waitForIsVisible();
+            SupplyPartnerListPage.clickAddSupplyPartner();
 
-            new Button('Add Supply Partner').click();
-            fillInput('Code', code);
-            fillInput('Name', name);
+            SupplyPartnerAddModal.code = code;
+            SupplyPartnerAddModal.name = name;
 
             SupplyPartnerAddModal.confirm();
             SupplyPartnerAddModal.cancelAddAssociations();

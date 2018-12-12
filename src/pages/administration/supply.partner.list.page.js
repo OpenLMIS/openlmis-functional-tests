@@ -32,6 +32,10 @@ class SupplyPartnerListPage extends Page {
             `//td[normalize-space(text())="${code}"]/following-sibling::td/button[text()="Edit"]`
         ).click();
     }
+
+    clickAddSupplyPartner() {
+        new Button('Add Supply Partner').click();
+    }
 }
 
 export default new SupplyPartnerListPage();

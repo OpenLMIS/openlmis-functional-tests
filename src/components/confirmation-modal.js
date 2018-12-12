@@ -1,6 +1,8 @@
 import Modal from './modal';
 import ModalButton from './modal-button';
 
+import fillInput from '../support/action/fillInput';
+
 /**
  * Confirmation Modal object represents the related modal in OpenLMIS UI.
  */
@@ -27,6 +29,14 @@ export default class ConfirmationModal extends Modal {
      */
     get cancelButton() {
         return new ModalButton(this.cancelButtonLabel);
+    }
+
+    set code(code) {
+        fillInput('Code', code);
+    }
+
+    set name(name) {
+        fillInput('Name', name);
     }
 
     /**
