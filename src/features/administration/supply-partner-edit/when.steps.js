@@ -1,32 +1,33 @@
 import { defineSupportCode } from 'cucumber';
 
 import SupplyPartnerEditPage from '../../../pages/administration/supply.partner.edit.page';
+import AddAssociationModal from '../../../pages/administration/add.association.modal';
 
 defineSupportCode(({ When }) => {
 
     When(
         /^I add "([^"]*)?" facility to the association$/,
-        name => SupplyPartnerEditPage.addFacility(name)
+        name => AddAssociationModal.addFacility(name)
     );
 
     When(
         /^I add "([^"]*)?" product to the association$/,
-        code => SupplyPartnerEditPage.addProduct(code)
+        code => AddAssociationModal.addProduct(code)
     );
 
     When(
         /^I remove "([^"]*)?" product from the association$/,
-        code => SupplyPartnerEditPage.removeProduct(code)
+        code => AddAssociationModal.removeProduct(code)
     );
 
     When(
         /^I add the association$/,
-        () => SupplyPartnerEditPage.confirmAddAssociation()
+        () => AddAssociationModal.confirmAddAssociation()
     );
 
     When(
         /^I confirm the association update$/,
-        () => SupplyPartnerEditPage.confirmUpdateAssociation()
+        () => AddAssociationModal.confirmUpdateAssociation()
     );
 
     When(
