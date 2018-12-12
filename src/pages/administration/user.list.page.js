@@ -24,7 +24,7 @@ class UserListPage extends Page {
             retrieveRowData = item => item.Name.split(' ')[1];
         }
 
-        new Table('//table').sortedBy(sortOption, retrieveRowData);
+        new Table().sortedBy(sortOption, retrieveRowData);
     }
 
 }

@@ -18,7 +18,7 @@ class SupplyPartnerEditPage extends Page {
     }
 
     get associationTable() {
-        return new Table('//table');
+        return new Table();
     }
 
     addFacility(name) {

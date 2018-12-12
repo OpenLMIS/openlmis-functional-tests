@@ -14,7 +14,7 @@ export default class Table {
      *
      * @param {string} selector  the selector for the table
      */
-    constructor(selector) {
+    constructor(selector = '//table') {
         this.selector = selector;
     }
 
