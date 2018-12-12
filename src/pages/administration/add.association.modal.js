@@ -28,13 +28,13 @@ class AddAssociationModal extends Modal {
         this.addFacilityButton.click();
     }
 
-    addProduct(code) {
+    addProduct(productCode) {
         new Button(
             'Add Products',
             '//label[text()="Products"]/following-sibling::section[1]//child::button[text()="Add Products"]')
             .click();
 
-        fillInput('Search Product', code);
+        fillInput('Search Product', productCode);
 
         browser
             .element('//*[contains(@id, "productForm")]//td[1]//input[contains(@type, "checkbox")]')
@@ -43,8 +43,9 @@ class AddAssociationModal extends Modal {
         new Button('Add Products', '//button[contains(@form, "productForm")]').click();
     }
 
-    removeProduct(code) {
-        new Table('//label[text()="Products"]//following-sibling::*//table').click([undefined, code], 3, 'Remove');
+    removeProduct(productCode) {
+        new Table('//label[text()="Products"]//following-sibling::*//table')
+            .click([undefined, productCode], 3, 'Remove');
     }
 
     confirmAddAssociation() {
