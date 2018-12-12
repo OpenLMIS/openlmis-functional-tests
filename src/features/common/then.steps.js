@@ -9,7 +9,7 @@ import waitForNotification from '../../support/action/waitForNotification';
 import checkInputValue from '../../support/check/checkInputValue';
 import verifyCheckboxValue from '../../support/check/verifyCheckboxValue';
 import checkSelectValue from '../../support/check/checkSelectValue';
-import checkInputEnable from '../../support/check/checkInputEnable';
+import checkInputEnabled from '../../support/check/checkInputEnabled';
 
 defineSupportCode(({ Then }) => {
     Then(
@@ -69,6 +69,6 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^The "([^"]*)" input should be disabled$/,
-        name => checkInputEnable(name, false)
+        name => checkInputEnabled(name, false)
     );
 });
