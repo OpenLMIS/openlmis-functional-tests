@@ -10,7 +10,7 @@ import fillInput from '../../../support/action/fillInput';
 defineSupportCode(({ Given }) => {
 
     Given(
-        /^I created supply partner with code "([^"]*)?" and name "([^"]*)?"$/,
+        /^I created supply partner with code "([^"]*)?", name "([^"]*)?", and without associations$/,
         (code, name) => {
             SupplyPartnerListPage.open();
             SupplyPartnerListPage.waitForIsVisible();
