@@ -1,6 +1,6 @@
 Feature: Supply Partner Edit
 
-    Scenario: Administrator should be able to open supply partner edit page
+    Scenario: Administrator should not be able to change supply partner code
         Given I have logged with username "administrator" and password "password"
         And I have navigated to the supply partner list page
         And I created supply partner with code "FTSPE", name "FTSPE", and without associations
