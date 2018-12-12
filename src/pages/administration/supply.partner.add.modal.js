@@ -1,5 +1,7 @@
 import ConfirmationModal from '../../components/confirmation-modal';
 
+import fillInput from '../../support/action/fillInput';
+
 /**
  * Supply Partner Add Modal object represents the related view in OpenLMIS UI.
  */
@@ -21,6 +23,14 @@ class SupplyPartnerAddModal extends ConfirmationModal {
             confirmButtonLabel: 'Yes, add association',
             cancelButtonLabel: 'No',
         });
+    }
+
+    set code(code) {
+        fillInput('Code', code);
+    }
+
+    set name(name) {
+        fillInput('Name', name);
     }
 
     /**
