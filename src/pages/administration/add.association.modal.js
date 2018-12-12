@@ -23,6 +23,10 @@ class AddAssociationModal extends Modal {
             '//label[text()="Facilities"]/following-sibling::section[1]//child::button[text()="Add"]');
     }
 
+    get productTable() {
+        return new Table('//label[text()="Products"]//following-sibling::*//table');
+    }
+
     addFacility(name) {
         chooseSelectOption('Facility', name, '//label[text()="Facilities"]/following-sibling::*');
         this.addFacilityButton.click();
@@ -44,8 +48,7 @@ class AddAssociationModal extends Modal {
     }
 
     removeProduct(productCode) {
-        new Table('//label[text()="Products"]//following-sibling::*//table')
-            .click([undefined, productCode], 3, 'Remove');
+        this.productTable.click([undefined, productCode], 'Remove');
     }
 
     confirmAddAssociation() {

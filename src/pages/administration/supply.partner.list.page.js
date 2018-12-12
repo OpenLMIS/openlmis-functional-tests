@@ -32,7 +32,7 @@ class SupplyPartnerListPage extends Page {
     }
 
     clickEdit(code) {
-        this.table.click([code], 3, 'Edit');
+        this.table.click([code], 'Edit');
     }
 
     clickAddSupplyPartner() {

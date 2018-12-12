@@ -19,19 +19,19 @@ class SupplyPartnerEditPage extends Page {
     }
 
     editAssociation(program, supervisoryNode) {
-        this.associationTable.click([program, supervisoryNode], 5, 'Edit Association');
+        this.associationTable.click([program, supervisoryNode], 'Edit Association');
     }
 
     viewFaciliesFor(program, supervisoryNode) {
-        this.associationTable.click([program, supervisoryNode], 3, 'View');
+        this.associationTable.click([program, supervisoryNode], 'View', 'Facilities');
     }
 
     viewProductsFor(program, supervisoryNode) {
-        this.associationTable.click([program, supervisoryNode], 4, 'View');
+        this.associationTable.click([program, supervisoryNode], 'View', 'Products');
     }
 
     removeAssociation(program, supervisoryNode) {
-        this.associationTable.click([program, supervisoryNode], 5, 'Remove');
+        this.associationTable.click([program, supervisoryNode], 'Remove');
     }
 
     waitForFacility(name) {

@@ -44,12 +44,15 @@ export default class Table {
      *                              three columns, you know the value of the second column and
      *                              you want to click on a button in the last column, use
      *                              [undefined, your_value].
-     * @param {Number} columnNumber inform in which column the button exists (starts from one!)
      * @param {String} buttonLabel  the button label
+     * @param {String} columnName   inform in which column the button exists (optional)
      */
-    click(columnValues, columnNumber, buttonLabel) {
+    click(columnValues, buttonLabel, columnName = 'Actions') {
+        const previousColumns = `${this.selector}` +
+            `//th[normalize-space(text())="${columnName}"]` +
+            '//preceding-sibling::*';
         const selector = `${this.createColumnSelector(columnValues)}` +
-            `//following-sibling::td[${columnNumber - columnValues.length}]` +
+            `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
             `//button[normalize-space(text())="${buttonLabel}"]`;
 
         new Button(buttonLabel, selector).click();
