@@ -8,4 +8,5 @@ module.exports = (label, value) => {
     browser
         .element(`//label[normalize-space(text())="${label}"]/following-sibling::*//*[self::input or self::textarea]`)
         .setValue(value);
+    browser.pause(500);
 };

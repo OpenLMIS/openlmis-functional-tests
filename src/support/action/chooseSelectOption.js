@@ -32,4 +32,6 @@ module.exports = (label, option, section = '') => {
                 '/following-sibling::*//*[contains(@class, "select2-selection__clear")]')
             .click();
     }
+
+    browser.pause(500);
 };
