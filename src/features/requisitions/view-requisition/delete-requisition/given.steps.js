@@ -29,20 +29,6 @@ defineSupportCode(({ Given }) => {
     );
 
     Given(
-        /^I have proceeded to requisition for "([^"]*)?" program with "([^"]*)?" status$/,
-        (program, status) => {
-            InitiateRequisitionPage.open();
-            InitiateRequisitionPage.waitForIsVisible();
-
-            InitiateRequisitionPage.searchForProgram(program);
-            InitiateRequisitionPage.waitForTable();
-
-            ViewRequisitionPage.proceedToRequisition(status);
-            ViewRequisitionPage.waitForIsVisible();
-        }
-    );
-
-    Given(
         /^I have submitted a requisition for "([^"]*)?" program$/,
         (program) => {
             InitiateRequisitionPage.open();

@@ -13,4 +13,12 @@ defineSupportCode(({ Then }) => {
         /^I should be brought to the login page$/,
         () => LoginPage.waitForIsVisible()
     );
+
+    Then(
+        /^I log out$/,
+        () => {
+            HomePage.clickLogout();
+            LoginPage.waitForIsVisible();
+        }
+    );
 });

@@ -5,9 +5,9 @@ Feature: Delete Requisition
     And I have submitted a requisition for "Family Planning" program
     And I have logged out
     And I have logged with username "smanager3" and password "password"
-    And I have proceeded to requisition for "Family Planning" program with "SUBMITTED" status
 
-    When I click on the "Delete" button
+    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    And I click on the "Delete" button
     And I confirm the delete
     Then I should see a successful notification saying "Requisition has been deleted!"
 

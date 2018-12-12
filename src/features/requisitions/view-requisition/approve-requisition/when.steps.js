@@ -22,8 +22,8 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I select requisition for program "([^"]*)?" and period "([^"]*)?" for approve requisitions$/,
-        (program, period) => approveRequisitionsPage.viewRequisition(program, period)
+        /^I select requisition for "([^"]*)?" in the "([^"]*)?" column and "([^"]*)?" in the "([^"]*)?" column$/,
+        (program, programColumn, period, periodColumn) => approveRequisitionsPage.viewRequisitionToApprove(program, programColumn, period, periodColumn)
     );
 
     When(
