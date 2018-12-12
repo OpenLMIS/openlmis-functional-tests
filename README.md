@@ -127,6 +127,74 @@ state).  A couple of conventions are in use for this suite:
 * One test might end up changing the data that another relies on.  If this occurs, we should build
   a runtime capability to reset demo-data.
 
+## Do and Don't
+
+There are some stuff that you should avoid while writing functional tests that might result in the test being stable
+rather than failing randomly.
+
+### Executing an action
+
+Remember that some actions might result in opening a loading modal, which will block the UI and make user unable to
+do any action. Functional tests are not smart enough to remember about that out of the box so we've created a class
+representing an action, which will take care of waiting for the action to finish as well as the modal to close. In
+order to use it all you need to do is:
+
+Given:
+```javascript
+function yourAction() {
+  //do something
+}
+```
+
+Don't:
+```javascript
+yourAction();
+```
+
+Do:
+```javascript
+new Action(() => yourAction()).execute();
+```
+
+### Modeling interactions with a new component
+When adding interaction with a new component try to extract the logic to a separate class so it can be easily reused
+later by other tests. Let's use button as an example
+
+Don't:
+```javascript
+class SomeViewPage {
+
+  function clickButtonA() {
+    browser.element('///button[normalize-space(text())="A"]').click();
+  }
+
+}
+```
+
+Do:
+```javascript
+class Button {
+  constructor(label) {
+    this.label = label;
+  }
+
+  function click() {
+    browser.element(`///button[normalize-space(text())="${this.label}"]`).click()).execute();
+  }
+}
+
+class Page {
+  get buttonA() {
+    return new Button('A');
+  }
+
+  function actionA() {
+    this.buttonA.click();
+  }
+}
+```
+
+
 ## Attribution
 
 This testing project was based off of the boilerplate WebDriver.io project:
