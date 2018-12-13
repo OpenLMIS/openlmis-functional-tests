@@ -1,5 +1,6 @@
 import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
+import Table from '../../components/table';
 
 /**
  * Approve Requisitions Page object represents the related view in OpenLMIS UI.
@@ -15,33 +16,25 @@ class ApproveRequisitionsPage extends Page {
         });
     }
 
+    get approveRequisitionsTable() {
+        return new Table();
+    }
+
     /**
      * Click on 'View requisition' button for the given requisition.
      * 
      * @param {String} program  Program name.
      * @param {String} period  Period name.
      */
-    viewRequisitionToApprove(program, programColumn, period, periodColumn) {
-        const programColumnId = this.getColumnId(programColumn) + 1;
-        const periodColumnId = this.getColumnId(periodColumn) + 1;
-        browser.execute(function(program, programColumnId, period, periodColumnId) {
-            $('table tr')
-                .filter((index, element) => {
-                    var that = $(element),
-                        programCell = that.find(`td:nth-child(${programColumnId})`).text(),
-                        periodCell = that.find(`td:nth-child(${periodColumnId})`).text();
-                        
-                    return program === programCell && period === periodCell;
-                })
-                .find('td:nth-child(11) button:nth-child(1)')
-                .click();
-        }, program, programColumnId, period, periodColumnId);
+    viewRequisitionToApprove(program, period) {
+        this.approveRequisitionsTable.click([undefined, program, undefined, period, undefined, undefined, undefined, undefined, undefined, undefined], 'View Requisition');
     }
 
-    getColumnId(columnName) {
-        return browser
-            .execute(name => $(`th:contains('${name}')`).index(), columnName)
-            .value;
+    /**
+     * Wait for the program and period to be visible in the table.
+     */
+    waitForRequisition(program, period, hidden) {
+        this.approveRequisitionsTable.waitFor([program, period], hidden);
     }
 
     /**

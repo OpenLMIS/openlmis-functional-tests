@@ -12,7 +12,7 @@ Feature: Approving and rejecting Requisitions
     And I have authorized a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
     And I have logged out
     And I have logged with username "srmanager4" and password "password"
-    
+
     When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
     Then I should not be able to edit the requisition
     And I should not see "Approve" button
@@ -24,8 +24,9 @@ Feature: Approving and rejecting Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
+    And I should see a requisition for "Family Planning" program, "2017Q4" period inside the table
 
-    When I select requisition for "Family Planning" in the "Program" column and "2017Q4" in the "Period" column
+    When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I set "Approved quantity" as "0" for "Levora" product
@@ -51,8 +52,9 @@ Feature: Approving and rejecting Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
+    And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
-    When I select requisition for "Family Planning" in the "Program" column and "2018Q1" in the "Period" column
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click on the "Reject" button
