@@ -1,17 +1,24 @@
 import { defineSupportCode } from 'cucumber';
 
 import SupplyPartnerEditPage from '../../../pages/administration/supply.partner.edit.page';
+import ViewItemsModal from '../../../pages/administration/view.items.modal';
 
 defineSupportCode(({ Then }) => {
 
     Then(
         /^I should see "([^"]*)?" facility on the list$/,
-        name => SupplyPartnerEditPage.waitForFacility(name)
+        (name) => {
+            ViewItemsModal.searchInputValue = name;
+            ViewItemsModal.waitForRow(name);
+        }
     );
 
     Then(
         /^I should see "([^"]*)?" product on the list$/,
-        code => SupplyPartnerEditPage.waitForProduct(code)
+        (name) => {
+            ViewItemsModal.searchInputValue = name;
+            ViewItemsModal.waitForRow(name);
+        }
     );
 
     Then(
