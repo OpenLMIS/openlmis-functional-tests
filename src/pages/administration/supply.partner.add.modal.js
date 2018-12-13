@@ -1,6 +1,5 @@
 import ConfirmationModal from '../../components/confirmation-modal';
-
-import fillInput from '../../support/action/fillInput';
+import Input from '../../components/input';
 
 /**
  * Supply Partner Add Modal object represents the related view in OpenLMIS UI.
@@ -26,11 +25,11 @@ class SupplyPartnerAddModal extends ConfirmationModal {
     }
 
     set code(code) {
-        fillInput('Code', code);
+        new Input('Code').value = code;
     }
 
     set name(name) {
-        fillInput('Name', name);
+        new Input('Name').value = name;
     }
 
     /**

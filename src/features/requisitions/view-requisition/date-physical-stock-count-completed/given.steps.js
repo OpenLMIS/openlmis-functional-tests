@@ -1,14 +1,12 @@
 import { defineSupportCode } from 'cucumber';
 
+import Button from '../../../../components/button';
+import Checkbox from '../../../../components/checkbox';
+
 import ProgramListPage from '../../../../pages/administration/program.list.page';
 import ProgramEditPage from '../../../../pages/administration/program.edit.page';
-import clickCheckboxInput from '../../../../support/action/clickCheckboxInput';
-import checkCheckboxValue from '../../../../support/check/checkCheckboxValue';
-import switchToPage from '../../../../support/action/switchToPage';
-import Button from '../../../../components/button';
 import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.requisition.page';
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
-
 
 defineSupportCode(({ Given }) => {
 
@@ -19,11 +17,14 @@ defineSupportCode(({ Given }) => {
             ProgramListPage.waitForIsVisible();
             ProgramListPage.clickEditProgram(program);
             ProgramEditPage.waitForIsVisible();
-            var enableStockDateLabel = 'Enable field for Date Physical Stock Count Completed';
-            if (!checkCheckboxValue(enableStockDateLabel)) {
-                clickCheckboxInput(enableStockDateLabel);
+            const enableStockDateLabel = 'Enable field for Date Physical Stock Count Completed';
+            const enableStockDateCheckbox = new Checkbox(enableStockDateLabel);
+
+            if (!enableStockDateCheckbox.selected) {
+                enableStockDateCheckbox.click();
             }
-            new Button("Save").click();
+
+            new Button('Save').click();
             ProgramEditPage.confirmSave();
             ProgramListPage.waitForIsVisible();
         }

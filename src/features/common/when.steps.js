@@ -2,16 +2,17 @@ import { defineSupportCode } from 'cucumber';
 
 import Button from '../../components/button';
 import Action from '../../components/action';
+import Input from '../../components/input';
+import Checkbox from '../../components/checkbox';
+import Radiobox from '../../components/radiobox';
+
+import homePage from '../../pages/home.page';
 
 import waitForVisible from '../../support/action/waitForVisible';
-import fillInput from '../../support/action/fillInput';
-import clickRadioInput from '../../support/action/clickRadioInput';
-import clickCheckboxInput from '../../support/action/clickCheckboxInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import switchToPage from '../../support/action/switchToPage';
 import sortBy from '../../support/action/sortBy';
-import homePage from '../../pages/home.page';
 
 defineSupportCode(({ When }) => {
 
@@ -27,22 +28,28 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I enter "([^"]*)?" as "([^"]*)?"$/,
-        (value, label) => fillInput(label, value)
+        (value, label) => {
+            const input = new Input(label);
+            input.value = value;
+        }
     );
 
     When(
         /^I enter an empty value as "([^"]*)?"$/,
-        label => fillInput(label, '')
+        (label) => {
+            const input = new Input(label);
+            input.value = '';
+        }
     );
 
     When(
         /^I select "([^"]*)?" as "([^"]*)?"$/,
-        (option, label) => clickRadioInput(label, option)
+        (option, label) => new Radiobox(label, option).click()
     );
 
     When(
         /^I select "([^"]*)?" checkbox$/,
-        label => clickCheckboxInput(label)
+        label => new Checkbox(label).click()
     );
 
     When(

@@ -2,9 +2,10 @@ import Modal from '../../components/modal';
 import ModalButton from '../../components/modal-button';
 import Table from '../../components/table';
 import Button from '../../components/button';
+import Input from '../../components/input';
 
-import fillInput from '../../support/action/fillInput';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
+import Action from '../../components/action';
 
 /**
  * Add Association Modal object represents the related view in OpenLMIS UI.
@@ -38,7 +39,10 @@ class AddAssociationModal extends Modal {
             '//label[text()="Products"]/following-sibling::section[1]//child::button[text()="Add Products"]')
             .click();
 
-        fillInput('Search Product', productCode);
+        new Action(() => {
+            const search = new Input('Search Product');
+            search.value = productCode;
+        }).execute();
 
         browser
             .element('//*[contains(@id, "productForm")]//td[1]//input[contains(@type, "checkbox")]')

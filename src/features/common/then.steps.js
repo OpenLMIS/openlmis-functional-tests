@@ -3,13 +3,12 @@ import { defineSupportCode } from 'cucumber';
 import HomePage from '../../pages/home.page';
 
 import AlertModal from '../../components/alert-modal';
+import Input from '../../components/input';
+import Checkbox from '../../components/checkbox';
 
 import waitForNotification from '../../support/action/waitForNotification';
 
-import checkInputValue from '../../support/check/checkInputValue';
-import verifyCheckboxValue from '../../support/check/verifyCheckboxValue';
 import checkSelectValue from '../../support/check/checkSelectValue';
-import checkInputEnabled from '../../support/check/checkInputEnabled';
 
 defineSupportCode(({ Then }) => {
     Then(
@@ -29,22 +28,22 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^Value of the "([^"]*)" should be "([^"]*)"$/,
-        (name, value) => checkInputValue(name, value)
+        (name, value) => new Input(name).hasValue(value)
     );
 
     Then(
         /^Value of the "([^"]*)" should be an empty value$/,
-        name => checkInputValue(name, '')
+        name => new Input(name).hasValue('')
     );
 
     Then(
         /^checkbox with label "([^"]*)" should be checked$/,
-        label => verifyCheckboxValue(label, true)
+        label => new Checkbox(label).isSelected()
     );
 
     Then(
         /^checkbox with label "([^"]*)" should be unchecked$/,
-        label => verifyCheckboxValue(label, false)
+        label => new Checkbox(label).isNotSelected()
     );
 
     Then(
@@ -69,6 +68,6 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^The "([^"]*)" input should be disabled$/,
-        name => checkInputEnabled(name, false)
+        name => new Input(name).isDisabled()
     );
 });
