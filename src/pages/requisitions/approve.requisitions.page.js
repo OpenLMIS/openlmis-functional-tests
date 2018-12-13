@@ -12,7 +12,7 @@ class ApproveRequisitionsPage extends Page {
             header: 'Approve Requisitions',
             uri: 'requisitions/approvalList',
             navParent: 'Requisitions',
-            navChild: 'Approve'
+            navChild: 'Approve',
         });
     }
 
@@ -22,12 +22,12 @@ class ApproveRequisitionsPage extends Page {
 
     /**
      * Click on 'View requisition' button for the given requisition.
-     * 
+     *
      * @param {String} program  Program name.
      * @param {String} period  Period name.
      */
     viewRequisitionToApprove(program, period) {
-        this.approveRequisitionsTable.click([undefined, program, undefined, period, undefined, undefined, undefined, undefined, undefined, undefined], 'View Requisition');
+        this.approveRequisitionsTable.click([undefined, program, undefined, period], 'View Requisition');
     }
 
     /**

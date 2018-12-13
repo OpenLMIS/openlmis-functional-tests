@@ -68,10 +68,10 @@ class HomePage extends Page {
      * Checks whether specific tab is not available in navigation under given parent.
      */
     checkIfScreenIsNotVisibleInNavbar(tabName, parent) {
-        const parentSelector = '//a[normalize-space(text())="' + parent + '"]';
+        const parentSelector = `//a[normalize-space(text())="${parent}"]`;
         waitForVisible(parentSelector);
         browser.click(parentSelector);
-        const tabSelector = parentSelector + '/parent::*//a[normalize-space(text())="' + tabName + '"]';
+        const tabSelector = `${parentSelector}/parent::*//a[normalize-space(text())="${tabName}"]`;
         waitForVisible(tabSelector, true);
     }
 
@@ -79,7 +79,7 @@ class HomePage extends Page {
      * Clicks on the tab in navigation bar
      */
     clickTabInNavbar(tabName) {
-        const selector = '//a[normalize-space(text())="' + tabName + '"]';
+        const selector = `//a[normalize-space(text())="${tabName}"]`;
         this.waitForIsVisible(selector);
         browser.click(selector);
     }

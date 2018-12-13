@@ -13,7 +13,7 @@ class ViewRequisitionsPage extends Page {
             header: 'View Requisitions',
             uri: 'requisitions/view',
             navParent: 'Requisitions',
-            navChild: 'View'
+            navChild: 'View',
         });
     }
 
@@ -43,15 +43,15 @@ class ViewRequisitionsPage extends Page {
 
     /**
      * Click on 'View requisition' button for the given requisition.
-     * 
+     *
      * @param {String} program  Program name.
      * @param {String} period  Period name.
      */
     viewRequisition(program, period) {
-        browser.execute(function(program, period) {
+        browser.execute((program, period) => {
             $('table tr')
                 .filter((index, element) => {
-                    var that = $(element),
+                    const that = $(element),
                         programCell = that.find('td:nth-child(1)').text(),
                         periodCell = that.find('td:nth-child(3)').text();
 

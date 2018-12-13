@@ -5,7 +5,7 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 
 defineSupportCode(({ Given }) => {
     Given(
-        /^I have navigated to a submitted requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period/,
+        /^I have navigated to a submitted requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
         (facility, program, period) => {
             ViewRequisitionsPage.open();
             ViewRequisitionsPage.waitForIsVisible();

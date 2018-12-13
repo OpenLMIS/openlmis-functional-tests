@@ -7,7 +7,7 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I click edit button for "([^"]*)?" program$/,
-        (program) => ProgramListPage.clickEditProgram(program)
+        program => ProgramListPage.clickEditProgram(program)
     );
 
     When(

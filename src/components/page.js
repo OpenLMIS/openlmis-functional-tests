@@ -7,7 +7,7 @@ import Action from './action';
 export default class Page {
     /**
      * Construct an new Page, with a default title.
-     * 
+     *
      * @param {Object} config  the configuration object, provides the ability to specify header and URI that points to
      *                         the page
      */

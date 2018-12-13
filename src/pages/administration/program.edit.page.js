@@ -8,7 +8,7 @@ class ProgramEditPage extends Page {
 
     constructor() {
         super({
-            header: 'Edit Program'
+            header: 'Edit Program',
         });
     }
 

@@ -19,7 +19,7 @@ defineSupportCode(({ Given }) => {
 
             ViewRequisitionPage.clickAuthorizeButton();
             ViewRequisitionPage.confirmAuthorize();
-            waitForNotification("Requisition has been authorized!");
+            waitForNotification('Requisition has been authorized!');
         }
     );
 });

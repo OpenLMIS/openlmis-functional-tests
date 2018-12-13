@@ -12,7 +12,7 @@ class ProgramListPage extends Page {
             header: 'Programs',
             uri: 'administration/programs',
             navParent: 'Administration',
-            navChild: 'Programs'
+            navChild: 'Programs',
         });
     }
 
@@ -28,12 +28,12 @@ class ProgramListPage extends Page {
      */
     clickEditProgram(name) {
         new Button(
-            'Edit', 
+            'Edit',
             `//td[normalize-space(text())="${name}"]/following-sibling::td/button[text()="Edit"]`)
-        .click();
+            .click();
     }
 
-    
+
 }
 
 export default new ProgramListPage();

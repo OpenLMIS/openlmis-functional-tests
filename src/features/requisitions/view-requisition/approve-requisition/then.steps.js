@@ -11,7 +11,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be able to see the Total requisition cost updated to "([^"]*)?"$/,
-        (cost) => expect(approveRequisitionsPage.getTotalCost()).to.equal(cost)
+        cost => expect(approveRequisitionsPage.getTotalCost()).to.equal(cost)
     );
 
     Then(

@@ -45,17 +45,17 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.clearForm();
             switchToPage('1');
 
-            ViewRequisitionPage.setColumnForProduct("Total received quantity", "Levora", "21");
-            ViewRequisitionPage.setColumnForProduct("Beginning balance", "Levora", "26");
-            ViewRequisitionPage.setColumnForProduct("Total consumed quantity", "Levora", "4");
-            ViewRequisitionPage.setColumnForProduct("Total stockout days", "Levora", "4");
-            ViewRequisitionPage.setColumnForProduct("Requested quantity", "Levora", "20");
-            ViewRequisitionPage.setColumnForProduct("Requested quantity explanation", "Levora", "2");
+            ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
+            ViewRequisitionPage.setColumnForProduct('Beginning balance', 'Levora', '26');
+            ViewRequisitionPage.setColumnForProduct('Total consumed quantity', 'Levora', '4');
+            ViewRequisitionPage.setColumnForProduct('Total stockout days', 'Levora', '4');
+            ViewRequisitionPage.setColumnForProduct('Requested quantity', 'Levora', '20');
+            ViewRequisitionPage.setColumnForProduct('Requested quantity explanation', 'Levora', '2');
 
             ViewRequisitionPage.skipAll();
             ViewRequisitionPage.clickSubmitButton();
             ViewRequisitionPage.confirmSubmit();
-            waitForNotification("Requisition has been submitted!");
+            waitForNotification('Requisition has been submitted!');
         }
     );
 });

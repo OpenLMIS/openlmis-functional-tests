@@ -195,7 +195,7 @@ class ViewRequisitionPage extends Page {
     confirmPhysicalDateSubmitConfirmationModal() {
         this.physicalDateSubmitConfirmationModal.confirm();
     }
-    
+
     confirmPhysicalDateAuthorizeConfirmationModal() {
         this.physicalDateAuthorizeConfirmationModal.confirm();
     }
@@ -209,11 +209,11 @@ class ViewRequisitionPage extends Page {
     }
 
     checkDatePhysicalStockCountCompleted() {
-        var tomorrow = new Date();
+        const tomorrow = new Date();
         tomorrow.setDate(new Date().getDate() + 1);
 
-        browser.isVisible('//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "' + 
-            [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join("/") + '")]');
+        browser.isVisible(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
+            [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join('/')}")]`);
     }
 
     /**

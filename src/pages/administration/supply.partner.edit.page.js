@@ -1,7 +1,5 @@
 import Page from '../../components/page';
 import Table from '../../components/table';
-import Input from '../../components/input';
-import Action from '../../components/action';
 
 /**
  * Supply Partner Edit Page object represents the related view in OpenLMIS UI.

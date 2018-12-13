@@ -15,7 +15,7 @@ defineSupportCode(({ When }) => {
         /^I confirm the reject/,
         () => ViewRequisitionPage.confirmReject()
     );
-    
+
     When(
         /^I navigate to approve requisitions screen/,
         () => approveRequisitionsPage.navigateToPage()
@@ -23,7 +23,7 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I select requisition for "([^"]*)?" program and "([^"]*)?" period for approve requisitions$/,
-        (program, period,) => approveRequisitionsPage.viewRequisitionToApprove(program, period)
+        (program, period) => approveRequisitionsPage.viewRequisitionToApprove(program, period)
     );
 
     When(
