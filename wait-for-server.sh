@@ -5,7 +5,7 @@ BASE_URL=`egrep -o "baseUrl: '(.+)'" wdio.conf.js | awk '{print substr($0, 11, l
 
 for SERVICE in ${SERVICES}; do
     for ATTEMPT in `seq 0 60`; do
-        echo "INFO: Waiting ${ATTEMPT} seconds and checking if the ${SERVICE} is available"
+        echo "DEBUG: Waiting ${ATTEMPT} seconds and checking if the ${SERVICE} is available"
         sleep ${ATTEMPT}
 
         STATUS=`curl --write-out "%{http_code}\n" --silent --output /dev/null "${BASE_URL}/${SERVICE}"`
@@ -19,5 +19,5 @@ for SERVICE in ${SERVICES}; do
     done
 done
 
-echo "INFO: Waiting another 60 seconds for right assignment regeneration"
+echo "DEBUG: Waiting another 60 seconds for right assignment regeneration"
 sleep 60
