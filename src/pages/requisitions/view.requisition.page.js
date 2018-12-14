@@ -6,6 +6,7 @@ import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
 import Button from '../../components/button';
+import TextArea from '../../components/text-area';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -52,6 +53,15 @@ class ViewRequisitionPage extends Page {
 
         this.scrollToSelector(selector);
         td.setValue(value);
+    }
+
+    /**
+     * Enters the comment in the text area.
+     *
+     * @param {String} comment the comment text
+     */
+    setComment(comment) {
+        this.commentTextArea.value = comment;
     }
 
     /**
@@ -147,6 +157,13 @@ class ViewRequisitionPage extends Page {
     clickAuthorizeButton() {
         this.authorizeButton.click();
     }
+
+    /**
+     * Opens text area to add comment.
+     */
+    clickAddCommentButton() {
+        this.addCommentButton.click();
+    }    
 
     /**
      * Get authorize confirmation modal.
@@ -299,6 +316,14 @@ class ViewRequisitionPage extends Page {
         return new Button('Authorize');
     }
 
+    get addCommentButton() {
+        return new Button('Add Comment');
+    }
+
+    get commentTextArea() {
+        return new TextArea('requisition-status-message-textarea');
+    }
+
     scrollToCell(target) {
         browser.execute((selector, index) => {
             const element = $($(selector)[index]).parents('td')[0];
@@ -315,6 +340,11 @@ class ViewRequisitionPage extends Page {
 
     getInputSelector(product, columnNumber) {
         return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']/div/input`;
+    }
+
+    checkAutoSavingSpinner() {
+        const spinner = `//*[contains(@class, "saving-add-active")]`;
+        waitForVisible(spinner, true);
     }
 
     getColumnId(columnName) {
