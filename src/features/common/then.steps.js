@@ -33,7 +33,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^Value of the "([^"]*)" should be an empty value$/,
-        name => new Input(name).hasValue('')
+        name => new Input(name).isEmpty()
     );
 
     Then(

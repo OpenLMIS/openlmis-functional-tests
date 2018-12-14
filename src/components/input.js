@@ -31,6 +31,10 @@ export default class Input {
         isEnabled(this.selector, true);
     }
 
+    isEmpty() {
+        this.hasValue('');
+    }
+
     hasValue(expected) {
         expect(browser.element(this.selector).getValue()).to.equal(expected);
     }
