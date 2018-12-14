@@ -23,7 +23,7 @@ export default class Input {
         browser.element(this.selector).click();
     }
 
-    isEnabled() {
+    isEditable() {
         isEnabled(this.selector);
     }
 
