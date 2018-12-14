@@ -19,5 +19,5 @@ for SERVICE in ${SERVICES}; do
     done
 done
 
-echo "Waiting another 60 seconds for right assignment regeneration"
+echo "INFO: Waiting another 60 seconds for right assignment regeneration"
 sleep 60
