@@ -18,6 +18,7 @@ Feature: Supply Partner Edit
     Scenario: Administrator should not be able to add association if other supply partner supplies the given product
         When I click on the "Add Association" button
         And I select "ARV" from the "Program" list
+        And I wait "0.5" seconds for UI adjustment
         # The following two steps are temporary
         # because there is only one option to
         # select and by default the option is selected

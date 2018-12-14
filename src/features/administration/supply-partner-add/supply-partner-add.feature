@@ -35,6 +35,7 @@ Feature: Supply Partner Add
         And I enter "Functional Test Supply Partner #3" as "Name"
         And I add supply partner
         Then I should get an error message
+        And I click on the "Close" button
 
     Scenario: Administrator should be able to close modal without creating a resource
         Given I have navigated to the supply partner list page
