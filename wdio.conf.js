@@ -2,34 +2,37 @@
 
 // workaround from https://github.com/webdriverio/wdio-cucumber-framework/issues/79
 const glob = require('glob');
+
 const steps = glob.sync('src/features/**/*.steps.js');
 const features = glob.sync('src/features/**/*.feature');
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
-const bmpPresent = process.env.BMP_PRESENT
+const bmpPresent = process.env.BMP_PRESENT;
 
 let proxy = null;
-let beforeScenario = (scenario) => { return; };
+let beforeScenario = () => { };
 if (bmpPresent) {
-  proxy = {
-    proxyType: "MANUAL",
-    httpProxy: "bmp:9091",
-    sslProxy: "bmp:9091"
-  };
+    proxy = {
+        proxyType: 'MANUAL',
+        httpProxy: 'bmp:9091',
+        sslProxy: 'bmp:9091',
+    };
 
-  const request = require('request');
-  beforeScenario = (scenario) => {
-    request({
-      method: 'PUT',
-      url: 'http://bmp:9090/proxy/9091/har/pageRef',
-      form: {
-        pageTitle: scenario.name,
-      },
-    }, (err, response, body) => {
-      if(err != null) console.log('Error body: ' + body);
-    });
-  }
+    const request = require('request');
+    beforeScenario = (scenario) => {
+        request({
+            method: 'PUT',
+            url: 'http://bmp:9090/proxy/9091/har/pageRef',
+            form: {
+                pageTitle: scenario.name,
+            },
+        }, (err, response, body) => {
+            if (err != null) {
+                console.log(`Error body: ${body}`);
+            }
+        });
+    };
 }
 
 // wdio config
@@ -80,7 +83,7 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'chrome',
-        proxy: proxy,
+        proxy,
     }],
     //
     // ===================
@@ -104,8 +107,8 @@ exports.config = {
     screenshotPath: './build/errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your url
-    // parameter starts with "/", then the base url gets prepended.
-    baseUrl: 'http://test.openlmis.org',
+    // parameter starts with '/', then the base url gets prepended.
+    baseUrl: 'https://test.openlmis.org',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -154,9 +157,9 @@ exports.config = {
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['spec', 'junit'],
     reporterOptions: {
-      junit: {
-        outputDir: './build/',
-      }
+        junit: {
+            outputDir: './build/',
+        },
     },
     //
     // If you are using Cucumber you need to specify the location of your step
@@ -177,7 +180,7 @@ exports.config = {
         // <boolean> Enable this config to treat undefined definitions as
         // warnings
         ignoreUndefinedDefinitions: false,
-        // <string[]> ("extension:module") require files with the given
+        // <string[]> ('extension:module') require files with the given
         // EXTENSION after requiring MODULE (repeatable)
         name: [],
         // <boolean> hide step definition snippets for pending steps
@@ -267,7 +270,7 @@ exports.config = {
     // Hook that gets executed after the suite has ended
     // afterSuite: function afterSuite(suite) {
     // },
-     beforeScenario: beforeScenario,
+    beforeScenario,
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.

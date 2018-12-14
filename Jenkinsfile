@@ -14,7 +14,7 @@ pipeline {
   stages {
     stage ('wait for test server') {
       steps {
-        sh 'sleep 600'
+        sh( script: "./wait-for-server.sh" )
       }
     }
     stage ('pull images') {
