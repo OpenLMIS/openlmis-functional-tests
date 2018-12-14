@@ -18,8 +18,13 @@ Feature: Supply Partner Edit
     Scenario: Administrator should not be able to add association if other supply partner supplies the given product
         When I click on the "Add Association" button
         And I select "ARV" from the "Program" list
+        # The following two steps are temporary
+        # because there is only one option to
+        # select and by default the option is selected
         And I select nothing from the "Supervisory Node" list
+        And I wait "0.5" seconds for UI adjustment
         And I select "CHAZ Lilongwe" from the "Supervisory Node" list
+        And I wait "0.5" seconds for UI adjustment
         And I add "Lilongwe Health Center" facility to the association
         And I add "ARV0004" product to the association
         And I add "ARV0005" product to the association

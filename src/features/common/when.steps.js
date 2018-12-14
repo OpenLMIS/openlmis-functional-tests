@@ -13,6 +13,7 @@ import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import switchToPage from '../../support/action/switchToPage';
 import sortBy from '../../support/action/sortBy';
+import pause from '../../support/action/pause';
 
 defineSupportCode(({ When }) => {
 
@@ -88,6 +89,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I click on the "([^"]*)?" tab$/,
         name => homePage.clickTabInNavbar(name)
+    );
+
+    When(
+        /^I wait "([^"]*)?" seconds for UI adjustment$/,
+        seconds => pause(seconds * 1000)
     );
 
 });
