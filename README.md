@@ -196,7 +196,7 @@ class Page {
 ### Repeating step sequences
 
 When writing functional tests it is common that some sequences will be repeated across multiple test cases. Those 
-sequences are ofter responsible for preparing the data before actually executing the core part of the test case. In that
+sequences are often responsible for preparing the data before actually executing the core part of the test case. In that
 case, we should keep those steps in a separate test and create a given step in other tests.
 
 Don't
