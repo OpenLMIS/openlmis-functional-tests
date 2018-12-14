@@ -129,13 +129,12 @@ state).  A couple of conventions are in use for this suite:
 
 ## Do and Don't
 
-There are some stuff that you should avoid while writing functional tests that might result in the test being stable
-rather than failing randomly.
+The following are a few tips on things to do and to avoid to ensure that the tests are stable and do not fail randomly.
 
 ### Executing an action
 
 Remember that some actions might result in opening a loading modal, which will block the UI and make user unable to
-do any action. Functional tests are not smart enough to remember about that out of the box so we've created a class
+do any action. Functional tests are not smart enough to remember that out of the box so we've created a class
 representing an action, which will take care of waiting for the action to finish as well as the modal to close. In
 order to use it all you need to do is:
 
@@ -194,6 +193,64 @@ class Page {
 }
 ```
 
+### Repeating step sequences
+
+When writing functional tests it is common that some sequences will be repeated across multiple test cases. Those 
+sequences are ofter responsible for preparing the data before actually executing the core part of the test case. In that
+case, we should keep those steps in a separate test and create a given step in other tests.
+
+Don't
+
+```Cucumber
+Scenario: User logs in
+  When I navigate to the login page
+  And I enter the username "administrator"
+  And I enter the password "password"
+  And I submit the form
+  Then I should be logged in
+
+Scenario: User does something after logging
+  When I navigate to the login page
+  And I enter the username "administrator"
+  And I enter the password "password"
+  And I submit the form
+  Then I should be logged in
+
+  When I do something
+  Then I have done something
+
+Scenario: User does something else
+  When I navigate to the login page
+  And I enter the username "administrator"
+  And I enter the password "password"
+  And I submit the form
+  Then I should be logged in
+
+  When I do something else
+  Then I have done something else
+```
+
+Do
+```Cucumber
+Scenario: User logs in
+  When I navigate to the login page
+  And I enter the username "administrator"
+  And I enter the password "password"
+  And I submit the form
+  Then I should be logged in
+
+Scenario: User does something after logging
+  Given I have logged in
+
+  When I do something
+  Then I have done something
+
+Scenario: User does something else
+  Given I have logged in
+
+  When I do something else
+  Then I have done something else
+```
 
 ## Attribution
 
