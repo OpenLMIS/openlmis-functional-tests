@@ -2,6 +2,7 @@ import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
 import Button from '../../components/button';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
+import Table from '../../components/table';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.
@@ -67,6 +68,14 @@ class ViewRequisitionsPage extends Page {
      */
     waitForTable() {
         waitForVisible('//table/tbody/tr/td');
+    }
+
+    get viewRequisitionsTable() {
+        return new Table();
+    }
+
+    viewRequisitionWithStatus(program, period, status) {
+        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, undefined, status], 'View Requisition');
     }
 }
 
