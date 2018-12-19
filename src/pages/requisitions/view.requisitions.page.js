@@ -63,19 +63,26 @@ class ViewRequisitionsPage extends Page {
         }, program, period);
     }
 
+    get viewRequisitionsTable() {
+        return new Table();
+    }
+
+    /**
+     * Click on 'View requisition' button for the requisition with given status.
+     *
+     * @param {String} program  Program name.
+     * @param {String} period  Period name.
+     * @param {String} status  Status name.
+     */
+    viewRequisitionWithStatus(program, period, status) {
+        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, undefined, status], 'View Requisition');
+    }
+
     /**
      * Wait for the table to be visible.
      */
     waitForTable() {
         waitForVisible('//table/tbody/tr/td');
-    }
-
-    get viewRequisitionsTable() {
-        return new Table();
-    }
-
-    viewRequisitionWithStatus(program, period, status) {
-        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, undefined, status], 'View Requisition');
     }
 }
 

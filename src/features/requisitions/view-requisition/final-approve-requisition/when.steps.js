@@ -1,6 +1,5 @@
 import { defineSupportCode } from 'cucumber';
 
-import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
 import ViewRequisitionsPage from '../../../../pages/requisitions/view.requisitions.page';
 
 defineSupportCode(({ When }) => {
@@ -15,7 +14,6 @@ defineSupportCode(({ When }) => {
     When(
         /^I search for "([^"]*)?" facility$/,
         (facility) => {
-            //ViewRequisitionsPage.open();
             ViewRequisitionsPage.waitForIsVisible();
             ViewRequisitionsPage.searchForFacility(facility);
             ViewRequisitionsPage.waitForTable();
