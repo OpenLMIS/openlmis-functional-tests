@@ -13,7 +13,7 @@ Feature: Approving and rejecting Requisitions
     And I have logged out
     And I have logged with username "srmanager4" and password "password"
 
-    When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
+    When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2017Q4" period and "AUTHORIZED" status
     Then I should not be able to edit the requisition
     And I should not see "Approve" button
     And I should not see "Reject" button 

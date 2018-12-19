@@ -5,15 +5,15 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 
 defineSupportCode(({ Given }) => {
     Given(
-        /^I have navigated to a submitted requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
-        (facility, program, period) => {
-            ViewRequisitionsPage.open();
+        /^I have navigated to a requisition for "([^"]*)?" facility, "([^"]*)?" program, "([^"]*)?" period and "([^"]*)?" status$/,
+        (facility, program, period, status) => {
+            ViewRequisitionsPage.navigateToPage();
             ViewRequisitionsPage.waitForIsVisible();
 
             ViewRequisitionsPage.searchForFacility(facility);
             ViewRequisitionsPage.waitForTable();
 
-            ViewRequisitionsPage.viewRequisition(program, period);
+            ViewRequisitionsPage.viewRequisitionWithStatus(program, period, status);
             ViewRequisitionPage.waitForIsVisible();
         }
     );
