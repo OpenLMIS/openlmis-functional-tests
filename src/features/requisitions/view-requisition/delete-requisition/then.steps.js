@@ -5,8 +5,8 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 defineSupportCode(({ Then }) => {
 
     Then(
-        /^I should be able to proceed to a previously deleted requisition for "([^"]*)?" period and "([^"]*)?" status$/,
-        (period, status) => {
+        /^I should be able to proceed to a previously deleted requisition with "([^"]*)?" status$/,
+        (status) => {
             ViewRequisitionPage.proceedToRequisition(status);
         }
     );
