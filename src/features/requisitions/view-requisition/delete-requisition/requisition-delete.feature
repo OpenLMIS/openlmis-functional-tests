@@ -16,5 +16,5 @@ Feature: Delete Requisition
     And I have logged with username "srmanager3" and password "password"
     And I have navigated to Initiate Report and Requisition screen for "Family Planning" program
 
-    Then I should be able to proceed to a previously deleted requisition for "Jan2018" period and "Not yet started" status
+    Then I should be able to proceed to a previously deleted requisition with "Not yet started" status
     And I should be redirected to requisition view screen
