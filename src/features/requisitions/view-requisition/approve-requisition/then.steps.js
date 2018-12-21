@@ -1,6 +1,8 @@
 import { defineSupportCode } from 'cucumber';
 
 import approveRequisitionsPage from '../../../../pages/requisitions/approve.requisitions.page';
+import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
+import waitForNotification from '../../../../support/action/waitForNotification';
 
 defineSupportCode(({ Then }) => {
 
@@ -18,4 +20,14 @@ defineSupportCode(({ Then }) => {
         /^I should see a requisition for "([^"]*)?" program, "([^"]*)?" period inside the table$/,
         (program, period) => approveRequisitionsPage.waitForRequisition(program, period, false)
     );
+
+    Then(
+        /^I delete the requisition$/,
+        () => {
+            ViewRequisitionPage.clickDeleteButton();
+            ViewRequisitionPage.confirmDelete();
+            waitForNotification('Requisition has been deleted!');
+        }
+    );
+
 });

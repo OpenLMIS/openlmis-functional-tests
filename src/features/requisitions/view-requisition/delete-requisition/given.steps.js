@@ -39,7 +39,7 @@ defineSupportCode(({ Given }) => {
 
             InitiateRequisitionPage.clickProceedButton();
             ViewRequisitionPage.waitForIsVisible();
-
+            
             ViewRequisitionPage.clearForm();
             switchToPage('2');
             ViewRequisitionPage.clearForm();

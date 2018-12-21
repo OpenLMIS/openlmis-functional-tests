@@ -79,3 +79,4 @@ Feature: Approving and rejecting Requisitions
     Given I have logged with username "smanager4" and password "password"
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
     Then I should be able to see the Total requisition cost updated to "$10.46"
+    And I delete the requisition

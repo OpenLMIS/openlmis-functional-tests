@@ -1,7 +1,7 @@
 Feature: Auto-saving Requisitions
 
   Scenario: Storeroom Manager should be able to auto-save requisition comment
-    Given I have logged with username "srmanager3" and password "password"
+    Given I have logged with username "srmanager4" and password "password"
     And I have initiated a requisition for "Family Planning" program
 
     When I click the Add Comment button
@@ -55,7 +55,7 @@ Feature: Auto-saving Requisitions
     And I log out
 
   Scenario: Store Manager should be able to auto-save requisition comment
-    Given I have logged with username "smanager3" and password "password"
+    Given I have logged with username "smanager4" and password "password"
     
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
     And I click the Add Comment button
@@ -90,9 +90,9 @@ Feature: Auto-saving Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
-    And I should see a requisition for "Family Planning" program, "Jan2018" period inside the table
+    And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
-    When I select requisition for "Family Planning" program and "Jan2018" period for approve requisitions
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click the Add Comment button

@@ -163,7 +163,21 @@ class ViewRequisitionPage extends Page {
      */
     clickAddCommentButton() {
         this.addCommentButton.click();
-    }    
+    }
+
+    /**
+     * Skips the requisition
+     */
+    clickSkipButton() {
+        this.skipButton.click();
+    }
+
+    /**
+     * Skips the requisition
+     */
+    clickDeleteButton() {
+        this.deleteButton.click();
+    }
 
     /**
      * Get authorize confirmation modal.
@@ -254,6 +268,16 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Get skip confirmation modal.
+     */
+    get skipConfirmationModal() {
+        return new ConfirmationModal({
+            header: 'Are you sure you want to skip this requisition?',
+            confirmButtonLabel: 'Skip',
+        });
+    }
+
+    /**
      * Get authorize confirmation button.
      */
     confirmSubmit() {
@@ -286,6 +310,13 @@ class ViewRequisitionPage extends Page {
      */
     confirmReject() {
         this.rejectConfirmationModal.confirm();
+    }
+
+    /**
+     * Get skip confirmation button.
+     */
+    confirmSkip() {
+        this.skipConfirmationModal.confirm();
     }
 
     /**
@@ -322,6 +353,14 @@ class ViewRequisitionPage extends Page {
 
     get commentTextArea() {
         return new TextArea('requisition-status-message-textarea');
+    }
+
+    get skipButton() {
+        return new Button('Skip');
+    }
+
+    get deleteButton() {
+        return new Button('Delete');
     }
 
     scrollToCell(target) {
