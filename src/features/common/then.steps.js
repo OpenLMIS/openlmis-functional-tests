@@ -79,7 +79,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should see opened "([^"]*)" datepicker$/,
-        label => new DatePicker(label).isOpened()
+        label => new DatePicker(label).isOpen()
     );
 
     Then(
@@ -101,7 +101,7 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should not see "([^"]*)" datepicker opened$/,
-        label => new DatePicker(label).isNotOpened()
+        label => new DatePicker(label).isNotOpen()
     );
 
     Then(

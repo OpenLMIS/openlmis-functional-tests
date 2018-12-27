@@ -37,7 +37,7 @@ export default class DatePicker {
         browser.element(this.selector).click();
     }
 
-    isEditable() {
+    isEnabled() {
         isEnabled(this.selector);
     }
 
@@ -49,11 +49,11 @@ export default class DatePicker {
         this.hasValue('');
     }
     
-    isOpened() {
+    isOpen() {
         isVisible(this.datePickerDropdownSelector);
     }
 
-    isNotOpened() {
+    isNotOpen() {
         isVisible(this.datePickerDropdownSelector, true);
     }
 
