@@ -1,12 +1,11 @@
 import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
-import datepickerSelectTodayDate from '../../support/action/datepickerSelectTodayDate';
-import datepickerSetDateInFuture from '../../support/action/datepickerSetDateInFuture';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
 import Button from '../../components/button';
 import TextArea from '../../components/text-area';
+import DatePicker from '../../components/date-picker';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -223,6 +222,10 @@ class ViewRequisitionPage extends Page {
         });
     }
 
+    get physicalDateDatePicker() {
+        return new DatePicker('Date physical stock count completed');
+    }
+
     confirmPhysicalDateSubmitConfirmationModal() {
         this.physicalDateSubmitConfirmationModal.confirm();
     }
@@ -232,11 +235,11 @@ class ViewRequisitionPage extends Page {
     }
 
     selectDatePhysicalStockCountCompleted() {
-        datepickerSelectTodayDate();
+        this.physicalDateDatePicker.selectTodayDate();
     }
 
     selectDatePhysicalStockCountCompletedInFuture() {
-        datepickerSetDateInFuture();
+        this.physicalDateDatePicker.setDateInFuture();
     }
 
     checkDatePhysicalStockCountCompleted() {

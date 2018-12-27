@@ -9,18 +9,20 @@ export default class Button {
     /**
      * Creates an instance of the Button class.
      *
-     * @param {string} label     the label of the button
-     * @param {string} selector  (optional) the custom selector for the button, it should be used when there is are
-     *                           multiple buttons with the same label visible at a time
+     * @param {string}  label       the label of the button
+     * @param {string}  selector    (optional) the custom selector for the button, it should be used when there is are
+     *                              multiple buttons with the same label visible at a time
+     * @param {boolean} waitForHide (optional) should wait for modal to close after clicking button, default true 
      */
-    constructor(label, selector = getButtonSelector(label)) {
+    constructor(label, selector = getButtonSelector(label), waitForHide = true) {
         this.selector = selector;
+        this.waitForHide = waitForHide;
     }
 
     /**
      * Clicks the button. This is an Action and will handle waiting for the loading modal to fade.
      */
     click() {
-        new Action(() => browser.element(this.selector).click()).execute();
+        new Action(() => browser.element(this.selector).click(), this.waitForHide).execute();
     }
 }

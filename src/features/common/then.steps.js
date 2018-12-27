@@ -9,6 +9,7 @@ import Checkbox from '../../components/checkbox';
 import waitForNotification from '../../support/action/waitForNotification';
 
 import checkSelectValue from '../../support/check/checkSelectValue';
+import DatePicker from '../../components/date-picker';
 
 defineSupportCode(({ Then }) => {
     Then(
@@ -69,5 +70,59 @@ defineSupportCode(({ Then }) => {
     Then(
         /^The "([^"]*)" input should be disabled$/,
         name => new Input(name).isDisabled()
+    );
+
+    Then(
+        /^I should see "([^"]*)" datepicker empty$/,
+        label => new DatePicker(label).isEmpty()
+    );
+
+    Then(
+        /^I should see opened "([^"]*)" datepicker$/,
+        label => new DatePicker(label).isOpened()
+    );
+
+    Then(
+        /^I should see today's date on "([^"]*)" datepicker input$/,
+        label => {
+            const today = new Date();
+            new DatePicker(label).hasValue([today.getDate(), today.getMonth() + 1, today.getFullYear()].join('/'));
+        }
+    );
+
+    Then(
+        /^I should see "([^"]*)" date on "([^"]*)" datepicker$/,
+        (date, label) => {
+            const datePicker = new DatePicker(label);
+            
+            datePicker.click();
+            datePicker.isDateSelected(date);
+        }
+    );
+
+    Then(
+        /^I should not see "([^"]*)" datepicker opened$/,
+        label => new DatePicker(label).isNotOpened()
+    );
+
+    Then(
+        /^I should see "([^"]*)" day disabled on "([^"]*)" datepicker$/,
+        (day, label) => {
+            const datepicker = new DatePicker(label);
+            datepicker.click();
+            
+            datepicker.isDayDisabled(day);
+            datepicker.closeDatePicker();
+        }
+    );
+
+    Then(
+        /^I should see "([^"]*)" day enabled on "([^"]*)" datepicker$/,
+        (day, label) => {
+            const datepicker = new DatePicker(label);
+            datepicker.click();
+            datepicker.isDayEnabled(day);
+            datepicker.closeDatePicker();
+        }
     );
 });

@@ -6,10 +6,13 @@ import loadingModal from '../components/loading-modal';
 export default class Action {
     /**
      * Constructs and object of the Action class.
-     * @param {Function} action  the function to be executed.
+     * 
+     * @param {Function} action      the function to be executed.
+     * @param {boolean}  waitForHide 
      */
-    constructor(action) {
+    constructor(action, waitForHide = true) {
         this.action = action;
+        this.waitForHide = waitForHide;
     }
 
     /**
@@ -17,6 +20,8 @@ export default class Action {
      */
     execute() {
         this.action();
-        loadingModal.waitForHide();
+        if (this.waitForHide) {
+            loadingModal.waitForHide();
+        }
     }
 }

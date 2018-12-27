@@ -84,6 +84,10 @@ class ViewRequisitionsPage extends Page {
     waitForTable() {
         waitForVisible('//table/tbody/tr/td');
     }
+
+    isFilterPopoverVisible() {
+        waitForVisible(`//div[contains(@class, 'popover')]//legend[normalize-space(text())='Date initiated']`);
+    }
 }
 
 export default new ViewRequisitionsPage();

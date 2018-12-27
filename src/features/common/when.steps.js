@@ -5,9 +5,11 @@ import Action from '../../components/action';
 import Input from '../../components/input';
 import Checkbox from '../../components/checkbox';
 import Radiobox from '../../components/radiobox';
+import DatePicker from '../../components/date-picker';
 
 import homePage from '../../pages/home.page';
 
+import getButtonSelector from '../../support/lib/getButtonSelector';
 import waitForVisible from '../../support/action/waitForVisible';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
@@ -69,6 +71,11 @@ defineSupportCode(({ When }) => {
     );
 
     When(
+        /^I click on the "([^"]*)?" button without waiting for loading modal$/,
+        name => new Button(name, getButtonSelector(name), false).click()
+    );
+
+    When(
         /^I refresh page$/,
         () => {
             browser.refresh();
@@ -96,4 +103,27 @@ defineSupportCode(({ When }) => {
         seconds => pause(seconds * 1000)
     );
 
+    When(
+        /^I click on the "([^"]*)?" datepicker$/,
+        label => new DatePicker(label).click()
+    );
+
+    When(
+        /^I select today's date on "([^"]*)?" datepicker$/,
+        label => new DatePicker(label).selectTodayDate()
+    );
+
+    When(
+        /^I enter "([^"]*)" date on "([^"]*)" datepicker$/,
+        (date, label) => {
+            const datepicker = new DatePicker(label);
+            datepicker.value = date;
+            datepicker.closeDatePicker();
+        }
+    );
+
+    When(
+        /^I click clear button on "([^"]*)" datepicker$/,
+        label => new DatePicker(label).clickClearButton()
+    );
 });
