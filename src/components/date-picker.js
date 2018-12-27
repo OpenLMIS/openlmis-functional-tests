@@ -33,7 +33,7 @@ export default class DatePicker {
         this.clearButton.click();
     }
 
-    click() {
+    open() {
         browser.element(this.selector).click();
     }
 
@@ -69,7 +69,7 @@ export default class DatePicker {
     }
 
     selectTodayDate() {
-        this.click();
+        this.open();
         browser.element(this.datePickerDropdownSelector + '//td[contains(@class, "today")]').click();
     }
 

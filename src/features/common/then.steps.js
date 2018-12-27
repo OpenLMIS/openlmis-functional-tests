@@ -94,8 +94,7 @@ defineSupportCode(({ Then }) => {
         /^I should see "([^"]*)" date on "([^"]*)" datepicker$/,
         (date, label) => {
             const datePicker = new DatePicker(label);
-            
-            datePicker.click();
+            datePicker.open();
             datePicker.isDateSelected(date);
         }
     );
@@ -109,8 +108,7 @@ defineSupportCode(({ Then }) => {
         /^I should see "([^"]*)" day disabled on "([^"]*)" datepicker$/,
         (day, label) => {
             const datepicker = new DatePicker(label);
-            datepicker.click();
-            
+            datepicker.open();
             datepicker.isDayDisabled(day);
             datepicker.closeDatePicker();
         }
@@ -120,7 +118,7 @@ defineSupportCode(({ Then }) => {
         /^I should see "([^"]*)" day enabled on "([^"]*)" datepicker$/,
         (day, label) => {
             const datepicker = new DatePicker(label);
-            datepicker.click();
+            datepicker.open();
             datepicker.isDayEnabled(day);
             datepicker.closeDatePicker();
         }

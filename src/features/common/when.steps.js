@@ -105,7 +105,7 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I click on the "([^"]*)?" datepicker$/,
-        label => new DatePicker(label).click()
+        label => new DatePicker(label).open()
     );
 
     When(
