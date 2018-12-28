@@ -20,7 +20,7 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I click on the Balaka District Warehouse supplying depot for "([^"]*)?" program and "([^"]*)?" period$/,
+        /^I click on the supplying depot for "([^"]*)?" program and "([^"]*)?" period$/,
         (program, period) => ConvertToOrderRequisitionsPage.openSelectDropdown(program, period)
     );
 

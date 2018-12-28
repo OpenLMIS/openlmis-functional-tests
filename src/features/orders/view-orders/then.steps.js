@@ -10,7 +10,7 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^I should see requisition for "([^"]*)?" program and "([^"]*)?" period inside the table$/,
+        /^I should see order for "([^"]*)?" program and "([^"]*)?" period inside the table$/,
         (program, period) => ViewOrdersPage.waitForOrder(program, period, false)
     );
 });
