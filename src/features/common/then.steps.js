@@ -7,6 +7,7 @@ import Input from '../../components/input';
 import Checkbox from '../../components/checkbox';
 
 import waitForNotification from '../../support/action/waitForNotification';
+import waitForErrorNotification from '../../support/action/waitForErrorNotification';
 
 import checkSelectValue from '../../support/check/checkSelectValue';
 import DatePicker from '../../components/date-picker';
@@ -25,6 +26,11 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should see a successful notification saying "([^"]*)?"$/,
         message => waitForNotification(message)
+    );
+
+    Then(
+        /^I should see an error notification saying "([^"]*)?"$/,
+        message => waitForErrorNotification(message)
     );
 
     Then(

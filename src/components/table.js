@@ -1,6 +1,7 @@
 import Button from './button';
 
 import waitForVisible from '../support/action/waitForVisible';
+import chooseSelectOptionInTable from '../support/action/chooseSelectOptionInTable';
 import checkTableSort from '../support/check/checkTableSort';
 
 import retrieveTableData from '../support/lib/retrieveTableData';
@@ -56,6 +57,36 @@ export default class Table {
             `//button[normalize-space(text())="${buttonLabel}"]`;
 
         new Button(buttonLabel, selector).click();
+    }
+
+    /**
+     * Finds a select dropdown in the given column.
+     *
+     * @param {Array} columnValues  an array that contains expected values in a row
+     * @param {String} columnName   inform in which column the button exists
+     */
+    getSelectInputSelector(columnValues, columnName = '') {
+        const previousColumns = `${this.selector}` +
+            `//th[normalize-space(text())="${columnName}"]` +
+            '//preceding-sibling::*';
+        return `${this.createColumnSelector(columnValues)}` +
+            `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
+            `//span[contains(@class, "select2-selection")]`;
+    }
+
+    clickSelectInput(columnValues, columnName = '') {
+        const selector = this.getSelectInputSelector(columnValues, columnName);
+        browser.element(`${selector}`).click();
+    }
+
+    unselectOption(columnValues, columnName = '') {
+        const selector = this.getSelectInputSelector(columnValues, columnName);
+        chooseSelectOptionInTable(selector);
+    }
+
+    selectOption(columnValues, option, columnName = '') {
+        const selector = this.getSelectInputSelector(columnValues, columnName);
+        chooseSelectOptionInTable(selector, option);
     }
 
     /**
