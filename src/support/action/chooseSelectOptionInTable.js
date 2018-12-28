@@ -7,15 +7,8 @@ import scroll from './scroll';
  * @param {String} option  the option to select. If not provided the select become blank.
  */
 module.exports = (section = '', option) => {
-    // Workaround for an issue with rendering a list of available options for this select.
-    // Without it the list is rendered below the select instead of above it. Because of that,
-    // a test can not select an option based on the name.
-    scroll('bottom');
-    scroll('top');
-    scroll('bottom');
 
     if (option) {
-        // Deals with selects for which options might load asynchronously.
         browser
             .element(`${section}` +
                 '/following-sibling::span[contains(@class, "select2-selection__arrow")]')

@@ -54,13 +54,6 @@ class ConvertRequisitionsPage extends Page {
     waitForSupplyingDepotOption(option) {
         waitForVisible(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`);
     }
-
-    /**
-     * Wait for the table to be visible.
-     */
-    waitForTable() {
-        waitForVisible('//table/tbody/tr/td');
-    }
 }
 
 export default new ConvertRequisitionsPage();

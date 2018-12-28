@@ -45,13 +45,6 @@ class ViewOrdersPage extends Page {
     waitForOrder(program, period, hidden) {
         this.viewOrdersTable.waitFor([program, period], hidden);
     }
-
-    /**
-     * Wait for the table to be visible.
-     */
-    waitForTable() {
-        waitForVisible('//table/tbody/tr/td');
-    }
 }
 
 export default new ViewOrdersPage();
