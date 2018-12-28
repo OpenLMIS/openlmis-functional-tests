@@ -9,7 +9,7 @@ Feature: Converting requisitions to orders
         When I click on the "Convert to Order" button
         Then I should see an error notification saying "Please select at least one requisition for converting to order."
 
-        When I click on the Balaka District Warehouse supplying depot for "Essential Meds" program and "2017Q2" period
+        When I click on the supplying depot for "Essential Meds" program and "2017Q2" period
         Then I should see only "Balaka District Warehouse" supplying depot on the dropdown list
 
         When I unselect the supplying depot for requisition for "Essential Meds" program and "2017Q2" period
@@ -41,13 +41,13 @@ Feature: Converting requisitions to orders
         Then I should be brought to View Orders screen
 
         When I search for "Balaka District Warehouse" supplying facility
-        Then I should see requisition for "Essential Meds" program and "2017Q2" period inside the table
+        Then I should see order for "Essential Meds" program and "2017Q2" period inside the table
 
         When I search for "Lilongwe District Warehouse" supplying facility
-        Then I should see requisition for "ARV" program and "Jan2017" period inside the table
+        Then I should see order for "ARV" program and "Jan2017" period inside the table
 
         When I search for "Ntcheu District Warehouse" supplying facility
-        Then I should see requisition for "Family Planning" program and "2017Q3" period inside the table
+        Then I should see order for "Family Planning" program and "2017Q3" period inside the table
 
 
 
