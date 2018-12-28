@@ -61,7 +61,7 @@ export default class DatePicker {
         expect(browser.element(this.selector).getValue()).to.equal(expected);
     }
 
-    setDateInFuture() {
+    setDateInFuture(numberOfDays = 1) {
         const tomorrow = new Date();
         tomorrow.setDate(new Date().getDate() + numberOfDays ? numberOfDays : 1);
 
@@ -80,7 +80,7 @@ export default class DatePicker {
         const dayLabel = dateParts[0];
         const monthYearLabel = months[dateParts[1] - 1] + ' ' + dateParts[2];
 
-        this.isOpened();
+        this.isOpen();
         isVisible(this.datePickerDropdownSelector + '//td[@class = "active day"][normalize-space(text())="' + dayLabel + '"]');
         isVisible(this.datePickerDropdownSelector + '//th[@class = "datepicker-switch"][normalize-space(text())="' + monthYearLabel + '"]');
     }
