@@ -1,6 +1,6 @@
 import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
-import Table from '../../components/table';
+import Select from '../../components/select';
 import ConfirmationModal from '../../components/confirmation-modal';
 
 /**
@@ -15,10 +15,6 @@ class ConvertRequisitionsPage extends Page {
             navParent: 'Requisitions',
             navChild: 'Convert to Order',
         });
-    }
-
-    get convertRequisitionsTable() {
-        return new Table();
     }
 
     get convertRequisitionConfirmationModal() {
@@ -40,15 +36,15 @@ class ConvertRequisitionsPage extends Page {
     }
 
     openSelectDropdown(program, period) {
-        this.convertRequisitionsTable.clickSelectInput([undefined, program, undefined, undefined, period], "Supplying depot");
+        Select.clickSelectInput([undefined, program, undefined, undefined, period], "Supplying depot");
     }
 
     addSupplyingDepot(program, period, option) {
-        this.convertRequisitionsTable.selectOption([undefined, program, undefined, undefined, period], option, "Supplying depot");
+        Select.selectOption([undefined, program, undefined, undefined, period], option, "Supplying depot");
     }
 
     removeSupplyingDepot(program, period) {
-        this.convertRequisitionsTable.unselectOption([undefined, program, undefined, undefined, period], "Supplying depot");
+        Select.unselectOption([undefined, program, undefined, undefined, period], "Supplying depot");
     }
 
     waitForSupplyingDepotOption(option) {
