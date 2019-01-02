@@ -2,6 +2,7 @@ import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Button from '../../components/button';
+import Action from '../../components/action';
 
 /**
  * Initiate Requisition Page object represents the related view in OpenLMIS UI.
@@ -29,7 +30,9 @@ class InitiateRequisitionPage extends Page {
      * @param {string} program  the name of the program
      */
     searchForProgram(program) {
-        chooseSelectOption('Program', program);
+        new Action(() => {
+            chooseSelectOption('Program', program);
+        }).execute();
         this.searchButton.click();
     }
 

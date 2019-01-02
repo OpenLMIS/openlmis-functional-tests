@@ -3,6 +3,7 @@ import waitForVisible from '../../support/action/waitForVisible';
 import Button from '../../components/button';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Table from '../../components/table';
+import Action from '../../components/action';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.
@@ -38,7 +39,9 @@ class ViewRequisitionsPage extends Page {
      * @param {String} facility  Facility name.
      */
     searchForFacility(facility) {
-        chooseSelectOption('Facility', facility);
+        new Action(() => {
+            chooseSelectOption('Facility', facility);
+        }).execute();
         this.searchButton.click();
     }
 
