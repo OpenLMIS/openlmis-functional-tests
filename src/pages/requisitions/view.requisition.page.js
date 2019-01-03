@@ -144,6 +144,14 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Checks whether given field is not editable.
+     */
+    checkIfFieldIsNotEditable(column, product) {
+        const id = this.getColumnId(column);
+        return browser.elements(`//td[normalize-space(text())='${product}']/parent::tr/td[position()='${id + 1}' and not (div/input)]`);
+    }
+
+    /**
      * Submits the requisition.
      */
     clickSubmitButton() {
