@@ -92,7 +92,11 @@ defineSupportCode(({ Then }) => {
         /^I should see today's date on "([^"]*)" datepicker input$/,
         label => {
             const today = new Date();
-            new DatePicker(label).hasValue([today.getDate(), today.getMonth() + 1, today.getFullYear()].join('/'));
+            new DatePicker(label).hasValue([
+                getDoubleDigitNumber(today.getDate()), 
+                getDoubleDigitNumber(today.getMonth() + 1), 
+                today.getFullYear()
+            ].join('/'));
         }
     );
 
@@ -130,3 +134,8 @@ defineSupportCode(({ Then }) => {
         }
     );
 });
+
+function getDoubleDigitNumber(numberText) {
+    numberText = new String(numberText);
+    return numberText.length === 1 ? '0' + numberText : numberText;
+}
