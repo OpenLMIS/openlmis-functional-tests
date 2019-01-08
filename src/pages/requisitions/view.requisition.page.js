@@ -145,6 +145,16 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Check if line item is not visible
+     *
+     * @param {String} product the code of the product
+     */
+    checkIfLineItemIsHidden(product) {
+        const lineItemSelector = `//tr/td[normalize-space(text())='${product}']`;
+        waitForVisible(lineItemSelector, true);
+    }    
+
+    /**
      * Checks whether given field is not editable.
      */
     checkIfFieldIsNotEditable(column, product) {
@@ -186,6 +196,13 @@ class ViewRequisitionPage extends Page {
     clickDeleteButton() {
         this.deleteButton.click();
     }
+
+    /**
+     * Removes the requisition line item
+     */
+    clickHideLineItemButton() {
+        this.hideLineItemButton.click();
+    }    
 
     /**
      * Get authorize confirmation modal.
@@ -375,6 +392,10 @@ class ViewRequisitionPage extends Page {
 
     get deleteButton() {
         return new Button('Delete');
+    }
+
+    get hideLineItemButton() {
+        return new Button('', `//button[contains(@class, "hide-line-item")]`);
     }
 
     scrollToCell(target) {
