@@ -6,6 +6,7 @@ import ConfirmationModal from '../../components/confirmation-modal';
 import Button from '../../components/button';
 import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
+import Action from '../../components/action';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -313,7 +314,10 @@ class ViewRequisitionPage extends Page {
      * Get approve confirmation button.
      */
     confirmApproval() {
-        this.approveConfirmationModal.confirm();
+        new Action(() => {
+            this.approveConfirmationModal.confirm();
+        }).execute();
+        //this.approveConfirmationModal.confirm();
     }
 
     /**
