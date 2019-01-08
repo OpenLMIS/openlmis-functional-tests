@@ -317,7 +317,6 @@ class ViewRequisitionPage extends Page {
         new Action(() => {
             this.approveConfirmationModal.confirm();
         }).execute();
-        //this.approveConfirmationModal.confirm();
     }
 
     /**
