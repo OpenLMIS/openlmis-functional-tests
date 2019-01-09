@@ -332,9 +332,7 @@ class ViewRequisitionPage extends Page {
      * Get approve confirmation button.
      */
     confirmApproval() {
-        new Action(() => {
-            this.approveConfirmationModal.confirm();
-        }).execute();
+        this.approveConfirmationModal.confirm();
     }
 
     /**
