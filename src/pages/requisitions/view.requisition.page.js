@@ -7,6 +7,7 @@ import Button from '../../components/button';
 import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
 import Action from '../../components/action';
+import RequisitionLineItem from '../../components/requisition-line-item';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -150,9 +151,9 @@ class ViewRequisitionPage extends Page {
      * @param {String} product the code of the product
      */
     checkIfLineItemIsHidden(product) {
-        const lineItemSelector = `//tr/td[normalize-space(text())='${product}']`;
-        waitForVisible(lineItemSelector, true);
-    }    
+        const requisitionLineItemSelector = new RequisitionLineItem(product).selector;
+        waitForVisible(requisitionLineItemSelector, true);
+    }
 
     /**
      * Checks whether given field is not editable.
