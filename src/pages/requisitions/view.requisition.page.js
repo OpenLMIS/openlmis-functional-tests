@@ -95,6 +95,21 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Gets the value of the table data element for the given column and product.
+     *
+     * @param {String} column the name of the column
+     * @param {String} product the name of the product
+     *
+     * @return {String} the value of the input in the cell
+     */
+    getColumnTableDataForProduct(column, product) {
+        const id = this.getColumnId(column);
+        const selector = this.getTableData(product, id);
+
+        return browser.element(selector).getText();
+    }
+
+    /**
      * Clears the value of the input for the given column and product.
      *
      * @param {String} column the name of the column
@@ -413,6 +428,10 @@ class ViewRequisitionPage extends Page {
 
     getInputSelector(product, columnNumber) {
         return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']/div/input`;
+    }
+
+    getTableData(product, columnNumber) {
+        return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']`;
     }
 
     checkAutoSavingSpinner() {

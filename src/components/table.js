@@ -53,7 +53,7 @@ export default class Table {
             '//preceding-sibling::*';
         const selector = `${this.createColumnSelector(columnValues)}` +
             `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
-            `//button[normalize-space(text())="${buttonLabel}"]`;
+            `//button[normalize-space(text())="${buttonLabel}"] | //input[normalize-space(@value)="${buttonLabel}"]`;
 
         new Button(buttonLabel, selector).click();
     }
