@@ -11,7 +11,7 @@ defineSupportCode(({ Then }) => {
         /^I should see the "([^"]*)" comment for "([^"]*)" status added today by "([^"]*)"$/,
         (comment, status, author) => {
             const today = new Date();
-            const authorAndDate = author + ' on ' + getFullMonthName(today) + ' ' + today.getDate() + ', ' + today.getFullYear();
+            const authorAndDate = author + ' on ' + getFullMonthName(today.getMonth()) + ' ' + today.getDate() + ', ' + today.getFullYear();
             new RequisitionStatusMessage(status, authorAndDate, comment);
         }
     );

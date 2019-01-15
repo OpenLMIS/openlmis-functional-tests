@@ -1,13 +1,13 @@
 /**
  * Returns full name of the given month.
  *
- * @param {Date} date the date to get a full month name
+ * @param {number} monthNumber ordinal month number starting from 0
  */
 var months = [
     'January','February','March','April','May','June','July','August','September',
     'October','November','December'
 ];
 
-module.exports = (date) => {
-    return months[date.getMonth()];
+module.exports = (monthNumber) => {
+    return months[monthNumber];
 }

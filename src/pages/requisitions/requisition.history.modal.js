@@ -38,7 +38,7 @@ class RequisitionHistoryModal extends Modal {
      */
     checkIfCommentIsVisibleInHistory(header, author, comment){
         const today = new Date();
-        const authorAndDate = author + ' on ' + getFullMonthName(today) + ' ' + today.getDate() + ', ' + today.getFullYear();
+        const authorAndDate = author + ' on ' + getFullMonthName(today.getMonth()) + ' ' + today.getDate() + ', ' + today.getFullYear();
         new RequisitionStatusMessage(
             header,
             authorAndDate,
