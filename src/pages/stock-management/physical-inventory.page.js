@@ -55,7 +55,7 @@ class PhysicalInventoryPage extends Page {
     /**
      * Click on 'Start' button for the given program.
      *
-     * @param {String} program  Program name.
+     * @param {string} program  Program name.
      */
     startNewPhysicalInventory(program) {
         this.programTable.click([program], 'Start');
@@ -75,7 +75,7 @@ class PhysicalInventoryPage extends Page {
     /**
      * Select Physical Inventory Occurred Date on datepicker.
      * 
-     * @param {String} date  Date to be selected.
+     * @param {string} date  Date to be selected.
      */
     selectPhysicalInventoryOccurredDate(date) {
         return this.occurredDateDatePicker.value = date;

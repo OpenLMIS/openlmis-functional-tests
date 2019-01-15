@@ -22,9 +22,9 @@ class PhysicalInventoryProductAddModal extends Modal {
     /**
      * Updates the value of the table input for the given column and product.
      * 
-     * @param {column} column the name of the column
-     * @param {value} value   the value to be set
-     * @param {code} code     the name of the product code
+     * @param {string} column the name of the column
+     * @param {string} value   the value to be set
+     * @param {string} code     the name of the product code
      */
     setColumnForProduct(column, value, code) {
         const id = this.getColumnId(column);

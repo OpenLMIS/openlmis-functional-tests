@@ -6,7 +6,6 @@ import ConfirmationModal from '../../components/confirmation-modal';
 import Button from '../../components/button';
 import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
-import Action from '../../components/action';
 import RequisitionLineItem from '../../components/requisition-line-item';
 
 /**
@@ -82,10 +81,10 @@ class ViewRequisitionPage extends Page {
     /**
      * Updates the value of the input for the given column and product.
      *
-     * @param {String} column the name of the column
-     * @param {String} product the name of the product
+     * @param {string} column the name of the column
+     * @param {string} product the name of the product
      *
-     * @return {String} the value of the input in the cell
+     * @return {string} the value of the input in the cell
      */
     getColumnForProduct(column, product) {
         const id = this.getColumnId(column);
@@ -97,10 +96,10 @@ class ViewRequisitionPage extends Page {
     /**
      * Gets the value of the table data element for the given column and product.
      *
-     * @param {String} column the name of the column
-     * @param {String} product the name of the product
+     * @param {string} column the name of the column
+     * @param {string} product the name of the product
      *
-     * @return {String} the value of the input in the cell
+     * @return {string} the value of the input in the cell
      */
     getColumnTableDataForProduct(column, product) {
         const id = this.getColumnId(column);
