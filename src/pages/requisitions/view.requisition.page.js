@@ -7,6 +7,7 @@ import Button from '../../components/button';
 import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
 import RequisitionLineItem from '../../components/requisition-line-item';
+import Link from '../../components/link';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -217,7 +218,14 @@ class ViewRequisitionPage extends Page {
      */
     clickHideLineItemButton() {
         this.hideLineItemButton.click();
-    }    
+    }
+
+    /**
+     * Opens requisition history modal
+     */
+    clickRequisitionHistoryLink() {
+        this.historyLink.click();
+    }
 
     /**
      * Get authorize confirmation modal.
@@ -411,6 +419,10 @@ class ViewRequisitionPage extends Page {
         return new Button('', `//button[contains(@class, "hide-line-item")]`);
     }
 
+    get historyLink() {
+        return new Link('View History');
+    }    
+
     scrollToCell(target) {
         browser.execute((selector, index) => {
             const element = $($(selector)[index]).parents('td')[0];
@@ -431,6 +443,10 @@ class ViewRequisitionPage extends Page {
 
     getTableData(product, columnNumber) {
         return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']`;
+    }
+
+    checkCommentIsNotEditable() {
+        return browser.element(`//article/div[contains(@class, 'content') and not (input)]`);
     }
 
     checkAutoSavingSpinner() {
