@@ -27,7 +27,7 @@ class ApproveRequisitionsPage extends Page {
      * @param {String} period  Period name.
      */
     viewRequisitionToApprove(program, period) {
-        this.approveRequisitionsTable.click([undefined, program, undefined, period], 'View Requisition');
+        this.approveRequisitionsTable.click([program, undefined, period], 'View Requisition');
     }
 
     /**
