@@ -1,7 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
-import physicalInventoryPage from '../../../pages/stock-management/physical-inventory.page';
+import PhysicalInventoryPage from '../../../pages/stock-management/physical-inventory.page';
 
 defineSupportCode(({ Then }) => {
 
@@ -12,16 +12,16 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be brought to the Physical Inventory grid screen$/,
-        () => physicalInventoryPage.waitForIsVisible()
+        () => PhysicalInventoryPage.waitForIsVisible()
     );
 
     Then(
         /^I should see print modal$/,
-        () => physicalInventoryPage.waitForPrintModal()
+        () => PhysicalInventoryPage.waitForPrintModal()
     );
 
     Then(
         /^I should see Choose Occurred date modal$/,
-        () => physicalInventoryPage.waitForPhysicalInventoryOccurredDateModal()
+        () => PhysicalInventoryPage.waitForPhysicalInventoryOccurredDateModal()
     );
 });

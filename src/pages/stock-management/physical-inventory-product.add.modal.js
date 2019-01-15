@@ -12,19 +12,29 @@ class PhysicalInventoryProductAddModal extends Modal {
         });
     }
 
+    /**
+     * Returns a table with products to add to the physical inventory.
+     */
     get productsTable() {
         return new Table();
     }
 
+    /**
+     * Updates the value of the table input for the given column and product.
+     * 
+     * @param {column} column the name of the column
+     * @param {value} value   the value to be set
+     * @param {code} code     the name of the product code
+     */
     setColumnForProduct(column, value, code) {
         const id = this.getColumnId(column);
-        const selector = this.getInputSelector(code, id);
+        const selector = this.getTableInputSelector(code, id);
         const td = browser.element(selector);
 
         td.setValue(value);
     }
 
-    getInputSelector(code, columnNumber) {
+    getTableInputSelector(code, columnNumber) {
         return `//td[normalize-space(text())='${code}']/parent::tr/td[position()='${columnNumber}']/div/input`;
     }
 

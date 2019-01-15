@@ -18,6 +18,9 @@ class PhysicalInventoryPage extends Page {
         });
     }
 
+    /**
+     * Returns a table with programs to start a physical inventory for.
+     */
     get programTable() {
         return new Table();
     }
@@ -33,12 +36,18 @@ class PhysicalInventoryPage extends Page {
         });
     }
 
+    /**
+     * Get Physical Inventory  modal.
+     */
     get physicalInventoryOccurredDateModal() {
         return new ConfirmationModal({
             header: 'Choose Occurred date'
         });
     }
 
+    /**
+     * Get Physical Inventory Occurred Date datepicker.
+     */
     get occurredDateDatePicker() {
         return new DatePicker('Date');
     }
@@ -52,6 +61,9 @@ class PhysicalInventoryPage extends Page {
         this.programTable.click([program], 'Start');
     }
 
+    /**
+     * Click 'Confirm' button without waiting for loading modal to hide.
+     */
     confirmPhysicalInventoryOccurredDateModal() {
         new Button(
             'Confirm',
@@ -60,14 +72,25 @@ class PhysicalInventoryPage extends Page {
         ).click();
     }
 
+    /**
+     * Select Physical Inventory Occurred Date on datepicker.
+     * 
+     * @param {String} date  Date to be selected.
+     */
     selectPhysicalInventoryOccurredDate(date) {
         return this.occurredDateDatePicker.value = date;
     }
 
+    /**
+     * Click 'Print' button to print the physical inventory.
+     */
     confirmPrintModal() {
         this.printModal.confirm();
     }
 
+    /**
+     * Click 'No' button in order to avoid printing a physical inventory.
+     */
     cancelPrintModal() {
         this.printModal.cancel();
     }
