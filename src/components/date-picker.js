@@ -3,6 +3,7 @@ import isVisible from '../support/check/isVisible';
 import waitForVisible from '../support/action/waitForVisible';
 
 import getDatePickerInputSelector from '../support/lib/getDatePickerInputSelector';
+import getFullMonthName from '../support/lib/getFullMonthName';
 
 /**
  * Represents a single datepicker input in the OpenLMIS System.
@@ -74,11 +75,9 @@ export default class DatePicker {
     }
 
     isDateSelected(date) {
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
         const dateParts = date.split('/');
         const dayLabel = dateParts[0];
-        const monthYearLabel = months[dateParts[1] - 1] + ' ' + dateParts[2];
+        const monthYearLabel = getFullMonthName(dateParts[1] - 1) + ' ' + dateParts[2];
 
         this.isOpen();
         isVisible(this.datePickerDropdownSelector + '//td[@class = "active day"][normalize-space(text())="' + dayLabel + '"]');
