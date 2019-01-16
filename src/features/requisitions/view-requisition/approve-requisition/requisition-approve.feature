@@ -46,7 +46,7 @@ Feature: Approving and rejecting Requisitions
     And I have submitted a requisition for "Family Planning" program
     And I have logged out
     And I have logged with username "smanager4" and password "password"
-    And I have authorized a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2018Q1" period
+    And I have authorized a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2018Q2" period
     And I have logged out
     And I have logged with username "dsrmanager" and password "password"
 
