@@ -23,6 +23,9 @@ pipeline {
       steps {
         sh 'ls -l'
         sh 'echo $PWD'
+        sh 'cd ..'
+        sh 'ls -l'
+        sh 'echo $PWD'
         sh( script: "./wait-for-server.sh" )
       }
     }
