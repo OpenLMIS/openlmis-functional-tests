@@ -1,9 +1,9 @@
 pipeline {
-    agent {
-        node {
-            label '!master'
-        }
-    }
+  agent {
+      node {
+          label '!master'
+      }
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15'))
     disableConcurrentBuilds()
@@ -12,6 +12,13 @@ pipeline {
     PATH = "/usr/local/bin:$PATH"
   }
   stages {
+    stage('Checkout openlmis config') {
+        steps {
+            git branch: 'master',
+                credentialsId: 'OpenLMISConfigKey',
+                url: 'git@github.com:villagereach/openlmis-config.git'
+        }
+    }
     stage ('wait for test server') {
       steps {
         sh( script: "./wait-for-server.sh" )
@@ -24,6 +31,9 @@ pipeline {
     }
     stage ('build') {
       steps {
+        sh 'docker pull openlmis/stop-instance'
+        sh '/usr/bin/docker run --rm --env-file ../openlmis-config/functional-test.env openlmis/stop-instance'
+        sh 'rm -Rf ./openlmis-config'
         sh 'docker-compose run --no-deps funtest -c \'yarn clean\''
         sh 'docker-compose run funtest'
         sh 'docker-compose down -v'
