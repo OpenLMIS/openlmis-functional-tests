@@ -12,6 +12,11 @@ pipeline {
     PATH = "/usr/local/bin:$PATH"
   }
   stages {
+    stage('Deploy functional test ') {
+        steps {
+            build job: "OpenLMIS-3.x-deploy-to-functional-test", propagate: true, wait: true
+        }
+    }
     stage('Checkout openlmis config') {
         steps {
           dir('.openlmis-config') {
@@ -33,9 +38,6 @@ pipeline {
     }
     stage ('build') {
       steps {
-        sh 'docker pull openlmis/stop-instance'
-        sh '/usr/bin/docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
-        sh 'rm -Rf ./.openlmis-config'
         sh 'docker-compose run --no-deps funtest -c \'yarn clean\''
         sh 'docker-compose run funtest'
         sh 'docker-compose down -v'
@@ -46,6 +48,9 @@ pipeline {
   post {
     always {
       junit 'build/WDIO*.xml'
+      sh 'docker pull openlmis/stop-instance'
+      sh '/usr/bin/docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
+      sh 'rm -Rf ./.openlmis-config'
     }
     unstable {
       slackSend channel: '#build',
