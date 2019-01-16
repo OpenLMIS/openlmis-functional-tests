@@ -21,6 +21,8 @@ pipeline {
     }
     stage ('wait for test server') {
       steps {
+        sh 'ls -l'
+        sh 'echo $PWD'
         sh( script: "./wait-for-server.sh" )
       }
     }
