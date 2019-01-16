@@ -14,9 +14,11 @@ pipeline {
   stages {
     stage('Checkout openlmis config') {
         steps {
+          dir('.openlmis-config') {
             git branch: 'master',
                 credentialsId: 'OpenLMISConfigKey',
                 url: 'git@github.com:villagereach/openlmis-config.git'
+          }
         }
     }
     stage ('wait for test server') {
@@ -37,7 +39,7 @@ pipeline {
     stage ('build') {
       steps {
         sh 'docker pull openlmis/stop-instance'
-        sh '/usr/bin/docker run --rm --env-file ../openlmis-config/functional-test.env openlmis/stop-instance'
+        sh '/usr/bin/docker run --rm --env-file ../.openlmis-config/functional-test.env openlmis/stop-instance'
         sh 'rm -Rf ./openlmis-config'
         sh 'docker-compose run --no-deps funtest -c \'yarn clean\''
         sh 'docker-compose run funtest'
