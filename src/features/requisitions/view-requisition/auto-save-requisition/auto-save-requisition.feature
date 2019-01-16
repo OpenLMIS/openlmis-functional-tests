@@ -90,9 +90,9 @@ Feature: Auto-saving Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
-    And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
+    And I should see a requisition for "Family Planning" program, "2018Q2" period inside the table
 
-    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
+    When I select requisition for "Family Planning" program and "2018Q2" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click the Add Comment button
