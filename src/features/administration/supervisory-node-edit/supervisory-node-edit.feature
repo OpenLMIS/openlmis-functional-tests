@@ -90,14 +90,14 @@ Feature: Supervisory Node Edit
     Scenario: Administrator should be able to remove partner nodes
         Given I have navigated to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
         When I remove "CHAZ Lilongwe" supervisory node from partner nodes
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And I should not see "CHAZ Lilongwe" supervisory node in partner nodes
 
@@ -106,6 +106,6 @@ Feature: Supervisory Node Edit
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV" supervisory node for edition
+        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And I should see "CHAZ Lilongwe" supervisory node in partner nodes
