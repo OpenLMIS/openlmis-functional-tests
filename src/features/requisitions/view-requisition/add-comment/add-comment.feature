@@ -19,10 +19,11 @@ Feature: Adding comment to requisition
     
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -44,11 +45,12 @@ Feature: Adding comment to requisition
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
     And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -66,12 +68,13 @@ Feature: Adding comment to requisition
     
     When I proceed to requisition for "Family Planning" program with "REJECTED" status
     Then I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
     And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -88,13 +91,14 @@ Feature: Adding comment to requisition
     
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
     Then I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
     And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
     And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -116,7 +120,7 @@ Feature: Adding comment to requisition
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
     And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
@@ -124,6 +128,7 @@ Feature: Adding comment to requisition
     And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
     And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -137,7 +142,7 @@ Feature: Adding comment to requisition
     And I should be redirected to approve requisitions screen
     And I log out
 
-  Scenario: District Store Manager should be able to see comment added when approving requisition
+  Scenario: Program Supervisor should be able to see comment added when approving requisition
     Given I have logged with username "psupervisor" and password "password"
 
     When I navigate to approve requisitions screen
@@ -147,7 +152,7 @@ Feature: Adding comment to requisition
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
     And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho"
-    And I should not be able to edit saved requisition comment
+    And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
     Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
@@ -156,6 +161,7 @@ Feature: Adding comment to requisition
     And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
     And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho" in the history
+    And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
@@ -167,4 +173,21 @@ Feature: Adding comment to requisition
     And I confirm the approval
     Then I should see a successful notification saying "Requisition has been approved!"
     And I should be redirected to approve requisitions screen
-    And I log out
+
+  Scenario: Program Supervisor should be able to see all comments added to the requisition
+    Given I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
+
+    When I enter view requisition screen
+    Then I should see the "final approve" comment for "Approved" status added today by "Francis Chirwa"
+    And I should not be able to edit any saved requisition comment
+
+    When I open requisition history modal
+    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho" in the history
+    And I should see the "final approve" comment for "Approved" status added today by "Francis Chirwa" in the history
+    And I should not be able to edit any saved requisition comment
+    And I should be able to close the modal

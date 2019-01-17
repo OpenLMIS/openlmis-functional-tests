@@ -445,8 +445,8 @@ class ViewRequisitionPage extends Page {
         return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']`;
     }
 
-    checkCommentIsNotEditable() {
-        return browser.element(`//article/div[contains(@class, 'content') and not (input)]`);
+    checkCommentsAreNotEditable() {
+        return browser.elements(`//article/div[contains(@class, 'content') and not (input)]`);
     }
 
     checkAutoSavingSpinner() {

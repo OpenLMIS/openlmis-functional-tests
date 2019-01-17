@@ -9,4 +9,9 @@ defineSupportCode(({ When }) => {
         () => ViewRequisitionPage.clickRequisitionHistoryLink()
     );
 
+    When(
+        /^I enter view requisition screen/,
+        () => ViewRequisitionPage.waitForIsVisible()
+    )
+
 });

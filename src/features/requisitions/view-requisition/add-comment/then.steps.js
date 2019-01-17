@@ -17,8 +17,8 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^I should not be able to edit saved requisition comment$/,
-        () => expect(ViewRequisitionPage.checkCommentIsNotEditable())
+        /^I should not be able to edit any saved requisition comment$/,
+        () => expect(ViewRequisitionPage.checkCommentsAreNotEditable())
     );
 
     Then(
