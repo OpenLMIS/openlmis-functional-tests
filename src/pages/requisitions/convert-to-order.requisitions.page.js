@@ -32,10 +32,15 @@ class ConvertRequisitionsPage extends Page {
      * Check the checkbox option for a requisition with the given program and period.
      */
     selectRequisition(program, period) {
-        browser.element(`//td[text()="${program}"]/following-sibling::td[text()="${period}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
+        const selector = `//td[text()="${program}"]` +
+        `/following-sibling::td[text()="${period}"]` +
+        `/preceding-sibling::td/label/input[@type="checkbox"]`;
+        this.scrollToRequisition(program, period);
+        browser.element(selector).click();
     }
 
     openSelectDropdown(program, period) {
+        this.scrollToRequisition(program, period);
         Select.clickSelectInput([undefined, program, undefined, undefined, period], "Supplying depot");
     }
 
@@ -49,6 +54,12 @@ class ConvertRequisitionsPage extends Page {
 
     waitForSupplyingDepotOption(option) {
         waitForVisible(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`);
+    }
+
+    scrollToRequisition(program, period) {
+        const selector = `//td[text()="${program}"]` +
+        `/following-sibling::td[text()="${period}"]`;
+        browser.scroll(selector);
     }
 }
 
