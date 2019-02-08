@@ -93,19 +93,19 @@ Feature: Supervisory Node Edit
         When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
-        When I remove "CHAZ Lilongwe" supervisory node from partner nodes
+        When I remove "CHAZ Lilongwe sub point" supervisory node from partner nodes
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
         When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
-        And I should not see "CHAZ Lilongwe" supervisory node in partner nodes
+        And I should not see "CHAZ Lilongwe sub point" supervisory node in partner nodes
 
     Scenario: Administrator should be able to add partner nodes
-        When I add "CHAZ Lilongwe" supervisory node to partner nodes
+        When I add "CHAZ Lilongwe sub point" supervisory node to partner nodes
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
         When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
-        And I should see "CHAZ Lilongwe" supervisory node in partner nodes
+        And I should see "CHAZ Lilongwe sub point" supervisory node in partner nodes
