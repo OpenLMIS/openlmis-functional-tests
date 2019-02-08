@@ -24,7 +24,7 @@ Feature: Supply Partner Edit
         # select and by default the option is selected
         And I select nothing from the "Supervisory Node" list
         And I wait "0.5" seconds for UI adjustment
-        And I select "CHAZ Lilongwe" from the "Supervisory Node" list
+        And I select "CHAZ Lilongwe sub point" from the "Supervisory Node" list
         And I wait "0.5" seconds for UI adjustment
         And I add "Lilongwe Health Center" facility to the association
         And I add "ARV0004" product to the association
@@ -38,7 +38,7 @@ Feature: Supply Partner Edit
         And I click on the "Close" button
 
     Scenario: Administrator should be able to add a valid association
-        When I select association with "ARV" program and "CHAZ Lilongwe" supervisory node for edition
+        When I select association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node for edition
         And I remove "ARV0004" product from the association
         And I remove "ARV0006" product from the association
         And I confirm the association update
@@ -47,23 +47,23 @@ Feature: Supply Partner Edit
 
         When I select "FTSPE" supply partner for edition
         Then I should be brought to the supply partner edit page
-        And I should see association with "ARV" program and "CHAZ Lilongwe" supervisory node
+        And I should see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
 
         When I view facilities for the association with "ARV" program and "CHAZ Lilongwe" supervisory node
         Then I should see "Lilongwe Health Center" facility on the list
         And I click on the "Close" button
 
-        When I view products for the association with "ARV" program and "CHAZ Lilongwe" supervisory node
+        When I view products for the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
         Then I should see "ARV0005" product on the list
         Then I should see "ARV0007" product on the list
         And I click on the "Close" button
 
     Scenario: Administrator should be able to remove an association
-        When I remove the association with "ARV" program and "CHAZ Lilongwe" supervisory node
+        When I remove the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
         And I click on the "Remove Association" button
         And I click on the "Update Supply Partner" button
         Then I should be brought to the supply partner list page
 
         When I select "FTSPE" supply partner for edition
         Then I should be brought to the supply partner edit page
-        And I should not see association with "ARV" program and "CHAZ Lilongwe" supervisory node
+        And I should not see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node

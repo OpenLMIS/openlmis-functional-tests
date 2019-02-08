@@ -67,25 +67,25 @@ Feature: Supervisory Node Edit
     Scenario: Administrator should be able to remove parent node
         Given I have navigated to the supervisory node list page
 
-        When I select "SN-CUAMBA-DIST" supervisory node for edition
+        When I select "SN1.1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
         When I select nothing from the "Parent Node" list
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-CUAMBA-DIST" supervisory node for edition
+        When I select "SN1.1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Parent Node" list should be an empty value
 
     Scenario: Administrator should be able to set parent node
-        When I select "Niassa province approval point (EPI)" from the "Parent Node" list
+        When I select "FP approval point" from the "Parent Node" list
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-CUAMBA-DIST" supervisory node for edition
+        When I select "SN1.1" supervisory node for edition
         Then I should be brought to the supervisory node edit page
-        And Value of the "Parent Node" list should be "Niassa province approval point (EPI)"
+        And Value of the "Parent Node" list should be "FP approval point"
 
     Scenario: Administrator should be able to remove partner nodes
         Given I have navigated to the supervisory node list page
