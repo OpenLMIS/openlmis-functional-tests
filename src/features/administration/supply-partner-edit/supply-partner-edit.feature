@@ -49,7 +49,7 @@ Feature: Supply Partner Edit
         Then I should be brought to the supply partner edit page
         And I should see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
 
-        When I view facilities for the association with "ARV" program and "CHAZ Lilongwe" supervisory node
+        When I view facilities for the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
         Then I should see "Lilongwe Health Center" facility on the list
         And I click on the "Close" button
 

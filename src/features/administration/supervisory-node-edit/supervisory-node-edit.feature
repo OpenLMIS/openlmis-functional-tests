@@ -4,7 +4,7 @@ Feature: Supervisory Node Edit
         Given I have logged with username "administrator" and password "password"
         Given I have navigated to the supervisory node list page
 
-        When I select "SN-NIASSA-PROV" supervisory node for edition
+        When I select "Niassa province approval point (EPI)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
         When I enter "SN-NIASSA-PROV-FT" as "Code"
@@ -15,7 +15,7 @@ Feature: Supervisory Node Edit
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-NIASSA-PROV-FT" supervisory node for edition
+        When I select "Niassa province approval point (EPI) (Functional Test)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Code" should be "SN-NIASSA-PROV-FT"
         And Value of the "Supervisory Node Name" should be "Niassa province approval point (EPI) (Functional Test)"
@@ -31,7 +31,7 @@ Feature: Supervisory Node Edit
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-NIASSA-PROV" supervisory node for edition
+        When I select "Niassa province approval point (EPI)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Code" should be "SN-NIASSA-PROV"
         And Value of the "Supervisory Node Name" should be "Niassa province approval point (EPI)"
@@ -67,14 +67,14 @@ Feature: Supervisory Node Edit
     Scenario: Administrator should be able to remove parent node
         Given I have navigated to the supervisory node list page
 
-        When I select "SN1.1" supervisory node for edition
+        When I select "FP approval sub point" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
         When I select nothing from the "Parent Node" list
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN1.1" supervisory node for edition
+        When I select "FP approval sub point" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Parent Node" list should be an empty value
 
@@ -83,21 +83,21 @@ Feature: Supervisory Node Edit
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN1.1" supervisory node for edition
+        When I select "FP approval sub point" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And Value of the "Parent Node" list should be "FP approval point"
 
     Scenario: Administrator should be able to remove partner nodes
         Given I have navigated to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
+        When I select "Lilongwe district approval point (ARV)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
 
         When I remove "CHAZ Lilongwe sub point" supervisory node from partner nodes
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
+        When I select "Lilongwe district approval point (ARV)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And I should not see "CHAZ Lilongwe sub point" supervisory node in partner nodes
 
@@ -106,6 +106,6 @@ Feature: Supervisory Node Edit
         And I click on the "Update Supervisory Node" button
         Then I should be brought to the supervisory node list page
 
-        When I select "SN-LILONGWE-DIST-ARV-1" supervisory node for edition
+        When I select "Lilongwe district approval point (ARV)" supervisory node for edition
         Then I should be brought to the supervisory node edit page
         And I should see "CHAZ Lilongwe sub point" supervisory node in partner nodes
