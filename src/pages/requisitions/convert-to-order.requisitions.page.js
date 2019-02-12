@@ -2,6 +2,7 @@ import Page from '../../components/page';
 import waitForVisible from '../../support/action/waitForVisible';
 import Select from '../../components/select';
 import ConfirmationModal from '../../components/confirmation-modal';
+import ViewRequisitionPage from './view.requisition.page';
 
 /**
  * Convert Requisitions to Order Page object represents the related view in OpenLMIS UI.
@@ -35,12 +36,12 @@ class ConvertRequisitionsPage extends Page {
         const selector = `//td[text()="${program}"]` +
         `/following-sibling::td[text()="${period}"]` +
         `/preceding-sibling::td/label/input[@type="checkbox"]`;
-        this.scrollToRequisition(program, period);
+
+        ViewRequisitionPage.scrollToSelector(selector);
         browser.element(selector).click();
     }
 
     openSelectDropdown(program, period) {
-        this.scrollToRequisition(program, period);
         Select.clickSelectInput([undefined, program, undefined, undefined, period], "Supplying depot");
     }
 
@@ -54,12 +55,6 @@ class ConvertRequisitionsPage extends Page {
 
     waitForSupplyingDepotOption(option) {
         waitForVisible(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`);
-    }
-
-    scrollToRequisition(program, period) {
-        const selector = `//td[text()="${program}"]` +
-        `/following-sibling::td[text()="${period}"]`;
-        browser.scroll(selector);
     }
 }
 
