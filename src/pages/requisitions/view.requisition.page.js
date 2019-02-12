@@ -179,6 +179,18 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Checks if table data cell contains 'is-invalid' class.
+     */
+    isTableDataInvalid(column, product) {
+        const id = this.getColumnId(column);
+        const selector = this.getTableData(product, id);
+        browser.pause(1000);
+        const className =  browser.element(selector).getAttribute('class');
+        const isInvalid = className.includes('is-invalid') ? true : false;
+        return isInvalid;
+    }
+
+    /**
      * Submits the requisition.
      */
     clickSubmitButton() {

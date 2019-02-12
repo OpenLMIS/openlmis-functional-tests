@@ -23,7 +23,7 @@ export default class Modal {
      */
     waitForIsVisible() {
         waitForVisible('//*[contains(@class,"modal")]' +
-            `/*[(self::h1 or self::h4) and normalize-space(text())= "${this.header}"]`);
+            `/*[(self::h1 or self::h4) and normalize-space(text())="${this.header}"]`);
     }
 
 }
