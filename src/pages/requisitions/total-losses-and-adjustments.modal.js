@@ -2,6 +2,7 @@ import waitForVisible from '../../support/action/waitForVisible';
 import Modal from '../../components/modal';
 import Link from '../../components/link';
 import Select from '../../components/select';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 /**
  * Total Losses and Adjustments Modal object represents the related view in OpenLMIS UI.
@@ -22,6 +23,8 @@ class TotalLossesAndAdjustmentsModal extends Modal {
     clickIcon(product) {
         const selector = `//td[normalize-space(text())="${product}"]` +
             '//following-sibling::td//a[contains(@class, "icon-link")]';
+
+        scrollToSelector(selector);
         return new Link('', selector).click();
     }
 

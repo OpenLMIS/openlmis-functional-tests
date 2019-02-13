@@ -36,7 +36,7 @@ Feature: Product grid calculations
 
   Scenario: Administrator should be able to update new Adjustment Reasons 
     When I click on the "Update" button
-    Then value of "Total losses and adjustments" column for "Levora" product should be "20"
+    Then I should be able to see the value of "Total losses and adjustments" column for "Levora" product equal to "20"
     Then I should be able to see the invalid value of "Total consumed quantity" column for "Levora" product
     Then I should be able to see the invalid value of "Stock on hand" column for "Levora" product
 
@@ -76,7 +76,7 @@ Feature: Product grid calculations
     Then I should be able to see the Total value updated to "1000"
 
     When I click on the "Cancel" button
-    Then value of "Total losses and adjustments" column for "Ortho-Novum" product should be "0"
+    Then I should be able to see the value of "Total losses and adjustments" column for "Ortho-Novum" product equal to "0"
 
   Scenario: Administrator should be able to update new Adjustment Reason and adjust/update other values to match each other
     When I click on the Total losses and adjustments icon for "Ortho-Novum" product
@@ -86,7 +86,7 @@ Feature: Product grid calculations
     And I enter "10" as "Quantity"
     And I click on the "Add" button
     And I click on the "Update" button
-    Then value of "Total losses and adjustments" column for "Ortho-Novum" product should be "10"
+    Then I should be able to see the value of "Total losses and adjustments" column for "Ortho-Novum" product equal to "10"
     And I should be able to see the invalid value of "Total consumed quantity" column for "Ortho-Novum" product
     And I should be able to see the invalid value of "Stock on hand" column for "Ortho-Novum" product
 

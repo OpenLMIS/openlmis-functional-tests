@@ -13,6 +13,7 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionsPage.clickSearch();
             ViewRequisitionsPage.waitForTable();
 
+            ViewRequisitionsPage.scrollToBottom();
             ViewRequisitionsPage.viewRequisition(program, period);
             ProductGridPage.waitForIsVisible();
         }

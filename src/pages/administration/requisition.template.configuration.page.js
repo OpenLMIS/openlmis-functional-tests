@@ -2,7 +2,7 @@ import Page from '../../components/page';
 import ConfirmationModal from '../../components/confirmation-modal';
 import waitForVisible from '../../support/action/waitForVisible';
 import getSelectDropdownSelectorInTable from '../../support/lib/getSelectDropdownSelectorInTable';
-import ViewRequisitionPage from '../requisitions/view.requisition.page';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 class RequisitionTemplateConfigurationPage extends Page {
     
@@ -22,7 +22,7 @@ class RequisitionTemplateConfigurationPage extends Page {
     selectInputType(letter, option) {
         const selector = getSelectDropdownSelectorInTable([undefined, undefined, letter], "Source") + 
             `//parent::select//option[text()="${option}"]`;
-        ViewRequisitionPage.scrollToSelector(selector);
+        scrollToSelector(selector);
         browser.element(selector).click();
     }
 

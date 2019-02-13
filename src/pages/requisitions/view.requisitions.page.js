@@ -4,6 +4,7 @@ import Button from '../../components/button';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Table from '../../components/table';
 import Action from '../../components/action';
+import scroll from '../../support/action/scroll';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.
@@ -90,6 +91,10 @@ class ViewRequisitionsPage extends Page {
 
     isFilterPopoverVisible() {
         waitForVisible(`//div[contains(@class, 'popover')]//legend[normalize-space(text())='Date initiated']`);
+    }
+
+    scrollToBottom() {
+        scroll('bottom');
     }
 }
 
