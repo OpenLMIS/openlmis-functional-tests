@@ -37,8 +37,8 @@ Feature: Product grid calculations
   Scenario: Administrator should be able to update new Adjustment Reasons 
     When I click on the "Update" button
     Then value of "Total losses and adjustments" column for "Levora" product should be "20"
-    And the value of "Total consumed quantity" column for "Levora" product should be invalid
-    And the value of "Stock on hand" column for "Levora" product should be invalid
+    Then I should be able to see the invalid value of "Total consumed quantity" column for "Levora" product
+    Then I should be able to see the invalid value of "Stock on hand" column for "Levora" product
 
   Scenario: Administrator should not be able to add the same Adjustment Reason twice for single product
     When I click on the Total losses and adjustments icon for "Levora" product
@@ -86,19 +86,19 @@ Feature: Product grid calculations
     And I click on the "Add" button
     And I click on the "Update" button
     Then value of "Total losses and adjustments" column for "Ortho-Novum" product should be "10"
-    And the value of "Total consumed quantity" column for "Ortho-Novum" product should be invalid
-    And the value of "Stock on hand" column for "Ortho-Novum" product should be invalid
+    And I should be able to see the invalid value of "Total consumed quantity" column for "Ortho-Novum" product
+    And I should be able to see the invalid value of "Stock on hand" column for "Ortho-Novum" product
 
     When I set "Stock on hand" as "10" for "Ortho-Novum" product
-    Then the value of "Stock on hand" column for "Ortho-Novum" product should be valid
+    Then I should be able to see the valid value of "Stock on hand" column for "Ortho-Novum" product
 
     When I set "Total consumed quantity" as "20" for "Ortho-Novum" product
-    Then the value of "Total consumed quantity" column for "Ortho-Novum" product should be invalid
-    And the value of "Stock on hand" column for "Ortho-Novum" product should be invalid
+    Then I should be able to see the invalid value of "Total consumed quantity" column for "Ortho-Novum" product
+    And I should be able to see the invalid value of "Stock on hand" column for "Ortho-Novum" product
 
     When I set "Total consumed quantity" as "10" for "Ortho-Novum" product
-    Then the value of "Total consumed quantity" column for "Ortho-Novum" product should be valid
-    And the value of "Stock on hand" column for "Ortho-Novum" product should be valid
+    Then I should be able to see the valid value of "Total consumed quantity" column for "Ortho-Novum" product
+    And I should be able to see the valid value of "Stock on hand" column for "Ortho-Novum" product
     And I delete the requisition
 
   Scenario: Administrator should change configuration back to the previous one

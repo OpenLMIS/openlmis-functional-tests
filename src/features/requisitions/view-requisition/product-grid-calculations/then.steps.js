@@ -37,12 +37,12 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^the value of "([^"]*)?" column for "([^"]*)?" product should be invalid$/,
+        /^I should be able to see the invalid value of "([^"]*)?" column for "([^"]*)?" product$/,
         (column, product) => expect(ViewRequisitionPage.isTableDataInvalid(column, product)).to.equal(true)
     );
 
     Then(
-        /^the value of "([^"]*)?" column for "([^"]*)?" product should be valid$/,
+        /^I should be able to see the valid value of "([^"]*)?" column for "([^"]*)?" product$/,
         (column, product) => expect(ViewRequisitionPage.isTableDataInvalid(column, product)).to.equal(false)
     );
 });
