@@ -42,7 +42,8 @@ Feature: Product grid calculations
 
   Scenario: Administrator should not be able to add the same Adjustment Reason twice for single product
     When I click on the Total losses and adjustments icon for "Levora" product
-    And I select "Stolen" from the "Reason" list
+    Then I should see the Total losses and adjustments modal
+    When I select "Stolen" from the "Reason" list
     And I enter "10" as "Quantity"
     And I click on the "Add" button
     And I open the "Reason" dropdown list in a modal
@@ -102,9 +103,8 @@ Feature: Product grid calculations
     And I delete the requisition
 
   Scenario: Administrator should change configuration back to the previous one
-    Given I have navigated to the requisition templates page
-
-    When I select "Family Planning" program for configuration
+    When I go to the requisition templates page
+    And I select "Family Planning" program for configuration
     Then I should be brought to the "Family Planning" program template configuration page
 
     When I set Source in row "E" to be "Calculated"

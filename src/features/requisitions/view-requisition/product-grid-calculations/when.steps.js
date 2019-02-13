@@ -31,4 +31,12 @@ defineSupportCode(({ When }) => {
         label => TotalLossesAndAdjustmentsModal.openSelectDropdown(label)
     );
 
+    When(
+        /^I go to the requisition templates page$/,
+        () => {
+            RequisitionTemplatesPage.open();
+            RequisitionTemplatesPage.waitForIsVisible();
+        }
+    )
+
 });
