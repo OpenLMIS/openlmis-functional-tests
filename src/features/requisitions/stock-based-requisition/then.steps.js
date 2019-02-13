@@ -6,7 +6,7 @@ import PhysicalInventoryPage from '../../../pages/stock-management/physical-inve
 defineSupportCode(({ Then }) => {
 
     Then(
-        /^value of "([^"]*)?" column for "([^"]*)?" product should be "([^"]*)?"$/,
+        /^I should be able to see the value of "([^"]*)?" column for "([^"]*)?" product equal to "([^"]*)?"$/,
         (column, product, value) => expect(ViewRequisitionPage.getColumnTableDataForProduct(column, product)).to.equal(value)
     );
 
