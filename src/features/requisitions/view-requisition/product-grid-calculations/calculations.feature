@@ -15,12 +15,12 @@ Feature: Product grid calculations
     When I initiate a requisition for "Family Planning" program
     And I delete the requisition
     When I initiate a requisition for "Family Planning" program
-    And I set "Beginning balance" as "0" for "Levora" product
-    And I set "Total received quantity" as "20" for "Levora" product
-    And I set "Total consumed quantity" as "20" for "Levora" product
-    And I set "Total stockout days" as "1" for "Levora" product
-    And I set "Stock on hand" as "0" for "Levora" product
-    And I click on the Total losses and adjustments icon for "Levora" product
+    And I set "Beginning balance" as "0" for "Stomachica" product
+    And I set "Total received quantity" as "20" for "Stomachica" product
+    And I set "Total consumed quantity" as "20" for "Stomachica" product
+    And I set "Total stockout days" as "1" for "Stomachica" product
+    And I set "Stock on hand" as "0" for "Stomachica" product
+    And I click on the Total losses and adjustments icon for "Stomachica" product
     Then I should see the Total losses and adjustments modal
 
     When I select "Transfer Out" from the "Reason" list
@@ -36,12 +36,12 @@ Feature: Product grid calculations
 
   Scenario: Administrator should be able to update new Adjustment Reasons 
     When I click on the "Update" button
-    Then I should be able to see the value of "Total losses and adjustments" column for "Levora" product equal to "20"
-    Then I should be able to see the invalid value of "Total consumed quantity" column for "Levora" product
-    Then I should be able to see the invalid value of "Stock on hand" column for "Levora" product
+    Then I should be able to see the value of "Total losses and adjustments" column for "Stomachica" product equal to "20"
+    Then I should be able to see the invalid value of "Total consumed quantity" column for "Stomachica" product
+    Then I should be able to see the invalid value of "Stock on hand" column for "Stomachica" product
 
   Scenario: Administrator should not be able to add the same Adjustment Reason twice for single product
-    When I click on the Total losses and adjustments icon for "Levora" product
+    When I click on the Total losses and adjustments icon for "Stomachica" product
     Then I should see the Total losses and adjustments modal
     When I select "Stolen" from the "Reason" list
     And I enter "10" as "Quantity"
@@ -100,7 +100,6 @@ Feature: Product grid calculations
     When I set "Total consumed quantity" as "10" for "Ortho-Novum" product
     Then I should be able to see the valid value of "Total consumed quantity" column for "Ortho-Novum" product
     And I should be able to see the valid value of "Stock on hand" column for "Ortho-Novum" product
-    And I delete the requisition
 
   Scenario: Administrator should change configuration back to the previous one
     When I go to the requisition templates page
