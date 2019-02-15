@@ -92,6 +92,7 @@ Feature: Product grid calculations
 
     When I set "Stock on hand" as "10" for "Ortho-Novum" product
     Then I should be able to see the valid value of "Stock on hand" column for "Ortho-Novum" product
+    Then I should be able to see the valid value of "Total consumed quantity" column for "Ortho-Novum" product
 
     When I set "Total consumed quantity" as "20" for "Ortho-Novum" product
     Then I should be able to see the invalid value of "Total consumed quantity" column for "Ortho-Novum" product
