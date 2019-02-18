@@ -6,7 +6,7 @@ Feature: Requisition
     When I go to view requisition screen
     Then I should be brought to the view requisition screen
 
-    When I search for my requisitions
+    When I search for my requisitions in "Comfort Health Clinic" facility
     Then I should see requisition table
 
     When I select requisition for program "Family Planning" and period "Apr2017"
@@ -18,7 +18,7 @@ Feature: Requisition
     When I navigate to view requisition screen
     Then I should be brought to the view requisition screen
 
-    When I search for my requisitions
+    When I search for my requisitions in "Comfort Health Clinic" facility
     Then I should see requisition table
 
     When I select requisition for program "Family Planning" and period "Apr2017"

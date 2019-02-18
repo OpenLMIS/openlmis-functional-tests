@@ -10,8 +10,8 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I search for my requisitions$/,
-        () => ViewRequisitionsPage.clickSearch()
+        /^I search for my requisitions in "([^"]*)?" facility$/,
+        facility => ViewRequisitionsPage.searchForFacility(facility)
     );
 
     When(

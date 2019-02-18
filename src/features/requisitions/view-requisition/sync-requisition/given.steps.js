@@ -5,12 +5,12 @@ import ProductGridPage from '../../../../pages/requisitions/view.requisition.pag
 
 defineSupportCode(({ Given }) => {
     Given(
-        /^I have navigated to the view requisition page for "([^"]*)?" program and "([^"]*)?" period$/,
-        (program, period) => {
+        /^I have navigated to the view requisition page for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
+        (facility, program, period) => {
             ViewRequisitionsPage.open();
             ViewRequisitionsPage.waitForIsVisible();
 
-            ViewRequisitionsPage.clickSearch();
+            ViewRequisitionsPage.searchForFacility(facility);
             ViewRequisitionsPage.waitForTable();
 
             ViewRequisitionsPage.scrollToBottom();

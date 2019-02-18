@@ -21,7 +21,7 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
-        /^"([^"]*)?" column for "([^"]*)?" product should be "([^"]*)?"$/,
+        /^I should be able to see the input value of "([^"]*)?" column for "([^"]*)?" product equal to "([^"]*)?"$/,
         (column, product, value) => expect(ViewRequisitionPage.getColumnForProduct(column, product)).to.equal(value)
     );
 
