@@ -22,6 +22,11 @@ defineSupportCode(({ Then }) => {
     );
 
     Then(
+        /^I should not see a requisition for "([^"]*)?" program, "([^"]*)?" period inside the table$/,
+        (program, period) => approveRequisitionsPage.waitForRequisition(program, period, true)
+    );
+
+    Then(
         /^I delete the requisition$/,
         () => {
             ViewRequisitionPage.clickDeleteButton();

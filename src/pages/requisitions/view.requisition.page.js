@@ -191,6 +191,26 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Checks if element contains 'is-disabled' class.
+     */
+    isDropdownDisabled(label) {
+        const selector = `//label[contains(text()[normalize-space()], "${label}")]` +
+            '/following-sibling::div';
+        const className =  browser.element(selector).getAttribute('class');
+        const isDisabled = className.includes('is-disabled') ? true : false;
+        return isDisabled;
+    }
+
+    /**
+     * Check whether skipping products is disabled.
+     */
+    isSkippingProductsNotPossible() {
+        const disabledCheckboxSelector = '//td//label[contains(@class, "checkbox")]//input[@disabled = "disabled"]';
+        const isDisabled = browser.element(disabledCheckboxSelector).isExisting();
+        return isDisabled;
+    }
+
+    /**
      * Submits the requisition.
      */
     clickSubmitButton() {
@@ -209,6 +229,13 @@ class ViewRequisitionPage extends Page {
      */
     clickAddCommentButton() {
         this.addCommentButton.click();
+    }
+
+    /**
+     * Opens modal to add new product.
+     */
+    clickAddProductButton() {
+        this.addProductButton.click();
     }
 
     /**
@@ -429,6 +456,10 @@ class ViewRequisitionPage extends Page {
 
     get hideLineItemButton() {
         return new Button('', `//button[contains(@class, "hide-line-item")]`);
+    }
+
+    get addProductButton() {
+        return new Button('Add Product');
     }
 
     get historyLink() {

@@ -1,4 +1,5 @@
 import Modal from '../../components/modal';
+import Button from '../../components/button';
 
 /**
  * Product Add Modal object represents the related view in OpenLMIS UI.
@@ -16,6 +17,17 @@ class ProductAddModal extends Modal {
      */
     selectProduct(code) {
         browser.element(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
+    }
+
+    get addProductsButton() {
+        return new Button('Add Products');
+    }
+
+    /**
+     * Closes modal to add new product.
+     */
+    clickAddProductsButton() {
+        this.addProductsButton.click();
     }
 }
 
