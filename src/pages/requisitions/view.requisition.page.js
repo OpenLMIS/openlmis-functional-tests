@@ -8,6 +8,7 @@ import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
 import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
+import Table from '../../components/table';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -410,23 +411,17 @@ class ViewRequisitionPage extends Page {
         this.skipConfirmationModal.confirm();
     }
 
+    get viewPeriodsTable() {
+        return new Table();
+    }
+
     /**
      * Click on 'Proceed' button for the submitted requisition.
      *
      * @param {String} status  Period name.
      */
     proceedToRequisition(status) {
-        browser.execute((status) => {
-            $('table tr')
-                .filter((index, element) => {
-                    const that = $(element),
-                        statusCell = that.find('td:nth-child(4)').text();
-
-                    return status === statusCell;
-                })
-                .find('td:nth-child(5) input:nth-child(1)')
-                .click();
-        }, status);
+        this.viewPeriodsTable.click([undefined, undefined, undefined, status], 'Proceed');
     }
 
     get submitButton() {

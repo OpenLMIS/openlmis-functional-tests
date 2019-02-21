@@ -46,33 +46,12 @@ class ViewRequisitionsPage extends Page {
         this.searchButton.click();
     }
 
-    /**
-     * Click on 'View requisition' button for the given requisition.
-     *
-     * @param {String} program  Program name.
-     * @param {String} period  Period name.
-     */
-    viewRequisition(program, period) {
-        browser.execute((program, period) => {
-            $('table tr')
-                .filter((index, element) => {
-                    const that = $(element),
-                        programCell = that.find('td:nth-child(1)').text(),
-                        periodCell = that.find('td:nth-child(3)').text();
-
-                    return program === programCell && period === periodCell;
-                })
-                .find('td:nth-child(10) button:nth-child(1)')
-                .click();
-        }, program, period);
-    }
-
     get viewRequisitionsTable() {
         return new Table();
     }
 
     /**
-     * Click on 'View requisition' button for the requisition with given status.
+     * Click on 'View requisition' button for the given requisition.
      *
      * @param {String} program  Program name.
      * @param {String} period  Period name.
@@ -80,6 +59,16 @@ class ViewRequisitionsPage extends Page {
      */
     viewRequisitionWithStatus(program, period, status) {
         this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, undefined, status], 'View Requisition');
+    }
+
+    /**
+     * Click on 'View requisition' button for the requisition with given status.
+     *
+     * @param {String} program  Program name.
+     * @param {String} period  Period name.
+     */
+    viewRequisition(program, period) {
+        this.viewRequisitionsTable.click([program, undefined, period], 'View Requisition');
     }
 
     /**
