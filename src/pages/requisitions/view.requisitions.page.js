@@ -71,6 +71,10 @@ class ViewRequisitionsPage extends Page {
         this.viewRequisitionsTable.click([program, undefined, period], 'View Requisition');
     }
 
+    waitForRequisition(program, period, hidden) {
+        this.viewRequisitionsTable.waitFor([program, undefined, period], hidden);
+    }
+
     /**
      * Wait for the table to be visible.
      */

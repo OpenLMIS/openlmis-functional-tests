@@ -14,6 +14,7 @@ defineSupportCode(({ When }) => {
             ViewRequisitionsPage.searchForFacility(facility);
             ViewRequisitionsPage.waitForTable();
 
+            ViewRequisitionsPage.waitForRequisition(program, period, false);
             ViewRequisitionsPage.viewRequisitionWithStatus(program, period, status);
 
             ViewRequisitionPage.waitForIsVisible();

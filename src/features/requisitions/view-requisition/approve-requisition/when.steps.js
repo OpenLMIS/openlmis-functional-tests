@@ -23,7 +23,10 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I select requisition for "([^"]*)?" program and "([^"]*)?" period for approve requisitions$/,
-        (program, period) => approveRequisitionsPage.viewRequisitionToApprove(program, period)
+        (program, period) => {
+            approveRequisitionsPage.waitForRequisition(program, period, false);
+            approveRequisitionsPage.viewRequisitionToApprove(program, period);
+        }
     );
 
     When(

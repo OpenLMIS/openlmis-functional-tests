@@ -421,13 +421,14 @@ class ViewRequisitionPage extends Page {
      * @param {String} status  Period name.
      */
     proceedToRequisition(status) {
+        const buttonSelector = getButtonSelector('Proceed');
+        browser.scroll(buttonSelector);
         this.viewPeriodsTable.click([undefined, undefined, undefined, status], 'Proceed');
     }
 
     get submitButton() {
         return new Button('Submit');
     }
-
 
     get authorizeButton() {
         return new Button('Authorize');
