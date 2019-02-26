@@ -211,6 +211,18 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
+     * Click on 'Proceed' button for the requisition with given status.
+     *
+     * @param {String} status  Status name.
+     */
+    proceedToRequisition(status) {
+        const selector = `//td[normalize-space(text()) = "${status}"]` +
+            '//following-sibling::td' + getButtonSelector('Proceed');
+        browser.scroll(selector);
+        browser.element(selector).click();
+    }
+
+    /**
      * Submits the requisition.
      */
     clickSubmitButton() {
@@ -408,17 +420,6 @@ class ViewRequisitionPage extends Page {
      */
     confirmSkip() {
         this.skipConfirmationModal.confirm();
-    }
-
-    /**
-     * Click on 'Proceed' button for the requisition with given status.
-     *
-     * @param {String} status  Status name.
-     */
-    proceedToRequisition(status) {
-        const selector = `//td[normalize-space(text()) = "${status}"]` +
-            '//following-sibling::td' + getButtonSelector('Proceed');
-        browser.element(selector).click();
     }
 
     get proceedButton() {
