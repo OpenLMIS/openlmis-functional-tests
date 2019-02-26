@@ -55,6 +55,7 @@ export default class Table {
             `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
             `//button[normalize-space(text())="${buttonLabel}"] | //input[normalize-space(@value)="${buttonLabel}"]`;
 
+        waitForVisible(selector);
         new Button(buttonLabel, selector).click();
     }
 
