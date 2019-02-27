@@ -2,6 +2,7 @@ import { defineSupportCode } from 'cucumber';
 
 import HomePage from '../../pages/home.page';
 import LoginPage from '../../pages/login.page';
+import ViewRequisitionPage from '../../pages/requisitions/view.requisition.page';
 
 defineSupportCode(({ Then }) => {
     Then(
@@ -17,6 +18,7 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I log out$/,
         () => {
+            ViewRequisitionPage.scrollToTop();
             HomePage.clickLogout();
             LoginPage.waitForIsVisible();
         }
