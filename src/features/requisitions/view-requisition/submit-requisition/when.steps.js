@@ -27,6 +27,9 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I proceed to the requisition with "([^"]*)?" status$/,
-        status => ViewRequisitionPage.proceedToRequisition(status)
+        status => {
+            ViewRequisitionPage.scrollToTop();
+            ViewRequisitionPage.proceedToRequisition(status)
+        }
     );
 });

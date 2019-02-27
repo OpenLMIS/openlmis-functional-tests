@@ -8,6 +8,7 @@ import TextArea from '../../components/text-area';
 import DatePicker from '../../components/date-picker';
 import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
+import scroll from '../../support/action/scroll';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -218,7 +219,6 @@ class ViewRequisitionPage extends Page {
     proceedToRequisition(status) {
         const selector = `//td[normalize-space(text()) = "${status}"]` +
             '//following-sibling::td' + getButtonSelector('Proceed');
-        browser.scroll(selector);
         browser.element(selector).click();
     }
 
@@ -474,6 +474,10 @@ class ViewRequisitionPage extends Page {
             const element = $(elements[0]).parents('td')[0];
             element.focus();
         });
+    }
+
+    scrollToTop() {
+        scroll('top');
     }
 
     getInputSelector(product, columnNumber) {

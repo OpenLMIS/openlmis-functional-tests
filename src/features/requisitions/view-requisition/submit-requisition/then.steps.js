@@ -31,6 +31,7 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I can set "([^"]*)?" as "([^"]*)?" for "([^"]*)?" product$/,
         (column, value, product) => {
+            ViewRequisitionPage.waitForIsVisible();
             ViewRequisitionPage.setColumnForProduct(column, product, value);
         }
     );
