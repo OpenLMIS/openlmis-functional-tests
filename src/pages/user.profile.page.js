@@ -8,7 +8,7 @@ class UserProfilePage extends Page {
     constructor() {
         super({
             header: 'Basic Information',
-            uri: 'profile/supervision',
+            uri: 'profile/basicInformation',
         });
     }
 
