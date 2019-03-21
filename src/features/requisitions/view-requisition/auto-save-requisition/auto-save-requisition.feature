@@ -105,9 +105,40 @@ Feature: Auto-saving Requisitions
     When I set "Approved quantity" as "7" for "Levora" product
     Then I should see the auto-saving spinner
 
-  Scenario: District Store Manager should be able to auto-save submitted requisition fields on Non full supply tab
+  Scenario: District Store Manager should be able to auto-save authorized requisition fields on Non full supply tab
     When I navigate to the Non full supply products tab
     And I set "Approved quantity" as "14" for "Depo-Estradiol" product
+    Then I should see the auto-saving spinner
+
+    When I click on the "Approve" button
+    And I confirm the approval
+    Then I should see a successful notification saying "Requisition has been approved!"
+    And I should be redirected to approve requisitions screen
+    And I log out
+
+  Scenario: Program Supervisor should be able to auto-save comment for requisition in approval
+    Given I have logged with username "psupervisor" and password "password"
+
+    When I navigate to approve requisitions screen
+    Then I should be redirected to approve requisitions screen
+    And I should see a requisition for "Family Planning" program, "2018Q2" period inside the table
+
+    When I select requisition for "Family Planning" program and "2018Q2" period for approve requisitions
+    Then I should be brought to the product grid screen
+
+    When I click the Add Comment button
+    Then I should see the text area to enter the requisition comment
+
+    When I enter "comment" as a comment
+    Then I should see the auto-saving spinner
+
+  Scenario: Program Supervisor should be able to auto-save fields on Full supply tab for requisition in approval
+    When I set "Approved quantity" as "8" for "Levora" product
+    Then I should see the auto-saving spinner
+
+  Scenario: Program Supervisor should be able to auto-save fields on Non full supply tab for requisition in approval
+    When I navigate to the Non full supply products tab
+    And I set "Approved quantity" as "15" for "Depo-Estradiol" product
     Then I should see the auto-saving spinner
 
     When I click on the "Approve" button

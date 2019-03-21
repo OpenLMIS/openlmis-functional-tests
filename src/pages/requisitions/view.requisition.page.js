@@ -206,6 +206,7 @@ class ViewRequisitionPage extends Page {
      * Check whether skipping products is disabled.
      */
     isSkippingProductsNotPossible() {
+        browser.saveScreenshot();
         const disabledCheckboxSelector = '//td//label[contains(@class, "checkbox")]//input[@disabled = "disabled"]';
         const isDisabled = browser.element(disabledCheckboxSelector).isExisting();
         return isDisabled;
@@ -235,6 +236,13 @@ class ViewRequisitionPage extends Page {
     clickAuthorizeButton() {
         this.authorizeButton.click();
     }
+
+    /**
+     * Approves the requisition.
+     */
+    clickApproveButton() {
+        this.approveButton.click();
+    }    
 
     /**
      * Opens text area to add comment.
@@ -433,6 +441,10 @@ class ViewRequisitionPage extends Page {
     get authorizeButton() {
         return new Button('Authorize');
     }
+
+    get approveButton() {
+        return new Button('Approve');
+    }    
 
     get addCommentButton() {
         return new Button('Add Comment');

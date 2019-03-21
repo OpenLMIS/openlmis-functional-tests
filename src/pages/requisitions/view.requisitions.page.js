@@ -62,6 +62,17 @@ class ViewRequisitionsPage extends Page {
     }
 
     /**
+     * Click on 'View requisition' button for the requisition with the given values.
+     *
+     * @param {String} program  Program name.
+     * @param {String} period  Period name.
+     * @param {String} dateInitiated  Date initiated.
+     */
+    viewRequisitionWithDateInitiated(program, period, dateInitiated) {
+        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, dateInitiated], 'View Requisition');
+    }
+
+    /**
      * Click on 'View requisition' button for the requisition with given status.
      *
      * @param {String} program  Program name.

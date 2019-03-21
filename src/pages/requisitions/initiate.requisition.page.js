@@ -3,6 +3,7 @@ import waitForVisible from '../../support/action/waitForVisible';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Button from '../../components/button';
 import Action from '../../components/action';
+import Table from '../../components/table';
 
 /**
  * Initiate Requisition Page object represents the related view in OpenLMIS UI.
@@ -22,6 +23,10 @@ class InitiateRequisitionPage extends Page {
 
     get proceedButton() {
         return new Button('Proceed');
+    }
+
+    get periodTable() {
+        return new Table();
     }
 
     /**
@@ -49,6 +54,16 @@ class InitiateRequisitionPage extends Page {
     waitForTable() {
         waitForVisible('table');
     }
+
+    /**
+     * Wait for requisition with the given status.
+     *
+     * @param {String} status  Requisition status.
+     * @param {String} hidden  True if should not be displayed.
+     */    
+    waitForPeriod(period, hidden) {
+        this.periodTable.waitFor([period], hidden);
+    }    
 }
 
 export default new InitiateRequisitionPage();
