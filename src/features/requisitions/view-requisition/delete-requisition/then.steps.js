@@ -8,6 +8,7 @@ defineSupportCode(({ Then }) => {
         /^I should be able to proceed to a previously deleted requisition with "([^"]*)?" status$/,
         (status) => {
             ViewRequisitionPage.proceedToRequisition(status);
+            ViewRequisitionPage.waitForIsVisible();
         }
     );
 });
