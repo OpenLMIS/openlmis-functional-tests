@@ -206,7 +206,6 @@ class ViewRequisitionPage extends Page {
      * Check whether skipping products is disabled.
      */
     isSkippingProductsNotPossible() {
-        browser.saveScreenshot();
         const disabledCheckboxSelector = '//td//label[contains(@class, "checkbox")]//input[@disabled = "disabled"]';
         const isDisabled = browser.element(disabledCheckboxSelector).isExisting();
         return isDisabled;

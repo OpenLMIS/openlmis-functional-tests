@@ -56,9 +56,9 @@ class InitiateRequisitionPage extends Page {
     }
 
     /**
-     * Wait for requisition with the given status.
+     * Wait for period.
      *
-     * @param {String} status  Requisition status.
+     * @param {String} period  Period.
      * @param {String} hidden  True if should not be displayed.
      */    
     waitForPeriod(period, hidden) {
