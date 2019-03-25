@@ -6,8 +6,8 @@ import waitForNotification from '../../../../support/action/waitForNotification'
 
 defineSupportCode(({ Given }) => {
     Given(
-        /^I have approved a requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period/,
-        (facility, program, period) => {
+        /^I have approved a requisition for "([^"]*)?" program and "([^"]*)?" period/,
+        (program, period) => {
             ApproveRequisitionsPage.navigateToPage();
             ApproveRequisitionsPage.waitForIsVisible();
 

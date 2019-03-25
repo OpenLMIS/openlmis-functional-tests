@@ -2,7 +2,7 @@ Feature: Read-only approved requisition
 
     Scenario: Storeroom Manager should not be able to see requisition on Initiate Report and Requisition screen
         Given I have logged with username "psupervisor" and password "password"
-        And I have approved a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2018Q2" period
+        And I have approved a requisition for "Family Planning" program and "2018Q2" period
         And I have logged out
         
         Given I have logged with username "srmanager4" and password "password"
