@@ -41,6 +41,15 @@ class ConvertRequisitionsPage extends Page {
         browser.element(selector).click();
     }
 
+    /**
+     * Check the checkbox option to select all requisitions.
+     */
+    selectAll() {
+        const selector = '//th/input[@type="checkbox"]';
+        browser.scroll(selector);
+        browser.element(selector).click();
+    }
+
     openSelectDropdown(program, period) {
         Select.clickSelectInput([undefined, program, undefined, undefined, period], "Supplying depot");
     }

@@ -101,6 +101,7 @@ Feature: Product grid calculations
     When I set "Total consumed quantity" as "10" for "Ortho-Novum" product
     Then I should be able to see the valid value of "Total consumed quantity" column for "Ortho-Novum" product
     And I should be able to see the valid value of "Stock on hand" column for "Ortho-Novum" product
+    And I delete the requisition
 
   Scenario: Administrator should change configuration back to the previous one
     When I go to the requisition templates page

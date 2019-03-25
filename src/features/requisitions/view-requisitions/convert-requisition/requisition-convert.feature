@@ -23,10 +23,9 @@ Feature: Converting requisitions to orders
         Then I should see a successful notification saying "The requisition(s) have been successfully converted to an order(s)"
 
     Scenario: Administrator should be able to convert multiple requisitions to orders
-        When I select the requisition for "ARV" program and "Jan2017" period to convert to order
-        And I select the requisition for "Family Planning" program and "2017Q3" period to convert to order
-        And I unselect the supplying depot for requisition for "ARV" program and "Jan2017" period
+        When I select all requisitions to convert to order
         And I unselect the supplying depot for requisition for "Family Planning" program and "2017Q3" period
+        And I unselect the supplying depot for requisition for "ARV" program and "Jan2017" period
         And I click on the "Convert to Order" button
         Then I should see an error notification saying "Supplying depot not selected"
 
