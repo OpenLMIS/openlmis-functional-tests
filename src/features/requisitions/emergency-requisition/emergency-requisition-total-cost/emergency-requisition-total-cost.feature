@@ -35,19 +35,16 @@ Feature: Emergency requisition total cost
         And I set "Requested quantity" as "10" for "Adiuvantia" product
         And I set "Requested quantity explanation" as "test" for "Adiuvantia" product
 
-        Then I should be able to see the Total requisition cost equal to "$102.00"
+        Then I should be able to see the Total requisition cost updated to "$102.00"
 
     Scenario: Storeroom Manager should be able to submit the emergency requisition
         When I click on the "Submit" button
         And I confirm the submit
         Then I should see a successful notification saying "Requisition has been submitted!"
-        And I log out
 
     Scenario: Storeroom Manager should be able to check whether the total requisition cost is the same as before the requisition's submission
-        Given I have logged with username "smanager4" and password "password"
-
         When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
-        Then I should be able to see the Total requisition cost equal to "$102.00"
+        Then I should be able to see the Total requisition cost updated to "$102.00"
         And I log out
 
     Scenario: Store Manager should be able to authorize the emergency requisition
@@ -59,14 +56,13 @@ Feature: Emergency requisition total cost
         Then I should see a successful notification saying "Requisition has been authorized!"
         And I log out
 
-    Scenario: Storeroom Manager should be able to check whether the total requisition cost is the same as before the requisition's submission
+    Scenario: District Stroreroom Manager should be able to check whether authorized total requisition cost is the same as before the requisition's submission
         Given I have logged with username "dsrmanager" and password "password"
-
         When I navigate to approve requisitions screen
         And I select requisition for "Family Planning" program and "2019Q1" period for approve requisitions
         Then I should be brought to the product grid screen
 
-        And I should be able to see the Total requisition cost equal to "$102.00"
+        And I should be able to see the Total requisition cost updated to "$102.00"
         And I log out
 
 
