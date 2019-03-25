@@ -1,6 +1,10 @@
 Feature: Read-only approved requisition
 
     Scenario: Storeroom Manager should not be able to see requisition on Initiate Report and Requisition screen
+        Given I have logged with username "psupervisor" and password "password"
+        And I have approved a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2018Q2" period
+        And I have logged out
+        
         Given I have logged with username "srmanager4" and password "password"
 
         When I go to Initiate Report and Requisition screen for "Family Planning" program
@@ -38,5 +42,4 @@ Feature: Read-only approved requisition
         
     Scenario: Program Supervisor should not be able to edit requisition on Non full supply products tab        
         When I navigate to the Non full supply products tab
-        Then I should not be able to edit the requisition
-        And I should not see "Add Product" button
+        Then I should not be able to neither edit any field in the requisition, nor add any product

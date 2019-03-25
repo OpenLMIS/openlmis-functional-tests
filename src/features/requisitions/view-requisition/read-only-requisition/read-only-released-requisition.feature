@@ -38,5 +38,4 @@ Feature: Read-only released requisition
         
     Scenario: Program Supervisor should not be able to edit requisition on Non full supply products tab        
         When I navigate to the Non full supply products tab
-        Then I should not be able to edit the requisition
-        And I should not see "Add Product" button
+        Then I should not be able to neither edit any field in the requisition, nor add any product

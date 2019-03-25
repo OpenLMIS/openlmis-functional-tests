@@ -140,9 +140,3 @@ Feature: Auto-saving Requisitions
     When I navigate to the Non full supply products tab
     And I set "Approved quantity" as "15" for "Depo-Estradiol" product
     Then I should see the auto-saving spinner
-
-    When I click on the "Approve" button
-    And I confirm the approval
-    Then I should see a successful notification saying "Requisition has been approved!"
-    And I should be redirected to approve requisitions screen
-    And I log out
