@@ -7,7 +7,7 @@ class UserProfilePage extends Page {
 
     constructor() {
         super({
-            header: 'Basic Information',
+            header: 'User Profile',
             uri: 'profile/basicInformation',
         });
     }
@@ -18,7 +18,7 @@ class UserProfilePage extends Page {
     verifyPendingVerificationNode(emailAddress) {
         browser.element(
             '/*[normalize-space(text())=' +
-                `"The email address has been changed to ${emailAddress} and is pending verification"]`
+            `"The email address has been changed to ${emailAddress} and is pending verification"]`
         );
     }
 }
