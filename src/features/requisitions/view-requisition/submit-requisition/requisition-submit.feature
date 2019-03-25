@@ -56,3 +56,12 @@ Feature: Submit Requisition
     And I should not be able to edit the requisition
     And I should not see "Authorize" button
     And I should not see "Delete" button
+    And I log out
+
+  Scenario: Store Manager should delete the previously submitted requisition
+    Given I have logged with username "smanager3" and password "password"
+
+    When I go to Initiate Report and Requisition screen for "Family Planning" program
+    And I click on the "Proceed" button
+    Then I should be redirected to requisition view screen
+    And I delete the requisition
