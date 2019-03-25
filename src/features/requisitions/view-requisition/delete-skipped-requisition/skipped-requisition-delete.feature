@@ -19,14 +19,14 @@ Feature: Delete Skipped Requisition
     When I go to Initiate Report and Requisition screen for "Family Planning" program
     Then I should be able to proceed to a previously deleted requisition with "Not yet started" status
 
-  Scenario: Administrator should be able to skip the same requisition as previously
+  Scenario: Administrator should be able to skip the requisition for the same facility, program and period as previously and initiate a new one for the same facility and program
     When I click on the "Skip" button
     And I confirm the requisition skip
     Then I should see a successful notification saying "Requisition has been skipped!"
 
-  Scenario: Administrator should be able to initiate the requisition for the same facility, program and period as the previously skipped requisition
     When I go to Initiate Report and Requisition screen for "Family Planning" program
-    Then I should be able to proceed to a previously deleted requisition with "Not yet started" status
+    And I click on the "Proceed" button
+    Then I should be redirected to requisition view screen
 
   Scenario: Administrator should not be able to delete a skipped requisition
     When I go to view requisition screen
