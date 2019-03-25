@@ -56,7 +56,7 @@ Feature: Emergency requisition total cost
         Then I should see a successful notification saying "Requisition has been authorized!"
         And I log out
 
-    Scenario: District Stroreroom Manager should be able to check whether authorized total requisition cost is the same as before the requisition's submission
+    Scenario: District Storeroom Manager should be able to check whether authorized total requisition cost is the same as before the requisition's submission
         Given I have logged with username "dsrmanager" and password "password"
         When I navigate to approve requisitions screen
         And I select requisition for "Family Planning" program and "2019Q1" period for approve requisitions
