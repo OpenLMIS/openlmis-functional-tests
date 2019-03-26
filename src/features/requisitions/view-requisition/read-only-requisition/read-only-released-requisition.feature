@@ -7,7 +7,7 @@ Feature: Read-only released requisition
         Then I should not be able to see "2017Q1" period inside the table
         And I log out
 
-    Scenario: Program Supervisor should not be able to see requisition on Approve Requisition screen
+    Scenario: Program Supervisor should not be able to see requisition on Approve Requisitions screen
         Given I have logged with username "psupervisor" and password "password"
 
         When I navigate to approve requisitions screen
@@ -29,6 +29,10 @@ Feature: Read-only released requisition
         And I should not see "Submit" button
         And I should not see "Authorize" button
         And I should not see "Approve" button
+        And I should not see "Skip" button
+        And I should not see "Delete" button
+        And I should not see "Reject" button
+        And I should not see "Add Comment" button        
 
     Scenario: Program Supervisor should not be able to update adjustments
         When I click on the Total losses and adjustments icon for "Male Condom" product
