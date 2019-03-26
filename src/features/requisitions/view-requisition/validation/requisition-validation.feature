@@ -60,7 +60,7 @@ Feature: Requisition workflow validations
 
     Scenario: Store Manager should be able to skip remaining products and unskip all products
         Given I have logged with username "smanager4" and password "password"
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q3" period and "SUBMITTED" status
+        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q1" period and "SUBMITTED" status
 
         When I unskip all products
         Then I can set "Total received quantity" as "10" for "Tonica" product
@@ -108,7 +108,7 @@ Feature: Requisition workflow validations
 
         When I navigate to approve requisitions screen
         Then I should be redirected to approve requisitions screen
-        When I select requisition for "Family Planning" program and "2018Q3" period for approve requisitions
+        When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
         Then I should be brought to the product grid screen
         And I should not be able to skip any products
 
@@ -129,7 +129,7 @@ Feature: Requisition workflow validations
 
         When I navigate to approve requisitions screen
         Then I should be redirected to approve requisitions screen
-        When I select requisition for "Family Planning" program and "2018Q3" period for approve requisitions
+        When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
         Then I should be brought to the product grid screen
 
         When I navigate to the Non full supply products tab
@@ -149,8 +149,8 @@ Feature: Requisition workflow validations
         And I confirm the approval
         Then I should see a successful notification saying "Requisition has been approved!"
         And I should be redirected to approve requisitions screen
-        And I should not see a requisition for "Family Planning" program, "2018Q3" period inside the table
+        And I should not see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
     Scenario: Program Supervisor should be able to navigate to the requisition with APPROVED status
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q3" period and "APPROVED" status
+        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q1" period and "APPROVED" status
         Then I should be brought to the product grid screen

@@ -45,12 +45,8 @@ Feature: Date Physical Stock Count Completed
     When I select requisition for "Family Planning" program and "Apr2017" period for approve requisitions
     Then I should be brought to the product grid screen
 
-    When I click on the "Reject" button
-    And I confirm the reject
-    Then I should see a successful notification saying "Requisition has been rejected!"
-    And I should be redirected to approve requisitions screen
-
-    When I proceed to requisition for "Family Planning" program with "REJECTED" status
+    When I reject the requisition
+    And I proceed to requisition for "Family Planning" program with "REJECTED" status
     Then I delete the requisition
 
   Scenario: Administrator should return to previous program settings

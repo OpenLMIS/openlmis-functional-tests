@@ -80,3 +80,23 @@ Feature: Approving and rejecting Requisitions
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
     Then I should be able to see the Total requisition cost updated to "$10.46"
     And I delete the requisition
+    And I log out
+
+  Scenario: Psupervisor should reject approved requisition
+    Given I have logged with username "psupervisor" and password "password"
+
+    When I navigate to approve requisitions screen
+    Then I should be redirected to approve requisitions screen
+
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
+    Then I should be brought to the product grid screen
+
+    And I reject the requisition
+    And I log out
+
+  Scenario: Storeroom Manager should delete a rejected requisition
+    Given I have logged with username "srmanager4" and password "password"
+
+    When I proceed to requisition for "Family Planning" program with "REJECTED" status
+    Then I delete the requisition
+    And I log out
