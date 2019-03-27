@@ -24,7 +24,7 @@ Feature: Read-only approved requisition
         Then I should be able to see a requisition for "Family Planning" program, "Feb2017" period inside the table
 
     Scenario: Program Supervisor should not be able to edit requisition or skip products
-        When I select requisition for program "Family Planning" and period "Feb2017"
+        When I select requisition initiated at "26/02/2017" for program "Family Planning" and period "Feb2017"
         Then I should not be able to edit the requisition
         And I should not be able to skip any products
 
