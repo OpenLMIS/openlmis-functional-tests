@@ -2,7 +2,7 @@ Feature: Read-only approved requisition
 
     Scenario: Storeroom Manager should not be able to see requisition on Initiate Report and Requisition screen
         Given I have logged with username "psupervisor" and password "password"
-        And I have approved a requisition for "Family Planning" program and "Feb2017" period
+        And I have approved a requisition for "Family Planning" program and "Jan2017" period
         And I have logged out
         
         Given I have logged with username "srmanager2" and password "password"
@@ -16,15 +16,16 @@ Feature: Read-only approved requisition
 
         When I navigate to approve requisitions screen
         Then I should be redirected to approve requisitions screen
-        And I should not see a requisition for "Family Planning" program, "Feb2017" period inside the table
+        And I should not see a requisition for "Family Planning" program, "Jan2017" period inside the table
 
     Scenario: Program Supervisor should be able to see requisition on View Requisitions screen
         When I go to view requisition screen
         And I search for my requisitions in "Comfort Health Clinic" facility
-        Then I should be able to see a requisition for "Family Planning" program, "Feb2017" period inside the table
+        Then I should be able to see a requisition for "Family Planning" program, "Jan2017" period inside the table
 
     Scenario: Program Supervisor should not be able to edit requisition or skip products
-        When I select requisition initiated at "26/02/2017" for program "Family Planning" and period "Feb2017"
+        When I select requisition initiated at "01/01/2017" for program "Family Planning" and period "Jan2017"
+        And I wait "1" seconds for UI adjustment
         Then I should not be able to edit the requisition
         And I should not be able to skip any products
 
