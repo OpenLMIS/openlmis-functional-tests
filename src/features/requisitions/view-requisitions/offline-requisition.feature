@@ -1,4 +1,4 @@
-Feature: Requisition
+Feature: Offline mode requisition
 
   Scenario: Storeroom Manager should be able to see offline requisition
     Given I have logged with username "srmanager2" and password "password"
@@ -14,7 +14,7 @@ Feature: Requisition
     Then I should be brought to the product grid screen
 
     When I enable offline mode
-    Then the offline mode should be enabled
+    Then the offline indicator should be visible
 
     When I navigate to view requisition screen
     Then I should be brought to the view requisition screen
@@ -26,7 +26,7 @@ Feature: Requisition
     Then I should be brought to the product grid screen
 
     When I disable offline mode
-    Then the offline mode should be disabled
+    Then the offline indicator should not be visible
     And I delete the requisition
 
     When I logout

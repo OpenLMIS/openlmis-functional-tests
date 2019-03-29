@@ -60,7 +60,7 @@ Feature: Requisition workflow validations
 
     Scenario: Store Manager should be able to skip remaining products and unskip all products
         Given I have logged with username "smanager4" and password "password"
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q1" period and "SUBMITTED" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "SUBMITTED" status
 
         When I unskip all products
         Then I can set "Total received quantity" as "10" for "Tonica" product
@@ -152,5 +152,5 @@ Feature: Requisition workflow validations
         And I should not see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
     Scenario: Program Supervisor should be able to navigate to the requisition with APPROVED status
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2018Q1" period and "APPROVED" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "APPROVED" status
         Then I should be brought to the product grid screen

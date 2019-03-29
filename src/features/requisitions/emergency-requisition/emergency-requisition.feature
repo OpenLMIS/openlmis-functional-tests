@@ -98,7 +98,7 @@ Feature: Emergency requisition
     Scenario: Program Supervisor should be able to approve the emergency requisition
         Given I have logged with username "psupervisor" and password "password"
 
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2019Q1" period and "IN_APPROVAL" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2019Q1" period and "IN_APPROVAL" status
         And I set "Approved quantity" as "10" for "Abortiva" product
         And I click on the "Approve" button
         And I confirm the approval

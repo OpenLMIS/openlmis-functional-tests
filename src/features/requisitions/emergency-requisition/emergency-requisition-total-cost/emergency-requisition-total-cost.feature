@@ -14,7 +14,7 @@ Feature: Emergency requisition total cost
         When I click on the "Proceed" button
         Then I should be redirected to requisition view screen
 
-    Scenario: Storeroom Manager should be able to add full supply products with requested product great than 0
+    Scenario: Storeroom Manager should be able to add full supply products with requested quantity greater than 0
         When I click on the "Add Product" button
         Then I should be brought to the add products list page
 

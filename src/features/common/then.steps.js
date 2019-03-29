@@ -14,12 +14,12 @@ import DatePicker from '../../components/date-picker';
 
 defineSupportCode(({ Then }) => {
     Then(
-        /^the offline mode should be enabled$/,
+        /^the offline indicator should be visible$/,
         () => HomePage.isOffline()
     );
 
     Then(
-        /^the offline mode should be disabled$/,
+        /^the offline indicator should not be visible$/,
         () => HomePage.isOnline()
     );
 

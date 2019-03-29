@@ -8,7 +8,7 @@ Feature: Read-only approved requisition
         Given I have logged with username "srmanager2" and password "password"
 
         When I go to Initiate Report and Requisition screen for "Family Planning" program
-        Then I should not be able to see "Feb2017" period inside the table
+        Then I should not be able to see "Jan2017" period inside the table
         And I log out
 
     Scenario: Program Supervisor should not be able to see requisition on Approve Requisitions screen

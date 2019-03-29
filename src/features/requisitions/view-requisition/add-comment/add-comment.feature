@@ -8,7 +8,7 @@ Feature: Adding comment to requisition
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "submit" as a comment
+    When I enter "This looks good to me" as a comment
     And I click on the "Submit" button
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
@@ -18,18 +18,18 @@ Feature: Adding comment to requisition
     Given I have logged with username "smanager4" and password "password"
     
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo"
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "authorize" as a comment
+    When I enter "This looks good to me" as a comment
     And I click on the "Authorize" button
     And I confirm the authorize
     Then I should see a successful notification saying "Requisition has been authorized!"
@@ -44,19 +44,19 @@ Feature: Adding comment to requisition
 
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale"
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "reject" as a comment
+    When I enter "This does not look good to me" as a comment
     And I click on the "Reject" button
     And I confirm the reject
     Then I should see a successful notification saying "Requisition has been rejected!"
@@ -67,20 +67,20 @@ Feature: Adding comment to requisition
     Given I have logged with username "srmanager4" and password "password"
     
     When I proceed to requisition for "Family Planning" program with "REJECTED" status
-    Then I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho"
+    Then I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "re-submit" as a comment
+    When I enter "I reduced the quantities" as a comment
     And I click on the "Submit" button
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
@@ -90,21 +90,21 @@ Feature: Adding comment to requisition
     Given I have logged with username "smanager4" and password "password"
     
     When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
-    Then I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo"
+    Then I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
-    And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "re-authorize" as a comment
+    When I enter "Looks better now" as a comment
     And I click on the "Authorize" button
     And I confirm the authorize
     Then I should see a successful notification saying "Requisition has been authorized!"
@@ -119,22 +119,22 @@ Feature: Adding comment to requisition
 
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
-    And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale"
+    And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
-    And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "approve" as a comment
+    When I enter "Looks better - I'm approving it" as a comment
     And I set "Approved quantity" as "7" for "Levora" product
     And I click on the "Approve" button
     And I confirm the approval
@@ -151,23 +151,23 @@ Feature: Adding comment to requisition
 
     When I select requisition for "Family Planning" program and "2017Q4" period for approve requisitions
     Then I should be brought to the product grid screen
-    And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho"
+    And I should see the "Looks better - I'm approving it" comment for "In approval" status added today by "Blessings Kalagho"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
-    And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "Looks better - I'm approving it" comment for "In approval" status added today by "Blessings Kalagho" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal
 
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "final approve" as a comment
+    When I enter "Sending this to CMST" as a comment
     And I set "Approved quantity" as "7" for "Levora" product
     And I click on the "Approve" button
     And I confirm the approval
@@ -178,16 +178,16 @@ Feature: Adding comment to requisition
     Given I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
 
     When I enter view requisition screen
-    Then I should see the "final approve" comment for "Approved" status added today by "Francis Chirwa"
+    Then I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa"
     And I should not be able to edit any saved requisition comment
 
     When I open requisition history modal
-    Then I should see the "submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "reject" comment for "Rejected" status added today by "Blessings Kalagho" in the history
-    And I should see the "re-submit" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "re-authorize" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "approve" comment for "In approval" status added today by "Blessings Kalagho" in the history
-    And I should see the "final approve" comment for "Approved" status added today by "Francis Chirwa" in the history
+    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+    And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+    And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale" in the history
+    And I should see the "Looks better - I'm approving it" comment for "In approval" status added today by "Blessings Kalagho" in the history
+    And I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa" in the history
     And I should not be able to edit any saved requisition comment
     And I should be able to close the modal

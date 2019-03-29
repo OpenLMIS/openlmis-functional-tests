@@ -1,4 +1,4 @@
-Feature: View Requisition
+Feature: Requisition Synchronization
 
   Scenario: Storeroom Manager should be able to sync requisition with the server
     Given I have logged with username "srmanager2" and password "password"

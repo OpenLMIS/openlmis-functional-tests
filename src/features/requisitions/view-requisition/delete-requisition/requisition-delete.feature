@@ -10,11 +10,11 @@ Feature: Delete Requisition
     And I click on the "Delete" button
     And I confirm the delete
     Then I should see a successful notification saying "Requisition has been deleted!"
+    And I log out
 
   Scenario: Storeroom Manager should be able to initiate a new requisition for a previously deleted program and period
-    Given I have logged out
-    And I have logged with username "srmanager3" and password "password"
-    And I have navigated to Initiate Report and Requisition screen for "Family Planning" program
+    Given I have logged with username "srmanager3" and password "password"
 
-    Then I should be able to proceed to a previously deleted requisition with "Not yet started" status
-    And I should be redirected to requisition view screen
+    When I go to Initiate Report and Requisition screen for "Family Planning" program
+    And I proceed to the requisition with "Not yet started" status
+    Then I should be redirected to requisition view screen

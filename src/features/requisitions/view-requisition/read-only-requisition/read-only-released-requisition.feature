@@ -21,6 +21,7 @@ Feature: Read-only released requisition
 
     Scenario: Program Supervisor should not be able to edit requisition or skip products
         When I select requisition initiated at "14/01/2017" for program "Family Planning" and period "2017Q1"
+        And I wait "1" seconds for UI adjustment
         Then I should not be able to edit the requisition
         And I should not be able to skip any products
 

@@ -28,7 +28,7 @@ Feature: Delete Skipped Requisition
     And I click on the "Proceed" button
     Then I should be redirected to requisition view screen
 
-  Scenario: Administrator should not be able to delete a skipped requisition
+  Scenario: Administrator should not be able to delete a skipped requisition when there is a new requisition initiated
     When I go to view requisition screen
     And I search for my requisitions in "Comfort Health Clinic" facility
     Then I should be able to see the requisition with "INITIATED" status inside the table
