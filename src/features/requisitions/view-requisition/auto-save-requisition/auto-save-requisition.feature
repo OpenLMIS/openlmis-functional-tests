@@ -57,7 +57,7 @@ Feature: Auto-saving Requisitions
   Scenario: Store Manager should be able to auto-save requisition comment
     Given I have logged with username "smanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    When I proceed to requisition for "Family Planning" program with "Submitted" status
     And I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
@@ -148,6 +148,6 @@ Feature: Auto-saving Requisitions
   Scenario: Storeroom Manager should delete the rejected requisition
     Given I have logged with username "srmanager4" and password "password"
 
-    When I proceed to requisition for "Family Planning" program with "REJECTED" status
+    When I proceed to requisition for "Family Planning" program with "Rejected" status
     Then I delete the requisition
     And I log out

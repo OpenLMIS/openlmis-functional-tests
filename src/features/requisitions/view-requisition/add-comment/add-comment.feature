@@ -17,7 +17,7 @@ Feature: Adding comment to requisition
   Scenario: Store Manager should be able to see comment added when submitting requisition
     Given I have logged with username "smanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    When I proceed to requisition for "Family Planning" program with "Submitted" status
     Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
 
@@ -66,7 +66,7 @@ Feature: Adding comment to requisition
   Scenario: Storeroom Manager should be able to see comment added when rejecting requisition
     Given I have logged with username "srmanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "REJECTED" status
+    When I proceed to requisition for "Family Planning" program with "Rejected" status
     Then I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho"
     And I should not be able to edit any saved requisition comment
 
@@ -89,7 +89,7 @@ Feature: Adding comment to requisition
   Scenario: Store Manager should be able to see comment added when re-submitting requisition
     Given I have logged with username "smanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    When I proceed to requisition for "Family Planning" program with "Submitted" status
     Then I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
 

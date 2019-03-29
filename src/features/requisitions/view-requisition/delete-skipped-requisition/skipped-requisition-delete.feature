@@ -10,7 +10,7 @@ Feature: Delete Skipped Requisition
 
     When I go to view requisition screen
     And I search for my requisitions in "Comfort Health Clinic" facility
-    And I proceed to requisition with "SKIPPED" status
+    And I proceed to requisition with "Skipped" status
     And I click on the "Delete" button
     And I confirm the delete
     Then I should see a successful notification saying "Requisition has been deleted!"
@@ -31,18 +31,18 @@ Feature: Delete Skipped Requisition
   Scenario: Administrator should not be able to delete a skipped requisition when there is a new requisition initiated
     When I go to view requisition screen
     And I search for my requisitions in "Comfort Health Clinic" facility
-    Then I should be able to see the requisition with "INITIATED" status inside the table
-    When I proceed to requisition with "SKIPPED" status
+    Then I should be able to see the requisition with "Initiated" status inside the table
+    When I proceed to requisition with "Skipped" status
     And I click on the "Delete" button
     And I confirm the delete
     Then I should get an error message
 
   Scenario: Administrator should delete the initiated requisition and then the skipped one
     When I click on the "Close" button
-    And I proceed to requisition for "Family Planning" program with "INITIATED" status
+    And I proceed to requisition for "Family Planning" program with "Initiated" status
     Then I delete the requisition
 
     When I go to view requisition screen
     And I search for my requisitions in "Comfort Health Clinic" facility
-    And I proceed to requisition with "SKIPPED" status
+    And I proceed to requisition with "Skipped" status
     Then I delete the requisition

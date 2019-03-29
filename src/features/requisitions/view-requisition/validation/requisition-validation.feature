@@ -53,14 +53,14 @@ Feature: Requisition workflow validations
         And I should see periods table
 
     Scenario: Storeroom Manager should not be able to edit the submitted requisition nor to authorize/delete the requisition
-        When I proceed to the requisition with "SUBMITTED" status
+        When I proceed to the requisition with "Submitted" status
         Then I should be redirected to requisition view screen
         And I should not be able to edit the requisition
         And I log out
 
     Scenario: Store Manager should be able to skip remaining products and unskip all products
         Given I have logged with username "smanager4" and password "password"
-        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "SUBMITTED" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "Submitted" status
 
         When I unskip all products
         Then I can set "Total received quantity" as "10" for "Tonica" product
@@ -151,6 +151,6 @@ Feature: Requisition workflow validations
         And I should be redirected to approve requisitions screen
         And I should not see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
-    Scenario: Program Supervisor should be able to navigate to the requisition with APPROVED status
-        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "APPROVED" status
+    Scenario: Program Supervisor should be able to navigate to the requisition with Approved status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2018Q1" period and "Approved" status
         Then I should be brought to the product grid screen

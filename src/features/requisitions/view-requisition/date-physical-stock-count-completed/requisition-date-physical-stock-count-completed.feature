@@ -46,7 +46,7 @@ Feature: Date Physical Stock Count Completed
     Then I should be brought to the product grid screen
 
     When I reject the requisition
-    And I proceed to requisition for "Family Planning" program with "REJECTED" status
+    And I proceed to requisition for "Family Planning" program with "Rejected" status
     Then I delete the requisition
 
   Scenario: Administrator should return to previous program settings

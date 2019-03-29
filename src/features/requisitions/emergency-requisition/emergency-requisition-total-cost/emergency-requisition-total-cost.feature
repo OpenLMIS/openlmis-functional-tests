@@ -43,14 +43,14 @@ Feature: Emergency requisition total cost
         Then I should see a successful notification saying "Requisition has been submitted!"
 
     Scenario: Storeroom Manager should be able to check whether the total requisition cost is the same as before the requisition's submission
-        When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
         Then I should be able to see the Total requisition cost updated to "$102.00"
         And I log out
 
     Scenario: Store Manager should be able to authorize the emergency requisition
         Given I have logged with username "smanager4" and password "password"
 
-        When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
         And I click on the "Authorize" button
         And I confirm the authorize
         Then I should see a successful notification saying "Requisition has been authorized!"

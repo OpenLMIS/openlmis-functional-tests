@@ -51,7 +51,7 @@ Feature: Submit Requisition
     And I should see periods table
 
   Scenario: Storeroom Manager should not be able to edit the submitted requisition nor to authorize/delete the requisition
-    When I proceed to the requisition with "SUBMITTED" status
+    When I proceed to the requisition with "Submitted" status
     Then I should be redirected to requisition view screen
     And I should not be able to edit the requisition
     And I should not see "Authorize" button
