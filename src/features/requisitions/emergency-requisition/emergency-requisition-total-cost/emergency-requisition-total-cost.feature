@@ -59,7 +59,7 @@ Feature: Emergency requisition total cost
     Scenario: District Storeroom Manager should be able to check whether authorized total requisition cost is the same as before the requisition's submission
         Given I have logged with username "dsrmanager" and password "password"
         When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "2019Q1" period for approve requisitions
+        And I select requisition for "Family Planning" program and "2019Q2" period for approve requisitions
         Then I should be brought to the product grid screen
 
         And I should be able to see the Total requisition cost updated to "$102.00"
