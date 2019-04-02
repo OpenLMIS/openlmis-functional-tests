@@ -57,7 +57,7 @@ Feature: Auto-saving Requisitions
   Scenario: Store Manager should be able to auto-save requisition comment
     Given I have logged with username "smanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    When I proceed to requisition for "Family Planning" program with "Submitted" status
     And I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
@@ -90,9 +90,9 @@ Feature: Auto-saving Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
-    And I should see a requisition for "Family Planning" program, "2018Q2" period inside the table
+    And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
-    When I select requisition for "Family Planning" program and "2018Q2" period for approve requisitions
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click the Add Comment button
@@ -121,9 +121,9 @@ Feature: Auto-saving Requisitions
 
     When I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
-    And I should see a requisition for "Family Planning" program, "2018Q2" period inside the table
+    And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
-    When I select requisition for "Family Planning" program and "2018Q2" period for approve requisitions
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
     Then I should be brought to the product grid screen
 
     When I click the Add Comment button
@@ -141,8 +141,13 @@ Feature: Auto-saving Requisitions
     And I set "Approved quantity" as "15" for "Depo-Estradiol" product
     Then I should see the auto-saving spinner
 
-    When I click on the "Approve" button
-    And I confirm the approval
-    Then I should see a successful notification saying "Requisition has been approved!"
-    And I should be redirected to approve requisitions screen
+  Scenario: Psupervisor should reject approved requisition
+    When I reject the requisition
+    Then I log out
+
+  Scenario: Storeroom Manager should delete the rejected requisition
+    Given I have logged with username "srmanager4" and password "password"
+
+    When I proceed to requisition for "Family Planning" program with "Rejected" status
+    Then I delete the requisition
     And I log out

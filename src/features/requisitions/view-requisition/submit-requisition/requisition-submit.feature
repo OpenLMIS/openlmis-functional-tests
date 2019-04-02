@@ -51,8 +51,17 @@ Feature: Submit Requisition
     And I should see periods table
 
   Scenario: Storeroom Manager should not be able to edit the submitted requisition nor to authorize/delete the requisition
-    When I proceed to the requisition with "SUBMITTED" status
+    When I proceed to the requisition with "Submitted" status
     Then I should be redirected to requisition view screen
     And I should not be able to edit the requisition
     And I should not see "Authorize" button
     And I should not see "Delete" button
+    And I log out
+
+  Scenario: Store Manager should delete the previously submitted requisition
+    Given I have logged with username "smanager3" and password "password"
+
+    When I go to Initiate Report and Requisition screen for "Family Planning" program
+    And I click on the "Proceed" button
+    Then I should be redirected to requisition view screen
+    And I delete the requisition

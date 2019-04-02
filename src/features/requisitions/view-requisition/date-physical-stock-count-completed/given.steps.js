@@ -7,6 +7,7 @@ import ProgramListPage from '../../../../pages/administration/program.list.page'
 import ProgramEditPage from '../../../../pages/administration/program.edit.page';
 import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.requisition.page';
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
+import switchToPage from '../../../../support/action/switchToPage';
 
 defineSupportCode(({ Given }) => {
 
@@ -43,6 +44,9 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.waitForIsVisible();
 
             ViewRequisitionPage.clearForm();
+            switchToPage('2');
+            ViewRequisitionPage.clearForm();
+            switchToPage('1');
 
             ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
             ViewRequisitionPage.setColumnForProduct('Beginning balance', 'Levora', '26');

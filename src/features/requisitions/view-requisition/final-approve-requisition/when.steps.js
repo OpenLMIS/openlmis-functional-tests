@@ -6,7 +6,7 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 defineSupportCode(({ When }) => {
 
     When(
-        /^I proceed to requisition for "([^"]*)?" facility ,"([^"]*)?" program, "([^"]*)?" period and "([^"]*)?" status$/,
+        /^I proceed to requisition for "([^"]*)?" facility, "([^"]*)?" program, "([^"]*)?" period and "([^"]*)?" status$/,
         (facility, program, period, status) => {
             ViewRequisitionsPage.navigateToPage();
 

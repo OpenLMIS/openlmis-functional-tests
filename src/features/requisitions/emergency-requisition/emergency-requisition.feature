@@ -76,7 +76,7 @@ Feature: Emergency requisition
     Scenario: Store Manager should be able to authorize the emergency requisition
         Given I have logged with username "smanager4" and password "password"
 
-        When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
         And I click on the "Authorize" button
         And I confirm the authorize
         Then I should see a successful notification saying "Requisition has been authorized!"
@@ -86,7 +86,7 @@ Feature: Emergency requisition
         Given I have logged with username "dsrmanager" and password "password"
 
         When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "2019Q1" period for approve requisitions
+        And I select requisition for "Family Planning" program and "2019Q2" period for approve requisitions
         Then I should be brought to the product grid screen
 
         When I click on the "Approve" button
@@ -98,7 +98,7 @@ Feature: Emergency requisition
     Scenario: Program Supervisor should be able to approve the emergency requisition
         Given I have logged with username "psupervisor" and password "password"
 
-        When I proceed to requisition for "Kankao Health Facility" facility ,"Family Planning" program, "2019Q1" period and "IN_APPROVAL" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2019Q2" period and "In approval" status
         And I set "Approved quantity" as "10" for "Abortiva" product
         And I click on the "Approve" button
         And I confirm the approval
@@ -111,8 +111,8 @@ Feature: Emergency requisition
         When I navigate to Convert Requisitions to Order screen
         Then I should be brought to Convert Requisitions to Order screen
 
-        When I select the requisition for "Family Planning" program and "2019Q1" period to convert to order
-        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and "2019Q1" period
+        When I select the requisition for "Family Planning" program and "2019Q2" period to convert to order
+        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and "2019Q2" period
         And I click on the "Convert to Order" button
         And I confirm the convert
         Then I should see a successful notification saying "The requisition(s) have been successfully converted to an order(s)"

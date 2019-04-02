@@ -20,6 +20,11 @@ defineSupportCode(({ When }) => {
     );
 
     When(
+        /^I select all requisitions to convert to order$/,
+        () => ConvertToOrderRequisitionsPage.selectAll()
+    );
+
+    When(
         /^I click on the supplying depot for "([^"]*)?" program and "([^"]*)?" period$/,
         (program, period) => ConvertToOrderRequisitionsPage.openSelectDropdown(program, period)
     );

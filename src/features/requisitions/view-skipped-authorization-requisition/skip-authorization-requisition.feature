@@ -48,7 +48,7 @@ Feature: Skipping the authorization step
         Then I should see order for "Family Planning" program and "Apr2017" period inside the table
 
     Scenario: Administrator should be able to navigate to the released requisition
-        When I proceed to requisition for "Comfort Health Clinic" facility ,"Family Planning" program, "Apr2017" period and "RELEASED" status
+        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "Apr2017" period and "Released" status
         Then I should be brought to the product grid screen
 
     Scenario: Administrator should be able to turn off the Skipping Authorization Step option
@@ -70,7 +70,7 @@ Feature: Skipping the authorization step
         Then I should see a successful notification saying "Requisition has been submitted!"
 
     Scenario: Administrator should be able to authorize the requisition
-        When I proceed to "Regular" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Regular" requisition for "Family Planning" program with "Submitted" status
         And I click on the "Authorize" button
         And I confirm the authorize
         Then I should see a successful notification saying "Requisition has been authorized!"
@@ -103,5 +103,5 @@ Feature: Skipping the authorization step
         Then I should see order for "Family Planning" program and "May2017" period inside the table
 
     Scenario: Administrator should be able to navigate to the released requisition
-        When I proceed to requisition for "Comfort Health Clinic" facility ,"Family Planning" program, "May2017" period and "RELEASED" status
+        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "May2017" period and "Released" status
         Then I should be brought to the product grid screen

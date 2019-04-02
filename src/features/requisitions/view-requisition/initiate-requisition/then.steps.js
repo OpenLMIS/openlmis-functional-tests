@@ -1,13 +1,16 @@
 import { defineSupportCode } from 'cucumber';
 
 import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.requisition.page';
-import viewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
+import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
 
 defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be brought to the initiate requisition screen$/,
-        () => InitiateRequisitionPage.waitForIsVisible()
+        () => {
+            InitiateRequisitionPage.waitForIsVisible();
+            ViewRequisitionPage.scrollToTop();
+        }
     );
 
     Then(
@@ -17,6 +20,6 @@ defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be redirected to requisition view screen$/,
-        () => viewRequisitionPage.waitForIsVisible()
+        () => ViewRequisitionPage.waitForIsVisible()
     );
 });

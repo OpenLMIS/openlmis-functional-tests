@@ -93,7 +93,7 @@ Feature: Stock based requisition: calculating Stock on Hand
         And I should be able to see the value of "Stock on hand" column for "Safety Box" product equal to "180"
     
     Scenario: User should see the same value in "Beginning balance" column as in "Current stock" from the physical inventory submitted with the date of 31/12/2016
-        When I proceed to requisition for "Depósito Distrital Lichinga" facility ,"EPI" program, "2017Q1" period and "INITIATED" status
+        When I proceed to requisition for "Depósito Distrital Lichinga" facility, "EPI" program, "2017Q1" period and "Initiated" status
         Then I should not be able to edit "Beginning balance" column for "Safety Box" product
         And I should not be able to edit "Beginning balance" column for "IPV" product
         And I should not be able to edit "Beginning balance" column for "PCV10" product
@@ -106,7 +106,7 @@ Feature: Stock based requisition: calculating Stock on Hand
         Then I should see a successful notification saying "Requisition has been submitted!"
 
     Scenario: User should see correct value for "Beginning balance" column and should not be able to edit this value after authorization
-        When I proceed to requisition for "Depósito Distrital Lichinga" facility ,"EPI" program, "2017Q1" period and "AUTHORIZED" status
+        When I proceed to requisition for "Depósito Distrital Lichinga" facility, "EPI" program, "2017Q1" period and "Authorized" status
         Then I should not be able to edit "Beginning balance" column for "Safety Box" product
         And I should not be able to edit "Beginning balance" column for "IPV" product
         And I should not be able to edit "Beginning balance" column for "PCV10" product

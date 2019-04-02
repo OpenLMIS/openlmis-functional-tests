@@ -7,7 +7,7 @@ Feature: Read-only released requisition
         Then I should not be able to see "2017Q1" period inside the table
         And I log out
 
-    Scenario: Program Supervisor should not be able to see requisition on Approve Requisition screen
+    Scenario: Program Supervisor should not be able to see requisition on Approve Requisitions screen
         Given I have logged with username "psupervisor" and password "password"
 
         When I navigate to approve requisitions screen
@@ -21,6 +21,7 @@ Feature: Read-only released requisition
 
     Scenario: Program Supervisor should not be able to edit requisition or skip products
         When I select requisition initiated at "14/01/2017" for program "Family Planning" and period "2017Q1"
+        And I wait "1" seconds for UI adjustment
         Then I should not be able to edit the requisition
         And I should not be able to skip any products
 
@@ -29,6 +30,10 @@ Feature: Read-only released requisition
         And I should not see "Submit" button
         And I should not see "Authorize" button
         And I should not see "Approve" button
+        And I should not see "Skip" button
+        And I should not see "Delete" button
+        And I should not see "Reject" button
+        And I should not see "Add Comment" button        
 
     Scenario: Program Supervisor should not be able to update adjustments
         When I click on the Total losses and adjustments icon for "Male Condom" product
@@ -38,5 +43,4 @@ Feature: Read-only released requisition
         
     Scenario: Program Supervisor should not be able to edit requisition on Non full supply products tab        
         When I navigate to the Non full supply products tab
-        Then I should not be able to edit the requisition
-        And I should not see "Add Product" button
+        Then I should not be able to neither edit any field in the requisition, nor add any product

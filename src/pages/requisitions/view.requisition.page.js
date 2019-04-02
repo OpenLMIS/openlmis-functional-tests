@@ -265,10 +265,17 @@ class ViewRequisitionPage extends Page {
     }
 
     /**
-     * Skips the requisition
+     * Delete the requisition
      */
     clickDeleteButton() {
         this.deleteButton.click();
+    }
+
+    /**
+     * Reject the requisition
+     */
+    clickRejectButton() {
+        this.rejectButton.click();
     }
 
     /**
@@ -467,6 +474,10 @@ class ViewRequisitionPage extends Page {
 
     get addProductButton() {
         return new Button('Add Product');
+    }
+
+    get rejectButton() {
+        return new Button('Reject');
     }
 
     get historyLink() {

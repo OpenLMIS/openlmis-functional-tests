@@ -1,4 +1,4 @@
-Feature: Requisition
+Feature: Requisition filtering
 
   Scenario: Storeroom Manager should be able to filter requisitions by date
     Given I have logged with username "srmanager2" and password "password"

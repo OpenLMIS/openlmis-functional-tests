@@ -2,7 +2,8 @@ import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
 import ViewRequisitionsPage from '../../../../pages/requisitions/view.requisitions.page';
-import approveRequisitionsPage from '../../../../pages/requisitions/approve.requisitions.page';
+import ApproveRequisitionsPage from '../../../../pages/requisitions/approve.requisitions.page';
+import waitForNotification from '../../../../support/action/waitForNotification';
 
 defineSupportCode(({ When }) => {
 
@@ -18,14 +19,14 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I navigate to approve requisitions screen/,
-        () => approveRequisitionsPage.navigateToPage()
+        () => ApproveRequisitionsPage.navigateToPage()
     );
 
     When(
         /^I select requisition for "([^"]*)?" program and "([^"]*)?" period for approve requisitions$/,
         (program, period) => {
-            approveRequisitionsPage.waitForRequisition(program, period, false);
-            approveRequisitionsPage.viewRequisitionToApprove(program, period);
+            ApproveRequisitionsPage.waitForRequisition(program, period, false);
+            ApproveRequisitionsPage.viewRequisitionToApprove(program, period);
         }
     );
 
@@ -42,4 +43,14 @@ defineSupportCode(({ When }) => {
             ViewRequisitionPage.waitForIsVisible();
         }
     );
+
+    When(
+        /^I reject the requisition$/,
+        () => {
+            ViewRequisitionPage.clickRejectButton();
+            ViewRequisitionPage.confirmReject();
+            waitForNotification('Requisition has been rejected!');
+            ApproveRequisitionsPage.waitForIsVisible();
+        }
+    )
 });

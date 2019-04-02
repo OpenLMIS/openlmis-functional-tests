@@ -14,7 +14,7 @@ Feature: Emergency requisition total cost
         When I click on the "Proceed" button
         Then I should be redirected to requisition view screen
 
-    Scenario: Storeroom Manager should be able to add full supply products with requested product great than 0
+    Scenario: Storeroom Manager should be able to add full supply products with requested quantity greater than 0
         When I click on the "Add Product" button
         Then I should be brought to the add products list page
 
@@ -43,14 +43,14 @@ Feature: Emergency requisition total cost
         Then I should see a successful notification saying "Requisition has been submitted!"
 
     Scenario: Storeroom Manager should be able to check whether the total requisition cost is the same as before the requisition's submission
-        When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
         Then I should be able to see the Total requisition cost updated to "$102.00"
         And I log out
 
     Scenario: Store Manager should be able to authorize the emergency requisition
         Given I have logged with username "smanager4" and password "password"
 
-        When I proceed to "Emergency" requisition for "Family Planning" program with "SUBMITTED" status
+        When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
         And I click on the "Authorize" button
         And I confirm the authorize
         Then I should see a successful notification saying "Requisition has been authorized!"
@@ -59,7 +59,7 @@ Feature: Emergency requisition total cost
     Scenario: District Storeroom Manager should be able to check whether authorized total requisition cost is the same as before the requisition's submission
         Given I have logged with username "dsrmanager" and password "password"
         When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "2019Q1" period for approve requisitions
+        And I select requisition for "Family Planning" program and "2019Q2" period for approve requisitions
         Then I should be brought to the product grid screen
 
         And I should be able to see the Total requisition cost updated to "$102.00"

@@ -37,6 +37,19 @@ Feature: Date Physical Stock Count Completed
     And I confirm Authorize Date Physical Stock Count Completed modal
     Then I should be brought to the initiate requisition screen
 
+  Scenario: Administrator should delete the authorized requisition
+
+    When I navigate to approve requisitions screen
+    Then I should be redirected to approve requisitions screen
+
+    When I select requisition for "Family Planning" program and "Apr2017" period for approve requisitions
+    Then I should be brought to the product grid screen
+
+    When I reject the requisition
+    And I proceed to requisition for "Family Planning" program with "Rejected" status
+    Then I delete the requisition
+
+  Scenario: Administrator should return to previous program settings
     When I have navigated to the program list page
     And I click edit button for "Family Planning" program
     Then I should be brought to the program edit page

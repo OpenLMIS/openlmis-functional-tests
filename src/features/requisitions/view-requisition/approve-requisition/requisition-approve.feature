@@ -66,7 +66,7 @@ Feature: Approving and rejecting Requisitions
   Scenario: Storeroom Manager should be able to submit a rejected requisition with new values
     Given I have logged with username "srmanager4" and password "password"
     
-    When I proceed to requisition for "Family Planning" program with "REJECTED" status
+    When I proceed to requisition for "Family Planning" program with "Rejected" status
     And I set "Requested quantity" as "200" for "Levora" product
     Then I should be able to see the Total requisition cost updated to "$10.46"
 
@@ -77,6 +77,26 @@ Feature: Approving and rejecting Requisitions
 
   Scenario: Store Manager should be able to see the correct Total requisition cost
     Given I have logged with username "smanager4" and password "password"
-    When I proceed to requisition for "Family Planning" program with "SUBMITTED" status
+    When I proceed to requisition for "Family Planning" program with "Submitted" status
     Then I should be able to see the Total requisition cost updated to "$10.46"
     And I delete the requisition
+    And I log out
+
+  Scenario: Psupervisor should reject approved requisition
+    Given I have logged with username "psupervisor" and password "password"
+
+    When I navigate to approve requisitions screen
+    Then I should be redirected to approve requisitions screen
+
+    When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
+    Then I should be brought to the product grid screen
+
+    And I reject the requisition
+    And I log out
+
+  Scenario: Storeroom Manager should delete a rejected requisition
+    Given I have logged with username "srmanager4" and password "password"
+
+    When I proceed to requisition for "Family Planning" program with "Rejected" status
+    Then I delete the requisition
+    And I log out
