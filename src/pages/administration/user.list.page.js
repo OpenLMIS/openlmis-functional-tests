@@ -1,5 +1,9 @@
 import Page from '../../components/page';
 import Table from '../../components/table';
+import waitForVisible from '../../support/action/waitForVisible';
+import Button from '../../components/button';
+import ModalButton from '../../components/modal-button';
+import scroll from '../../support/action/scroll';
 
 /**
  * User List Page object represents the related view in OpenLMIS UI.
@@ -27,6 +31,33 @@ class UserListPage extends Page {
         new Table().sortedBy(sortOption, retrieveRowData);
     }
 
+
+
+    removePreviousAddedUserRole (){
+        scroll('bottom');
+        browser.element("//tr[contains(@class, 'ng-scope ng-isolate-scope')][5]/td[contains(@class, 'ng-scope')]/button[contains(@class, 'danger ng-binding')]").click();
+    }
+
+
+    confirmSubmit() {
+       new ModalButton('Remove Role').click();
+    }
+
+
+    /**
+     * Wait for the form to be visible.
+     */
+    waitForForm() {
+        waitForVisible("//form");
+    }
+
+
+    /**
+     * Wait for the page to be visible.
+     */
+    waitForEditUserPage(){
+        waitForVisible("//td[contains(@class, 'ng-binding ng-scope')]");
+    }
 }
 
 export default new UserListPage();

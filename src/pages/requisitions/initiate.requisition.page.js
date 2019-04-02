@@ -55,6 +55,7 @@ class InitiateRequisitionPage extends Page {
         waitForVisible('table');
     }
 
+
     /**
      * Wait for period.
      *
@@ -63,7 +64,17 @@ class InitiateRequisitionPage extends Page {
      */    
     waitForPeriod(period, hidden) {
         this.periodTable.waitFor([period], hidden);
-    }    
+    }
+
+
+    /**
+     * Check whether select supervised facility is disabled.
+     */
+    isSelectSupervisedFacilityPossible() {
+        const supervisedFacilitySelector = "//openlmis-facility-program-select/fieldset[contains(@class, 'form-group ng-scope')][1]//label[contains(@class, 'radio ng-binding')][2]//input[@disabled = 'disabled']";
+        var isDisabled = browser.element(supervisedFacilitySelector).isExisting();
+        return !isDisabled;
+    }
 }
 
 export default new InitiateRequisitionPage();
