@@ -1,5 +1,7 @@
 import Page from '../../components/page';
 import scroll from '../../support/action/scroll';
+import Checkbox from '../../components/checkbox';
+import waitForVisible from '../../support/action/waitForVisible';
 
 /**
  * Facility List Page object represents the related view in OpenLMIS UI.
@@ -16,22 +18,31 @@ class FacilityListPage extends Page {
     }
 
 
-    uncheckEssentialMedProgram (){
-         scroll('bottom');
-         browser.element("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][1]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
-     }
+       /**
+        * Updates the value of the input for the given column and program.
+        *
+        * @param {String} program the name of the program
+        * @param {String} value the value to be set for the specific input
+        */
+       setProgramCheckbox(value, program) {
+           const id = this.getColumnId(program);
+           const programCheckbox = browser.element(`//table/tbody/tr[contains(@class, 'ng-scope ng-isolate-scope')][${id + 1}]/td[@class='ng-scope'][1]//input`);
 
+           if (programCheckbox.isSelected() && value === 'uncheck') {
+                    programCheckbox.click();
+            }
 
-    checkEssentialMedProgram (){
-         scroll('bottom');
-         browser.element("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
-     }
+         if (!programCheckbox.isSelected() && value === 'check') {
+                               programCheckbox.click();
+              }
 
-    noEssentialMedProgram (){
-         var programRemoved = browser.element("//option[normalize-space(text())='Essential Meds']").isExisting();
-         return !programRemoved;
-     }
+       }
 
+       getColumnId(columnName) {
+        return browser
+            .execute(name => $(`tr:contains('${name}')`).index(), columnName)
+            .value;
+       }
 }
 
 export default new FacilityListPage();

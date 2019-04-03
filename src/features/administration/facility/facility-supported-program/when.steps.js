@@ -10,12 +10,7 @@ defineSupportCode(({ When }) => {
     );
 
     When(
-        /^I uncheck Essential Med checkbox$/,
-        () => FacilityListPage.uncheckEssentialMedProgram()
-    );
-
-    When(
-        /^I check Essential Med checkbox$/,
-        () => FacilityListPage.checkEssentialMedProgram()
+        /^I "([^"]*)?" program "([^"]*)?" checkbox$/,
+        (value, program) =>  FacilityListPage.setProgramCheckbox(value, program)
     );
 });

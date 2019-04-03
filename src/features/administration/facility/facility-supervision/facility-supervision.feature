@@ -1,6 +1,6 @@
 Feature: Supervised facility
 
- Scenario: Store manager should not be able to select the option "Supervised Facility" because has no supervision role
+ Scenario: Storeroom Manager should not be able to select the option "Supervised Facility" because has no supervision role
         Given I have logged with username "srmanager4" and password "password"
 
         When I go to initiate requisition screen
@@ -8,7 +8,7 @@ Feature: Supervised facility
         And I should not be able to select Supervised Facility checkbox
         And I log out
 
-     Scenario: Administrator should be able to add supervision role to Store manager
+     Scenario: Administrator should be able to add supervision role to Storeroom Manager
         Given I have logged with username "administrator" and password "password"
 
         When I go to the user list page
@@ -29,7 +29,7 @@ Feature: Supervised facility
         Then I should be brought to the user list page
         And I log out
 
-     Scenario: Store manager should be able to select the option "Supervised Facility" because has been given supervision role
+     Scenario: Storeroom Manager should be able to select the option "Supervised Facility" because has been given supervision role
         Given I have logged with username "srmanager4" and password "password"
 
         When I go to initiate requisition screen
@@ -39,7 +39,7 @@ Feature: Supervised facility
         And I log out
 
 
-     Scenario: Administrator should be able to remove supervision role to Store manager
+     Scenario: Administrator should be able to remove supervision role to Storeroom Manager
         Given I have logged with username "administrator" and password "password"
 
         When I go to the user list page
@@ -58,7 +58,7 @@ Feature: Supervised facility
         Then I should see a successful notification saying "User roles updated successfully!"
         And I log out
 
- Scenario: Store manager should not be able to select the option "Supervised Facility" because has no supervision role
+ Scenario: Storeroom Manager should not be able to select the option "Supervised Facility" because has no supervision role
         Given I have logged with username "srmanager4" and password "password"
 
         When I go to initiate requisition screen

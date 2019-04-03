@@ -9,8 +9,4 @@ defineSupportCode(({ Then }) => {
         () => FacilityListPage.waitForIsVisible()
     );
 
-    Then(
-        /^I should not see Essential Meds Program on the Program list$/,
-        () => expect(FacilityListPage.noEssentialMedProgram()).to.equal(true)
-    );
 });
