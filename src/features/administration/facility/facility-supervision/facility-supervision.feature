@@ -5,7 +5,7 @@ Feature: Supervised facility
 
         When I go to initiate requisition screen
         Then I should be brought to the initiate requisition screen
-        And I should not be able to select Supervised Facility checkbox
+        And I should not be able to select "Supervised Facility" checkbox
         And I log out
 
      Scenario: Administrator should be able to add supervision role to Storeroom Manager
@@ -52,7 +52,7 @@ Feature: Supervised facility
         When I click on the "Roles" button
         Then I should be brought to the user edit page
 
-        When I select to remove previous added user role
+        When I remove role "Storeroom Manager" for program "Essential Meds" and supervisory node "EM approval point (Balaka District Hospital)"
         And I confirm remove role modal
         And I click on the "Save User Roles" button
         Then I should see a successful notification saying "User roles updated successfully!"
@@ -63,5 +63,5 @@ Feature: Supervised facility
 
         When I go to initiate requisition screen
         Then I should be brought to the initiate requisition screen
-        And I should not be able to select Supervised Facility checkbox
+        And I should not be able to select "Supervised Facility" checkbox
         And I log out

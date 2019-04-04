@@ -8,17 +8,17 @@ import Checkbox from '../../../../components/checkbox';
 defineSupportCode(({ Then }) => {
 
     Then(
-           /^I should not be able to select Supervised Facility checkbox$/,
-            () => expect(InitiateRequisitionPage.isSelectSupervisedFacilityPossible()).to.equal(false)
+           /^I should not be able to select "([^"]*)?" checkbox$/,
+            (label) => expect(InitiateRequisitionPage.isSelectedOptionEnableOrDisable(label)).to.equal(false)
      );
     Then(
         /^I should be brought to the user edit roles page$/,
-         () => UserListPage.waitForForm()
+         () => UserListPage.waitForTable()
     );
 
     Then(
         /^I should be brought to the user edit page$/,
-         () => UserListPage.waitForEditUserPage()
+         () =>  UserListPage.waitForTable()
     );
 
 });

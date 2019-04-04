@@ -1,9 +1,8 @@
 import Page from '../../components/page';
 import Table from '../../components/table';
-import waitForVisible from '../../support/action/waitForVisible';
-import Button from '../../components/button';
-import ModalButton from '../../components/modal-button';
 import scroll from '../../support/action/scroll';
+import waitForVisible from '../../support/action/waitForVisible';
+import ModalButton from '../../components/modal-button';
 
 /**
  * User List Page object represents the related view in OpenLMIS UI.
@@ -31,33 +30,27 @@ class UserListPage extends Page {
         new Table().sortedBy(sortOption, retrieveRowData);
     }
 
-
-
-    removePreviousAddedUserRole (){
+     /**
+        * Remove role on user edit role page.
+        * @param {String} role the name of the role
+        * @param {String} program the name of the program
+        * @param {String} supervisoryNode the name of the supervisory Node
+      */
+    removeUserRole(role, program, supervisoryNode){
         scroll('bottom');
-        browser.element("//tr[contains(@class, 'ng-scope ng-isolate-scope')][5]/td[contains(@class, 'ng-scope')]/button[contains(@class, 'danger ng-binding')]").click();
+        const roleRow = browser.element(`//td[contains(text(),'${program}')]//following-sibling::td[contains(text(),'${supervisoryNode}')]//following-sibling::td[contains(text(),'${role}')]//following-sibling::td/button`);
+        roleRow.click();
     }
 
-
-    confirmSubmit() {
-       new ModalButton('Remove Role').click();
-    }
-
-
-    /**
+   /**
      * Wait for the form to be visible.
      */
-    waitForForm() {
-        waitForVisible("//form");
+    waitForTable() {
+        waitForVisible("//table");
     }
 
-
-    /**
-     * Wait for the page to be visible.
-     */
-    waitForEditUserPage(){
-        waitForVisible("//td[contains(@class, 'ng-binding ng-scope')]");
-    }
+    confirmSubmit() {
+           new ModalButton('Remove Role').click();
+     }
 }
-
 export default new UserListPage();

@@ -68,12 +68,12 @@ class InitiateRequisitionPage extends Page {
 
 
     /**
-     * Check whether select supervised facility is disabled.
+     * Check whether select option is status.
      */
-    isSelectSupervisedFacilityPossible() {
-        const supervisedFacilitySelector = "//openlmis-facility-program-select/fieldset[contains(@class, 'form-group ng-scope')][1]//label[contains(@class, 'radio ng-binding')][2]//input[@disabled = 'disabled']";
-        var isDisabled = browser.element(supervisedFacilitySelector).isExisting();
-        return !isDisabled;
+    isSelectedOptionEnableOrDisable(label) {
+        const checkboxInput = `//label[contains(text()[normalize-space()], '${label}')]/input`;
+        var isEnable = browser.element(checkboxInput).isEnabled();
+        return isEnable;
     }
 }
 

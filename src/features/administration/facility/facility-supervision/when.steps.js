@@ -1,12 +1,13 @@
 import { defineSupportCode } from 'cucumber';
 
 import UserListPage from '../../../../pages/administration/user.list.page';
+import Button from '../../../../components/button';
 
 defineSupportCode(({ When }) => {
 
     When(
-         /^I select to remove previous added user role$/,
-          () => UserListPage.removePreviousAddedUserRole()
+         /^I remove role "([^"]*)?" for program "([^"]*)?" and supervisory node "([^"]*)?"$/,
+          (role, program, supervisoryNode ) => UserListPage.removeUserRole(role, program, supervisoryNode)
         );
 
     When(
@@ -14,3 +15,4 @@ defineSupportCode(({ When }) => {
           () => UserListPage.confirmSubmit()
         );
 });
+
