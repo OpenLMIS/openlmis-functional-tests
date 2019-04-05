@@ -17,9 +17,6 @@ Feature: Offline workflow requisition
     And I enable offline mode
     Then the offline indicator should be visible
 
-    When I disable offline mode
-    Then the offline indicator should not be visible
-
     When I go to view requisition screen
     And I search for my requisitions in "Nandumbo Health Center" facility
     Then I should see requisition table
