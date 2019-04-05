@@ -9,6 +9,7 @@ import DatePicker from '../../components/date-picker';
 import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
 import scroll from '../../support/action/scroll';
+import isEnabled from '../../support/check/isEnabled';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -517,6 +518,16 @@ class ViewRequisitionPage extends Page {
     checkAutoSavingSpinner() {
         const spinner = `//*[contains(@class, "saving-add-active")]`;
         waitForVisible(spinner, true);
+    }
+
+    checkIfButtonIsVisible(button) {
+        const buttonSelector = `//button[contains(text(), "${button}")]`;
+        waitForVisible(buttonSelector, false);
+    }
+
+    checkIfButtonIsEnabledOrNot(button) {
+        const buttonSelector = `//button[normalize-space(text()) = "${button}"]`;
+        return browser.element(buttonSelector).isEnabled();
     }
 
     getColumnId(columnName) {

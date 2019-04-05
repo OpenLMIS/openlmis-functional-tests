@@ -5,6 +5,8 @@ import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Table from '../../components/table';
 import Action from '../../components/action';
 import scroll from '../../support/action/scroll';
+import tableHorizontalScroll from '../../support/action/tableHorizontalScroll';
+import getCheckIconSelectorInsideTable from '../../support/lib/getCheckIconSelectorInsideTable';
 
 /**
  * View Requisitions Page object represents the related view in OpenLMIS UI.
@@ -82,6 +84,19 @@ class ViewRequisitionsPage extends Page {
         this.viewRequisitionsTable.click([program, undefined, period], 'View Requisition');
     }
 
+    /**
+     * Checks if there is check icon in Offline column
+     *
+     * @param {String} program  Program name.
+     * @param {String} period  Period name.
+     * @param {String} columnName  Column name.
+     */
+    isOfflineCheckboxVisible(program, period, columnName) {
+        const selector = getCheckIconSelectorInsideTable([program, period], columnName);
+        this.scrollToTheRightOfTable();
+        waitForVisible(selector, false);
+    }
+
     waitForRequisition(program, period, hidden) {
         this.viewRequisitionsTable.waitFor([program, undefined, period], hidden);
     }
@@ -95,6 +110,10 @@ class ViewRequisitionsPage extends Page {
 
     isFilterPopoverVisible() {
         waitForVisible(`//div[contains(@class, 'popover')]//legend[normalize-space(text())='Date initiated']`);
+    }
+
+    scrollToTheRightOfTable() {
+        tableHorizontalScroll('right');
     }
 
     scrollToBottom() {
