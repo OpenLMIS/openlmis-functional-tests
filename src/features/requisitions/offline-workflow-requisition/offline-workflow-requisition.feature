@@ -1,4 +1,4 @@
-Feature: Offline workflow requisition
+Feature: Offline requisition workflow
 
   Scenario: Storeroom Manager should be able to see initiated offline requisition with correct values
     Given I have logged with username "srmanager1" and password "password"
@@ -34,4 +34,3 @@ Feature: Offline workflow requisition
     When I disable offline mode
     Then the offline indicator should not be visible
     And I delete the requisition
-
