@@ -18,8 +18,9 @@ class ColdChainEquipmentAddModal extends Modal {
         browser.element(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
     }
 
-    get addProductsButton() {
-        return new Button('Add Products');
+    addProdButton(label,option) {
+       browser.element(`//input[normalize-space(@value)="${label}"] | //button[normalize-space(text())="${option}"]`).click();
+
     }
 
 
@@ -40,7 +41,7 @@ class ColdChainEquipmentAddModal extends Modal {
     openSelectDropdownInsideModal(label) {
             const selector = getSelectDropdownSelector(label);
             browser.element(selector).click();
-        }
+    }
 }
 
 export default new ColdChainEquipmentAddModal();

@@ -27,7 +27,9 @@ defineSupportCode(({ Then }) => {
 
     Then(
             /^I should be brought to the cold chain equipment creation page$/,
-            () => ColdChainEquipmentAddModal.waitForIsVisible()
+            () =>{ ColdChainEquipmentAddModal.waitForIsVisible();
+
+            }
     );
 
     Then(
