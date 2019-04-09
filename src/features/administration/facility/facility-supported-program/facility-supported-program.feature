@@ -1,6 +1,6 @@
-Feature: Facility Supported Program
+Feature: Facility supported programs
 
-     Scenario: Administrator should remove supported program from Storeroom Manager
+     Scenario: Administrator should remove the supported program from the Storeroom Manager's facility
         Given I have logged with username "administrator" and password "password"
 
         When I go to the facility list page
@@ -19,7 +19,7 @@ Feature: Facility Supported Program
         And I log out
 
 
-     Scenario: Storeroom Manager should not be able to select Essential Meds Program on requisition initiation since it is not supported program on his/her facility
+     Scenario: Storeroom Manager should not be able to select the Essential Meds program on the requisition initiate screen since it's not supported in his facility
         Given I have logged with username "srmanager2" and password "password"
 
         When I go to initiate requisition screen
@@ -29,7 +29,7 @@ Feature: Facility Supported Program
         Then I should not be able to see "Essential Meds" option on the dropdown list
         And I log out
 
-     Scenario: Administrator should add supported program from Storeroom Manager
+     Scenario: Administrator should be able to add a supported program to the Storeroom Manager's facility
         Given I have logged with username "administrator" and password "password"
 
         When I go to the facility list page
@@ -47,7 +47,7 @@ Feature: Facility Supported Program
         Then I should be brought to the facility list page
         And I log out
 
-     Scenario: Storeroom Manager should be able to select Essential Meds Program on requisition initiation since it is supported program on his/her facility
+     Scenario: Storeroom Manager should be able to select the Essential Meds program on the requisition initiate screen since it is supported in his facility
         Given I have logged with username "srmanager2" and password "password"
 
         When I go to initiate requisition screen
