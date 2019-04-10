@@ -9,10 +9,6 @@ The goal is to verify that OpenLMIS enables to add cold chain equipment by a giv
           Then I should be brought to the cce inventory list page
           And I should see "Add Equipment" button
 
-          When I click on the "Add Equipment" button
-          Then I should be brought to the cold chain equipment creation page
-          And I select "Gas" from the "Equipment Type" list
-          And I select "B Medical RCW 50 EG" from the "Make/Model" list
 
 
 
