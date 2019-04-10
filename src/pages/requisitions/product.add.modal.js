@@ -8,7 +8,7 @@ class ProductAddModal extends Modal {
 
     constructor() {
         super({
-            header: 'Add Products',
+            header: 'Add Products to the Kit Unpack List',
         });
     }
 
