@@ -5,7 +5,7 @@ Feature: Product grid calculations
     And I have navigated to the requisition templates page
 
     When I select "Family Planning" program for configuration
-    Then I should be brought to the "Family Planning" program template configuration page
+    Then I should be brought to the "Family Planning" template configuration page for "Family Planning" program
 
     When I set Source in row "E" to be "User input"
     And I click on the "Save" button
@@ -106,7 +106,7 @@ Feature: Product grid calculations
   Scenario: Administrator should change configuration back to the previous one
     When I go to the requisition templates page
     And I select "Family Planning" program for configuration
-    Then I should be brought to the "Family Planning" program template configuration page
+    Then I should be brought to the "Family Planning" template configuration page for "Family Planning" program
 
     When I set Source in row "E" to be "Calculated"
     And I click on the "Save" button

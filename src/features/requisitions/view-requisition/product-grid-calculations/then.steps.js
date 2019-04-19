@@ -7,8 +7,8 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 defineSupportCode(({ Then }) => {
 
     Then(
-        /^I should be brought to the "([^"]*)?" program template configuration page$/,
-        name => RequisitionTemplateConfigurationPage.waitForIsVisible(name)
+        /^I should be brought to the "([^"]*)?" template configuration page for "([^"]*)?" program$/,
+        (templateName, programName) => RequisitionTemplateConfigurationPage.waitForIsVisible(templateName, programName)
     );
 
     Then(

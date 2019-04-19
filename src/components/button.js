@@ -1,5 +1,6 @@
 import Action from './action';
 import getButtonSelector from '../support/lib/getButtonSelector';
+import waitForVisible from '../support/action/waitForVisible';
 
 /**
  * Represents a single button in the OpenLMIS system.
@@ -24,5 +25,12 @@ export default class Button {
      */
     click() {
         new Action(() => browser.element(this.selector).click(), this.waitForHide).execute();
+    }
+
+    /**
+     * Waits for the button to be visible.
+     */
+    waitForIsVisible() {
+        waitForVisible(this.selector);
     }
 }
