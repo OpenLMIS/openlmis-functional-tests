@@ -27,7 +27,10 @@ Feature: Requisition template add
     Then I should be brought to the requisition templates page
 
     When I click on the "Add Requisition Template" button
-    Then I should be brought to the requisition template add modal    
+    Then I should be brought to the requisition template add modal
+    And Value of the "Name" should be an empty value
+    And Value of the "Program" list should be an empty value
+    And Value of the "Facility Type" list should be an empty value
 
   Scenario: Administrator should get an error when entered template name is not unique
     When I enter "EPI" as "Name"
