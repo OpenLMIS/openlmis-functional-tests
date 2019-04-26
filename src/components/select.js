@@ -14,7 +14,7 @@ class Select {
 
     unselectOption(columnValues, columnName = '') {
         const selector = getSelectInputSelector(columnValues, columnName);
-        chooseSelectOptionInTable(selector);
+        chooseSelectOptionInTable(selector);//*[contains(@class, "select2-selection__clear")]
     }
 
     selectOption(columnValues, option, columnName = '') {

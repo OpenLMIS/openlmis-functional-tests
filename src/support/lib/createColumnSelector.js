@@ -5,7 +5,7 @@
  */
 module.exports = (columnValues) => {
     return columnValues.reduce(
-        (previous, current) => `${previous}//following-sibling::td` +
+        (previous, current) => `${previous}//following-sibling::td/div` +
             `${current ? `[normalize-space(text())="${current}"]` : ''}`,
         `//table//*`);
 }
