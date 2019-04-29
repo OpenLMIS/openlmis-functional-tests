@@ -33,7 +33,7 @@ pipeline {
     }
     stage ('pull images') {
       steps {
-        sh 'docker-compose pull'
+        sh 'docker logout && docker-compose pull'
       }
     }
     stage ('build') {
