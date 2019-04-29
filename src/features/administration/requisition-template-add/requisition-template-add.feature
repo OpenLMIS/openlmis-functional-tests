@@ -2,6 +2,7 @@ Feature: Requisition template add
 
   Scenario: Administrator should be able to enter the requisition template add modal
     Given I have logged with username "administrator" and password "password"
+    And I have removed "Health Center" facility type from "Family Planning" template
     And I have navigated to the requisition templates page
 
     When I click on the "Add Requisition Template" button
@@ -17,8 +18,8 @@ Feature: Requisition template add
     And I select "Family Planning" from the "Program" list
     Then I should be able to select facility type
 
-    When I select "Warehouse" facility type from the dropdown
-    Then I should be able to see "Warehouse" facility type in the table
+    When I select "Health Center" facility type from the dropdown
+    Then I should be able to see "Health Center" facility type in the table
     And I should not be able to see error message for the "Name" field
     And I should not be able to see error message for the "Program" field
 
@@ -45,9 +46,19 @@ Feature: Requisition template add
     And I select "Family Planning" from the "Program" list
     Then I should be able to select facility type
 
-    When I select "Warehouse" facility type from the dropdown
-    Then I should be able to see "Warehouse" facility type in the table
+    When I select "Health Center" facility type from the dropdown
+    Then I should be able to see "Health Center" facility type in the table
 
     When I click on the "Create Template" button
     And I confirm adding new template
     Then I should be brought to the "Test template" template configuration page for "Family Planning" program
+  
+  Scenario: Administrator should be able to see the new requisition template fields while requisition creation
+    Given I have initiated a requisition for "Family Planning" program
+    When I set "Additional quantity required" as "10" for "Levora" product
+    Then I should be able to see the valid value of "Additional quantity required" column for "Levora" product
+    And I delete the requisition
+  
+  Scenario: Administrator cleans up the changes
+    Given I have removed "Health Center" facility type from "Test template" template
+    And I have added "Health Center" facility type to "Family Planning" template
