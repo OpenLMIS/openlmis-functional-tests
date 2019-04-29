@@ -9,7 +9,7 @@ import DatePicker from '../../components/date-picker';
 import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
 import scroll from '../../support/action/scroll';
-import isEnabled from '../../support/check/isEnabled';
+import tableHorizontalScroll from '../../support/action/tableHorizontalScroll';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -109,6 +109,23 @@ class ViewRequisitionPage extends Page {
         const selector = this.getTableData(product, id);
 
         return browser.element(selector).getText();
+    }
+
+    /**
+     * Gets the difference of two table data values for the given columns and product.
+     *
+     * @param {string} column1 the name of the first column
+     * @param {string} column2 the name of the second column
+     * @param {string} product the name of the product
+     *
+     * @return {string} the value of the difference
+     */
+    getDifferenceBetweenTwoValues(column1, column2, product) {
+        const value1 = this.getColumnTableDataForProduct(column1, product);
+        const value2 = this.getColumnTableDataForProduct(column2, product);
+        const result = value1 - value2;
+
+        return result.toString();
     }
 
     /**
@@ -501,6 +518,10 @@ class ViewRequisitionPage extends Page {
 
     scrollToTop() {
         scroll('top');
+    }
+
+    scrollToTheRightOfTable() {
+        tableHorizontalScroll('right');
     }
 
     getInputSelector(product, columnNumber) {
