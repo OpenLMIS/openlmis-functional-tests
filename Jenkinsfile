@@ -48,9 +48,6 @@ pipeline {
   post {
     always {
       junit 'build/WDIO*.xml'
-      sh 'docker pull openlmis/stop-instance'
-      sh '/usr/bin/docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
-      sh 'rm -Rf ./.openlmis-config'
     }
     unstable {
       slackSend channel: '#build',
@@ -64,6 +61,12 @@ pipeline {
       slackSend channel: '#build',
         color: 'good',
         message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal"
+    }
+    cleanup {
+      sh 'docker-compose down -v'
+      sh 'docker pull openlmis/stop-instance'
+      sh '/usr/bin/docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
+      sh 'rm -Rf ./.openlmis-config'
     }
   }
 }
