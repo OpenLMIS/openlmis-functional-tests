@@ -33,6 +33,8 @@ pipeline {
           junit 'build/WDIO*.xml'
         }
         cleanup {
+          sh 'docker pull openlmis/stop-instance'
+          sh 'docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
           sh 'rm -Rf .openlmis-config'
         }
       }
@@ -51,10 +53,6 @@ pipeline {
       slackSend channel: '#build',
         color: 'good',
         message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal"
-    }
-    cleanup {
-      sh 'docker pull openlmis/stop-instance'
-      sh 'docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
     }
   }
 }
