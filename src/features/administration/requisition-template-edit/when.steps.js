@@ -2,11 +2,10 @@ import { defineSupportCode } from 'cucumber';
 import RequisitionTemplatesPage from '../../../pages/administration/requisition.templates.page';
 import RequisitionTemplateConfigurationSettingsPage from '../../../pages/administration/requisition.template.configuration.settings.page';
 
-
 defineSupportCode(({ When }) => {
     When(
         /^I navigate to template settings tab$/,
-        () => RequisitionTemplatesPage.openTemplateSettingsTab() // openNonFullSupplyProduct()
+        () => RequisitionTemplatesPage.openTemplateSettingsTab()
     );
 
     When(

@@ -1,8 +1,6 @@
 import { defineSupportCode } from 'cucumber';
 import RequisitionTemplatesPage from '../../../pages/administration/requisition.templates.page';
 import RequisitionTemplateConfigurationSettingsPage from '../../../pages/administration/requisition.template.configuration.settings.page';
-import Button from '../../../components/button';
-
 
 defineSupportCode(({ Given }) => {
     Given(
@@ -13,7 +11,7 @@ defineSupportCode(({ Given }) => {
             RequisitionTemplatesPage.clickConfigureProgram(template);
             RequisitionTemplatesPage.openTemplateSettingsTab();
             RequisitionTemplateConfigurationSettingsPage.removeFacilityType(facility);
-            new Button('Save').click();
+            RequisitionTemplateConfigurationSettingsPage.save();
             RequisitionTemplateConfigurationSettingsPage.confirmSave();
         }
     );
@@ -26,7 +24,7 @@ defineSupportCode(({ Given }) => {
             RequisitionTemplatesPage.clickConfigureProgram(template);
             RequisitionTemplatesPage.openTemplateSettingsTab();
             RequisitionTemplateConfigurationSettingsPage.addFacilityType(facility);
-            new Button('Save').click();
+            RequisitionTemplateConfigurationSettingsPage.save();
             RequisitionTemplateConfigurationSettingsPage.confirmSave();
         }
     );

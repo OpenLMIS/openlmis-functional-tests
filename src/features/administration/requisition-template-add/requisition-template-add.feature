@@ -59,6 +59,6 @@ Feature: Requisition template add
     Then I should be able to see the valid value of "Additional quantity required" column for "Levora" product
     And I delete the requisition
   
-  Scenario: Administrator cleans up the changes
+  Scenario: Administrator should be able to re-add the removed facility type from the template settings.
     Given I have removed "Health Center" facility type from "Test template" template
     And I have added "Health Center" facility type to "Family Planning" template
