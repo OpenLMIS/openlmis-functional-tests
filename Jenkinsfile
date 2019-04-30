@@ -54,7 +54,7 @@ pipeline {
     }
     cleanup {
       sh 'docker pull openlmis/stop-instance'
-      sh '/usr/bin/docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
+      sh 'docker run --rm --env-file ./.openlmis-config/functional-test.env openlmis/stop-instance'
     }
   }
 }
