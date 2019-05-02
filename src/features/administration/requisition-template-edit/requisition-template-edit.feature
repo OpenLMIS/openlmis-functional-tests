@@ -10,7 +10,8 @@ Feature: Requisition template edition
     When I navigate to template settings tab
     Then I should be brought to the template settings page
 
-    When I click on the remove button for "Provincial Store" facility type in the template settings table
+    When I scroll to bottom
+    And I click on the remove button for "Provincial Store" facility type in the template settings table
     And I click on the "Save" button
     And I confirm saving the template configuration
     Then I should be brought to the requisition template page
@@ -185,7 +186,8 @@ Feature: Requisition template edition
     When I navigate to template settings tab
     Then I should be brought to the template settings page
 
-    When I click on the remove button for "Warehouse" facility type in the template settings table
+    When I scroll to bottom
+    And I click on the remove button for "Warehouse" facility type in the template settings table
     And I click on the remove button for "FHIR's facility type" facility type in the template settings table
     And I click on the remove button for "District Hospital" facility type in the template settings table
     And I enter "Vaccine Stock-Based R&R Template" as "Template Name"

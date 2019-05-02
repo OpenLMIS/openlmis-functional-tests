@@ -16,6 +16,7 @@ import offlineMode from '../../support/action/offlineMode';
 import switchToPage from '../../support/action/switchToPage';
 import sortBy from '../../support/action/sortBy';
 import pause from '../../support/action/pause';
+import scroll from '../../support/action/scroll';
 
 defineSupportCode(({ When }) => {
 
@@ -125,5 +126,10 @@ defineSupportCode(({ When }) => {
     When(
         /^I click clear button on "([^"]*)" datepicker$/,
         label => new DatePicker(label).clickClearButton()
+    );
+
+    When(
+        /^I scroll to bottom$/,
+        () => scroll('bottom')
     );
 });
