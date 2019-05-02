@@ -15,7 +15,6 @@ defineSupportCode(({ Then }) => {
     Then(
         /^I should be able to see the value for "([^"]*)?" equal to a difference between "([^"]*)?" and "([^"]*)?" columns for "([^"]*)?" product$/,
         (column1, column2, column3, product) => {
-            ViewRequisitionPage.scrollToTheRightOfTable();
             expect(ViewRequisitionPage.getColumnTableDataForProduct(column1, product)).to.equal(
                 ViewRequisitionPage.getDifferenceBetweenTwoValues(column2, column3, product));
         }
