@@ -54,8 +54,10 @@ Feature: Requisition template add
     Then I should be brought to the "Test template" template configuration page for "Family Planning" program
   
   Scenario: Administrator should be able to see the new requisition template fields while requisition creation
-    Given I have initiated a requisition for "Family Planning" program
-    When I set "Additional quantity required" as "10" for "Levora" product
+    When I initiate a requisition for "Family Planning" program
+    And I delete the requisition
+    And I initiate a requisition for "Family Planning" program
+    And I set "Additional quantity required" as "10" for "Levora" product
     Then I should be able to see the valid value of "Additional quantity required" column for "Levora" product
     And I delete the requisition
   

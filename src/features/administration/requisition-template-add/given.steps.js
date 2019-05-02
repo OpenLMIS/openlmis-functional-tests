@@ -10,6 +10,7 @@ defineSupportCode(({ Given }) => {
             RequisitionTemplatesPage.waitForIsVisible();
             RequisitionTemplatesPage.clickConfigureProgram(template);
             RequisitionTemplatesPage.openTemplateSettingsTab();
+            RequisitionTemplateConfigurationSettingsPage.waitForIsVisible();
             RequisitionTemplateConfigurationSettingsPage.removeFacilityType(facility);
             RequisitionTemplateConfigurationSettingsPage.save();
             RequisitionTemplateConfigurationSettingsPage.confirmSave();

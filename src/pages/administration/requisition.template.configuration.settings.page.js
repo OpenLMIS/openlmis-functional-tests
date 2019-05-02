@@ -34,6 +34,7 @@ class RequisitionTemplateConfigurationSettingsPage extends Page {
      * Removes facility type from the table.
      */
     removeFacilityType(facilityTypeName) {
+        this.waitForTable();
         this.facilityTypesTable.click([facilityTypeName], 'Remove', 'Action');
     }
 
@@ -98,6 +99,14 @@ class RequisitionTemplateConfigurationSettingsPage extends Page {
         }).execute();
         this.addFacilityTypeButton.click();
     }
+
+    /**
+     * Wait for the table to be visible.
+     */
+    waitForTable() {
+        waitForVisible('//table/tbody/tr/td');
+    }
+
 }
 
 export default new RequisitionTemplateConfigurationSettingsPage();

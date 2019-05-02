@@ -130,10 +130,12 @@ class RequisitionTemplatesPage extends Page {
      */
     clearAllTagSelections() {
         const tags = browser.elements('//table//select[@id="tag"]').value;
-        for (let tag in tags) {
-            this.scrollToTags(tag);
-            this.clearTagSelection(0);
-        }
+        new Action(() => {
+            for (let tag in tags) {
+                this.scrollToTags(tag);
+                this.clearTagSelection(0);
+            }
+        }).execute();
     }    
 
     /**
