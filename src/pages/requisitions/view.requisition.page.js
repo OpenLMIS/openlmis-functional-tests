@@ -520,6 +520,10 @@ class ViewRequisitionPage extends Page {
         scroll('top');
     }
 
+    scrollToTheRightOfTable() {	
+        tableHorizontalScroll('right');	
+    }
+
     getInputSelector(product, columnNumber) {
         return `//td[normalize-space(text())='${product}']/parent::tr/td[position()='${columnNumber + 1}']/div/input`;
     }
