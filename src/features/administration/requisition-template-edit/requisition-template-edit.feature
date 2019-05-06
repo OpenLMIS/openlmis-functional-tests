@@ -62,7 +62,7 @@ Feature: Requisition template edition
     And I should see option "consumed" in rows "B,C,D"
     And I should see option "credit" in rows "B,C,D"
     And I should see option "debit" in rows "B,C,D"
-    And I should see option "received" in rows "B,C,D"
+    And I should see option "transfer" in rows "B,C,D"
     And I should see option "received" in rows "B,C,D"
 
   Scenario: Administrator should see tag options to select for EPI
@@ -77,10 +77,10 @@ Feature: Requisition template edition
     And I should see option "consumed" in rows "B,C,D"
     And I should see option "credit" in rows "B,C,D"
     And I should see option "debit" in rows "B,C,D"
-    And I should see option "received" in rows "B,C,D"
+    And I should see option "transfer" in rows "B,C,D"
     And I should see option "received" in rows "B,C,D"
 
-  Scenario: Administrator should not be allowed to set two select one option twice
+  Scenario: Administrator should not be allowed to set the same tag options twice
     Given I have navigated to the requisition templates page
 
     When I select "EPI" program for configuration
@@ -90,7 +90,7 @@ Feature: Requisition template edition
     And I set tag in row "B" to be "adjustment"
     Then I should not see option "adjustment" in rows "C,D"
 
-  Scenario: Administrator should see "Column tag cannot be empty" error messages if any tag is not selected
+  Scenario: Administrator should see "Column tag cannot be empty" error messages if no tag is selected
     Given I have navigated to the requisition templates page
 
     When I select "EPI" program for configuration
