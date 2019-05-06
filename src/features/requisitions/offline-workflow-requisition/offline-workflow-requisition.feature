@@ -20,10 +20,10 @@ Feature: Offline requisition workflow
     When I go to view requisition screen
     And I search for my requisitions in "Nandumbo Health Center" facility
     Then I should see requisition table
-    And I should be able to see check icon for "Family Planning" program and "Apr2019" period in the "Offline" column
+    And I should be able to see check icon for "Family Planning" program and "May2019" period in the "Offline" column
     And I should be able to see "Remove Offline Requisition" button
 
-    When I select requisition for program "Family Planning" and period "Apr2019"
+    When I select requisition for program "Family Planning" and period "May2019"
     Then I should be brought to the product grid screen
     And I should be able to see the input value of "Requested quantity" column for "Abortiva" product equal to "10"
     And I should be able to see the input value of "Requested quantity explanation" column for "Abortiva" product equal to "test"
