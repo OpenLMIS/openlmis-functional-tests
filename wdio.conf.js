@@ -86,7 +86,7 @@ exports.config = {
         chromeOptions: {
           args: [
             '--disable-infobars',
-            '--window-size=1600,900',
+            '--window-size=1920,1080',
             '--no-sandbox',
             '--disable-gpu',
             '--disable-setuid-sandbox',
