@@ -83,6 +83,16 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'chrome',
+        chromeOptions: {
+          args: [
+            '--disable-infobars',
+            '--window-size=1600,900',
+            '--no-sandbox',
+            '--disable-gpu',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage'
+          ]
+        },
         proxy,
     }],
     //
@@ -231,11 +241,6 @@ exports.config = {
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
-
-        browser.windowHandleSize({
-            width: 1600,
-            height: 900
-        });
     },
     //
     // Hook that gets executed before the suite starts
