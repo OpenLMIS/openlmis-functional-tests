@@ -93,6 +93,7 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
 
+        this.scrollToSelector(selector);
         return browser.element(selector).getValue();
     }
 

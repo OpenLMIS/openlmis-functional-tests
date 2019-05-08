@@ -32,6 +32,9 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         Then I should get an error message
 
         When I click on the "Close" button
+        And I set "Requested quantity explanation" as "test" for "Syringe 0.5ml" product
+        And I set "Requested quantity explanation" as "test" for "Syringe 5ml" product
+        And I set "Requested quantity explanation" as "test" for "VAT" product
         And I go to the "1" page
         And I set "Requested quantity explanation" as "test" for "BCG" product
         And I set "Requested quantity explanation" as "test" for "IPV" product
@@ -43,10 +46,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity explanation" as "test" for "Rotavirus" product
         And I set "Requested quantity explanation" as "test" for "Safety Box" product
         And I set "Requested quantity explanation" as "test" for "Syringe 0.05ml" product
-        And I go to the "2" page
-        And I set "Requested quantity explanation" as "test" for "Syringe 0.5ml" product
-        And I set "Requested quantity explanation" as "test" for "Syringe 5ml" product
-        And I set "Requested quantity explanation" as "test" for "VAT" product
+        
         And I click on the "Submit & Authorize" button
         And I confirm the submit
         Then I should see a successful notification saying "Requisition has been submitted!"
