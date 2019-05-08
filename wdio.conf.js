@@ -233,8 +233,8 @@ exports.config = {
         global.should = chai.should();
 
         browser.windowHandleSize({
-            width: 1366,
-            height: 768
+            width: 1920,
+            height: 1080
         });
     },
     //
