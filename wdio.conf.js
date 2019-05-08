@@ -232,7 +232,10 @@ exports.config = {
         global.assert = chai.assert;
         global.should = chai.should();
 
-
+        browser.windowHandleSize({
+            width: 1366,
+            height: 768
+        });
     },
     //
     // Hook that gets executed before the suite starts
