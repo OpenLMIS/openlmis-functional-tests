@@ -71,7 +71,7 @@ class ViewRequisitionsPage extends Page {
      * @param {String} dateInitiated  Date initiated.
      */
     viewRequisitionWithDateInitiated(program, period, dateInitiated) {
-        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, dateInitiated], 'View Requisition');
+        this.viewRequisitionsTable.click([program, undefined, period, undefined, undefined, dateInitiated], 'View Requisition', 'Actions', false);
     }
 
     /**
