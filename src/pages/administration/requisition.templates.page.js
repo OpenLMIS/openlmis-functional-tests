@@ -135,7 +135,7 @@ class RequisitionTemplatesPage extends Page {
                 this.scrollToTags(tag);
                 this.clearTagSelection(0);
             }
-        }).execute();
+        }, false).execute();
     }    
 
     /**
