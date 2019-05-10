@@ -23,6 +23,7 @@ defineSupportCode(({ Given }) => {
     Given(
         /^I have logged out$/,
         () => {
+            ViewRequisitionPage.scrollToTop();
             HomePage.clickLogout();
             LoginPage.waitForIsVisible();
         }
