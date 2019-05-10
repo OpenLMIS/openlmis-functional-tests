@@ -24,21 +24,45 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with empty Requested quant
         When I navigate to approve requisitions screen
         And I select requisition for "EPI" program and "Feb2017" period for approve requisitions
         Then I should be brought to the product grid screen
+
         And I should be able to see the input value for "Approved quantity" column for "BCG" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "BCG" product
+
         And I should be able to see the input value for "Approved quantity" column for "IPV" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "IPV" product
+
         And I should be able to see the input value for "Approved quantity" column for "Measles" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Measles" product
+
         And I should be able to see the input value for "Approved quantity" column for "PCV10" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "PCV10" product
+
         And I should be able to see the input value for "Approved quantity" column for "Pentavalent (1 dose)" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Pentavalent (1 dose)" product
+
         And I should be able to see the input value for "Approved quantity" column for "Pentavalent (10 dose)" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Pentavalent (10 dose)" product
+
         And I should be able to see the input value for "Approved quantity" column for "Polio (20 dose)" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Polio (20 dose)" product
+
         And I should be able to see the input value for "Approved quantity" column for "Rotavirus" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Rotavirus" product
+
         And I should be able to see the input value for "Approved quantity" column for "Safety Box" product equal to "Calc Order Qty ISA" column
+
         And I should be able to see the input value for "Approved quantity" column for "Syringe 0.05ml" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.05ml" product
 
         When I go to the "2" page
         Then I should be able to see the input value for "Approved quantity" column for "Syringe 0.5ml" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.5ml" product
+
         And I should be able to see the input value for "Approved quantity" column for "Syringe 5ml" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 5ml" product
+
         And I should be able to see the input value for "Approved quantity" column for "VAT" product equal to "Calc Order Qty ISA" column
+        And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "VAT" product
 
         When I go to the "1" page
         And I set "Approved quantity" as "50" for "Safety Box" product
