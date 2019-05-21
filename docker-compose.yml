@@ -8,6 +8,7 @@ services:
     image: openlmis/bzt-yarn
     environment:
       BMP_PRESENT: 'true' # for our wdio.conf.js
+      DISPLAY_ID: '1001'
     volumes:
       - './:/bzt-configs'
       - './build/bzt-artifacts:/tmp/artifacts'

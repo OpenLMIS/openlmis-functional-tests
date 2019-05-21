@@ -294,7 +294,7 @@ exports.config = {
         let scenarioRecordingName = `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`
         recording = recordScreen(scenarioRecordingName, {
             resolution: '1920x1080', // Display resolution
-            display: '1001',
+            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : '0',
             fps: 60
         })
         recording.scenarioRecordingName = scenarioRecordingName;
