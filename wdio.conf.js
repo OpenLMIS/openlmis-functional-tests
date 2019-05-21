@@ -5,11 +5,15 @@ const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
 const features = glob.sync('src/features/**/*.feature');
+const recordScreen = require('record-screen');
+const fs = require('fs-extra');
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
 const bmpPresent = process.env.BMP_PRESENT;
+const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 
+let recording;
 let proxy = null;
 let beforeScenario = () => { };
 if (bmpPresent) {
@@ -118,7 +122,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
-    baseUrl: 'https://functional-test.openlmis.org',
+    baseUrl: 'https://test.openlmis.org',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -241,6 +245,12 @@ exports.config = {
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
+
+        if (fs.existsSync(recordingsDir)) {
+            fs.removeSync(recordingsDir);
+        }
+        fs.mkdirSync(recordingsDir);
+
     },
     //
     // Hook that gets executed before the suite starts
@@ -278,7 +288,39 @@ exports.config = {
     // Hook that gets executed after the suite has ended
     // afterSuite: function afterSuite(suite) {
     // },
-    beforeScenario,
+    beforeScenario: (scenario) => {
+        beforeScenario(scenario);
+
+        let scenarioRecordingName = `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`
+        recording = recordScreen(scenarioRecordingName, {
+            resolution: '1920x1080', // Display resolution
+            display: '1001',
+            fps: 60
+        })
+        recording.scenarioRecordingName = scenarioRecordingName;
+        recording.isRecording = true;
+
+        recording.promise
+            .then(result => {
+                process.stdout.write(result.stdout)
+                process.stderr.write(result.stderr)
+            })
+            .catch(error => console.error(error))
+    },
+
+    afterStep: (stepResults) => {
+        if (stepResults !== 'passed') {
+            recording.shouldKeep = true;
+        }
+    },
+
+    afterScenario: () => {
+        recording.stop();
+
+        if (!recording.shouldKeep) {
+            fs.unlinkSync(recording.scenarioRecordingName)
+        }
+    }
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
