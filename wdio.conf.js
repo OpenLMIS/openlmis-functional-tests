@@ -13,9 +13,9 @@ const fs = require('fs-extra');
 const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 
-let recording;
+let recordings = {};
 let proxy = null;
-let beforeScenario = () => { };
+let beforeScenario = () => {};
 if (bmpPresent) {
     proxy = {
         proxyType: 'MANUAL',
@@ -38,6 +38,8 @@ if (bmpPresent) {
         });
     };
 }
+
+const getRecordingName = (scenario) => `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`;
 
 // wdio config
 exports.config = {
@@ -230,8 +232,12 @@ exports.config = {
     // resolved to continue.
     //
     // Gets executed once before all workers get launched.
-    // onPrepare: function onPrepare(config, capabilities) {
-    // },
+    onPrepare: function onPrepare() {
+        if (fs.existsSync(recordingsDir)) {
+            fs.removeSync(recordingsDir);
+        }
+        fs.mkdirSync(recordingsDir);
+    },
     //
     // Gets executed before test execution begins. At this point you can access
     // all global variables, such as `browser`. It is the perfect place to
@@ -245,12 +251,6 @@ exports.config = {
         global.expect = chai.expect;
         global.assert = chai.assert;
         global.should = chai.should();
-
-        if (fs.existsSync(recordingsDir)) {
-            fs.removeSync(recordingsDir);
-        }
-        fs.mkdirSync(recordingsDir);
-
     },
     //
     // Hook that gets executed before the suite starts
@@ -291,16 +291,15 @@ exports.config = {
     beforeScenario: (scenario) => {
         beforeScenario(scenario);
 
-        let scenarioRecordingName = `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`
-        recording = recordScreen(scenarioRecordingName, {
+        let scenarioRecordingName = getRecordingName(scenario);
+
+        recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
             resolution: '1920x1080', // Display resolution
             display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : '0',
             fps: 60
-        })
-        recording.scenarioRecordingName = scenarioRecordingName;
-        recording.isRecording = true;
+        });
 
-        recording.promise
+        recordings[scenarioRecordingName].promise
             .then(result => {
                 process.stdout.write(result.stdout)
                 process.stderr.write(result.stderr)
@@ -309,17 +308,21 @@ exports.config = {
     },
 
     afterStep: (stepResults) => {
-        if (stepResults !== 'passed') {
-            recording.shouldKeep = true;
+        if (stepResults.status !== 'passed') {
+            let scenarioRecordingName = getRecordingName(stepResults.step.scenario);
+            recordings[scenarioRecordingName].shouldKeep = true;
         }
     },
 
-    afterScenario: () => {
-        recording.stop();
+    afterScenario: (scenario) => {
+        let scenarioRecordingName = getRecordingName(scenario);
+        recordings[scenarioRecordingName].stop();
 
-        if (!recording.shouldKeep) {
-            fs.unlinkSync(recording.scenarioRecordingName)
+        if (!recordings[scenarioRecordingName].shouldKeep) {
+            fs.unlinkSync(scenarioRecordingName);
         }
+
+        delete recordings[scenarioRecordingName];
     }
     //
     // Gets executed after all tests are done. You still have access to all
