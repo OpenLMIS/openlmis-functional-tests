@@ -46,14 +46,14 @@ class RequisitionTemplatesPage extends Page {
      */
     isFacilityTypePresentInDropdown(facilityTypeName) {
         return browser.element(`//li[normalize-space(text())='${facilityTypeName}']`).isVisible();
-    }    
+    }
 
     /**
-     * Check if the option is visible for the row marked with the letter 
+     * Check if the option is visible for the row marked with the letter
      */
     isOptionVisible(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
-        this.scrollToTags(); 
+        this.scrollToTags();
         return browser.element(selector).isVisible();
     }
 
@@ -62,10 +62,10 @@ class RequisitionTemplatesPage extends Page {
      */
     isOptionSelected(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
-        this.scrollToTags(); 
+        this.scrollToTags();
         waitForVisible(selector);
         return browser.element(selector).isVisible();
-    }    
+    }
 
     /**
      * Check if any tag option is present in the dropdown.
@@ -79,12 +79,12 @@ class RequisitionTemplatesPage extends Page {
      */
     selectOptionForTag(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
-        this.scrollToTags(); 
+        this.scrollToTags();
         browser.element(selector).click();
-    }   
+    }
 
     /**
-     * Clear tag selection by the tag index.  
+     * Clear tag selection by the tag index.
      */
     clearTagSelection(tagIndex) {
         new Action(() => {
@@ -92,7 +92,7 @@ class RequisitionTemplatesPage extends Page {
             browser
                 .element(this.getTagClearSelector(tagIndex))
                 .click();
-        }).execute();
+        }, false).execute();
     }
 
     /**
@@ -104,7 +104,7 @@ class RequisitionTemplatesPage extends Page {
             selector += `:eq(${tagIndex})`;
         }
         browser.execute((selector) => $(selector).parent().focus(), selector);
-        browser.execute(() => window.scrollBy(0, 100));      
+        browser.execute(() => window.scrollBy(0, 100));
     }
 
     /**
@@ -136,7 +136,7 @@ class RequisitionTemplatesPage extends Page {
                 this.clearTagSelection(0);
             }
         }, false).execute();
-    }    
+    }
 
     /**
      * Get tag 'select' element selector by tag index.
@@ -163,7 +163,7 @@ class RequisitionTemplatesPage extends Page {
      * Get selector of the select option for a tag in the row marked with the letter.
      */
     getSelectOptionForTagSelector(letter, option) {
-        return getSelectDropdownSelectorInTable([undefined, undefined, letter], "Additional Options") + 
+        return getSelectDropdownSelectorInTable([undefined, undefined, letter], "Additional Options") +
             `//parent::select//option[text()="${option}"]`;
     }
 }
