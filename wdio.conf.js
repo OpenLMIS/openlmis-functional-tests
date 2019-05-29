@@ -11,9 +11,14 @@ const fs = require('fs-extra');
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
 const bmpPresent = process.env.BMP_PRESENT;
-const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
+const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR
+    : 'build/recordings';
+const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR
+    : 'build/consolelogs';
 
+const SOME_FEATURE_TESTS_FAILED = 1;
 let recordings = {};
+let consoleLogs = [];
 let proxy = null;
 let beforeScenario = () => {};
 if (bmpPresent) {
@@ -40,6 +45,7 @@ if (bmpPresent) {
 }
 
 const getRecordingName = (scenario) => `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`;
+const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
 
 // wdio config
 exports.config = {
@@ -124,7 +130,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
-    baseUrl: 'https://functional-test.openlmis.org',
+    baseUrl: 'https://test.openlmis.org',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -236,8 +242,12 @@ exports.config = {
         if (fs.existsSync(recordingsDir)) {
             fs.removeSync(recordingsDir);
         }
+        if (fs.existsSync(consoleLogDir)) {
+            fs.removeSync(consoleLogDir);
+        }
         fs.mkdirSync(recordingsDir);
-    },
+        fs.mkdirSync(consoleLogDir);
+      },
     //
     // Gets executed before test execution begins. At this point you can access
     // all global variables, such as `browser`. It is the perfect place to
@@ -301,8 +311,8 @@ exports.config = {
 
         recordings[scenarioRecordingName].promise
             .then(result => {
-                process.stdout.write(result.stdout)
-                process.stderr.write(result.stderr)
+                process.stdout.write(result.stdout);
+                process.stderr.write(result.stderr);
             })
             .catch(error => console.error(error))
     },
@@ -312,23 +322,47 @@ exports.config = {
             let scenarioRecordingName = getRecordingName(stepResults.step.scenario);
             recordings[scenarioRecordingName].shouldKeep = true;
         }
+
+        let scenario = stepResults.step.scenario;
+        const logs = browser.log('browser');
+        logs.value.forEach(log => {
+            consoleLogs.push({
+                scenario: scenario,
+                stepName: stepResults.step.name,
+                date: new Date(log.timestamp).toLocaleString(),
+                message: log.message,
+            });
+        });
     },
 
     afterScenario: (scenario) => {
         let scenarioRecordingName = getRecordingName(scenario);
         recordings[scenarioRecordingName].stop();
-
         if (!recordings[scenarioRecordingName].shouldKeep) {
             fs.unlinkSync(scenarioRecordingName);
         }
 
         delete recordings[scenarioRecordingName];
-    }
+    },
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
-    // after: function after(result, capabilities, specs) {
-    // },
+    after: function after(result, capabilities, specs) {
+        if (result === SOME_FEATURE_TESTS_FAILED) {
+
+            let stringLogs = consoleLogs.map(log => {
+                return `[${log.date}] [${log.scenario.name}][${log.stepName}]: ${log.message}`;
+            });
+
+            let featureLogFileName = getConsoleLogFileName(consoleLogs[0].scenario);
+            fs.writeFile(featureLogFileName, stringLogs.join('\n\n'), function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+            });
+        }
+
+    },
     //
     // Gets executed after all workers got shut down and the process is about to
     // exit. It is not possible to defer the end of the process using a promise.
