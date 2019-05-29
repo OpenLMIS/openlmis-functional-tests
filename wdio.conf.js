@@ -11,16 +11,19 @@ const fs = require('fs-extra');
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
 const bmpPresent = process.env.BMP_PRESENT;
-const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR
-    : 'build/recordings';
-const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR
-    : 'build/consolelogs';
-
+const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
+const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
 const SOME_FEATURE_TESTS_FAILED = 1;
+const DEFAULT_DISPLAY_ID = '0';
+
+const getRecordingName = (feature) => `${recordingsDir}/${feature.name}.mp4`;
+const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
+
 let recordings = {};
 let consoleLogs = [];
 let proxy = null;
 let beforeScenario = () => {};
+
 if (bmpPresent) {
     proxy = {
         proxyType: 'MANUAL',
@@ -44,8 +47,6 @@ if (bmpPresent) {
     };
 }
 
-const getRecordingName = (scenario) => `${recordingsDir}/${scenario.feature.name} - ${scenario.name}.mp4`;
-const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
 
 // wdio config
 exports.config = {
@@ -198,7 +199,7 @@ exports.config = {
         // <boolean> invoke formatters without executing steps
         // dryRun: false,
         // <boolean> abort the run on first failure
-        failFast: false,
+        failFast: true,
         // <boolean> Enable this config to treat undefined definitions as
         // warnings
         ignoreUndefinedDefinitions: false,
@@ -298,14 +299,14 @@ exports.config = {
     // Hook that gets executed after the suite has ended
     // afterSuite: function afterSuite(suite) {
     // },
-    beforeScenario: (scenario) => {
-        beforeScenario(scenario);
+    beforeScenario,
 
-        let scenarioRecordingName = getRecordingName(scenario);
+    beforeFeature: (feature) => {
+        let scenarioRecordingName = getRecordingName(feature);
 
         recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
             resolution: '1920x1080', // Display resolution
-            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : '0',
+            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : DEFAULT_DISPLAY_ID,
             fps: 60
         });
 
@@ -317,9 +318,20 @@ exports.config = {
             .catch(error => console.error(error))
     },
 
+    afterFeature: (feature) => {
+        let scenarioRecordingName = getRecordingName(feature);
+        recordings[scenarioRecordingName].stop();
+        if (!recordings[scenarioRecordingName].shouldKeep) {
+            fs.unlinkSync(scenarioRecordingName);
+        }
+
+        delete recordings[scenarioRecordingName];
+    },
+
     afterStep: (stepResults) => {
         if (stepResults.status !== 'passed') {
-            let scenarioRecordingName = getRecordingName(stepResults.step.scenario);
+            //console.log(stepResults.step.scenario.feature);
+            let scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
             recordings[scenarioRecordingName].shouldKeep = true;
         }
 
@@ -335,15 +347,6 @@ exports.config = {
         });
     },
 
-    afterScenario: (scenario) => {
-        let scenarioRecordingName = getRecordingName(scenario);
-        recordings[scenarioRecordingName].stop();
-        if (!recordings[scenarioRecordingName].shouldKeep) {
-            fs.unlinkSync(scenarioRecordingName);
-        }
-
-        delete recordings[scenarioRecordingName];
-    },
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.

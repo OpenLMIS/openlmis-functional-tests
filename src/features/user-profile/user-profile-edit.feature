@@ -1,4 +1,4 @@
-Feature: User Profile
+Feature: User Profile Edit
 
     Background:
         Given I have logged with username "vnurse1" and password "password"
