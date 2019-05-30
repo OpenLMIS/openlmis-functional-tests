@@ -1,7 +1,7 @@
 import Modal from '../../components/modal';
 import Table from '../../components/table';
 
-//We add 1 ass the position starts with 1 instead of 0 as index does
+//We add 1 as the position starts with 1 instead of 0 as index does
 const toPosition = index => index + 1;
 
 /**
