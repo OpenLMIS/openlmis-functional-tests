@@ -1,6 +1,9 @@
 import Modal from '../../components/modal';
 import Table from '../../components/table';
 
+//We add 1 ass the position starts with 1 instead of 0 as index does
+const toPosition = index => index + 1;
+
 /**
  * Product Add Modal object represents the related view in OpenLMIS UI.
  */
@@ -35,12 +38,17 @@ class PhysicalInventoryProductAddModal extends Modal {
     }
 
     getTableInputSelector(code, columnNumber) {
-        return `//td[normalize-space(text())='${code}']/parent::tr/td[position()='${columnNumber}']/div/input`;
+        return '//*[contains(@class,\'modal\')]'
+            `/td[normalize-space(text())='${code}']` +
+            `/parent::tr` +
+            `/td[position()='${toPosition(columnNumber)}']` +
+            '/div' +
+            '/input';
     }
 
     getColumnId(columnName) {
         return browser
-            .execute(name => $(`th:contains('${name}')`).index(), columnName)
+            .execute(name => $(`.modal th:contains('${name}')`).index(), columnName)
             .value;
     }
 }
