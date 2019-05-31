@@ -38,8 +38,8 @@ class PhysicalInventoryProductAddModal extends Modal {
     }
 
     getTableInputSelector(code, columnNumber) {
-        return '//*[contains(@class,\'modal\')]'
-            `/td[normalize-space(text())='${code}']` +
+        return '//*[contains(@class,\'modal\')]' +
+            `/descendant::td[normalize-space(text())='${code}']` +
             `/parent::tr` +
             `/td[position()='${toPosition(columnNumber)}']` +
             '/div' +
