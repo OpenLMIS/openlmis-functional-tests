@@ -1,6 +1,7 @@
 import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
+import ViewRequisitionsPage from '../../../pages/requisitions/view.requisitions.page';
 import InitiateRequisitionPage from '../../../pages/requisitions/initiate.requisition.page';
 import PhysicalInventoryPage from '../../../pages/stock-management/physical-inventory.page';
 import PhysicalInventoryProductAddModal from '../../../pages/stock-management/physical-inventory-product.add.modal';
