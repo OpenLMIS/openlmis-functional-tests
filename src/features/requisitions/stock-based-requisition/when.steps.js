@@ -49,4 +49,9 @@ defineSupportCode(({ When }) => {
         /^I skip printing the physical inventory$/,
         () => PhysicalInventoryPage.cancelPrintModal()
     );
+
+    When(
+        /^I select a "([^"]*)?" facility$/,
+        facility => ViewRequisitionsPage.searchForFacility(facility)
+    );
 });

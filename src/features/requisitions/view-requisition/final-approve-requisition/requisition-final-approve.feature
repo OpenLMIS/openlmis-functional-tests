@@ -4,6 +4,14 @@ Feature: Final approving and rejecting Requisitions
     Given I have logged with username "psupervisor" and password "password"
 
     When I proceed to requisition for "Lilongwe Health Center" facility, "ARV" program, "Apr2017" period and "In approval" status
+    And I set "Approved quantity" as empty for "ARV0001" product
+    Then I should see the auto-saving spinner
+
+    When I click on the "Approve" button
+    And I confirm the approval
+    Then I should get an error message
+
+    When I click on the "Close" button
     And I set "Approved quantity" as "30" for "ARV0001" product
     And I set "Remarks" as "ok" for "ARV0001" product
     And I click on the "Approve" button

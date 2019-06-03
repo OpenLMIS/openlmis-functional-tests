@@ -54,4 +54,9 @@ defineSupportCode(({ Then }) => {
         /^I should not be able to edit the requisition$/,
         () => expect(ViewRequisitionPage.checkIfIsEditable()).to.equal(false)
     );
+
+    Then(
+        /^I should not see "([^"]*)?" line item$/,
+        lineItem => ViewRequisitionPage.checkIfLineItemIsHidden(lineItem)
+    );
 });

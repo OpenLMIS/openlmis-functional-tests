@@ -32,4 +32,9 @@ defineSupportCode(({ When }) => {
             ViewRequisitionPage.proceedToRequisition(status)
         }
     );
+
+    When(
+        /^I click delete button for requisition line item with "([^"]*)?" code$/,
+        (product) => ViewRequisitionPage.clickHideLineItemButton(product)
+    );
 });

@@ -9,14 +9,16 @@ Feature: Adding comment to requisition
     Then I should see the text area to enter the requisition comment
 
     When I enter "This looks good to me" as a comment
-    And I click on the "Submit" button
+    Then I should see the auto-saving spinner
+
+    When I click on the "Submit" button
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
     And I log out
 
   Scenario: Store Manager should be able to see comment added when submitting requisition
     Given I have logged with username "smanager4" and password "password"
-    
+
     When I proceed to requisition for "Family Planning" program with "Submitted" status
     Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
@@ -30,7 +32,9 @@ Feature: Adding comment to requisition
     Then I should see the text area to enter the requisition comment
 
     When I enter "This looks good to me" as a comment
-    And I click on the "Authorize" button
+    Then I should see the auto-saving spinner
+
+    When I click on the "Authorize" button
     And I confirm the authorize
     Then I should see a successful notification saying "Requisition has been authorized!"
     And I log out
@@ -57,7 +61,9 @@ Feature: Adding comment to requisition
     Then I should see the text area to enter the requisition comment
 
     When I enter "This does not look good to me" as a comment
-    And I click on the "Reject" button
+    Then I should see the auto-saving spinner
+
+    When I click on the "Reject" button
     And I confirm the reject
     Then I should see a successful notification saying "Requisition has been rejected!"
     And I should be redirected to approve requisitions screen
@@ -65,7 +71,7 @@ Feature: Adding comment to requisition
 
   Scenario: Storeroom Manager should be able to see comment added when rejecting requisition
     Given I have logged with username "srmanager4" and password "password"
-    
+
     When I proceed to requisition for "Family Planning" program with "Rejected" status
     Then I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho"
     And I should not be able to edit any saved requisition comment
@@ -81,14 +87,16 @@ Feature: Adding comment to requisition
     Then I should see the text area to enter the requisition comment
 
     When I enter "I reduced the quantities" as a comment
-    And I click on the "Submit" button
+    Then I should see the auto-saving spinner
+
+    When I click on the "Submit" button
     And I confirm the submit
     Then I should see a successful notification saying "Requisition has been submitted!"
     And I log out
 
   Scenario: Store Manager should be able to see comment added when re-submitting requisition
     Given I have logged with username "smanager4" and password "password"
-    
+
     When I proceed to requisition for "Family Planning" program with "Submitted" status
     Then I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo"
     And I should not be able to edit any saved requisition comment
@@ -105,10 +113,12 @@ Feature: Adding comment to requisition
     Then I should see the text area to enter the requisition comment
 
     When I enter "Looks better now" as a comment
-    And I click on the "Authorize" button
+    Then I should see the auto-saving spinner
+
+    When I click on the "Authorize" button
     And I confirm the authorize
     Then I should see a successful notification saying "Requisition has been authorized!"
-    And I log out    
+    And I log out
 
   Scenario: District Store Manager should be able to see comment added when re-authorizing requisition
     Given I have logged with username "dsrmanager" and password "password"
@@ -134,9 +144,11 @@ Feature: Adding comment to requisition
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "Looks better - I'm approving it" as a comment
-    And I set "Approved quantity" as "7" for "Levora" product
-    And I click on the "Approve" button
+    When I set "Approved quantity" as "7" for "Levora" product
+    And I enter "Looks better - I'm approving it" as a comment
+    Then I should see the auto-saving spinner
+
+    When I click on the "Approve" button
     And I confirm the approval
     Then I should see a successful notification saying "Requisition has been approved!"
     And I should be redirected to approve requisitions screen
@@ -167,9 +179,11 @@ Feature: Adding comment to requisition
     When I click the Add Comment button
     Then I should see the text area to enter the requisition comment
 
-    When I enter "Sending this to CMST" as a comment
-    And I set "Approved quantity" as "7" for "Levora" product
-    And I click on the "Approve" button
+    When I set "Approved quantity" as "7" for "Levora" product
+    And I enter "Sending this to CMST" as a comment
+    Then I should see the auto-saving spinner
+
+    When I click on the "Approve" button
     And I confirm the approval
     Then I should see a successful notification saying "Requisition has been approved!"
     And I should be redirected to approve requisitions screen

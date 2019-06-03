@@ -35,4 +35,9 @@ defineSupportCode(({ Then }) => {
         }
     );
 
+    Then(
+        /^I should not be able to skip any products$/,
+        () => expect(ViewRequisitionPage.isSkippingProductsNotPossible()).to.equal(true)
+    );
+
 });

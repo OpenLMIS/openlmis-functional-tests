@@ -16,7 +16,7 @@ Feature: Approving and rejecting Requisitions
     When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program and "2018Q1" period
     Then I should not be able to edit the requisition
     And I should not see "Approve" button
-    And I should not see "Reject" button 
+    And I should not see "Reject" button
     And I log out
 
   Scenario: District Store Manager should be able to approve requisition for home facility
@@ -28,12 +28,15 @@ Feature: Approving and rejecting Requisitions
 
     When I select requisition for "Family Planning" program and "2018Q1" period for approve requisitions
     Then I should be brought to the product grid screen
+    And I should not be able to skip any products
 
     When I set "Approved quantity" as "0" for "Levora" product
-    Then I should be able to see the Total requisition cost updated to "$0.00"
+    Then I should see the auto-saving spinner
+    And I should be able to see the Total requisition cost updated to "$0.00"
 
     When I set "Approved quantity" as "12" for "Levora" product
-    Then I should be able to see the Total requisition cost updated to "$5.23"
+    Then I should see the auto-saving spinner
+    And I should be able to see the Total requisition cost updated to "$5.23"
 
     When I click on the "Approve" button
     And I confirm the approval
@@ -65,7 +68,7 @@ Feature: Approving and rejecting Requisitions
 
   Scenario: Storeroom Manager should be able to submit a rejected requisition with new values
     Given I have logged with username "srmanager4" and password "password"
-    
+
     When I proceed to requisition for "Family Planning" program with "Rejected" status
     And I set "Requested quantity" as "200" for "Levora" product
     Then I should be able to see the Total requisition cost updated to "$10.46"
