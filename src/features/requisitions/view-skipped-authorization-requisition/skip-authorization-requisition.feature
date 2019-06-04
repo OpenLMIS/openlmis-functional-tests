@@ -20,35 +20,8 @@ Feature: Skipping the authorization step
         And I confirm the submit
         Then I should see a successful notification saying "Requisition has been submitted!"
 
-    Scenario: Administrator should be able to approve the authorized requisition
-        When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "Apr2017" period for approve requisitions
-        Then I should be brought to the product grid screen
-
-        When I click on the "Approve" button
-        And I confirm the approval
-        Then I should see a successful notification saying "Requisition has been approved!"
-        And I should be redirected to approve requisitions screen
-
-    Scenario: Administrator should be able to convert the approved requisition to order
-        When I navigate to Convert Requisitions to Order screen
-        Then I should be brought to Convert Requisitions to Order screen
-
-        When I select the requisition for "Family Planning" program and "Apr2017" period to convert to order
-        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and "Apr2017" period
-        And I click on the "Convert to Order" button
-        And I confirm the convert
-        Then I should see a successful notification saying "The requisition(s) have been successfully converted to an order(s)"
-
-    Scenario: Administrator should be able to find the previously converted to order requisition in orders view
-        When I navigate to View Orders screen
-        Then I should be brought to View Orders screen
-
-        When I search for "Ntcheu District Warehouse" supplying facility
-        Then I should see order for "Family Planning" program and "Apr2017" period inside the table
-
     Scenario: Administrator should be able to navigate to the released requisition
-        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "Apr2017" period and "Released" status
+        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "Apr2017" period and "Authorized" status
         Then I should be brought to the product grid screen
 
     Scenario: Administrator should be able to turn off the Skipping Authorization Step option
@@ -75,33 +48,6 @@ Feature: Skipping the authorization step
         And I confirm the authorize
         Then I should see a successful notification saying "Requisition has been authorized!"
 
-    Scenario: Administrator should be able to approve the requisition
-        When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "May2017" period for approve requisitions
-        Then I should be brought to the product grid screen
-
-        When I click on the "Approve" button
-        And I confirm the approval
-        Then I should see a successful notification saying "Requisition has been approved!"
-        And I should be redirected to approve requisitions screen
-
-    Scenario: Administrator should be able to convert the approved requisition to order
-        When I navigate to Convert Requisitions to Order screen
-        Then I should be brought to Convert Requisitions to Order screen
-
-        When I select the requisition for "Family Planning" program and "May2017" period to convert to order
-        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and "May2017" period
-        And I click on the "Convert to Order" button
-        And I confirm the convert
-        Then I should see a successful notification saying "The requisition(s) have been successfully converted to an order(s)"
-
-    Scenario: Administrator should be able to find the previously converted to order requisition in orders view
-        When I navigate to View Orders screen
-        Then I should be brought to View Orders screen
-
-        When I search for "Ntcheu District Warehouse" supplying facility
-        Then I should see order for "Family Planning" program and "May2017" period inside the table
-
     Scenario: Administrator should be able to navigate to the released requisition
-        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "May2017" period and "Released" status
+        When I proceed to requisition for "Comfort Health Clinic" facility, "Family Planning" program, "May2017" period and "Authorized" status
         Then I should be brought to the product grid screen
