@@ -103,7 +103,7 @@ Feature: Emergency requisition
         Given I have logged with username "dsrmanager" and password "password"
 
         When I navigate to approve requisitions screen
-        And I select requisition for "Family Planning" program and "2019Q2" period for approve requisitions
+        And I select requisition for "Family Planning" program and current quarterly period for approve requisitions
         Then I should be brought to the product grid screen
         And I should be able to see the Total requisition cost updated to "$411.80"
 
@@ -116,7 +116,7 @@ Feature: Emergency requisition
     Scenario: Program Supervisor should be able to approve the emergency requisition
         Given I have logged with username "psupervisor" and password "password"
 
-        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, "2019Q2" period and "In approval" status
+        When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, current quarterly period and "In approval" status
         And I set "Approved quantity" as "10" for "Abortiva" product
         And I click on the "Approve" button
         And I confirm the approval
@@ -129,8 +129,8 @@ Feature: Emergency requisition
         When I navigate to Convert Requisitions to Order screen
         Then I should be brought to Convert Requisitions to Order screen
 
-        When I select the requisition for "Family Planning" program and "2019Q2" period to convert to order
-        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and "2019Q2" period
+        When I select the requisition for "Family Planning" program and current quarterly period to convert to order
+        And I select "Ntcheu District Warehouse" as the supplying depot for "Family Planning" program and current quarterly period
         And I click on the "Convert to Order" button
         And I confirm the convert
         Then I should see a successful notification saying "The requisition(s) have been successfully converted to an order(s)"

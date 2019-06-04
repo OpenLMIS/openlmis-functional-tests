@@ -3,7 +3,9 @@ import { defineSupportCode } from 'cucumber';
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
 import ViewRequisitionsPage from '../../../../pages/requisitions/view.requisitions.page';
 import ApproveRequisitionsPage from '../../../../pages/requisitions/approve.requisitions.page';
+
 import waitForNotification from '../../../../support/action/waitForNotification';
+import getCurrentQuarterlyPeriodName from '../../../../support/lib/getCurrentQuarterlyPeriodName';
 
 defineSupportCode(({ When }) => {
 
@@ -25,6 +27,15 @@ defineSupportCode(({ When }) => {
     When(
         /^I select requisition for "([^"]*)?" program and "([^"]*)?" period for approve requisitions$/,
         (program, period) => {
+            ApproveRequisitionsPage.waitForRequisition(program, period, false);
+            ApproveRequisitionsPage.viewRequisitionToApprove(program, period);
+        }
+    );
+
+    When(
+        /^I select requisition for "([^"]*)?" program and current quarterly period for approve requisitions$/,
+        (program) => {
+            period = getCurrentQuarterlyPeriodName();
             ApproveRequisitionsPage.waitForRequisition(program, period, false);
             ApproveRequisitionsPage.viewRequisitionToApprove(program, period);
         }

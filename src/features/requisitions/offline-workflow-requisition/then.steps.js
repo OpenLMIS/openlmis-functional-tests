@@ -3,11 +3,18 @@ import { defineSupportCode } from 'cucumber';
 import ViewRequisitionsPage from '../../../pages/requisitions/view.requisitions.page';
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
 
+import getCurrentMonthlyPeriodName from '../../../support/lib/getCurrentMonthlyPeriodName';
+
 defineSupportCode(({ Then }) => {
 
     Then(
         /^I should be able to see check icon for "([^"]*)?" program and "([^"]*)?" period in the "([^"]*)?" column$/,
         (program, period, columnName) => ViewRequisitionsPage.isOfflineCheckboxVisible(program, period, columnName)
+    );
+
+    Then(
+        /^I should be able to see check icon for "([^"]*)?" program and current monthly period in the "([^"]*)?" column$/,
+        (program, columnName) => ViewRequisitionsPage.isOfflineCheckboxVisible(program, getCurrentMonthlyPeriodName(), columnName)
     );
 
     Then(

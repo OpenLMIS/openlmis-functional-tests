@@ -2,6 +2,8 @@ import { defineSupportCode } from 'cucumber';
 
 import ConvertToOrderRequisitionsPage from '../../../../pages/requisitions/convert-to-order.requisitions.page';
 
+import getCurrentQuarterlyPeriodName from '../../../../support/lib/getCurrentQuarterlyPeriodName';
+
 defineSupportCode(({ When }) => {
 
     When(
@@ -17,6 +19,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I select the requisition for "([^"]*)?" program and "([^"]*)?" period to convert to order$/,
         (program, period) => ConvertToOrderRequisitionsPage.selectRequisition(program, period)
+    );
+
+    When(
+        /^I select the requisition for "([^"]*)?" program and current quarterly period to convert to order$/,
+        (program) => ConvertToOrderRequisitionsPage.selectRequisition(program, getCurrentQuarterlyPeriodName())
     );
 
     When(
@@ -37,5 +44,10 @@ defineSupportCode(({ When }) => {
     When(
         /^I select "([^"]*)?" as the supplying depot for "([^"]*)?" program and "([^"]*)?" period$/,
         (supplyingDepot, program, period) => ConvertToOrderRequisitionsPage.addSupplyingDepot(program, period,supplyingDepot)
+    );
+
+    When(
+        /^I select "([^"]*)?" as the supplying depot for "([^"]*)?" program and current quarterly period$/,
+        (supplyingDepot, program) => ConvertToOrderRequisitionsPage.addSupplyingDepot(program, getCurrentQuarterlyPeriodName(), supplyingDepot)
     );
 });

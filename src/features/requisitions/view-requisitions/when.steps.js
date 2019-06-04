@@ -2,6 +2,8 @@ import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionsPage from '../../../pages/requisitions/view.requisitions.page';
 
+import getCurrentMonthlyPeriodName from '../../../support/lib/getCurrentMonthlyPeriodName';
+
 defineSupportCode(({ When }) => {
 
     When(
@@ -17,6 +19,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I select requisition for program "([^"]*)?" and period "([^"]*)?"$/,
         (program, period) => ViewRequisitionsPage.viewRequisition(program, period)
+    );
+
+    When(
+        /^I select requisition for program "([^"]*)?" and current monthly period$/,
+        (program) => ViewRequisitionsPage.viewRequisition(program, getCurrentMonthlyPeriodName())
     );
 
     When(
