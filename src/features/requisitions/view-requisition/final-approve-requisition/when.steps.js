@@ -32,7 +32,7 @@ defineSupportCode(({ When }) => {
             ViewRequisitionsPage.searchForFacility(facility);
             ViewRequisitionsPage.waitForTable();
 
-            period = getCurrentQuarterlyPeriodName();
+            let period = getCurrentQuarterlyPeriodName();
 
             ViewRequisitionsPage.waitForRequisition(program, period, false);
             ViewRequisitionsPage.viewRequisitionWithStatus(program, period, status);

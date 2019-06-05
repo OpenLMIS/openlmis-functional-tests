@@ -35,7 +35,7 @@ defineSupportCode(({ When }) => {
     When(
         /^I select requisition for "([^"]*)?" program and current quarterly period for approve requisitions$/,
         (program) => {
-            period = getCurrentQuarterlyPeriodName();
+            let period = getCurrentQuarterlyPeriodName();
             ApproveRequisitionsPage.waitForRequisition(program, period, false);
             ApproveRequisitionsPage.viewRequisitionToApprove(program, period);
         }
