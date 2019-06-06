@@ -5,5 +5,8 @@ import getFullMonthName from './getFullMonthName';
 */
 module.exports = () => {
     let today = new Date();
-    return `${getFullMonthName(today.getMonth())}${today.getFullYear()}`;
+    let fullMonthName = getFullMonthName(today.getMonth());
+    let shortMonthName = fullMonthName.substring(0, 3);
+
+    return `${shortMonthName}${today.getFullYear()}`;
 }

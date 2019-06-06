@@ -15,8 +15,8 @@ Feature: Authorizing Requisitions
     Then I can set "Total received quantity" as "20" for "ARV0001" product
 
   Scenario: Store manager should not be able to authorize the requisition with Requested quantity explanation column omitted
-    When I set "Requested quantity" as "10" for "ARV0001" product
     When I set "Requested quantity explanation" as empty for "ARV0001" product
+    And I set "Requested quantity" as "10" for "ARV0001" product
     And I click on the "Authorize" button
     And I confirm the authorize
     Then I should get an error message

@@ -42,7 +42,7 @@ Feature: Submit Requisition
     When I click on the "Add Product" button
     Then I should be brought to the add products list page
 
-    When I click on the "Add Product" button
+    When I click on the "Add Products" button
     Then I should get an error message
     And I click on the "Close" button
 

@@ -13,7 +13,7 @@ Feature: Offline requisition workflow
 
     When I set "Requested quantity" as "10" for "Abortiva" product
     And I set "Requested quantity explanation" as "test" for "Abortiva" product
-    And I wait "1" seconds for UI adjustment
+    And I wait "10" seconds for UI adjustment
     And I enable offline mode
     Then the offline indicator should be visible
 
