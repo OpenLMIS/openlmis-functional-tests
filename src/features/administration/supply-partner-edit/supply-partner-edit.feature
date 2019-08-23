@@ -15,27 +15,27 @@ Feature: Supply Partner Edit
         Then I should get an error message
         And I click on the "Close" button
 
-    Scenario: Administrator should not be able to add association if other supply partner supplies the given product
-        When I click on the "Add Association" button
-        And I select "ARV" from the "Program" list
-        And I wait "0.5" seconds for UI adjustment
-        # The following two steps are temporary
-        # because there is only one option to
-        # select and by default the option is selected
-        And I select nothing from the "Supervisory Node" list
-        And I wait "0.5" seconds for UI adjustment
-        And I select "CHAZ Lilongwe sub point" from the "Supervisory Node" list
-        And I wait "0.5" seconds for UI adjustment
-        And I add "Lilongwe Health Center" facility to the association
-        And I add "ARV0004" product to the association
-        And I add "ARV0005" product to the association
-        And I add "ARV0006" product to the association
-        And I add "ARV0007" product to the association
-        And I add the association
-        And I enter "Functional Test Supply Partner Edit" as "Name"
-        And I click on the "Update Supply Partner" button
-        Then I should get an error message
-        And I click on the "Close" button
+#      Scenario: Administrator should not be able to add association if other supply partner supplies the given product
+#          When I click on the "Add Association" button
+#          And I select "ARV" from the "Program" list
+#          And I wait "0.5" seconds for UI adjustment
+#          # The following two steps are temporary
+#          # because there is only one option to
+#          # select and by default the option is selected
+#          And I select nothing from the "Supervisory Node" list
+#          And I wait "0.5" seconds for UI adjustment
+#          And I select "CHAZ Lilongwe sub point" from the "Supervisory Node" list
+#          And I wait "0.5" seconds for UI adjustment
+#          And I add "Lilongwe Health Center" facility to the association
+#          And I add "ARV0004" product to the association
+#          And I add "ARV0005" product to the association
+#          And I add "ARV0006" product to the association
+#          And I add "ARV0007" product to the association
+#          And I add the association
+#          And I enter "Functional Test Supply Partner Edit" as "Name"
+#          And I click on the "Update Supply Partner" button
+#          Then I should get an error message
+#          And I click on the "Close" button
 
     Scenario: Administrator should be able to add a valid association
         When I select association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node for edition
