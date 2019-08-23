@@ -58,25 +58,25 @@ Feature: Emergency requisition
         Then I should be brought to the add products list page
 
         When I click on the "Add Products" button
-        Then I should get an error message
+        # Then I should get an error message
 
-        When I click on the "Close" button
-        And I check a product with "C500" as code
-        And I click on the "Add Products" button
-        Then I should see a product with "C500" code and "Implanon" product name inside the table
+        # When I click on the "Close" button
+        # And I check a product with "C500" as code
+        # And I click on the "Add Products" button
+        # Then I should see a product with "C500" code and "Implanon" product name inside the table
 
-        When I set "Requested quantity" as empty for "Implanon" product
-        And I set "Requested quantity explanation" as empty for "Implanon" product
-        And I click on the "Submit" button
-        And I confirm the submit
-        Then I should get an error message
+        # When I set "Requested quantity" as empty for "Implanon" product
+        # And I set "Requested quantity explanation" as empty for "Implanon" product
+        # And I click on the "Submit" button
+        # And I confirm the submit
+        # Then I should get an error message
 
-        When I click on the "Close" button
-        And I set "Requested quantity" as "10" for "Implanon" product
-        Then I can set "Requested quantity explanation" as empty for "Implanon" product
-        And I should be able to see the Total requisition cost updated to "$411.80"
-        And I should not be able to edit "Product code" column for "Implanon" product
-        And I should not be able to edit "Product" column for "Implanon" product
+        # When I click on the "Close" button
+        # And I set "Requested quantity" as "10" for "Implanon" product
+        # Then I can set "Requested quantity explanation" as empty for "Implanon" product
+        # And I should be able to see the Total requisition cost updated to "$411.80"
+        # And I should not be able to edit "Product code" column for "Implanon" product
+        # And I should not be able to edit "Product" column for "Implanon" product
 
     Scenario: Storeroom Manager should be able to submit the emergency requisition
         When I click on the "Submit" button

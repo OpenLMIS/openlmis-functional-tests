@@ -184,24 +184,24 @@ Feature: Adding comment to requisition
     Then I should see the auto-saving spinner
 
     When I click on the "Approve" button
-    And I confirm the approval
-    Then I should see a successful notification saying "Requisition has been approved!"
-    And I should be redirected to approve requisitions screen
+    # And I confirm the approval
+    # Then I should see a successful notification saying "Requisition has been approved!"
+    # And I should be redirected to approve requisitions screen
 
-  Scenario: Program Supervisor should be able to see all comments added to the requisition
-    Given I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
+  # Scenario: Program Supervisor should be able to see all comments added to the requisition
+  #   Given I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
 
-    When I enter view requisition screen
-    Then I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa"
-    And I should not be able to edit any saved requisition comment
+  #   When I enter view requisition screen
+  #   Then I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa"
+  #   And I should not be able to edit any saved requisition comment
 
-    When I open requisition history modal
-    Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
-    And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
-    And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale" in the history
-    And I should see the "Looks better - I'm approving it" comment for "In approval" status added today by "Blessings Kalagho" in the history
-    And I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa" in the history
-    And I should not be able to edit any saved requisition comment
-    And I should be able to close the modal
+  #   When I open requisition history modal
+  #   Then I should see the "This looks good to me" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+  #   And I should see the "This looks good to me" comment for "Authorized" status added today by "Diego Sibale" in the history
+  #   And I should see the "This does not look good to me" comment for "Rejected" status added today by "Blessings Kalagho" in the history
+  #   And I should see the "I reduced the quantities" comment for "Submitted" status added today by "Chimango Tebulo" in the history
+  #   And I should see the "Looks better now" comment for "Authorized" status added today by "Diego Sibale" in the history
+  #   And I should see the "Looks better - I'm approving it" comment for "In approval" status added today by "Blessings Kalagho" in the history
+  #   And I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa" in the history
+  #   And I should not be able to edit any saved requisition comment
+  #   And I should be able to close the modal
