@@ -6,6 +6,7 @@ import Input from '../../components/input';
 import Checkbox from '../../components/checkbox';
 import Radiobox from '../../components/radiobox';
 import DatePicker from '../../components/date-picker';
+import loadingModal from '../../components/loading-modal';
 
 import homePage from '../../pages/home.page';
 
@@ -86,7 +87,10 @@ defineSupportCode(({ When }) => {
 
     When(
         /^I go to the "([^"]*)?" page$/,
-        pageNumber => new Action(() => switchToPage(pageNumber)).execute()
+        pageNumber => {
+            new Action(() => switchToPage(pageNumber)).execute();
+            loadingModal.waitForHide();
+        }
     );
 
     When(
