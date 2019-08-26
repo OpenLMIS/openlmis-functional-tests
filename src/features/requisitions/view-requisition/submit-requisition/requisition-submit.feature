@@ -6,6 +6,7 @@ Feature: Submit Requisition
 
     When I clear the form
     And I go to the "2" page
+    And I wait "0.5" seconds for UI adjustment
     And I clear the form
     And I go to the "1" page
     And I set "Total received quantity" as "11" for "Levora" product
@@ -42,9 +43,9 @@ Feature: Submit Requisition
     When I click on the "Add Product" button
     Then I should be brought to the add products list page
 
-    When I click on the "Add Products" button
-    Then I should get an error message
-    And I click on the "Close" button
+    # When I click on the "Add Products" button
+    # Then I should get an error message
+    # And I click on the "Close" button
 
     When I check a product with "C500" as code
     And I check a product with "C300" as code

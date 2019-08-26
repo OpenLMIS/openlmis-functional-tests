@@ -18,10 +18,10 @@ Feature: Emergency requisition
         When I click on the "Add Product" button
         Then I should be brought to the add products list page
 
-        When I click on the "Add Products" button
-        Then I should get an error message
+        # When I click on the "Add Products" button
+        # Then I should get an error message
 
-        When I click on the "Close" button
+        # When I click on the "Close" button
         And I check a product with "C101" as code
         And I click on the "Add Products" button
         Then I should see a product with "C101" code and "Abortiva" product name inside the table
@@ -57,10 +57,10 @@ Feature: Emergency requisition
         When I click on the "Add Product" button
         Then I should be brought to the add products list page
 
-        When I click on the "Add Products" button
-        Then I should get an error message
+        # When I click on the "Add Products" button
+        # Then I should get an error message
 
-        When I click on the "Close" button
+        # When I click on the "Close" button
         And I check a product with "C500" as code
         And I click on the "Add Products" button
         Then I should see a product with "C500" code and "Implanon" product name inside the table
