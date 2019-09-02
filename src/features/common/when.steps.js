@@ -88,8 +88,11 @@ defineSupportCode(({ When }) => {
     When(
         /^I go to the "([^"]*)?" page$/,
         pageNumber => {
-            new Action(() => switchToPage(pageNumber)).execute();
-            loadingModal.waitForHide();
+            new Action(() => {
+                switchToPage(pageNumber);
+                loadingModal.waitForHide();
+            }).execute();
+            
         }
     );
 
