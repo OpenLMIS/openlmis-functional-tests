@@ -3,9 +3,9 @@ Feature: Supply Partner Edit
     Scenario: Administrator should not be able to change supply partner code
         Given I have logged with username "administrator" and password "password"
         And I have navigated to the supply partner list page
-        And I created supply partner with code "FTSPE", name "FTSPE", and without associations
+        And I created supply partner with code "FTSP", name "FTSP", and without associations
 
-        When I select "FTSPE" supply partner for edition
+        When I select "FTSP" supply partner for edition
         Then I should be brought to the supply partner edit page
         And The "Code" input should be disabled
 
@@ -56,14 +56,14 @@ Feature: Supply Partner Edit
     #     When I view products for the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
     #     Then I should see "ARV0005" product on the list
     #     Then I should see "ARV0007" product on the list
-        And I click on the "Close" button
+    #     And I click on the "Close" button
 
-    Scenario: Administrator should be able to remove an association
-        When I remove the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
-        And I click on the "Remove Association" button
-        And I click on the "Update Supply Partner" button
-        Then I should be brought to the supply partner list page
+    # Scenario: Administrator should be able to remove an association
+    #     When I remove the association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
+    #     And I click on the "Remove Association" button
+    #     And I click on the "Update Supply Partner" button
+    #     Then I should be brought to the supply partner list page
 
-        When I select "FTSPE" supply partner for edition
-        Then I should be brought to the supply partner edit page
-        And I should not see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
+    #     When I select "FTSP" supply partner for edition
+    #     Then I should be brought to the supply partner edit page
+    #     And I should not see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
