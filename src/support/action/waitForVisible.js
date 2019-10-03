@@ -11,7 +11,7 @@ module.exports = (elem, falseCase) => {
      * Maximum number of milliseconds to wait for
      * @type {Int}
      */
-    const ms = 45000;
+    const ms = 50000;
 
     browser.waitForVisible(elem, ms, !!falseCase);
 };

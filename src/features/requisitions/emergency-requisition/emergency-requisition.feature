@@ -48,6 +48,7 @@ Feature: Emergency requisition
 
         When I set "Requested quantity" as "10" for "Adiuvantia" product
         And I set "Requested quantity explanation" as "test" for "Adiuvantia" product
+        And I wait "5" seconds for UI adjustment
         Then I should be able to see the Total requisition cost updated to "$102.00"
 
     Scenario: Storeroom Manager should be able to add non full supply products
