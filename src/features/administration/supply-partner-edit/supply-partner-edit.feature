@@ -3,9 +3,9 @@ Feature: Supply Partner Edit
     Scenario: Administrator should not be able to change supply partner code
         Given I have logged with username "administrator" and password "password"
         And I have navigated to the supply partner list page
-        And I created supply partner with code "FTSP2", name "FTSP2", and without associations
+        And I created supply partner with code "FTSP", name "FTSP", and without associations
 
-        When I select "FTSP2" supply partner for edition
+        When I select "FTSP" supply partner for edition
         Then I should be brought to the supply partner edit page
         And The "Code" input should be disabled
 
@@ -45,7 +45,7 @@ Feature: Supply Partner Edit
         And I click on the "Update Supply Partner" button
         Then I should be brought to the supply partner list page
 
-        When I select "FTSP2" supply partner for edition
+        When I select "FTSP" supply partner for edition
         Then I should be brought to the supply partner edit page
         And I should see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
 
@@ -64,6 +64,6 @@ Feature: Supply Partner Edit
         And I click on the "Update Supply Partner" button
         Then I should be brought to the supply partner list page
 
-        When I select "FTSP2" supply partner for edition
+        When I select "FTSP" supply partner for edition
         Then I should be brought to the supply partner edit page
         And I should not see association with "ARV" program and "CHAZ Lilongwe sub point" supervisory node
