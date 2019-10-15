@@ -119,7 +119,7 @@ Feature: Emergency requisition
         Given I have logged with username "psupervisor" and password "password"
 
         When I proceed to requisition for "Kankao Health Facility" facility, "Family Planning" program, current quarterly period and "In approval" status
-        And I set "Approved quantity" as "10" for "Abortiva" product
+        # And I set "Approved quantity" as "10" for "Abortiva" product
         And I click on the "Approve" button
         And I confirm the approval
         Then I should see a successful notification saying "Requisition has been approved!"
