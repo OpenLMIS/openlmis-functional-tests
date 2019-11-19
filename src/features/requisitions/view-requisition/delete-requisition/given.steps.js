@@ -7,6 +7,7 @@ import LoginPage from '../../../../pages/login.page';
 
 import waitForNotification from '../../../../support/action/waitForNotification';
 import switchToPage from '../../../../support/action/switchToPage';
+import pause from '../../../../support/action/pause';
 
 defineSupportCode(({ Given }) => {
     Given(
@@ -42,8 +43,10 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.waitForIsVisible();
             
             ViewRequisitionPage.clearForm();
+            pause(4000);
             switchToPage('2');
             ViewRequisitionPage.clearForm();
+            pause(4000);
             switchToPage('1');
 
             ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
