@@ -23,6 +23,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity" as "10" for "Rotavirus" product
         And I set "Requested quantity" as "10" for "Safety Box" product
         And I set "Requested quantity" as "10" for "Syringe 0.05ml" product
+        And I wait "4" seconds for UI adjustment
         And I go to the "2" page
         And I set "Requested quantity" as "10" for "Syringe 0.5ml" product
         And I set "Requested quantity" as "10" for "Syringe 5ml" product
@@ -35,6 +36,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity explanation" as "test" for "Syringe 0.5ml" product
         And I set "Requested quantity explanation" as "test" for "Syringe 5ml" product
         And I set "Requested quantity explanation" as "test" for "VAT" product
+        And I wait "4" seconds for UI adjustment
         And I go to the "1" page
         And I set "Requested quantity explanation" as "test" for "BCG" product
         And I set "Requested quantity explanation" as "test" for "IPV" product
