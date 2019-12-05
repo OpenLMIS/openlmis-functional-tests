@@ -25,6 +25,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity" as "10" for "Syringe 0.05ml" product
         And I wait "4" seconds for UI adjustment
         And I go to the "2" page
+        And I wait "4" seconds for UI adjustment
         And I set "Requested quantity" as "10" for "Syringe 0.5ml" product
         And I set "Requested quantity" as "10" for "Syringe 5ml" product
         And I set "Requested quantity" as "10" for "VAT" product
@@ -38,6 +39,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity explanation" as "test" for "VAT" product
         And I wait "4" seconds for UI adjustment
         And I go to the "1" page
+        And I wait "4" seconds for UI adjustment
         And I set "Requested quantity explanation" as "test" for "BCG" product
         And I set "Requested quantity explanation" as "test" for "IPV" product
         And I set "Requested quantity explanation" as "test" for "Measles" product
@@ -91,6 +93,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.05ml" product
 
         When I go to the "2" page
+        And I wait "4" seconds for UI adjustment
         Then I should be able to see the input value for "Approved quantity" column for "Syringe 0.5ml" product equal to "Requested quantity" column
         And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.5ml" product
 

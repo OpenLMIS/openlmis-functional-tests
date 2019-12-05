@@ -55,6 +55,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with empty Requested quant
         And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.05ml" product
 
         When I go to the "2" page
+        And I wait "4" seconds for UI adjustment
         Then I should be able to see the input value for "Approved quantity" column for "Syringe 0.5ml" product equal to "Calc Order Qty ISA" column
         And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "Syringe 0.5ml" product
 
@@ -65,6 +66,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with empty Requested quant
         And I should be able to see the value for "Calc Order Qty ISA" equal to a difference between "Ideal Stock Amount" and "Stock on hand" columns for "VAT" product
 
         When I go to the "1" page
+        And I wait "4" seconds for UI adjustment
         And I set "Approved quantity" as "50" for "Safety Box" product
         And I click on the "Approve" button
         And I confirm the approval

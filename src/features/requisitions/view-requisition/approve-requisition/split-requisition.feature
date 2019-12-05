@@ -24,6 +24,7 @@ Feature: Splitting requisitions for multiple suppliers
       And I should be able to see the input value of "Approved quantity" column for "Co-trimoxazole 120mg Tablets" product equal to "65"
 
       When I go to the "2" page
+      And I wait "4" seconds for UI adjustment
       Then I should be able to see the input value of "Approved quantity" column for "Efavirenz 50mg" product equal to "45"
       And I should be able to see the input value of "Approved quantity" column for "Lamivudine/Zidovudine 30/60mg (Pead)" product equal to "40"
 
@@ -54,6 +55,7 @@ Feature: Splitting requisitions for multiple suppliers
       And I should be able to see the input value of "Remarks" column for "Co-trimoxazole 120mg Tablets" product equal to "Supplied by other warehouse/partner."
 
       When I go to the "2" page
+      And I wait "4" seconds for UI adjustment
       Then I should be able to see the input value of "Approved quantity" column for "Efavirenz 50mg" product equal to "45"
       And I should be able to see the input value of "Remarks" column for "Lamivudine/Zidovudine 30/60mg (Pead)" product equal to "Supplied by other warehouse/partner."
 

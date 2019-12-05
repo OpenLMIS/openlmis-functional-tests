@@ -9,8 +9,10 @@ defineSupportCode(({ Given }) => {
         () => {     
             ViewRequisitionPage.clearForm();
             switchToPage('2');
+            pause(4000);
             ViewRequisitionPage.clearForm();
             switchToPage('1');
+            pause(4000);
 
             ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
             ViewRequisitionPage.setColumnForProduct('Beginning balance', 'Levora', '26');

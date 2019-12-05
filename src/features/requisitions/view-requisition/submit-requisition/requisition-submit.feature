@@ -6,8 +6,10 @@
 
 #     When I clear the form
 #     And I go to the "2" page
+#     And I wait "4" seconds for UI adjustment
 #     And I clear the form
 #     And I go to the "1" page
+#     And I wait "4" seconds for UI adjustment
 #     And I set "Total received quantity" as "11" for "Levora" product
 #     Then I should see the auto-saving spinner
 

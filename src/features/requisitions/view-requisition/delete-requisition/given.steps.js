@@ -43,11 +43,11 @@ defineSupportCode(({ Given }) => {
             ViewRequisitionPage.waitForIsVisible();
             
             ViewRequisitionPage.clearForm();
-            pause(4000);
             switchToPage('2');
-            ViewRequisitionPage.clearForm();
             pause(4000);
+            ViewRequisitionPage.clearForm();
             switchToPage('1');
+            pause(4000);
 
             ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
             ViewRequisitionPage.setColumnForProduct('Beginning balance', 'Levora', '26');
