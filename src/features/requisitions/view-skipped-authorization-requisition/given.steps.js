@@ -2,6 +2,7 @@ import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
 import switchToPage from '../../../support/action/switchToPage';
+import pause from '../../../../support/action/pause';
 
 defineSupportCode(({ Given }) => {
     Given(
