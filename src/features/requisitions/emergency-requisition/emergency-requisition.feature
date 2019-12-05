@@ -53,6 +53,7 @@ Feature: Emergency requisition
 
     Scenario: Storeroom Manager should be able to add non full supply products
         When I navigate to the Non full supply products tab
+        And I wait "4" seconds for UI adjustment
         Then I should be brought to the non-full supply products list page
 
         When I click on the "Add Product" button
