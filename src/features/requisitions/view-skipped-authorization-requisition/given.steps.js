@@ -2,7 +2,6 @@ import { defineSupportCode } from 'cucumber';
 
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
 import switchToPage from '../../../support/action/switchToPage';
-import pause from '../../../../support/action/pause';
 
 defineSupportCode(({ Given }) => {
     Given(
@@ -10,10 +9,10 @@ defineSupportCode(({ Given }) => {
         () => {     
             ViewRequisitionPage.clearForm();
             switchToPage('2');
-            pause(4000);
+            browser.pause(4000);
             ViewRequisitionPage.clearForm();
             switchToPage('1');
-            pause(4000);
+            browser.pause(4000);
 
             ViewRequisitionPage.setColumnForProduct('Total received quantity', 'Levora', '21');
             ViewRequisitionPage.setColumnForProduct('Beginning balance', 'Levora', '26');
