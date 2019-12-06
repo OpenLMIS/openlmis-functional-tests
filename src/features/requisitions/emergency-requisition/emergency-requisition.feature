@@ -84,7 +84,6 @@ Feature: Emergency requisition
         When I click on the "Submit" button
         And I confirm the submit
         Then I should see a successful notification saying "Requisition has been submitted!"
-        And I log out
 
     Scenario: Storeroom Manager should be able to check whether the total requisition cost is the same as before the requisition's submission
         When I proceed to "Emergency" requisition for "Family Planning" program with "Submitted" status
