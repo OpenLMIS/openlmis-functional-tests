@@ -1,4 +1,4 @@
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import Action from './action';
 
 /**
@@ -25,7 +25,7 @@ export default class Page {
      */
     open() {
         new Action(() => {
-            browser.url(`/#!/${this.uri}`);
+            browser.url(`https://test.openlmis.org`);
             browser.pause(1000);
         }).execute();
     }
@@ -34,7 +34,7 @@ export default class Page {
      * Waits for the page to be visible. The page is considered as loaded once the header is visible.
      */
     waitForIsVisible() {
-        waitForVisible(`//h2[normalize-space(text())="${this.header}"]`);
+        waitForDisplayed(`//h2[normalize-space(text())="${this.header}"]`);
     }
 
     /**
@@ -42,8 +42,8 @@ export default class Page {
      */
     navigateToPage() {
         new Action(() => {
-            browser.element(`//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`).click();
-            browser.element(`//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`).click();
+            browser.$(`//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`).click();
+            browser.$(`//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`).click();
         }).execute();
     }
 }

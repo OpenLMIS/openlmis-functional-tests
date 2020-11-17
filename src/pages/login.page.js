@@ -1,5 +1,5 @@
 import Page from '../components/page';
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import Action from '../components/action';
 import Button from '../components/button';
 
@@ -22,7 +22,7 @@ class LoginPage extends Page {
      * Get the Username input
      */
     get username() {
-        return browser.element('#login-username');
+        return browser.$('#login-username');
     }
 
     /**
@@ -37,7 +37,7 @@ class LoginPage extends Page {
      * Get the password input field.
      */
     get password() {
-        return browser.element('#login-password');
+        return browser.$('#login-password');
     }
 
     /**
@@ -66,7 +66,7 @@ class LoginPage extends Page {
      * Wait for this page/modal to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('.auth-modal');
+        waitForDisplayed('.auth-modal');
     }
 }
 

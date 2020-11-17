@@ -20,8 +20,8 @@ export default class Action {
      */
     execute() {
         this.action();
-        if (this.waitForHide) {
-            loadingModal.waitForHide();
-        }
+//        if (this.waitForHide) {
+//            loadingModal.waitForHide();
+//        }
     }
 }

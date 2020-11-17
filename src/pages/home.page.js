@@ -1,6 +1,6 @@
 import Page from '../components/page';
-import waitForVisible from '../support/action/waitForVisible';
-import checkInURLPath from '../support/check/checkInURLPath';
+import waitForDisplayed from '../support/action/waitForDisplayed';
+import checkURLPath from '../support/check/checkURLPath';
 import Action from '../components/action';
 
 /**
@@ -12,14 +12,14 @@ class HomePage extends Page {
      * Get the navigation bar.
      */
     get navbar() {
-        return browser.element('.navbar');
+        return browser.$('.navbar');
     }
 
     /**
      * Get this logout button.
      */
     get logout() {
-        return browser.element('//header//button[1]');
+        return browser.$('//header//button[1]');
     }
 
     /**
@@ -40,28 +40,28 @@ class HomePage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('.navbar');
+        waitForDisplayed('.navbar');
     }
 
     /**
      * Is this page visibile?
      */
     isVisible() {
-        checkInURLPath(false, '#!/home');
+        checkURLPath(false, '/#!/home');
     }
 
     /**
      * Is in offline mode?
      */
     isOffline() {
-        waitForVisible('.status-offline');
+        waitForDisplayed('.status-offline');
     }
 
     /**
      * Is in offline mode?
      */
     isOnline() {
-        waitForVisible('.status-offline', true);
+        waitForDisplayed('.status-offline', true);
     }
 
     /**
@@ -69,10 +69,10 @@ class HomePage extends Page {
      */
     checkIfScreenIsNotVisibleInNavbar(tabName, parent) {
         const parentSelector = `//a[normalize-space(text())="${parent}"]`;
-        waitForVisible(parentSelector);
+        waitForDisplayed(parentSelector);
         browser.click(parentSelector);
         const tabSelector = `${parentSelector}/parent::*//a[normalize-space(text())="${tabName}"]`;
-        waitForVisible(tabSelector, true);
+        waitForDisplayed(tabSelector, true);
     }
 
     /**
@@ -80,7 +80,7 @@ class HomePage extends Page {
      */
     clickTabInNavbar(tabName) {
         const selector = `//a[normalize-space(text())="${tabName}"]`;
-        this.waitForIsVisible(selector);
+        this.waitForDisplayed(selector);
         browser.click(selector);
     }
 }

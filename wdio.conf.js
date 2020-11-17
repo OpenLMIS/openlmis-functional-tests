@@ -1,4 +1,5 @@
 // first, some pre-work to set variables for our later wdio.config.js
+const { hooks } = require('./src/support/hooks');
 
 // workaround from https://github.com/webdriverio/wdio-cucumber-framework/issues/79
 const glob = require('glob');
@@ -83,7 +84,7 @@ exports.config = {
     // spawned. The property handles how many capabilities from the same test
     // should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check
     // out the Sauce Labs platform configurator - a great tool to configure your
@@ -96,7 +97,7 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'chrome',
-        chromeOptions: {
+        'goog:chromeOptions': {
           args: [
             '--disable-infobars',
             '--window-size=1920,1080',
@@ -106,7 +107,8 @@ exports.config = {
             '--disable-dev-shm-usage'
           ]
         },
-        proxy,
+        acceptInsecureCerts: true,
+        //proxy,
     }],
     //
     // ===================
@@ -131,7 +133,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
-    baseUrl: 'https://functional-test.openlmis.org',
+    baseUrl: 'https://test.openlmis.org',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -191,9 +193,7 @@ exports.config = {
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> filetype:compiler used for processing required features
-        compiler: [
-            'js:babel-register',
-        ],
+        requireModule: ['@babel/register'],
         // <boolean< Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> invoke formatters without executing steps
@@ -227,148 +227,5 @@ exports.config = {
         // <number> timeout for step definitions
         timeout: 170000,
     },
-
-    //
-    // =====
-    // Hooks
-    // =====
-    // WebdriverIO provides several hooks you can use to interfere with the test
-    // process in order to enhance it and to build services around it. You can
-    // either apply a single function or an array of methods to it. If one of
-    // them returns with a promise, WebdriverIO will wait until that promise got
-    // resolved to continue.
-    //
-    // Gets executed once before all workers get launched.
-    onPrepare: function onPrepare() {
-        if (fs.existsSync(recordingsDir)) {
-            fs.removeSync(recordingsDir);
-        }
-        if (fs.existsSync(consoleLogDir)) {
-            fs.removeSync(consoleLogDir);
-        }
-        fs.mkdirSync(recordingsDir);
-        fs.mkdirSync(consoleLogDir);
-      },
-    //
-    // Gets executed before test execution begins. At this point you can access
-    // all global variables, such as `browser`. It is the perfect place to
-    // define custom commands.
-    before: function before() {
-        /**
-         * Setup the Chai assertion framework
-         */
-        const chai = require('chai');
-
-        global.expect = chai.expect;
-        global.assert = chai.assert;
-        global.should = chai.should();
-    },
-    //
-    // Hook that gets executed before the suite starts
-    // beforeSuite: function beforeSuite(suite) {
-    // },
-    //
-    // Hook that gets executed _before_ a hook within the suite starts (e.g.
-    // runs before calling beforeEach in Mocha)
-    // beforeHook: function beforeHook() {
-    // },
-    //
-    // Hook that gets executed _after_ a hook within the suite starts (e.g. runs
-    // after calling afterEach in Mocha)
-    // afterHook: function afterHook() {
-    // },
-    //
-    // Function to be executed before a test (in Mocha/Jasmine) or a step (in
-    // Cucumber) starts.
-    // beforeTest: function beforeTest(test) {
-    // },
-    //
-    // Runs before a WebdriverIO command gets executed.
-    // beforeCommand: function beforeCommand(commandName, args) {
-    // },
-    //
-    // Runs after a WebdriverIO command gets executed
-    // afterCommand: function afterCommand(commandName, args, result, error) {
-    // },
-    //
-    // Function to be executed after a test (in Mocha/Jasmine) or a step (in
-    // Cucumber) starts.
-    // afterTest: function afterTest(test) {
-    // },
-    //
-    // Hook that gets executed after the suite has ended
-    // afterSuite: function afterSuite(suite) {
-    // },
-    beforeScenario,
-
-    beforeFeature: (feature) => {
-        let scenarioRecordingName = getRecordingName(feature);
-
-        recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
-            resolution: '1920x1080', // Display resolution
-            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : DEFAULT_DISPLAY_ID,
-            fps: 60
-        });
-
-        recordings[scenarioRecordingName].promise
-            .then(result => {
-                process.stdout.write(result.stdout);
-                process.stderr.write(result.stderr);
-            })
-            .catch(error => console.error(error))
-    },
-
-    afterFeature: (feature) => {
-        let scenarioRecordingName = getRecordingName(feature);
-        recordings[scenarioRecordingName].stop();
-        if (!recordings[scenarioRecordingName].shouldKeep) {
-            fs.unlinkSync(scenarioRecordingName);
-        }
-
-        delete recordings[scenarioRecordingName];
-    },
-
-    afterStep: (stepResults) => {
-        if (stepResults.status !== 'passed') {
-            //console.log(stepResults.step.scenario.feature);
-            let scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
-            recordings[scenarioRecordingName].shouldKeep = true;
-        }
-
-        let scenario = stepResults.step.scenario;
-        const logs = browser.log('browser');
-        logs.value.forEach(log => {
-            consoleLogs.push({
-                scenario: scenario,
-                stepName: stepResults.step.name,
-                date: new Date(log.timestamp).toLocaleString(),
-                message: log.message,
-            });
-        });
-    },
-
-    //
-    // Gets executed after all tests are done. You still have access to all
-    // global variables from the test.
-    after: function after(result, capabilities, specs) {
-        if (result === SOME_FEATURE_TESTS_FAILED) {
-
-            let stringLogs = consoleLogs.map(log => {
-                return `[${log.date}] [${log.scenario.name}][${log.stepName}]: ${log.message}`;
-            });
-
-            let featureLogFileName = getConsoleLogFileName(consoleLogs[0].scenario);
-            fs.writeFile(featureLogFileName, stringLogs.join('\n\n'), function (err) {
-                if (err) {
-                    return console.log(err);
-                }
-            });
-        }
-
-    },
-    //
-    // Gets executed after all workers got shut down and the process is about to
-    // exit. It is not possible to defer the end of the process using a promise.
-    // onComplete: function onComplete(exitCode) {
-    // }
+    ...hooks,
 };
