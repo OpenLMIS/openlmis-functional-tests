@@ -47,6 +47,15 @@ if (bmpPresent) {
     };
 }
 
+let featureDuration = 0;
+let scenarioDuration = 0;
+let stepDuration = 0;
+
+// Data which will write in a file.
+let dataResult = "";
+let stepObjects = [];
+let scenarioObjects = [];
+let featureObjects = [];
 
 // wdio config
 exports.config = {
@@ -319,6 +328,15 @@ exports.config = {
     },
 
     afterFeature: (feature) => {
+        let featureObject = {
+            name: feature.name,
+            duration: featureDuration,
+            scenarios: scenarioObjects
+        }
+        featureObjects.push(featureObject);
+        scenarioObjects = [];
+        featureDuration = 0;
+
         let scenarioRecordingName = getRecordingName(feature);
         recordings[scenarioRecordingName].stop();
         if (!recordings[scenarioRecordingName].shouldKeep) {
@@ -329,6 +347,12 @@ exports.config = {
     },
 
     afterStep: (stepResults) => {
+        let stepObject = {
+            name: stepResults.step.name,
+            duration: stepResults.duration
+        }
+        stepObjects.push(stepObject);
+
         if (stepResults.status !== 'passed') {
             //console.log(stepResults.step.scenario.feature);
             let scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
@@ -345,12 +369,45 @@ exports.config = {
                 message: log.message,
             });
         });
+        stepDuration = stepResults.duration;
+        scenarioDuration += stepDuration;
     },
 
+    afterScenario: (scenario) => {
+        let scenarioObject = {
+            name: scenario.name,
+            duration: scenarioDuration,
+            steps: stepObjects
+        }
+        scenarioObjects.push(scenarioObject);
+        stepObjects = [];
+
+        featureDuration += scenarioDuration;
+        scenarioDuration = 0;
+    },
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
     after: function after(result, capabilities, specs) {
+        dataResult += 'TEST TYPE,NAME,DURATION[ms]\n'
+        let featureName = featureObjects[0].name;
+        let fileName = featureName+'.csv';
+        featureObjects.forEach(function(feature) {
+            dataResult += 'FEATURE,' + feature.name + ',' + feature.duration + '\n';
+            feature.scenarios.forEach(function(scenario) {
+                dataResult += 'SCENARIO,' + scenario.name + ',' + scenario.duration + '\n';
+                scenario.steps.forEach(function(step) {
+                    dataResult += 'STEP,' + step.name + ',' + step.duration + '\n';
+                });
+            });
+        });
+
+
+        fs.writeFile('build/performanceResults/'+fileName, dataResult, (err) => {
+            if (err) {
+                return console.log(err);
+            }
+        });
         if (result === SOME_FEATURE_TESTS_FAILED) {
 
             let stringLogs = consoleLogs.map(log => {
