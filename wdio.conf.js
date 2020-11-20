@@ -4,7 +4,7 @@
 const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
-const features = glob.sync('src/features/requisitions/view-requisition/submit-requisition/requisition-submit.feature');
+const features = glob.sync('src/features/**/*.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 
