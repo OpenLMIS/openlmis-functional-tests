@@ -26,7 +26,7 @@ pipeline {
               url: 'git@github.com:villagereach/openlmis-config.git'
         }
         sh( script: "./ci-runTest.sh")
-        archiveArtifacts 'build/openlmis.har*,build/errorShots/**,build/WDIO*.xml,build/recordings/**,build/consolelogs/**'
+        archiveArtifacts 'build/openlmis.har*,build/errorShots/**,build/WDIO*.xml,build/recordings/**,build/consolelogs/**',build/performanceResults/**'
       }
       post {
         always {

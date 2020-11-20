@@ -13,6 +13,7 @@ const fs = require('fs-extra');
 const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
+const performanceResultsDir = 'build/performanceResults/';
 const SOME_FEATURE_TESTS_FAILED = 1;
 const DEFAULT_DISPLAY_ID = '0';
 
@@ -47,6 +48,15 @@ if (bmpPresent) {
     };
 }
 
+let featureDuration = 0;
+let scenarioDuration = 0;
+let stepDuration = 0;
+
+// Data which will write in a file.
+let dataResult = "";
+let stepObjects = [];
+let scenarioObjects = [];
+let featureObject = {};
 
 // wdio config
 exports.config = {
@@ -319,6 +329,14 @@ exports.config = {
     },
 
     afterFeature: (feature) => {
+        featureObject = {
+            'name': feature.name,
+            'duration': featureDuration,
+            'scenarios': scenarioObjects
+        };
+        scenarioObjects = [];
+        featureDuration = 0;
+
         let scenarioRecordingName = getRecordingName(feature);
         recordings[scenarioRecordingName].stop();
         if (!recordings[scenarioRecordingName].shouldKeep) {
@@ -329,6 +347,14 @@ exports.config = {
     },
 
     afterStep: (stepResults) => {
+        let stepObject = {
+            'name': stepResults.step.name,
+            'duration': stepResults.duration
+        };
+        stepObjects.push(stepObject);
+        stepDuration = stepResults.duration;
+        scenarioDuration += stepDuration;
+
         if (stepResults.status !== 'passed') {
             //console.log(stepResults.step.scenario.feature);
             let scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
@@ -347,10 +373,37 @@ exports.config = {
         });
     },
 
+    afterScenario: (scenario) => {
+        let scenarioObject = {
+            name: scenario.name,
+            duration: scenarioDuration,
+            steps: stepObjects
+        }
+        scenarioObjects.push(scenarioObject);
+        stepObjects = [];
+
+        featureDuration += scenarioDuration;
+        scenarioDuration = 0;
+    },
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
     after: function after(result, capabilities, specs) {
+        dataResult += 'TEST TYPE,NAME,DURATION[ms]\n';
+        dataResult += 'FEATURE,' + featureObject.name + ',' + featureObject.duration + '\n';
+        featureObject.scenarios.forEach(function(scenario) {
+            dataResult += 'SCENARIO,' + scenario.name + ',' + scenario.duration + '\n';
+            scenario.steps.forEach(function(step) {
+                dataResult += 'STEP,' + step.name + ',' + step.duration + '\n';
+            });
+        });
+
+        let fileName = featureObject.name +'.csv';
+        fs.writeFile(performanceResultsDir + fileName, dataResult, (err) => {
+            if (err) {
+                return console.log(err);
+            }
+        });
         if (result === SOME_FEATURE_TESTS_FAILED) {
 
             let stringLogs = consoleLogs.map(log => {
