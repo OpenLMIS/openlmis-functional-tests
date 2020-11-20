@@ -4,7 +4,7 @@
 const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
-const features = glob.sync('src/features/**/*.feature');
+const features = glob.sync('src/features/login/login.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 
@@ -14,6 +14,9 @@ const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
 const performanceResultsDir = 'build/performanceResults/';
+if (!fs.existsSync(performanceResultsDir)){
+    fs.mkdirSync(performanceResultsDir);
+}
 const SOME_FEATURE_TESTS_FAILED = 1;
 const DEFAULT_DISPLAY_ID = '0';
 
