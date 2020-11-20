@@ -393,11 +393,11 @@ exports.config = {
     // global variables from the test.
     after: function after(result, capabilities, specs) {
         dataResult += 'TEST TYPE,NAME,DURATION[ms]\n';
-        dataResult += 'FEATURE,' + featureObject.name + ',' + featureObject.duration + '\n';
+        dataResult += 'FEATURE,"' + featureObject.name.replace(/"/g, '""') + '",' + featureObject.duration + '\n';
         featureObject.scenarios.forEach(function(scenario) {
-            dataResult += 'SCENARIO,' + scenario.name + ',' + scenario.duration + '\n';
+            dataResult += 'SCENARIO,"' + scenario.name.replace(/"/g, '""') + '",' + scenario.duration + '\n';
             scenario.steps.forEach(function(step) {
-                dataResult += 'STEP,' + step.name + ',' + step.duration + '\n';
+                dataResult += 'STEP,"' + step.name.replace(/"/g, '""') + '",' + step.duration + '\n';
             });
         });
 
