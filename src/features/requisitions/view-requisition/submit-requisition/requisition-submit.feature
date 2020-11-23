@@ -39,8 +39,8 @@ Feature: Submit Requisition
     Then I should be brought to the add products list page
 
     When I click on the "Add Products" button
-    Then I should get an error message
-    And I click on the "Close" button
+    # Then I should get an error message
+    # And I click on the "Close" button
 
     When I check a product with "C500" as code
     And I check a product with "C300" as code
