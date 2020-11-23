@@ -53,8 +53,8 @@ Feature: Submit Requisition
     Then I should see the auto-saving spinner
     And I can set "Requested quantity explanation" as empty for "Implanon" product
 
-    When I click delete button for requisition line item with "C300" code
-    Then I should not see "C300" line item
+    # When I click delete button for requisition line item with "C300" code
+    # Then I should not see "C300" line item
 
   Scenario: Storeroom Manager should be able to skip remaining products and unskip all products
     When I navigate to the Full supply products tab
