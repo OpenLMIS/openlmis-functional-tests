@@ -43,11 +43,11 @@ Feature: Submit Requisition
     # And I click on the "Close" button
 
     When I check a product with "C500" as code
-    And I check a product with "C300" as code
+    # And I check a product with "C300" as code
     And I click on the "Add Products" button
     Then I should see the auto-saving spinner
     And I should see a product with "C500" code and "Implanon" product name inside the table
-    And I should see a product with "C300" code and "Depo-Estradiol" product name inside the table
+    # And I should see a product with "C300" code and "Depo-Estradiol" product name inside the table
 
     When I set "Requested quantity" as "10" for "Implanon" product
     Then I should see the auto-saving spinner
