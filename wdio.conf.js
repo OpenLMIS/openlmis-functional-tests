@@ -17,9 +17,43 @@ const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
 const performanceResultsDir = 'build/performanceResults/';
-if (!fs.existsSync(performanceResultsDir)){
+
+if (!fs.existsSync(performanceResultsDir)) {
     fs.mkdirSync(performanceResultsDir);
 }
+
+const stepPerformanceResultsFile = `${performanceResultsDir}StepPerformanceResults.csv`;
+const scenarioPerformanceResultsFile = `${performanceResultsDir}ScenarioPerformanceResults.csv`;
+const featurePerformanceResultsFile = `${performanceResultsDir}FeaturePerformanceResults.csv`;
+
+if (!fs.existsSync(stepPerformanceResultsFile)) {
+    fs.writeFile(stepPerformanceResultsFile, 'FEATURE,SCENARIO,STEP,DURATION\n', (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
+if (!fs.existsSync(scenarioPerformanceResultsFile)) {
+    fs.writeFile(scenarioPerformanceResultsFile, 'FEATURE,SCENARIO,DURATION\n', (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
+if (!fs.existsSync(featurePerformanceResultsFile)) {
+    fs.writeFile(featurePerformanceResultsFile, 'FEATURE,DURATION\n', (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
+const stepPerformanceResultsStream = fs.createWriteStream(stepPerformanceResultsFile, { flags: 'a' });
+const scenarioPerformanceResultsStream = fs.createWriteStream(scenarioPerformanceResultsFile, { flags: 'a' });
+const featurePerformanceResultsStream = fs.createWriteStream(featurePerformanceResultsFile, { flags: 'a' });
+
 const SOME_FEATURE_TESTS_FAILED = 1;
 const DEFAULT_DISPLAY_ID = '0';
 
@@ -69,7 +103,6 @@ let scenarioDuration = 0;
 let stepDuration = 0;
 
 // Data which will write in a file.
-let dataResult = "";
 let stepObjects = [];
 let scenarioObjects = [];
 let featureObject = {};
@@ -411,21 +444,21 @@ exports.config = {
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
     after: function after(result, capabilities, specs) {
-        dataResult += 'TEST TYPE,NAME,DURATION[ms]\n';
-        dataResult += 'FEATURE,"' + featureObject.name.replace(/"/g, '""') + '",' + featureObject.duration + '\n';
-        featureObject.scenarios.forEach(function(scenario) {
-            dataResult += 'SCENARIO,"' + scenario.name.replace(/"/g, '""') + '",' + scenario.duration + '\n';
-            scenario.steps.forEach(function(step) {
-                dataResult += 'STEP,"' + step.name.replace(/"/g, '""') + '",' + step.duration + '\n';
+        const featureName = featureObject.name.replace(/"/g, '\'');
+
+        featurePerformanceResultsStream.write(`"${featureName}",${featureObject.duration}\n`);
+
+        featureObject.scenarios.forEach((scenario) => {
+            const scenarioName = scenario.name.replace(/"/g, '\'');
+
+            scenarioPerformanceResultsStream.write(`"${featureName}","${scenarioName}",${scenario.duration}\n`);
+
+            scenario.steps.forEach((step) => {
+                stepPerformanceResultsStream.write(`"${featureName}","${scenarioName}",` +
+                  `"${step.name.replace(/"/g, '\'')}",${step.duration}\n`);
             });
         });
 
-        let fileName = featureObject.name +'.csv';
-        fs.writeFile(performanceResultsDir + fileName, dataResult, (err) => {
-            if (err) {
-                return console.log(err);
-            }
-        });
         if (result === SOME_FEATURE_TESTS_FAILED) {
             let stringLogs = consoleLogs.map(log => {
                 return `[${log.date}] [${log.scenario.name}][${log.stepName}]: ${log.message}`;
