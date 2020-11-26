@@ -4,9 +4,12 @@
 const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
-const features = glob.sync('src/features/**/*.feature');
+const features = glob.sync('src/features/requisitions/view-requisition/initiate-requisition/requisition-initiate.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
+const yaml = require('js-yaml');
+let fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
+const durationTimeThresholds = yaml.safeLoad(fileContents);
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
@@ -22,6 +25,16 @@ const DEFAULT_DISPLAY_ID = '0';
 
 const getRecordingName = (feature) => `${recordingsDir}/${feature.name}.mp4`;
 const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
+let getFailureMessage = (stepDuration, durationTimeThreshold) => `Poor performance for this step.\n` +
+`The time duration of this step should not exceed ${durationTimeThreshold}ms but is currently ${stepDuration}ms.`;
+
+let getDurationTimeThreshold = (resultStep) => {
+    let foundStep = durationTimeThresholds.features
+        .find(feature => feature.name === resultStep.scenario.feature.name)
+        .scenarios.find(scenario => scenario.name === resultStep.scenario.name)
+        .steps.find(step => step.name === resultStep.name);
+    return foundStep ? foundStep.duration : 0;
+};
 
 let recordings = {};
 let consoleLogs = [];
@@ -364,6 +377,12 @@ exports.config = {
             recordings[scenarioRecordingName].shouldKeep = true;
         }
 
+        let durationTimeThreshold = getDurationTimeThreshold(stepResults.step);
+        if(durationTimeThreshold !== 0 && stepResults.duration > durationTimeThreshold) {
+            stepResults.status = 'failed';
+            stepResults.failureException = getFailureMessage(stepResults.duration, durationTimeThreshold);
+        }
+
         let scenario = stepResults.step.scenario;
         const logs = browser.log('browser');
         logs.value.forEach(log => {
@@ -408,7 +427,6 @@ exports.config = {
             }
         });
         if (result === SOME_FEATURE_TESTS_FAILED) {
-
             let stringLogs = consoleLogs.map(log => {
                 return `[${log.date}] [${log.scenario.name}][${log.stepName}]: ${log.message}`;
             });

@@ -1,0 +1,69 @@
+features:
+  - name: "Initiate Requisition"
+    scenarios:
+      - name: "Storeroom Manager should be able to initiate requisition for home facility"
+        steps:
+          - name: "I click on the \"Search\" button"
+            duration: 600
+          - name: "I click on the \"Proceed\" button"
+            duration: 6000
+  - name: "Requisition Synchronization"
+    scenarios:
+      - name: "Storeroom Manager should be able to sync requisition with the server"
+        steps:
+          - name: "I click on the \"Sync with Server\" button"
+            duration: 5000
+  - name: "Submit Requisition"
+    scenarios:
+      - name: "Storeroom manager should not be able to submit the requisition with Requested quantity explanation column omitted"
+        steps:
+          - name: "I confirm the submit"
+            duration: 4000
+  - name: "Authorizing Requisitions"
+    scenarios:
+      - name: "Store Manager should not be able to authorize the requisition with one required column omitted"
+        steps:
+          - name: "I have navigated to a requisition for \"Lilongwe Health Center\" facility, \"ARV\" program and \"Mar2017\" period"
+            duration: 11000
+          - name: "I confirm the authorize"
+            duration: 2500
+      - name: "Store manager should not be able to authorize the requisition with Requested quantity explanation column omitted"
+        steps:
+          - name: "I confirm the authorize"
+            duration: 2500
+      - name: "Store Manager should be able to authorize a requisition"
+        steps:
+          - name: "I confirm the authorize"
+            duration: 2500
+  - name: "Approving and rejecting Requisitions"
+    scenarios:
+      - name: "District Store Manager should be able to approve requisition for home facility"
+        steps:
+          - name: "I navigate to approve requisitions screen"
+            duration: 2500
+          - name: "I select requisition for \"Family Planning\" program and \"2018Q1\" period for approve requisitions"
+            duration: 5000
+          - name: "I confirm the approval"
+            duration: 8000
+      - name: "District Store Manager should be able to reject requisition for home facility"
+        steps:
+          - name: "I navigate to approve requisitions screen"
+            duration: 2500
+      - name: "Psupervisor should reject approved requisition"
+        steps:
+          - name: "I navigate to approve requisitions screen"
+            duration: 2500
+          - name: "I select requisition for \"Family Planning\" program and \"2018Q1\" period for approve requisitions"
+            duration: 5000
+  - name: "Converting requisitions to orders"
+    scenarios:
+      - name: "Administrator should be able to convert one requisition to order"
+        steps:
+          - name: "I navigate to Convert Requisitions to Order screen"
+            duration: 3000
+          - name: "I confirm the convert"
+            duration: 7500
+      - name: "Administrator should be able to convert multiple requisitions to orders"
+        steps:
+          - name: "I confirm the convert"
+            duration: 12000
