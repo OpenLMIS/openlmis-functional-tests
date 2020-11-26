@@ -4,7 +4,7 @@ features:
       - name: "Storeroom Manager should be able to initiate requisition for home facility"
         steps:
           - name: "I click on the \"Search\" button"
-            duration: 600
+            duration: 4000
           - name: "I click on the \"Proceed\" button"
             duration: 6000
   - name: "Requisition Synchronization"
