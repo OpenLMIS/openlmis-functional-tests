@@ -63,11 +63,17 @@ let getFailureMessage = (stepDuration, durationTimeThreshold) => `Poor performan
 `The time duration of this step should not exceed ${durationTimeThreshold}ms but is currently ${stepDuration}ms.`;
 
 let getDurationTimeThreshold = (resultStep) => {
-    let foundStep = durationTimeThresholds.features
-        .find(feature => feature.name === resultStep.scenario.feature.name)
-        .scenarios.find(scenario => scenario.name === resultStep.scenario.name)
-        .steps.find(step => step.name === resultStep.name);
-    return foundStep ? foundStep.duration : 0;
+    let foundDuration = 0;
+    durationTimeThresholds.features.find((feature) => {
+      feature.name === resultStep.scenario.feature.name && feature.scenarios.some((scenario) => {
+        scenario.name === resultStep.scenario.name && scenario.steps.some((step) => {
+            if (step.name === resultStep.name) {
+                foundDuration = step.duration;
+            }
+        })
+      })
+    });
+    return foundDuration;
 };
 
 let recordings = {};
