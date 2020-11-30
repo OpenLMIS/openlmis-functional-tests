@@ -14,3 +14,4 @@ trap exitTrap ERR
 docker-compose pull
 docker-compose run --no-deps funtest -c 'yarn clean'
 docker-compose run funtest
+/bin/bash convertPerformanceResult.sh

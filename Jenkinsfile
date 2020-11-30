@@ -31,10 +31,6 @@ pipeline {
       post {
         always {
           junit 'build/WDIO*.xml'
-          sh 'chmod 777 -R build/performanceResults'
-          sh 'chmod 777 -R resources/assets'
-          sh 'cp -vr resources/assets/ build/performanceResults/'
-          sh 'node node_modules/htmlify-csv convert build/performanceResults/StepPerformanceResults.csv --output=build/performanceResults/StepPerformanceResults.html'
         }
         cleanup {
           sh 'docker pull openlmis/stop-instance'
