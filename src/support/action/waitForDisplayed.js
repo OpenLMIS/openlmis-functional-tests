@@ -13,5 +13,5 @@ export default (selector, falseCase) => {
      */
     const ms = 50000;
 
-    $(selector).waitForDisplayed(ms, !!falseCase);
+    $(selector).waitForDisplayed({ timeout: ms, reverse: !!falseCase });
 };

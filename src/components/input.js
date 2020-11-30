@@ -12,7 +12,7 @@ export default class Input {
     }
 
     set value(value) {
-        browser.element(this.selector).setValue(value);
+        browser.$(this.selector).setValue(value);
     }
 
     clear() {
@@ -20,7 +20,7 @@ export default class Input {
     }
 
     click() {
-        browser.element(this.selector).click();
+        browser.$(this.selector).click();
     }
 
     isEditable() {
@@ -36,7 +36,7 @@ export default class Input {
     }
 
     hasValue(expected) {
-        expect(browser.element(this.selector).getValue()).to.equal(expected);
+        expect(browser.$(this.selector).getValue()).to.equal(expected);
     }
 
 }

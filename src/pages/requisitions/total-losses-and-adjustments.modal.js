@@ -1,7 +1,8 @@
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Modal from '../../components/modal';
 import Link from '../../components/link';
 import Select from '../../components/select';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 /**
  * Total Losses and Adjustments Modal object represents the related view in OpenLMIS UI.
@@ -30,7 +31,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      * Wait for the assignment to be added.
      */
     waitForAssignment(reason, quantity) {
-        waitForVisible(
+        waitForDisplayed(
             `//td[text()="${reason}"]` +
             `/following-sibling::td//parent::div` +
             `//child::input[normalize-space(text()="${quantity}")]`
@@ -42,9 +43,9 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      */
     getTotalValue() {
         const selector = `//div[contains(@class, 'modal-body')]//dl//dd`;
-        browser.scroll(selector);
+        scrollToSelector(selector);
         browser.pause(1000);
-        return browser.element(selector).getText();
+        return browser.$(selector).getText();
     }
 
     openSelectDropdown(label) {
@@ -56,8 +57,8 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      */
     isOptionInsideDropdown(option) {
         const selector = `//option[contains(@label, '${option}')]`;
-        let element = browser.element(selector);
-        return element.isVisible();
+        let element = browser.$(selector);
+        return element.isDisplayed();
     }
 }
 

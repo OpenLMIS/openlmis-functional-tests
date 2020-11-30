@@ -1,7 +1,7 @@
 import Page from '../../components/page';
 import Table from '../../components/table';
 import scroll from '../../support/action/scroll';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import ModalButton from '../../components/modal-button';
 
 /**
@@ -38,7 +38,7 @@ class UserListPage extends Page {
       */
     removeUserRole(role, program, supervisoryNode){
         scroll('bottom');
-        const roleRow = browser.element(`//td[contains(text(),'${program}')]//following-sibling::td[contains(text(),'${supervisoryNode}')]//following-sibling::td[contains(text(),'${role}')]//following-sibling::td/button`);
+        const roleRow = browser.$(`//td[contains(text(),'${program}')]//following-sibling::td[contains(text(),'${supervisoryNode}')]//following-sibling::td[contains(text(),'${role}')]//following-sibling::td/button`);
         roleRow.click();
     }
 
@@ -46,7 +46,7 @@ class UserListPage extends Page {
      * Wait for the form to be visible.
      */
     waitForTable() {
-        waitForVisible("//table");
+        waitForDisplayed("//table");
     }
 
     confirmSubmit() {

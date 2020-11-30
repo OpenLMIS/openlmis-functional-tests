@@ -1,22 +1,18 @@
-import { defineSupportCode } from 'cucumber';
+var {When} = require('cucumber');
 
 import SupervisoryNodeListPage from '../../../pages/administration/supervisory.node.list.page';
 
-defineSupportCode(({ When }) => {
+When(
+    /^I go to the supervisory node list page$/,
+    () => SupervisoryNodeListPage.open()
+);
 
-    When(
-        /^I go to the supervisory node list page$/,
-        () => SupervisoryNodeListPage.open()
-    );
+When(
+    /^I navigate to supervisory node list page$/,
+    () => SupervisoryNodeListPage.navigateToPage()
+);
 
-    When(
-        /^I navigate to supervisory node list page$/,
-        () => SupervisoryNodeListPage.navigateToPage()
-    );
-
-    When(
-        /^I select "([^"]*)?" supervisory node for edition$/,
-        code => SupervisoryNodeListPage.clickEdit(code)
-    );
-
-});
+When(
+    /^I select "([^"]*)?" supervisory node for edition$/,
+    code => SupervisoryNodeListPage.clickEdit(code)
+);

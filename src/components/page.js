@@ -1,5 +1,6 @@
 import waitForDisplayed from '../support/action/waitForDisplayed';
 import Action from './action';
+import clickElement from '../support/action/clickElement';
 
 /**
  * Base Page Object.
@@ -41,9 +42,12 @@ export default class Page {
      * Accesses the page using navigation. This is useful for testing whether page is accessible using the navigation.
      */
     navigateToPage() {
+        const parentSelector = `//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`;
+        const childSelector = `//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`;
+        
         new Action(() => {
-            browser.element(`//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`).click();
-            browser.element(`//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`).click();
+            clickElement('click', parentSelector, parentSelector);
+            clickElement('click', childSelector, childSelector);
         }).execute();
     }
 }

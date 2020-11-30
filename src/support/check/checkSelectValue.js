@@ -6,7 +6,7 @@
  */
 module.exports = (label, value) => {
     const element = browser
-        .element(`//label[normalize-space(text())="${label}"]` +
+        .$(`//label[normalize-space(text())="${label}"]` +
             '/following-sibling::*//*[contains(@class, "select2-selection__rendered")]');
     const text = element.getText().trim();
 

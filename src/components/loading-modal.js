@@ -1,4 +1,4 @@
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 
 /**
  * Represents a loading modal in the OpenLMIS system.
@@ -11,9 +11,9 @@ class LoadingModal {
      */
     waitForHide() {
         browser.pause(700);
-        waitForVisible('.loading-modal', true);
+        waitForDisplayed('.loading-modal', true);
         browser.pause(100);
-        waitForVisible('.fade', true);
+        waitForDisplayed('//div[contains(@class, "fade")]/div[contains(@class, "loading")]', true);
     }
 
 }

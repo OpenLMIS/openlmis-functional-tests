@@ -18,7 +18,7 @@
  *
  * @param {String} tableSelector selector that helps to retrieve a correct table
  */
-module.exports = tableSelector => browser.selectorExecute(tableSelector, (table) => {
+module.exports = (tableSelector) => browser.execute((table) => {
     const header = $(table).find('th').map((id, elem) => $(elem).text()).get();
     const rows = $(table).find('td').map((id, elem) => $(elem).text()).get();
     const result = [];
@@ -37,4 +37,4 @@ module.exports = tableSelector => browser.selectorExecute(tableSelector, (table)
     }
 
     return result;
-});
+}, browser.$(tableSelector));

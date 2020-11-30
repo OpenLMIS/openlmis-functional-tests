@@ -164,7 +164,7 @@ Don't:
 class SomeViewPage {
 
   function clickButtonA() {
-    browser.element('///button[normalize-space(text())="A"]').click();
+    browser.$('///button[normalize-space(text())="A"]').click();
   }
 
 }
@@ -178,7 +178,7 @@ class Button {
   }
 
   function click() {
-    browser.element(`///button[normalize-space(text())="${this.label}"]`).click()).execute();
+    browser.$(`///button[normalize-space(text())="${this.label}"]`).click()).execute();
   }
 }
 

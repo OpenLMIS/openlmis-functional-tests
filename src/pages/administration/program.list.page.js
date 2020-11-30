@@ -1,6 +1,6 @@
 import Page from '../../components/page';
 import Button from '../../components/button';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 
 /**
  * Program List Page object represents the related view in OpenLMIS UI.
@@ -20,7 +20,7 @@ class ProgramListPage extends Page {
      * Wait for program to be visible in the table.
      */
     waitForProgram(name) {
-        waitForVisible(`//td[text()="${name}"]`);
+        waitForDisplayed(`//td[text()="${name}"]`);
     }
 
     /**

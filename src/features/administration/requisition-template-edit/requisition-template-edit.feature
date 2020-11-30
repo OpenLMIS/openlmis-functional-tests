@@ -1,6 +1,6 @@
 Feature: Requisition template edition
 
-  Scenario: Administrator should be able to edit facility types in a requisiton template 
+  Scenario: Administrator should be able to edit facility types in a requisiton template
     Given I have logged with username "administrator" and password "password"
     And I have navigated to the requisition templates page
 
@@ -42,7 +42,7 @@ Feature: Requisition template edition
     When I select "Family Planning" program for configuration
     Then I should be brought to the "Family Planning" template configuration page for "Family Planning" program
     And I should not be able to see tag option in the table
-  
+
   Scenario: Administrator shouldn't see tag options to select for Essential Meds
     Given I have navigated to the requisition templates page
 
@@ -139,7 +139,7 @@ Feature: Requisition template edition
     Then I should be brought to the requisition template page
     And I should see a successful notification saying "Template saved successfully!"
     And I log out
-  
+
   Scenario: Administrator should not be allowed to select facility types which are already selected in the related template
     Given I have logged with username "administrator" and password "password"
     And I have navigated to the requisition templates page

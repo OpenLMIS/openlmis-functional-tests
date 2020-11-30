@@ -1,10 +1,9 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Button from '../../components/button';
 import Action from '../../components/action';
 import getSelectDropdownSelectorInTable from '../../support/lib/getSelectDropdownSelectorInTable';
-
-
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 class RequisitionTemplatesPage extends Page {
     constructor() {
@@ -20,7 +19,7 @@ class RequisitionTemplatesPage extends Page {
      * Wait for program to be visible in the table.
      */
     waitForProgram(name) {
-        waitForVisible(`//td[text()="${name}"]`);
+        waitForDisplayed(`//td[text()="${name}"]`);
     }
 
     /**
@@ -28,7 +27,7 @@ class RequisitionTemplatesPage extends Page {
      */
     clickConfigureProgram(name) {
         const selector = `//td[normalize-space(text())="${name}"]/following-sibling::td/button[text()="Configure"]`;
-        browser.scroll(selector);
+        scrollToSelector(selector);
         new Button(
             'Configure',
             selector).click();
@@ -45,7 +44,7 @@ class RequisitionTemplatesPage extends Page {
      * Check if the given facility type is present in the dropdown.
      */
     isFacilityTypePresentInDropdown(facilityTypeName) {
-        return browser.element(`//li[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//li[normalize-space(text())='${facilityTypeName}']`).isDisplayed();
     }
 
     /**
@@ -54,7 +53,7 @@ class RequisitionTemplatesPage extends Page {
     isOptionVisible(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
-        return browser.element(selector).isVisible();
+        return browser.$(selector).isDisplayed();
     }
 
     /**
@@ -63,15 +62,15 @@ class RequisitionTemplatesPage extends Page {
     isOptionSelected(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
-        waitForVisible(selector);
-        return browser.element(selector).isVisible();
+        waitForDisplayed(selector);
+        return browser.$(selector).isDisplayed();
     }
 
     /**
      * Check if any tag option is present in the dropdown.
      */
     isTagOptionPresent() {
-        return browser.element('//table//select[@id="tag"]').isVisible();
+        return browser.$('//table//select[@id="tag"]').isDisplayed();
     }
 
     /**
@@ -80,7 +79,7 @@ class RequisitionTemplatesPage extends Page {
     selectOptionForTag(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 
     /**
@@ -88,9 +87,9 @@ class RequisitionTemplatesPage extends Page {
      */
     clearTagSelection(tagIndex) {
         new Action(() => {
-            waitForVisible(this.getTagClearSelector(tagIndex));
+            waitForDisplayed(this.getTagClearSelector(tagIndex));
             browser
-                .element(this.getTagClearSelector(tagIndex))
+                .$(this.getTagClearSelector(tagIndex))
                 .click();
         }, false).execute();
     }
@@ -112,7 +111,7 @@ class RequisitionTemplatesPage extends Page {
      */
     isAllTagsPresent(tagCount) {
         this.scrollToTags();
-        const tags = browser.elements('//table//select[@id="tag"]').value;
+        const tags = browser.$$('//table//select[@id="tag"]');
         return tags.length === tagCount;
     }
 
@@ -121,7 +120,7 @@ class RequisitionTemplatesPage extends Page {
      */
     isAllEmptyTagMessagesPresent(msgCount) {
         this.scrollToTags();
-        const messages = browser.elements(this.getEmptyTagMessageSelector()).value;
+        const messages = browser.$$(this.getEmptyTagMessageSelector());
         return messages.length === msgCount;
     }
 
@@ -129,10 +128,10 @@ class RequisitionTemplatesPage extends Page {
      * Clear all tag selections.
      */
     clearAllTagSelections() {
-        const tags = browser.elements('//table//select[@id="tag"]').value;
+        const tags = browser.$$('//table//select[@id="tag"]');
         new Action(() => {
-            for (let tag in tags) {
-                this.scrollToTags(tag);
+            for (let tagInd = 0; tagInd < tags.length; tagInd += 1) {
+                this.scrollToTags(tagInd);
                 this.clearTagSelection(0);
             }
         }, false).execute();

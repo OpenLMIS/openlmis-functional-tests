@@ -13,8 +13,7 @@ module.exports = (height) => {
 
     if (height === 'bottom') {
         heightValue = browser
-            .execute(() => $(document).height())
-            .value;
+            .execute(() => $(document).height());
     }
 
     browser.execute(height => $('html, body').scrollTop(height), heightValue);

@@ -1,13 +1,10 @@
-import { defineSupportCode } from 'cucumber';
+var {When} = require('cucumber');
 
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
 
-defineSupportCode(({ When }) => {
-
-    When(
-        /^I confirm the authorize/,
-        () => {
-            ViewRequisitionPage.confirmAuthorize();
-        }
-    );
-});
+When(
+    /^I confirm the authorize/,
+    () => {
+        ViewRequisitionPage.confirmAuthorize();
+    }
+);

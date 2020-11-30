@@ -72,7 +72,7 @@ class InitiateRequisitionPage extends Page {
      */
     isSelectedOptionEnableOrDisable(label) {
         const checkboxInput = `//label[contains(text()[normalize-space()], '${label}')]/input`;
-        var isEnable = browser.element(checkboxInput).isEnabled();
+        var isEnable = browser.$(checkboxInput).isEnabled();
         return isEnable;
     }
 }

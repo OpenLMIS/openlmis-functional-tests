@@ -1,7 +1,7 @@
 import Page from '../../components/page';
 import scroll from '../../support/action/scroll';
 import Checkbox from '../../components/checkbox';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 
 /**
  * Facility List Page object represents the related view in OpenLMIS UI.
@@ -26,7 +26,7 @@ class FacilityListPage extends Page {
         */
        setProgramCheckbox(value, program) {
            const id = this.getColumnId(program);
-           const programCheckbox = browser.element(`//table/tbody/tr[contains(@class, 'ng-scope ng-isolate-scope')][${id + 1}]/td[@class='ng-scope'][1]//input`);
+           const programCheckbox = browser.$(`//table/tbody/tr[contains(@class, 'ng-scope ng-isolate-scope')][${id + 1}]/td[@class='ng-scope'][1]//input`);
 
            if (programCheckbox.isSelected() && value === 'uncheck') {
                     programCheckbox.click();
@@ -40,8 +40,7 @@ class FacilityListPage extends Page {
 
        getColumnId(columnName) {
         return browser
-            .execute(name => $(`tr:contains('${name}')`).index(), columnName)
-            .value;
+            .execute(name => $(`tr:contains('${name}')`).index(), columnName);
        }
 }
 

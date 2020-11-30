@@ -13,7 +13,7 @@ export default class Checkbox extends Input {
     }
 
     get selected() {
-        return browser.isSelected(this.selector);
+        return $(this.selector).isSelected();
     }
 
     isSelected() {

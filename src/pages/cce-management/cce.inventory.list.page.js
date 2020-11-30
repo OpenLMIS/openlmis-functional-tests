@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Table from '../../components/table';
 import Button from '../../components/button';
@@ -29,7 +29,7 @@ class ColdChainEquipmentInventoryListPage extends Page {
 
     checkMyFacilityProgram (){
 
-      browser.element("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
+      browser.$("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
     }
 
     /**
@@ -39,7 +39,7 @@ class ColdChainEquipmentInventoryListPage extends Page {
       */
      checkIfButtonIsHidden(button) {
            const buttonSelector = `//*[contains(@class, "button-group")]/button[contains(text(), "${button}")]`;
-           waitForVisible(buttonSelector, true);
+           waitForDisplayed(buttonSelector, true);
      }
 
     /**

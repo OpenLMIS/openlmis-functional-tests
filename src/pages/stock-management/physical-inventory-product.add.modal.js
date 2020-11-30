@@ -24,7 +24,7 @@ class PhysicalInventoryProductAddModal extends Modal {
 
     /**
      * Updates the value of the table input for the given column and product.
-     * 
+     *
      * @param {string} column the name of the column
      * @param {string} value   the value to be set
      * @param {string} code     the name of the product code
@@ -32,7 +32,7 @@ class PhysicalInventoryProductAddModal extends Modal {
     setColumnForProduct(column, value, code) {
         const id = this.getColumnId(column);
         const selector = this.getTableInputSelector(code, id);
-        const td = browser.element(selector);
+        const td = browser.$(selector);
 
         td.setValue(value);
     }
@@ -48,8 +48,7 @@ class PhysicalInventoryProductAddModal extends Modal {
 
     getColumnId(columnName) {
         return browser
-            .execute(name => $(`.modal th:contains('${name}')`).index(), columnName)
-            .value;
+            .execute(name => $(`.modal th:contains('${name}')`).index(), columnName);
     }
 }
 

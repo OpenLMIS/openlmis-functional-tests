@@ -15,7 +15,9 @@ Feature: Supervised facility selection
         Then I should be brought to the user list page
         When I click on the "Filter" button without waiting for loading modal
         And I enter "srmanager4" as "Username"
+        And I wait "1" seconds for UI adjustment
         And I click on the "Search" button
+        And I wait "1" seconds for UI adjustment
         Then I should be brought to the user list page
 
         When I click on the "Roles" button
@@ -46,7 +48,9 @@ Feature: Supervised facility selection
         Then I should be brought to the user list page
         When I click on the "Filter" button without waiting for loading modal
         And I enter "srmanager4" as "Username"
+        And I wait "1" seconds for UI adjustment
         And I click on the "Search" button
+        And I wait "1" seconds for UI adjustment
         Then I should be brought to the user list page
 
         When I click on the "Roles" button

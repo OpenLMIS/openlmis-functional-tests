@@ -1,17 +1,13 @@
-import { defineSupportCode } from 'cucumber';
+var {Then} = require('cucumber');
 
 import UserProfilePage from '../../pages/user.profile.page';
 
-defineSupportCode(({ Then }) => {
+Then(
+    /^I should be brought to the user profile page$/,
+    () => UserProfilePage.waitForIsVisible()
+);
 
-    Then(
-        /^I should be brought to the user profile page$/,
-        () => UserProfilePage.waitForIsVisible()
-    );
-
-    Then(
-        /^There should be the pending verification note for "([^"]*)"$/,
-        value => UserProfilePage.verifyPendingVerificationNode(value)
-    );
-
-});
+Then(
+    /^There should be the pending verification note for "([^"]*)"$/,
+    value => UserProfilePage.verifyPendingVerificationNode(value)
+);

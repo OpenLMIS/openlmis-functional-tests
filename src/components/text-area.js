@@ -1,5 +1,5 @@
 import isEnabled from '../support/check/isEnabled';
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import getTextAreaSelector from '../support/lib/getTextAreaSelector';
 
 /**
@@ -12,7 +12,7 @@ export default class TextArea {
     }
 
     set value(value) {
-        browser.element(this.selector).setValue(value);
+        browser.$(this.selector).setValue(value);
     }
 
     clear() {
@@ -20,7 +20,7 @@ export default class TextArea {
     }
 
     click() {
-        browser.element(this.selector).click();
+        browser.$(this.selector).click();
     }
 
     isEditable() {
@@ -32,11 +32,11 @@ export default class TextArea {
     }
 
     hasValue(expected) {
-        expect(browser.element(this.selector).getValue()).to.equal(expected);
+        expect(browser.$(this.selector).getValue()).to.equal(expected);
     }
 
     waitForIsVisible() {
-        waitForVisible(this.selector);
+        waitForDisplayed(this.selector);
     }
 
 }

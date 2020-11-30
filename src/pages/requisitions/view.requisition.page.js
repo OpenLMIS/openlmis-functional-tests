@@ -1,5 +1,6 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
+import waitForExist from '../../support/action/waitForExist';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
@@ -10,6 +11,8 @@ import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
 import scroll from '../../support/action/scroll';
 import tableHorizontalScroll from '../../support/action/tableHorizontalScroll';
+import scrollToSelector from '../../support/action/scrollToSelector';
+import isDisplayed from '../../support/check/isDisplayed';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -20,25 +23,25 @@ class ViewRequisitionPage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('//h2[contains(normalize-space(text()), "Report and Requisition for")]');
+        waitForDisplayed('//h2[contains(normalize-space(text()), "Report and Requisition for")]');
     }
 
     /**
      * Clears all enabled inputs in the requisition as well as total loses and adjustments.
      */
     clearForm() {
-        browser.elements('tr a:enabled').value.forEach((element) => {
+        browser.$$('tr a:enabled').forEach((element) => {
             this.scrollToCell(element);
             element.click();
 
-            browser.elements(getButtonSelector('Remove')).value.forEach(button => button.click());
-            browser.element(getButtonSelector('Update')).click();
+            browser.$$(getButtonSelector('Remove')).forEach(button => button.click());
+            browser.$(getButtonSelector('Update')).click();
             loadingModal.waitForHide();
         });
 
-        browser.elements('td input[type="text"]:enabled').value.forEach((element) => {
+        browser.$$('td input[type="text"]:enabled').forEach((element) => {
             this.scrollToCell(element);
-            element.clearElement();
+            element.clearValue();
         });
     }
 
@@ -52,9 +55,9 @@ class ViewRequisitionPage extends Page {
     setColumnForProduct(column, product, value) {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
-        const td = browser.element(selector);
+        const td = browser.$(selector);
 
-        this.scrollToSelector(selector);
+        scrollToSelector(selector);
         td.setValue(value);
     }
 
@@ -71,14 +74,14 @@ class ViewRequisitionPage extends Page {
      * Skips all skippable line items.
      */
     skipAll() {
-        browser.element('//a[normalize-space(text())=\'All\']').click();
+        browser.$('//a[normalize-space(text())=\'All\']').click();
     }
 
     /**
      * Unskips all line items.
      */
     skipNone() {
-        browser.element('//a[normalize-space(text())=\'None\']').click();
+        browser.$('//a[normalize-space(text())=\'None\']').click();
     }
 
     /**
@@ -93,8 +96,8 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
 
-        this.scrollToSelector(selector);
-        return browser.element(selector).getValue();
+        scrollToSelector(selector);
+        return browser.$(selector).getValue();
     }
 
     /**
@@ -109,7 +112,7 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getTableData(product, id);
 
-        return browser.element(selector).getText();
+        return browser.$(selector).getText();
     }
 
     /**
@@ -138,10 +141,10 @@ class ViewRequisitionPage extends Page {
     clearColumnForProduct(column, product) {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
-        const td = browser.element(selector);
+        const td = browser.$(selector);
 
-        this.scrollToSelector(selector);
-        td.clearElement();
+        scrollToSelector(selector);
+        td.clearValue();
     }
 
     /**
@@ -149,7 +152,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfIsEditable() {
         const numberOfEditableInputs = 0;
-        browser.elements('td input[type="text"]:enabled').value.forEach((element) => {
+        browser.$$('td input[type="text"]:enabled').forEach((element) => {
             this.scrollToCell(element);
             this.numberOfEditableInputs++;
         });
@@ -177,7 +180,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfButtonIsHidden(button) {
         const buttonSelector = `//*[contains(@class, "button-group")]/button[contains(text(), "${button}")]`;
-        waitForVisible(buttonSelector, true);
+        waitForDisplayed(buttonSelector, true);
     }
 
     /**
@@ -187,7 +190,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfLineItemIsHidden(product) {
         const requisitionLineItemSelector = new RequisitionLineItem(product).selector;
-        waitForVisible(requisitionLineItemSelector, true);
+        waitForDisplayed(requisitionLineItemSelector, true);
     }
 
     /**
@@ -195,7 +198,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfFieldIsNotEditable(column, product) {
         const id = this.getColumnId(column);
-        return browser.elements(`//td[normalize-space(text())='${product}']/parent::tr/td[position()='${id + 1}' and not (div/input)]`);
+        return browser.$$(`//td[normalize-space(text())='${product}']/parent::tr/td[position()='${id + 1}' and not (div/input)]`);
     }
 
     /**
@@ -205,7 +208,7 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getTableData(product, id);
         browser.pause(1000);
-        const className =  browser.element(selector).getAttribute('class');
+        const className =  browser.$(selector).getAttribute('class');
         const isInvalid = className.includes('is-invalid') ? true : false;
         return isInvalid;
     }
@@ -216,7 +219,7 @@ class ViewRequisitionPage extends Page {
     isDropdownDisabled(label) {
         const selector = `//label[contains(text()[normalize-space()], "${label}")]` +
             '/following-sibling::div';
-        const className =  browser.element(selector).getAttribute('class');
+        const className =  browser.$(selector).getAttribute('class');
         const isDisabled = className.includes('is-disabled') ? true : false;
         return isDisabled;
     }
@@ -226,7 +229,7 @@ class ViewRequisitionPage extends Page {
      */
     isSkippingProductsNotPossible() {
         const disabledCheckboxSelector = '//td//label[contains(@class, "checkbox")]//input[@disabled = "disabled"]';
-        const isDisabled = browser.element(disabledCheckboxSelector).isExisting();
+        const isDisabled = browser.$(disabledCheckboxSelector).isExisting();
         return isDisabled;
     }
 
@@ -238,7 +241,7 @@ class ViewRequisitionPage extends Page {
     proceedToRequisition(status) {
         const selector = `//td[normalize-space(text()) = "${status}"]` +
             '//following-sibling::td' + getButtonSelector('Proceed');
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 
     /**
@@ -260,7 +263,7 @@ class ViewRequisitionPage extends Page {
      */
     clickApproveButton() {
         this.approveButton.click();
-    }    
+    }
 
     /**
      * Opens text area to add comment.
@@ -376,11 +379,10 @@ class ViewRequisitionPage extends Page {
     }
 
     checkDatePhysicalStockCountCompleted() {
-        const tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
+        const today = new Date();
 
-        browser.isVisible(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
-            [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join('/')}")]`);
+        isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent::li[text()[contains(., "${
+            [today.getDate(), today.getMonth() + 1, today.getFullYear()].join('/')}")]]`);
     }
 
     /**
@@ -469,7 +471,7 @@ class ViewRequisitionPage extends Page {
 
     get approveButton() {
         return new Button('Approve');
-    }    
+    }
 
     get addCommentButton() {
         return new Button('Add Comment');
@@ -501,7 +503,7 @@ class ViewRequisitionPage extends Page {
 
     get historyLink() {
         return new Link('View History');
-    }    
+    }
 
     scrollToCell(target) {
         browser.execute((selector, index) => {
@@ -510,19 +512,12 @@ class ViewRequisitionPage extends Page {
         }, target.selector, target.index);
     }
 
-    scrollToSelector(target) {
-        browser.selectorExecute(target, (elements) => {
-            const element = $(elements[0]).parents('td')[0];
-            element.focus();
-        });
-    }
-
     scrollToTop() {
         scroll('top');
     }
 
-    scrollToTheRightOfTable() {	
-        tableHorizontalScroll('right');	
+    scrollToTheRightOfTable() {
+        tableHorizontalScroll('right');
     }
 
     getInputSelector(product, columnNumber) {
@@ -534,28 +529,27 @@ class ViewRequisitionPage extends Page {
     }
 
     checkCommentsAreNotEditable() {
-        return browser.elements(`//article/div[contains(@class, 'content') and not (input)]`);
+        return browser.$$(`//article/div[contains(@class, 'content') and not (input)]`);
     }
 
     checkAutoSavingSpinner() {
         const spinner = `//*[contains(@class, "saving-add-active")]`;
-        waitForVisible(spinner, true);
+        waitForExist(spinner, true);
     }
 
     checkIfButtonIsVisible(button) {
         const buttonSelector = `//button[contains(text(), "${button}")]`;
-        waitForVisible(buttonSelector, false);
+        waitForDisplayed(buttonSelector, false);
     }
 
     checkIfButtonIsEnabledOrNot(button) {
         const buttonSelector = `//button[normalize-space(text()) = "${button}"]`;
-        return browser.element(buttonSelector).isEnabled();
+        return browser.$(buttonSelector).isEnabled();
     }
 
     getColumnId(columnName) {
         return browser
-            .execute(name => $(`th:contains('${name}')`).index(), columnName)
-            .value;
+            .execute(name => $(`th:contains('${name}')`).index(), columnName);
     }
 }
 

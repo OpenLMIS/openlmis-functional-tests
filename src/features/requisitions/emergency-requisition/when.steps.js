@@ -1,21 +1,20 @@
-import { defineSupportCode } from 'cucumber';
+var {When} = require('cucumber');
+
 import Checkbox from '../../../components/checkbox';
 import InitiateRequisitionPage from '../../../pages/requisitions/initiate.requisition.page';
 import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.page';
 
-defineSupportCode(({ When }) => {
-    When(
-        /^I proceed to "([^"]*)?" requisition for "([^"]*)?" program with "([^"]*)?" status$/,
-        (label, program, status) => {
-            InitiateRequisitionPage.open();
-            InitiateRequisitionPage.waitForIsVisible();
+When(
+    /^I proceed to "([^"]*)?" requisition for "([^"]*)?" program with "([^"]*)?" status$/,
+    (label, program, status) => {
+        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.waitForIsVisible();
 
-            new Checkbox(label).click();
-            InitiateRequisitionPage.searchForProgram(program);
-            InitiateRequisitionPage.waitForTable();
+        new Checkbox(label).click();
+        InitiateRequisitionPage.searchForProgram(program);
+        InitiateRequisitionPage.waitForTable();
 
-            ViewRequisitionPage.proceedToRequisition(status);
-            ViewRequisitionPage.waitForIsVisible();
-        }
-    );
-});
+        ViewRequisitionPage.proceedToRequisition(status);
+        ViewRequisitionPage.waitForIsVisible();
+    }
+);
