@@ -1,11 +1,9 @@
-import { defineSupportCode } from 'cucumber';
+var {Then} = require('cucumber');
 
 import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.requisition.page';
 import UserListPage from '../../../../pages/administration/user.list.page';
-import waitForVisible from '../../../../support/action/waitForVisible';
-import Checkbox from '../../../../components/checkbox';
 
-defineSupportCode(({ Then }) => {
+Then(() => {
 
     Then(
            /^I should not be able to select "([^"]*)?" checkbox$/,

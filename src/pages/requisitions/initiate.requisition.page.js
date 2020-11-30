@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Button from '../../components/button';
 import Action from '../../components/action';
@@ -52,7 +52,7 @@ class InitiateRequisitionPage extends Page {
      * Wait for the table to be visible.
      */
     waitForTable() {
-        waitForVisible('table');
+        waitForDisplayed('table');
     }
 
 

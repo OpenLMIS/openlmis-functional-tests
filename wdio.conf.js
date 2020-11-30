@@ -5,21 +5,29 @@ const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
 const features = glob.sync('src/features/**/*.feature');
-const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
-let fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
+const path = require('path');
+const parse = require('papaparse');
+const video = require('wdio-video-reporter');
+
+const fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
 const durationTimeThresholds = yaml.safeLoad(fileContents);
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
 // wdio.conf.js files
 const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
-const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
+const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.CONSOLE_LOG_DIR : 'build/consolelogs';
 const performanceResultsDir = 'build/performanceResults/';
+const errorShotsDir = './build/errorShots/';
 
 if (!fs.existsSync(performanceResultsDir)) {
     fs.mkdirSync(performanceResultsDir);
+}
+
+if (!fs.existsSync(errorShotsDir)) {
+    fs.mkdirSync(errorShotsDir);
 }
 
 const stepPerformanceResultsFile = `${performanceResultsDir}StepPerformanceResults.csv`;
@@ -55,19 +63,17 @@ const scenarioPerformanceResultsStream = fs.createWriteStream(scenarioPerformanc
 const featurePerformanceResultsStream = fs.createWriteStream(featurePerformanceResultsFile, { flags: 'a' });
 
 const SOME_FEATURE_TESTS_FAILED = 1;
-const DEFAULT_DISPLAY_ID = '0';
 
-const getRecordingName = (feature) => `${recordingsDir}/${feature.name}.mp4`;
 const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
-const getFailureMessage = (stepDuration, durationTimeThreshold) => 'Poor performance for this step.\n' +
-`The time duration of this step should not exceed ${durationTimeThreshold}s but is currently ${stepDuration}s.`;
+const getFailureMessage = (feature, scenario, step, stepDuration, maxAllowed) => `${feature}: ${scenario}: ${step}: `
+  + `The time duration should not exceed ${maxAllowed}s but is ${stepDuration}s.\n`;
 
 const getDurationTimeThreshold = (resultStep) => {
     let foundDuration = '';
     durationTimeThresholds.features.find((feature) => {
-      feature.name === resultStep.scenario.feature.name && feature.scenarios.some((scenario) => {
+      feature.name === resultStep.feature.name && feature.scenarios.some((scenario) => {
         scenario.name === resultStep.scenario.name && scenario.steps.some((step) => {
-            if (step.name === resultStep.name) {
+            if (step.name === resultStep.step.text) {
                 foundDuration = step.duration;
             }
         })
@@ -76,9 +82,8 @@ const getDurationTimeThreshold = (resultStep) => {
     return foundDuration;
 };
 
-let recordings = {};
 let consoleLogs = [];
-let proxy = null;
+let proxy = undefined;
 let beforeScenario = () => {};
 
 if (bmpPresent) {
@@ -112,6 +117,10 @@ let stepDuration = 0;
 let stepObjects = [];
 let scenarioObjects = [];
 let featureObject = {};
+
+const drivers = {
+    chrome: { version: '86.0.4240.22' },
+};
 
 // wdio config
 exports.config = {
@@ -161,16 +170,17 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'chrome',
-        chromeOptions: {
-          args: [
-            '--disable-infobars',
-            '--window-size=1920,1080',
-            '--no-sandbox',
-            '--disable-gpu',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage'
-          ]
+        'goog:chromeOptions': {
+            args: [
+                '--disable-infobars',
+                '--window-size=1920,1080',
+                '--no-sandbox',
+                '--disable-gpu',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+            ],
         },
+        acceptInsecureCerts: true,
         proxy,
     }],
     //
@@ -190,9 +200,6 @@ exports.config = {
     //
     // Enables colors for log output.
     coloredLogs: true,
-    //
-    // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './build/errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
@@ -230,7 +237,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They
     // enhance your test setup with almost no effort. Unlike plugins, they don't
     // add new commands. Instead, they hook themselves up into the test process.
-    services: ['devtools', 'selenium-standalone'],
+    services: ['devtools', ['selenium-standalone', { installArgs: { drivers }, args: { drivers } }]],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -243,12 +250,18 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec', 'junit'],
-    reporterOptions: {
-        junit: {
+    reporters: [
+        'spec',
+        ['junit', {
             outputDir: './build/',
-        },
-    },
+            outputFileFormat: (options) => `WDIO.xunit.${options.capabilities.browserName}.${options.cid}.xml`,
+        }],
+        [video, {
+            saveAllVideos: false, // If true, also saves videos for successful test cases
+            videoSlowdownMultiplier: 10, // Higher to get slower videos, lower for faster videos [Value 1-100]
+            outputDir: recordingsDir,
+        }],
+    ],
     //
     // If you are using Cucumber you need to specify the location of your step
     // definitions.
@@ -256,9 +269,10 @@ exports.config = {
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> filetype:compiler used for processing required features
-        compiler: [
-            'js:babel-register',
-        ],
+        // compiler: [
+        //     'js:babel-register',
+        // ],
+        requireModule: ['@babel/register'],
         // <boolean< Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> invoke formatters without executing steps
@@ -313,7 +327,7 @@ exports.config = {
         }
         fs.mkdirSync(recordingsDir);
         fs.mkdirSync(consoleLogDir);
-      },
+    },
     //
     // Gets executed before test execution begins. At this point you can access
     // all global variables, such as `browser`. It is the perfect place to
@@ -366,81 +380,56 @@ exports.config = {
     // },
     beforeScenario,
 
-    beforeFeature: (feature) => {
-        let scenarioRecordingName = getRecordingName(feature);
+    // beforeFeature: (uri, feature) => {
+    // },
 
-        recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
-            resolution: '1920x1080', // Display resolution
-            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : DEFAULT_DISPLAY_ID,
-            fps: 60
-        });
-
-        recordings[scenarioRecordingName].promise
-            .then(result => {
-                process.stdout.write(result.stdout);
-                process.stderr.write(result.stderr);
-            })
-            .catch(error => console.error(error))
-    },
-
-    afterFeature: (feature) => {
+    afterFeature: (uri, feature) => {
         featureObject = {
-            'name': feature.name,
-            'duration': featureDuration,
-            'scenarios': scenarioObjects
+            name: feature.document.feature.name,
+            duration: featureDuration,
+            scenarios: scenarioObjects,
         };
         scenarioObjects = [];
         featureDuration = 0;
-
-        let scenarioRecordingName = getRecordingName(feature);
-        recordings[scenarioRecordingName].stop();
-        if (!recordings[scenarioRecordingName].shouldKeep) {
-            fs.unlinkSync(scenarioRecordingName);
-        }
-
-        delete recordings[scenarioRecordingName];
     },
 
-    afterStep: (stepResults) => {
-        stepDuration = stepResults.duration / 1000;
-        const durationTimeThreshold = getDurationTimeThreshold(stepResults.step);
+    afterStep: ({ step }, context, { duration, passed }) => {
+        stepDuration = duration / 1000;
+        const durationTimeThreshold = getDurationTimeThreshold(step);
 
         const stepObject = {
-            name: stepResults.step.name,
+            name: step.step.text,
             duration: stepDuration,
             maxAllowed: durationTimeThreshold,
         };
         stepObjects.push(stepObject);
         scenarioDuration += stepDuration;
 
-        if (stepResults.status !== 'passed') {
-            const scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
-            recordings[scenarioRecordingName].shouldKeep = true;
+        if (passed === false) {
+            const filepath = path.join(errorShotsDir, `ERROR_chrome_${new Date(Date.now()).toISOString()}.png`);
+            browser.saveScreenshot(filepath);
         }
 
-        if (durationTimeThreshold && stepDuration > durationTimeThreshold) {
-            stepResults.status = 'failed';
-            stepResults.failureException = getFailureMessage(stepDuration, durationTimeThreshold);
-        }
-
-        let scenario = stepResults.step.scenario;
-        const logs = browser.log('browser');
-        logs.value.forEach(log => {
+        const scenario = step.scenario;
+        scenario.feature = step.feature;
+        const logs = browser.getLogs('browser');
+        logs.forEach((log) => {
             consoleLogs.push({
                 scenario: scenario,
-                stepName: stepResults.step.name,
+                stepName: step.step.text,
                 date: new Date(log.timestamp).toLocaleString(),
                 message: log.message,
             });
         });
     },
 
-    afterScenario: (scenario) => {
-        let scenarioObject = {
+    afterScenario: (uri, feature, scenario) => {
+        const scenarioObject = {
             name: scenario.name,
             duration: scenarioDuration,
-            steps: stepObjects
-        }
+            steps: stepObjects,
+        };
+
         scenarioObjects.push(scenarioObject);
         stepObjects = [];
 
@@ -450,7 +439,7 @@ exports.config = {
     //
     // Gets executed after all tests are done. You still have access to all
     // global variables from the test.
-    after: function after(result, capabilities, specs) {
+    after: function after(result) {
         const featureName = featureObject.name.replace(/"/g, '\'');
 
         featurePerformanceResultsStream.write(`"${featureName}",${featureObject.duration}\n`);
@@ -467,11 +456,11 @@ exports.config = {
         });
 
         if (result === SOME_FEATURE_TESTS_FAILED) {
-            let stringLogs = consoleLogs.map(log => {
+            const stringLogs = consoleLogs.map(log => {
                 return `[${log.date}] [${log.scenario.name}][${log.stepName}]: ${log.message}`;
             });
 
-            let featureLogFileName = getConsoleLogFileName(consoleLogs[0].scenario);
+            const featureLogFileName = getConsoleLogFileName(consoleLogs[0].scenario);
             fs.writeFile(featureLogFileName, stringLogs.join('\n\n'), function (err) {
                 if (err) {
                     return console.log(err);
@@ -483,6 +472,35 @@ exports.config = {
     //
     // Gets executed after all workers got shut down and the process is about to
     // exit. It is not possible to defer the end of the process using a promise.
-    // onComplete: function onComplete(exitCode) {
-    // }
+    onComplete: function onComplete() {
+        if (fs.existsSync(`${recordingsDir}/rawSeleniumVideoGrabs`)) {
+            fs.removeSync(`${recordingsDir}/rawSeleniumVideoGrabs`);
+        }
+
+        const performanceErrors = [];
+        const performanceResults = fs.readFileSync(stepPerformanceResultsFile, 'utf8');
+        const results = parse.parse(performanceResults, { delimiter: ',', skipEmptyLines: true });
+        const output = results.data;
+
+        if (output.length > 1) {
+            for (let i = 1; i < output.length; i += 1) {
+                const duration = parseFloat(output[i][3]);
+                const maxAllowed = parseFloat(output[i][4]);
+
+                if (!Number.isNaN(duration) && !Number.isNaN(maxAllowed) && duration > maxAllowed) {
+                    const message = getFailureMessage(output[i][0], output[i][1], output[i][2], duration, maxAllowed);
+                    performanceErrors.push(message);
+                }
+            }
+        }
+
+        if (performanceErrors.length > 0) {
+            let message = 'Poor performance for:\n';
+            performanceErrors.forEach((error) => {
+                message += error;
+            });
+
+            throw new Error(message);
+        }
+    },
 };
