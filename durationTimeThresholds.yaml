@@ -24,9 +24,9 @@ features:
       - name: "Store Manager should not be able to authorize the requisition with one required column omitted"
         steps:
           - name: "I have navigated to a requisition for \"Lilongwe Health Center\" facility, \"ARV\" program and \"Mar2017\" period"
-            duration: 11000
+            duration: 5000
           - name: "I confirm the authorize"
-            duration: 2500
+            duration: 500
       - name: "Store manager should not be able to authorize the requisition with Requested quantity explanation column omitted"
         steps:
           - name: "I confirm the authorize"
