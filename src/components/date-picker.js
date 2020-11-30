@@ -1,6 +1,6 @@
 import isEnabled from '../support/check/isEnabled';
 import isVisible from '../support/check/isVisible';
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 
 import getDatePickerInputSelector from '../support/lib/getDatePickerInputSelector';
 import getFullMonthName from '../support/lib/getFullMonthName';
@@ -98,6 +98,6 @@ export default class DatePicker {
     }
 
     waitForDatePickerToClose() {
-        waitForVisible(this.datePickerDropdownSelector, true);
+        waitForDisplayed(this.datePickerDropdownSelector, true);
     }
 }

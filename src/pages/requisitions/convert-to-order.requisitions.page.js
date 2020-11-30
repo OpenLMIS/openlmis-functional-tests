@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Select from '../../components/select';
 import ConfirmationModal from '../../components/confirmation-modal';
 import scrollToSelector from '../../support/action/scrollToSelector';
@@ -63,7 +63,7 @@ class ConvertRequisitionsPage extends Page {
     }
 
     waitForSupplyingDepotOption(option) {
-        waitForVisible(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`);
+        waitForDisplayed(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`);
     }
 }
 

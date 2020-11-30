@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Table from '../../components/table';
 
 /**
@@ -41,7 +41,7 @@ class ApproveRequisitionsPage extends Page {
      * Wait for the table to be visible.
      */
     waitForTable() {
-        waitForVisible('//table/tbody/tr/td');
+        waitForDisplayed('//table/tbody/tr/td');
     }
 
     /**

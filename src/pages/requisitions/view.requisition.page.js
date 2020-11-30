@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
@@ -20,7 +20,7 @@ class ViewRequisitionPage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('//h2[contains(normalize-space(text()), "Report and Requisition for")]');
+        waitForDisplayed('//h2[contains(normalize-space(text()), "Report and Requisition for")]');
     }
 
     /**
@@ -177,7 +177,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfButtonIsHidden(button) {
         const buttonSelector = `//*[contains(@class, "button-group")]/button[contains(text(), "${button}")]`;
-        waitForVisible(buttonSelector, true);
+        waitForDisplayed(buttonSelector, true);
     }
 
     /**
@@ -187,7 +187,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfLineItemIsHidden(product) {
         const requisitionLineItemSelector = new RequisitionLineItem(product).selector;
-        waitForVisible(requisitionLineItemSelector, true);
+        waitForDisplayed(requisitionLineItemSelector, true);
     }
 
     /**
@@ -539,12 +539,12 @@ class ViewRequisitionPage extends Page {
 
     checkAutoSavingSpinner() {
         const spinner = `//*[contains(@class, "saving-add-active")]`;
-        waitForVisible(spinner, true);
+        waitForDisplayed(spinner, true);
     }
 
     checkIfButtonIsVisible(button) {
         const buttonSelector = `//button[contains(text(), "${button}")]`;
-        waitForVisible(buttonSelector, false);
+        waitForDisplayed(buttonSelector, false);
     }
 
     checkIfButtonIsEnabledOrNot(button) {

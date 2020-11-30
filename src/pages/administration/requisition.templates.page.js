@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Button from '../../components/button';
 import Action from '../../components/action';
 import getSelectDropdownSelectorInTable from '../../support/lib/getSelectDropdownSelectorInTable';
@@ -20,7 +20,7 @@ class RequisitionTemplatesPage extends Page {
      * Wait for program to be visible in the table.
      */
     waitForProgram(name) {
-        waitForVisible(`//td[text()="${name}"]`);
+        waitForDisplayed(`//td[text()="${name}"]`);
     }
 
     /**
@@ -63,7 +63,7 @@ class RequisitionTemplatesPage extends Page {
     isOptionSelected(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
-        waitForVisible(selector);
+        waitForDisplayed(selector);
         return browser.element(selector).isVisible();
     }
 
@@ -88,7 +88,7 @@ class RequisitionTemplatesPage extends Page {
      */
     clearTagSelection(tagIndex) {
         new Action(() => {
-            waitForVisible(this.getTagClearSelector(tagIndex));
+            waitForDisplayed(this.getTagClearSelector(tagIndex));
             browser
                 .element(this.getTagClearSelector(tagIndex))
                 .click();

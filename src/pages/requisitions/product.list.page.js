@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 
 /**
  *  Products List Page object represents the related view in OpenLMIS UI.
@@ -10,14 +10,14 @@ class ProductListPage extends Page {
      * Wait for this page to be visible.
      */
     waitForIsVisible() {
-        waitForVisible('//button[contains(text(), "Add Product")]');
+        waitForDisplayed('//button[contains(text(), "Add Product")]');
     }
 
     /**
      * Wait for the product to be visible in the table.
      */
     waitForAddedProducts(code, product) {
-        waitForVisible(
+        waitForDisplayed(
             `//td[text()="${code}"]` +
             `/following-sibling::td[text()="${product}"]`
         );

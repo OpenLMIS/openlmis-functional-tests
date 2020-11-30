@@ -42,8 +42,8 @@ export default class Page {
      */
     navigateToPage() {
         new Action(() => {
-            browser.element(`//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`).click();
-            browser.element(`//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`).click();
+            browser.$(`//*[contains(@class, 'navbar')]//a[normalize-space(text())='${this.navParent}']`).click();
+            browser.$(`//*[contains(@class, 'dropdown')]//a[normalize-space(text())='${this.navChild}']`).click();
         }).execute();
     }
 }

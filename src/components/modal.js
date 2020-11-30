@@ -1,4 +1,4 @@
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 
 /**
  * Represents a single modal in the OpenLMIS system.
@@ -22,7 +22,7 @@ export default class Modal {
      * Waits for the modal to be visible. The modal is considered as loaded once the header is visible.
      */
     waitForIsVisible() {
-        waitForVisible('//*[contains(@class,"modal")]' +
+        waitForDisplayed('//*[contains(@class,"modal")]' +
             `/*[(self::h1 or self::h4) and normalize-space(text())="${this.header}"]`);
     }
 

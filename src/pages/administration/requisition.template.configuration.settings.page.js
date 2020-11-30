@@ -1,6 +1,6 @@
 
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import scroll from '../../support/action/scroll';
 import Table from '../../components/table';
 import Button from '../../components/button';
@@ -20,7 +20,7 @@ class RequisitionTemplateConfigurationSettingsPage extends Page {
      */
     waitForIsVisible() {
         scroll('top');
-        waitForVisible('//h2[contains(normalize-space(text()), "Configure Template Settings")]');
+        waitForDisplayed('//h2[contains(normalize-space(text()), "Configure Template Settings")]');
     }
 
     /**
@@ -104,7 +104,7 @@ class RequisitionTemplateConfigurationSettingsPage extends Page {
      * Wait for the table to be visible.
      */
     waitForTable() {
-        waitForVisible('//table/tbody/tr/td');
+        waitForDisplayed('//table/tbody/tr/td');
     }
 
 }

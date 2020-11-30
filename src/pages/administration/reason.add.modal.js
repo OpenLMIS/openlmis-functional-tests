@@ -1,4 +1,4 @@
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Modal from '../../components/modal';
 
 /**
@@ -16,7 +16,7 @@ class ReasonAddModal extends Modal {
      * Wait for the assignment to be added.
      */
     waitForAssignment(program, facilityType) {
-        waitForVisible(
+        waitForDisplayed(
             `//td[text()="${program}"]` +
             `/following-sibling::td[text()="${facilityType}"]`
         );

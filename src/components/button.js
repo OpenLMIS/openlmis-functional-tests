@@ -1,6 +1,6 @@
 import Action from './action';
 import getButtonSelector from '../support/lib/getButtonSelector';
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 
 /**
  * Represents a single button in the OpenLMIS system.
@@ -31,6 +31,6 @@ export default class Button {
      * Waits for the button to be visible.
      */
     waitForIsVisible() {
-        waitForVisible(this.selector);
+        waitForDisplayed(this.selector);
     }
 }

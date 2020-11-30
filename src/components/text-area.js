@@ -1,5 +1,5 @@
 import isEnabled from '../support/check/isEnabled';
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import getTextAreaSelector from '../support/lib/getTextAreaSelector';
 
 /**
@@ -36,7 +36,7 @@ export default class TextArea {
     }
 
     waitForIsVisible() {
-        waitForVisible(this.selector);
+        waitForDisplayed(this.selector);
     }
 
 }

@@ -1,4 +1,4 @@
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Modal from '../../components/modal';
 import Link from '../../components/link';
 import Select from '../../components/select';
@@ -30,7 +30,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      * Wait for the assignment to be added.
      */
     waitForAssignment(reason, quantity) {
-        waitForVisible(
+        waitForDisplayed(
             `//td[text()="${reason}"]` +
             `/following-sibling::td//parent::div` +
             `//child::input[normalize-space(text()="${quantity}")]`

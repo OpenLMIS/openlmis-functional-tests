@@ -1,4 +1,4 @@
-import waitForVisible from './waitForVisible';
+import waitForDisplayed from './waitForDisplayed';
 
 /**
  * Wait for the notification with the given message to become visible.
@@ -9,6 +9,6 @@ module.exports = (message) => {
     const selector = '//div[contains(@class, "notification") and contains(@class, "is-success") and ' +
         `normalize-space(text())="${message}"]`;
 
-    waitForVisible(selector);
-    waitForVisible(selector, true);
+    waitForDisplayed(selector);
+    waitForDisplayed(selector, true);
 };

@@ -1,7 +1,7 @@
 import Page from '../../components/page';
 import Table from '../../components/table';
 import ConfirmationModal from '../../components/confirmation-modal';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import DatePicker from '../../components/date-picker';
 import Button from '../../components/button';
 
@@ -96,7 +96,7 @@ class PhysicalInventoryPage extends Page {
     }
 
     waitForPrintModal() {
-        waitForVisible('//*[contains(@class,"modal")]' + 
+        waitForDisplayed('//*[contains(@class,"modal")]' + 
         `/*[(self::p) and normalize-space(text())= "${this.printModal.header}"]`)
     }
 
@@ -105,7 +105,7 @@ class PhysicalInventoryPage extends Page {
     }
 
     waitForIsVisible() {
-        waitForVisible('//h2[contains(normalize-space(text()), "D002 - Depósito Distrital Lichinga - EPI")]');
+        waitForDisplayed('//h2[contains(normalize-space(text()), "D002 - Depósito Distrital Lichinga - EPI")]');
     }
 }
 

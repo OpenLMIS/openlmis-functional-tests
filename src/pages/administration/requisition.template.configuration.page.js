@@ -1,6 +1,6 @@
 import Page from '../../components/page';
 import ConfirmationModal from '../../components/confirmation-modal';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import getSelectDropdownSelectorInTable from '../../support/lib/getSelectDropdownSelectorInTable';
 import scrollToSelector from '../../support/action/scrollToSelector';
 import scroll from '../../support/action/scroll';
@@ -12,7 +12,7 @@ class RequisitionTemplateConfigurationPage extends Page {
      */
     waitForIsVisible(templateName, programName) {
         scroll('top');
-        waitForVisible(`//h2[contains(normalize-space(text()), "Configure ${templateName} for ${programName}")]`);
+        waitForDisplayed(`//h2[contains(normalize-space(text()), "Configure ${templateName} for ${programName}")]`);
     }
 
     /**

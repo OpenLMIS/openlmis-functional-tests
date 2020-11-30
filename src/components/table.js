@@ -1,6 +1,6 @@
 import Button from './button';
 
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import checkTableSort from '../support/check/checkTableSort';
 
 import retrieveTableData from '../support/lib/retrieveTableData';
@@ -56,7 +56,7 @@ export default class Table {
             `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
             `//button[normalize-space(text())="${buttonLabel}"] | //input[normalize-space(@value)="${buttonLabel}"]`;
 
-        waitForVisible(selector);
+        waitForDisplayed(selector);
         new Button(buttonLabel, selector, waitForHide).click();
     }
 
@@ -67,7 +67,7 @@ export default class Table {
      */
     waitFor(columnValues, hidden) {
         const selector = this.createColumnSelector(columnValues);
-        waitForVisible(selector, hidden);
+        waitForDisplayed(selector, hidden);
     }
 
     createColumnSelector(columnValues) {

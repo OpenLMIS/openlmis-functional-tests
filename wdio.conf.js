@@ -256,9 +256,10 @@ exports.config = {
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> filetype:compiler used for processing required features
-        compiler: [
-            'js:babel-register',
-        ],
+        // compiler: [
+        //     'js:babel-register',
+        // ],
+        requireModule: ['@babel/register'],
         // <boolean< Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> invoke formatters without executing steps
@@ -383,7 +384,7 @@ exports.config = {
             .catch(error => console.error(error))
     },
 
-    afterFeature: (feature) => {
+    afterFeature: (uri, feature, scenarios) => {
         featureObject = {
             'name': feature.name,
             'duration': featureDuration,

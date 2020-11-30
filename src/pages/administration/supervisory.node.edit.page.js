@@ -1,6 +1,6 @@
 import Page from '../../components/page';
 import ConfirmationModal from '../../components/confirmation-modal';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Button from '../../components/button';
 import scroll from '../../support/action/scroll';
@@ -73,7 +73,7 @@ class SupervisoryNodeEditPage extends Page {
     }
 
     waitForNode(sectionName, nodeName, hidden) {
-        waitForVisible(
+        waitForDisplayed(
             `//label[text()="${sectionName}"]/following-sibling::*//td[text()="${nodeName}"]`,
             hidden
         );

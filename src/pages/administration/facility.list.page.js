@@ -1,7 +1,7 @@
 import Page from '../../components/page';
 import scroll from '../../support/action/scroll';
 import Checkbox from '../../components/checkbox';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 
 /**
  * Facility List Page object represents the related view in OpenLMIS UI.

@@ -11,7 +11,7 @@ import loadingModal from '../../components/loading-modal';
 import homePage from '../../pages/home.page';
 
 import getButtonSelector from '../../support/lib/getButtonSelector';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import offlineMode from '../../support/action/offlineMode';
 import switchToPage from '../../support/action/switchToPage';
@@ -81,7 +81,7 @@ defineSupportCode(({ When }) => {
         /^I refresh page$/,
         () => {
             browser.refresh();
-            waitForVisible('//h2');
+            waitForDisplayed('//h2');
         }
     );
 

@@ -1,4 +1,4 @@
-import waitForVisible from './waitForVisible';
+import waitForDisplayed from './waitForDisplayed';
 import scroll from './scroll';
 
 /**
@@ -18,7 +18,7 @@ module.exports = (label, option, section = '') => {
 
     if (option) {
         // Deals with selects for which options might load asynchronously.
-        waitForVisible(`${section}//option[normalize-space(text())="${option}"]`);
+        waitForDisplayed(`${section}//option[normalize-space(text())="${option}"]`);
         browser
             .element(`${section}//label[normalize-space(text())="${label}"]` +
                 '/following-sibling::*//*[contains(@class, "select2-selection__arrow")]')

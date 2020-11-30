@@ -1,5 +1,5 @@
 import Page from '../../components/page';
-import waitForVisible from '../../support/action/waitForVisible';
+import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Button from '../../components/button';
 import chooseSelectOption from '../../support/action/chooseSelectOption';
 import Table from '../../components/table';
@@ -94,7 +94,7 @@ class ViewRequisitionsPage extends Page {
     isOfflineCheckboxVisible(program, period, columnName) {
         const selector = getCheckIconSelectorInsideTable([program, period], columnName);
         this.scrollToTheRightOfTable();
-        waitForVisible(selector, false);
+        waitForDisplayed(selector, false);
     }
 
     waitForRequisition(program, period, hidden) {
@@ -105,11 +105,11 @@ class ViewRequisitionsPage extends Page {
      * Wait for the table to be visible.
      */
     waitForTable() {
-        waitForVisible('//table/tbody/tr/td');
+        waitForDisplayed('//table/tbody/tr/td');
     }
 
     isFilterPopoverVisible() {
-        waitForVisible(`//div[contains(@class, 'popover')]//legend[normalize-space(text())='Date initiated']`);
+        waitForDisplayed(`//div[contains(@class, 'popover')]//legend[normalize-space(text())='Date initiated']`);
     }
 
     scrollToTheRightOfTable() {
