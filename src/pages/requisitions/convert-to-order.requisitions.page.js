@@ -38,7 +38,7 @@ class ConvertRequisitionsPage extends Page {
         `/preceding-sibling::td/label/input[@type="checkbox"]`;
 
         scrollToSelector(selector);
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 
     /**
@@ -47,7 +47,7 @@ class ConvertRequisitionsPage extends Page {
     selectAll() {
         const selector = '//th/input[@type="checkbox"]';
         browser.scroll(selector);
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 
     openSelectDropdown(program, period) {

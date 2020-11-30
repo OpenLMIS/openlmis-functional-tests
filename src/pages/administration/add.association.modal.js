@@ -45,7 +45,7 @@ class AddAssociationModal extends Modal {
         }).execute();
 
         browser
-            .element('//*[contains(@id, "productForm")]//td[1]//input[contains(@type, "checkbox")]')
+            .$('//*[contains(@id, "productForm")]//td[1]//input[contains(@type, "checkbox")]')
             .click();
 
         new Button('Add Products', '//button[contains(@form, "productForm")]').click();

@@ -32,7 +32,7 @@ class PhysicalInventoryProductAddModal extends Modal {
     setColumnForProduct(column, value, code) {
         const id = this.getColumnId(column);
         const selector = this.getTableInputSelector(code, id);
-        const td = browser.element(selector);
+        const td = browser.$(selector);
 
         td.setValue(value);
     }

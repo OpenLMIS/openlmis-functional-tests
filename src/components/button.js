@@ -24,7 +24,7 @@ export default class Button {
      * Clicks the button. This is an Action and will handle waiting for the loading modal to fade.
      */
     click() {
-        new Action(() => browser.element(this.selector).click(), this.waitForHide).execute();
+        new Action(() => browser.$(this.selector).click(), this.waitForHide).execute();
     }
 
     /**

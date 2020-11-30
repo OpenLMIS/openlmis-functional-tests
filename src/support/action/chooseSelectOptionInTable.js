@@ -1,4 +1,3 @@
-import scroll from './scroll';
 
 /**
  * Selects the given option for the select inside a table.
@@ -10,15 +9,15 @@ module.exports = (section = '', option) => {
 
     if (option) {
         browser
-            .element(`${section}` +
+            .$(`${section}` +
                 '/following-sibling::span[contains(@class, "select2-selection__arrow")]')
             .click();
         browser
-            .element(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`)
+            .$(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`)
             .click();
     } else {
         browser
-            .element(`${section}` +
+            .$(`${section}` +
                 '/child::*//*[contains(@class, "select2-selection__clear")]')
             .click();
     }

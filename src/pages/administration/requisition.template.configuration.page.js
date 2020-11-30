@@ -25,7 +25,7 @@ class RequisitionTemplateConfigurationPage extends Page {
         const selector = getSelectDropdownSelectorInTable([undefined, undefined, letter], "Source") + 
             `//parent::select//option[text()="${option}"]`;
         scrollToSelector(selector);
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 
     /**

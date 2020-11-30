@@ -16,7 +16,7 @@ class UserProfilePage extends Page {
      * Verifies that the pending verification node for the given email address exists on the screen.
      */
     verifyPendingVerificationNode(emailAddress) {
-        browser.element(
+        browser.$(
             '/*[normalize-space(text())=' +
             `"The email address has been changed to ${emailAddress} and is pending verification"]`
         );

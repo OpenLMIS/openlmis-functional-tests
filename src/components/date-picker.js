@@ -19,11 +19,11 @@ export default class DatePicker {
     }
 
     get clearButton() {
-        return browser.element(this.datePickerDropdownSelector + `//th[contains(@class, 'clear')]`);
+        return browser.$(this.datePickerDropdownSelector + `//th[contains(@class, 'clear')]`);
     }
 
     set value(value) {
-        browser.element(this.selector).setValue(value);
+        browser.$(this.selector).setValue(value);
     }
 
     clearInput() {
@@ -35,7 +35,7 @@ export default class DatePicker {
     }
 
     open() {
-        browser.element(this.selector).click();
+        browser.$(this.selector).click();
     }
 
     isEnabled() {
@@ -59,7 +59,7 @@ export default class DatePicker {
     }
 
     hasValue(expected) {
-        expect(browser.element(this.selector).getValue()).to.equal(expected);
+        expect(browser.$(this.selector).getValue()).to.equal(expected);
     }
 
     setDateInFuture(numberOfDays = 1) {
@@ -71,7 +71,7 @@ export default class DatePicker {
 
     selectTodayDate() {
         this.open();
-        browser.element(this.datePickerDropdownSelector + '//td[contains(@class, "today")]').click();
+        browser.$(this.datePickerDropdownSelector + '//td[contains(@class, "today")]').click();
     }
 
     isDateSelected(date) {
@@ -93,7 +93,7 @@ export default class DatePicker {
     }
 
     closeDatePicker() {
-        browser.element(`//h1[normalize-space(text())="Logistics Management Information System"]`).click();
+        browser.$(`//h1[normalize-space(text())="Logistics Management Information System"]`).click();
         this.waitForDatePickerToClose();
     }
 

@@ -38,7 +38,7 @@ class UserListPage extends Page {
       */
     removeUserRole(role, program, supervisoryNode){
         scroll('bottom');
-        const roleRow = browser.element(`//td[contains(text(),'${program}')]//following-sibling::td[contains(text(),'${supervisoryNode}')]//following-sibling::td[contains(text(),'${role}')]//following-sibling::td/button`);
+        const roleRow = browser.$(`//td[contains(text(),'${program}')]//following-sibling::td[contains(text(),'${supervisoryNode}')]//following-sibling::td[contains(text(),'${role}')]//following-sibling::td/button`);
         roleRow.click();
     }
 

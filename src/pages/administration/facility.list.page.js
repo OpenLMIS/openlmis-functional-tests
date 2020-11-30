@@ -26,7 +26,7 @@ class FacilityListPage extends Page {
         */
        setProgramCheckbox(value, program) {
            const id = this.getColumnId(program);
-           const programCheckbox = browser.element(`//table/tbody/tr[contains(@class, 'ng-scope ng-isolate-scope')][${id + 1}]/td[@class='ng-scope'][1]//input`);
+           const programCheckbox = browser.$(`//table/tbody/tr[contains(@class, 'ng-scope ng-isolate-scope')][${id + 1}]/td[@class='ng-scope'][1]//input`);
 
            if (programCheckbox.isSelected() && value === 'uncheck') {
                     programCheckbox.click();

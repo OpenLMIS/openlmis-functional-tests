@@ -44,7 +44,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
         const selector = `//div[contains(@class, 'modal-body')]//dl//dd`;
         browser.scroll(selector);
         browser.pause(1000);
-        return browser.element(selector).getText();
+        return browser.$(selector).getText();
     }
 
     openSelectDropdown(label) {
@@ -56,7 +56,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      */
     isOptionInsideDropdown(option) {
         const selector = `//option[contains(@label, '${option}')]`;
-        let element = browser.element(selector);
+        let element = browser.$(selector);
         return element.isVisible();
     }
 }

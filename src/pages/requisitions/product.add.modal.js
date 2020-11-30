@@ -16,7 +16,7 @@ class ProductAddModal extends Modal {
      * Check the checkbox option for a product with the given code.
      */
     selectProduct(code) {
-        browser.element(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
+        browser.$(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
     }
 
     get addProductsButton() {

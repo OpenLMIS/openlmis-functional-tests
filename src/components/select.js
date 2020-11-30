@@ -9,7 +9,7 @@ class Select {
 
     clickSelectInput(columnValues, columnName = '') {
         const selector = getSelectInputSelector(columnValues, columnName);
-        browser.element(`${selector}`).click();
+        browser.$(`${selector}`).click();
     }
 
     unselectOption(columnValues, columnName = '') {
@@ -27,7 +27,7 @@ class Select {
      */
     openSelectDropdownInsideModal(label) {
         const selector = getSelectDropdownSelector(label);
-        browser.element(selector).click();
+        browser.$(selector).click();
     }
 }
 

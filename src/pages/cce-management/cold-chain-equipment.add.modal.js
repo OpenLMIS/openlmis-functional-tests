@@ -15,18 +15,18 @@ class ColdChainEquipmentAddModal extends Modal {
      * Check the checkbox option for a product with the given code.
      */
     selectProduct(code) {
-        browser.element(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
+        browser.$(`//td[text()="${code}"]/preceding-sibling::td/label/input[@type="checkbox"]`).click();
     }
 
     addProdButton(label,option) {
-       browser.element(`//input[normalize-space(@value)="${label}"] | //button[normalize-space(text())="${option}"]`).click();
+       browser.$(`//input[normalize-space(@value)="${label}"] | //button[normalize-space(text())="${option}"]`).click();
 
     }
 
 
  checkMyFacilityProgram (){
 
-      browser.element("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
+      browser.$("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
     }
     /**
      * Closes modal to add new cold chain equipment.
@@ -40,7 +40,7 @@ class ColdChainEquipmentAddModal extends Modal {
          */
     openSelectDropdownInsideModal(label) {
             const selector = getSelectDropdownSelector(label);
-            browser.element(selector).click();
+            browser.$(selector).click();
     }
 }
 

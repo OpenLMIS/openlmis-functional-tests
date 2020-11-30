@@ -20,15 +20,15 @@ module.exports = (label, option, section = '') => {
         // Deals with selects for which options might load asynchronously.
         waitForDisplayed(`${section}//option[normalize-space(text())="${option}"]`);
         browser
-            .element(`${section}//label[normalize-space(text())="${label}"]` +
+            .$(`${section}//label[normalize-space(text())="${label}"]` +
                 '/following-sibling::*//*[contains(@class, "select2-selection__arrow")]')
             .click();
         browser
-            .element(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`)
+            .$(`//span[contains(@class, "select2-container")]//li[normalize-space(text())="${option}"]`)
             .click();
     } else {
         browser
-            .element(`${section}//label[normalize-space(text())="${label}"]` +
+            .$(`${section}//label[normalize-space(text())="${label}"]` +
                 '/following-sibling::*//*[contains(@class, "select2-selection__clear")]')
             .click();
     }

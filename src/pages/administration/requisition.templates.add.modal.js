@@ -67,7 +67,7 @@ class RequisitionTemplateAddModal extends Modal {
      * Checks if facility type is present in the table.
      */
     isFacilityTypePresent(facilityTypeName) {
-        return browser.element(`//*[contains(@class, "modal-body")]//table/tbody/*/td[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//*[contains(@class, "modal-body")]//table/tbody/*/td[normalize-space(text())='${facilityTypeName}']`).isVisible();
     }
 
     /**
@@ -75,14 +75,14 @@ class RequisitionTemplateAddModal extends Modal {
      */
     isDropdownEnabled(label) {
         const selector = getSelectDropdownSelector(label);
-        return browser.element(selector).isEnabled();
+        return browser.$(selector).isEnabled();
     }
 
     /**
      * Checks if form in modal contains 'is-invalid' class.
      */
     isFieldInvalid(label) {
-        const className = browser.element(`//label[normalize-space(text())='${label}']/following-sibling::div`).getAttribute('class');
+        const className = browser.$(`//label[normalize-space(text())='${label}']/following-sibling::div`).getAttribute('class');
         return className.includes('is-invalid');
     }
 }

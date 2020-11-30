@@ -29,7 +29,7 @@ class ColdChainEquipmentInventoryListPage extends Page {
 
     checkMyFacilityProgram (){
 
-      browser.element("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
+      browser.$("//table/tbody/tr[@class='ng-scope ng-isolate-scope'][2]/td[@class='ng-scope'][1]/label[@class='checkbox']").click();
     }
 
     /**

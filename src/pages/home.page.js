@@ -12,14 +12,14 @@ class HomePage extends Page {
      * Get the navigation bar.
      */
     get navbar() {
-        return browser.element('.navbar');
+        return browser.$('.navbar');
     }
 
     /**
      * Get this logout button.
      */
     get logout() {
-        return browser.element('//header//button[1]');
+        return browser.$('//header//button[1]');
     }
 
     /**

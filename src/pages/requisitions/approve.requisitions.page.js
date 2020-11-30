@@ -51,7 +51,7 @@ class ApproveRequisitionsPage extends Page {
         const selector = '//dd';
         browser.scroll(selector);
         browser.pause(1000);
-        return browser.element(selector).getText();
+        return browser.$(selector).getText();
     }
 }
 

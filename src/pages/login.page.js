@@ -22,7 +22,7 @@ class LoginPage extends Page {
      * Get the Username input
      */
     get username() {
-        return browser.element('#login-username');
+        return browser.$('#login-username');
     }
 
     /**
@@ -37,7 +37,7 @@ class LoginPage extends Page {
      * Get the password input field.
      */
     get password() {
-        return browser.element('#login-password');
+        return browser.$('#login-password');
     }
 
     /**
