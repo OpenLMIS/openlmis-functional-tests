@@ -47,6 +47,7 @@
     "find-process": "1.1.0",
     "forever": "~0.15.3",
     "http-server": "~0.10.0",
-    "wdio-devtools-service": "0.1.6"
+    "wdio-devtools-service": "0.1.6",
+    "htmlify-csv": "1.0.2"
   }
 }

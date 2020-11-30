@@ -41,6 +41,10 @@ pipeline {
     }
   }
   post {
+    always {
+        sh 'cp -vr resources/assets/ build/performanceResults/'
+        sh 'node node_modules/htmlify-csv convert build/performanceResults/StepPerformanceResults.csv --output=build/performanceResults/StepPerformanceResults.html'
+    }
     unstable {
       slackSend channel: '#build',
         color: 'danger',
