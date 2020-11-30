@@ -1,4 +1,4 @@
-import waitForVisible from '../support/action/waitForVisible';
+import waitForDisplayed from '../support/action/waitForDisplayed';
 import Action from './action';
 
 /**
@@ -34,7 +34,7 @@ export default class Page {
      * Waits for the page to be visible. The page is considered as loaded once the header is visible.
      */
     waitForIsVisible() {
-        waitForVisible(`//h2[normalize-space(text())="${this.header}"]`);
+        waitForDisplayed(`//h2[normalize-space(text())="${this.header}"]`);
     }
 
     /**
