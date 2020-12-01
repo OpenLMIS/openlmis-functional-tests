@@ -1,5 +1,5 @@
 import isEnabled from '../support/check/isEnabled';
-import isVisible from '../support/check/isVisible';
+import isVisible from '../support/check/isDisplayed';
 import waitForDisplayed from '../support/action/waitForDisplayed';
 
 import getDatePickerInputSelector from '../support/lib/getDatePickerInputSelector';

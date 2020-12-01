@@ -23,7 +23,7 @@ Given(
 
 Given(
     /^I am on the home page$/,
-    () => HomePage.isVisible()
+    () => HomePage.isDisplayed()
 );
 
 Given(
@@ -37,6 +37,6 @@ Given(
 
         LoginPage.clickSubmit();
         HomePage.waitForIsVisible();
-        HomePage.isVisible();
+        HomePage.isDisplayed();
     }
 );

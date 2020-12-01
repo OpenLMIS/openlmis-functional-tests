@@ -67,7 +67,7 @@ class RequisitionTemplateAddModal extends Modal {
      * Checks if facility type is present in the table.
      */
     isFacilityTypePresent(facilityTypeName) {
-        return browser.$(`//*[contains(@class, "modal-body")]//table/tbody/*/td[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//*[contains(@class, "modal-body")]//table/tbody/*/td[normalize-space(text())='${facilityTypeName}']`).isDisplayed();
     }
 
     /**

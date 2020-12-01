@@ -379,7 +379,7 @@ class ViewRequisitionPage extends Page {
         const tomorrow = new Date();
         tomorrow.setDate(new Date().getDate() + 1);
 
-        browser.isVisible(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
+        browser.isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
             [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join('/')}")]`);
     }
 

@@ -45,7 +45,7 @@ class RequisitionTemplatesPage extends Page {
      * Check if the given facility type is present in the dropdown.
      */
     isFacilityTypePresentInDropdown(facilityTypeName) {
-        return browser.$(`//li[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//li[normalize-space(text())='${facilityTypeName}']`).isDisplayed();
     }
 
     /**
@@ -54,7 +54,7 @@ class RequisitionTemplatesPage extends Page {
     isOptionVisible(letter, option) {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
-        return browser.$(selector).isVisible();
+        return browser.$(selector).isDisplayed();
     }
 
     /**
@@ -64,14 +64,14 @@ class RequisitionTemplatesPage extends Page {
         const selector = this.getSelectOptionForTagSelector(letter, option);
         this.scrollToTags();
         waitForDisplayed(selector);
-        return browser.$(selector).isVisible();
+        return browser.$(selector).isDisplayed();
     }
 
     /**
      * Check if any tag option is present in the dropdown.
      */
     isTagOptionPresent() {
-        return browser.$('//table//select[@id="tag"]').isVisible();
+        return browser.$('//table//select[@id="tag"]').isDisplayed();
     }
 
     /**

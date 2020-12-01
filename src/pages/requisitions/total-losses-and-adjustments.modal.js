@@ -57,7 +57,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
     isOptionInsideDropdown(option) {
         const selector = `//option[contains(@label, '${option}')]`;
         let element = browser.$(selector);
-        return element.isVisible();
+        return element.isDisplayed();
     }
 }
 

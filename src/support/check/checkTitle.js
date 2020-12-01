@@ -1,27 +1,21 @@
 /**
- * Check the title of the current browser window
- * @param  {Type}     falseCase     Whether to check if the title matches the
- *                                  expected value or not
- * @param  {Type}     expectedTitle The expected title
+ * Check the selected state of the given element
+ * @param  {String}   selector   Element selector
+ * @param  {String}   falseCase Whether to check if the element is elected or
+ *                              not
  */
-module.exports = (falseCase, expectedTitle) => {
+export default (selector, falseCase) => {
     /**
-     * The title of the current browser window
-     * @type {String}
+     * The selected state
+     * @type {Boolean}
      */
-    const title = browser.getTitle();
+    const isSelected = $(selector).isSelected();
 
     if (falseCase) {
-        expect(title).to.not
-            .equal(
-                expectedTitle,
-                `Expected title not to be "${expectedTitle}"`
-            );
+        expect(isSelected)
+            .not.toEqual(true, `"${selector}" should not be selected`);
     } else {
-        expect(title).to
-            .equal(
-                expectedTitle,
-                `Expected title to be "${expectedTitle}" but found "${title}"`
-            );
+        expect(isSelected)
+            .toEqual(true, `"${selector}" should be selected`);
     }
 };

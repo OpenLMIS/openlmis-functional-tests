@@ -42,13 +42,13 @@ class RequisitionTemplateConfigurationSettingsPage extends Page {
      * Checks if facility type is present in the table.
      */
     isFacilityTypePresent(facilityTypeName) {
-        return browser.$(`//td[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//td[normalize-space(text())='${facilityTypeName}']`).isDisplayed();
     }
     /**
      * Checks if facility type is present in the dropdown.
      */
     isFacilityTypePresentInDropdown(facilityTypeName) {
-        return browser.$(`//li[normalize-space(text())='${facilityTypeName}']`).isVisible();
+        return browser.$(`//li[normalize-space(text())='${facilityTypeName}']`).isDisplayed();
     }
 
     /**

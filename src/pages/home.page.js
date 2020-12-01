@@ -46,7 +46,7 @@ class HomePage extends Page {
     /**
      * Is this page visibile?
      */
-    isVisible() {
+    isDisplayed() {
         checkInURLPath(false, '#!/home');
     }
 
