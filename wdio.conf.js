@@ -196,7 +196,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
-    baseUrl: 'https://functional-test.openlmis.org',
+    baseUrl: 'https://uat.openlmis.org',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -367,7 +367,7 @@ exports.config = {
     // },
     beforeScenario,
 
-    beforeFeature: (feature) => {
+    beforeFeature: (uri, feature, scenarios) => {
         let scenarioRecordingName = getRecordingName(feature);
 
         recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
@@ -436,7 +436,7 @@ exports.config = {
         });
     },
 
-    afterScenario: (scenario) => {
+    afterScenario: (uri, feature, scenario, result, sourceLocation) => {
         let scenarioObject = {
             name: scenario.name,
             duration: scenarioDuration,
