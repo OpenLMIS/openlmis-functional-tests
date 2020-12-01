@@ -31,6 +31,16 @@ pipeline {
       post {
         always {
           junit 'build/WDIO*.xml'
+          publishHTML([
+              allowMissing: false,
+              alwaysLinkToLastBuild: true,
+              includes: '**/*.html,**/*.css,**/*.js',
+              keepAll: true,
+              reportDir: 'build/performanceResults/',
+              reportFiles: 'StepPerformanceResults.html',
+              reportName: 'Performance Report',
+              reportTitles: ''
+          ])
         }
         cleanup {
           sh 'docker pull openlmis/stop-instance'
