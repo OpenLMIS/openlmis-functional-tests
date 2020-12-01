@@ -7,6 +7,9 @@ services:
   - yarn install
   - command: yarn run local-webserver
     background: true
+  post-process:
+  - cp -vr resources/assets/ build/performanceResults/
+  - yarn run performance-report
 
 modules:
   console:
