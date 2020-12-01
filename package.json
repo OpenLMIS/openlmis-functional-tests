@@ -8,7 +8,8 @@
     "local-webserver": "forever start -s ./node_modules/.bin/http-server ./demo-app -s",
     "test": "npm run test:validate && npm run test:features",
     "test:features": "npm run local-webserver & (wdio wdio.conf.js; wdio_ret=$?; forever stopall; exit $wdio_ret)",
-    "test:validate": "eslint 'src/**/*.js' 'test/**/*.js!(setup.js)'"
+    "test:validate": "eslint 'src/**/*.js' 'test/**/*.js!(setup.js)'",
+    "performance-report": "node node_modules/htmlify-csv convert build/performanceResults/StepPerformanceResults.csv --output=build/performanceResults/StepPerformanceResults.html"
   },
   "repository": {
     "type": "git",
