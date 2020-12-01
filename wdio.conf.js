@@ -27,7 +27,7 @@ const scenarioPerformanceResultsFile = `${performanceResultsDir}ScenarioPerforma
 const featurePerformanceResultsFile = `${performanceResultsDir}FeaturePerformanceResults.csv`;
 
 if (!fs.existsSync(stepPerformanceResultsFile)) {
-    fs.writeFile(stepPerformanceResultsFile, 'FEATURE,SCENARIO,STEP,DURATION\n', (err) => {
+    fs.writeFile(stepPerformanceResultsFile, 'FEATURE,SCENARIO,STEP,DURATION,MAX ALLOWED\n', (err) => {
         if (err) {
             console.log(err);
         }
@@ -59,11 +59,11 @@ const DEFAULT_DISPLAY_ID = '0';
 
 const getRecordingName = (feature) => `${recordingsDir}/${feature.name}.mp4`;
 const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
-let getFailureMessage = (stepDuration, durationTimeThreshold) => `Poor performance for this step.\n` +
-`The time duration of this step should not exceed ${durationTimeThreshold}ms but is currently ${stepDuration}ms.`;
+const getFailureMessage = (stepDuration, durationTimeThreshold) => 'Poor performance for this step.\n' +
+`The time duration of this step should not exceed ${durationTimeThreshold}s but is currently ${stepDuration}s.`;
 
-let getDurationTimeThreshold = (resultStep) => {
-    let foundDuration = 0;
+const getDurationTimeThreshold = (resultStep) => {
+    let foundDuration = '';
     durationTimeThresholds.features.find((feature) => {
       feature.name === resultStep.scenario.feature.name && feature.scenarios.some((scenario) => {
         scenario.name === resultStep.scenario.name && scenario.steps.some((step) => {
@@ -402,24 +402,25 @@ exports.config = {
     },
 
     afterStep: (stepResults) => {
-        let stepObject = {
-            'name': stepResults.step.name,
-            'duration': stepResults.duration
+        stepDuration = stepResults.duration / 1000;
+        const durationTimeThreshold = getDurationTimeThreshold(stepResults.step);
+
+        const stepObject = {
+            name: stepResults.step.name,
+            duration: stepDuration,
+            maxAllowed: durationTimeThreshold,
         };
         stepObjects.push(stepObject);
-        stepDuration = stepResults.duration;
         scenarioDuration += stepDuration;
 
         if (stepResults.status !== 'passed') {
-            //console.log(stepResults.step.scenario.feature);
-            let scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
+            const scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
             recordings[scenarioRecordingName].shouldKeep = true;
         }
 
-        let durationTimeThreshold = getDurationTimeThreshold(stepResults.step);
-        if(durationTimeThreshold !== 0 && stepResults.duration > durationTimeThreshold) {
+        if (durationTimeThreshold && stepDuration > durationTimeThreshold) {
             stepResults.status = 'failed';
-            stepResults.failureException = getFailureMessage(stepResults.duration, durationTimeThreshold);
+            stepResults.failureException = getFailureMessage(stepDuration, durationTimeThreshold);
         }
 
         let scenario = stepResults.step.scenario;
@@ -461,7 +462,7 @@ exports.config = {
 
             scenario.steps.forEach((step) => {
                 stepPerformanceResultsStream.write(`"${featureName}","${scenarioName}",` +
-                  `"${step.name.replace(/"/g, '\'')}",${step.duration}\n`);
+                  `"${step.name.replace(/"/g, '\'')}",${step.duration},${step.maxAllowed}\n`);
             });
         });
 
