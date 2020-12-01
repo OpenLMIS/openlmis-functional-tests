@@ -65,9 +65,9 @@ const getFailureMessage = (stepDuration, durationTimeThreshold) => 'Poor perform
 const getDurationTimeThreshold = (resultStep) => {
     let foundDuration = '';
     durationTimeThresholds.features.find((feature) => {
-      feature.name === resultStep.scenario.feature.name && feature.scenarios.some((scenario) => {
+      feature.name === resultStep.feature.name && feature.scenarios.some((scenario) => {
         scenario.name === resultStep.scenario.name && scenario.steps.some((step) => {
-            if (step.name === resultStep.name) {
+            if (step.name === resultStep.step.name) {
                 foundDuration = step.duration;
             }
         })
@@ -402,20 +402,20 @@ exports.config = {
         delete recordings[scenarioRecordingName];
     },
 
-    afterStep: (stepResults) => {
-        stepDuration = stepResults.duration / 1000;
-        const durationTimeThreshold = getDurationTimeThreshold(stepResults.step);
+    afterStep: ({uri, feature, step}, context, {error, result, duration, passed}) => {
+        stepDuration = duration / 1000;
+        const durationTimeThreshold = getDurationTimeThreshold(step);
 
         const stepObject = {
-            name: stepResults.step.name,
+            name: step.step.name,
             duration: stepDuration,
             maxAllowed: durationTimeThreshold,
         };
         stepObjects.push(stepObject);
         scenarioDuration += stepDuration;
 
-        if (stepResults.status !== 'passed') {
-            const scenarioRecordingName = getRecordingName(stepResults.step.scenario.feature);
+        if (passed == false) {
+            const scenarioRecordingName = getRecordingName(step.feature);
             recordings[scenarioRecordingName].shouldKeep = true;
         }
 
@@ -424,12 +424,12 @@ exports.config = {
             stepResults.failureException = getFailureMessage(stepDuration, durationTimeThreshold);
         }
 
-        let scenario = stepResults.step.scenario;
+        let scenario = step.scenario;
         const logs = browser.log('browser');
         logs.value.forEach(log => {
             consoleLogs.push({
                 scenario: scenario,
-                stepName: stepResults.step.name,
+                stepName: step.step.name,
                 date: new Date(log.timestamp).toLocaleString(),
                 message: log.message,
             });
