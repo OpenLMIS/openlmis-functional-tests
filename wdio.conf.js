@@ -8,6 +8,7 @@ const features = glob.sync('src/features/**/*.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
+const path = require('path');
 let fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
 const durationTimeThresholds = yaml.safeLoad(fileContents);
 
@@ -17,9 +18,14 @@ const bmpPresent = process.env.BMP_PRESENT;
 const recordingsDir = process.env.RECORDINGS_DIR ? process.env.RECORDINGS_DIR : 'build/recordings';
 const consoleLogDir = process.env.CONSOLE_LOG_DIR ? process.env.RECORDINGS_DIR : 'build/consolelogs';
 const performanceResultsDir = 'build/performanceResults/';
+const errorShotsDir = './build/errorShots/';
 
 if (!fs.existsSync(performanceResultsDir)) {
     fs.mkdirSync(performanceResultsDir);
+}
+
+if (!fs.existsSync(errorShotsDir)) {
+    fs.mkdirSync(errorShotsDir);
 }
 
 const stepPerformanceResultsFile = `${performanceResultsDir}StepPerformanceResults.csv`;
@@ -190,9 +196,6 @@ exports.config = {
     //
     // Enables colors for log output.
     coloredLogs: true,
-    //
-    // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './build/errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with '/', then the base url gets prepended.
@@ -417,6 +420,9 @@ exports.config = {
         if (passed == false) {
             const scenarioRecordingName = getRecordingName(step.feature);
             recordings[scenarioRecordingName].shouldKeep = true;
+
+            const filepath = path.join(errorShotsDir, 'ERROR_chrome_' + new Date(Date.now()).toISOString() + '.png');
+            browser.saveScreenshot(filepath);
         }
 
         if (durationTimeThreshold && stepDuration > durationTimeThreshold) {
@@ -425,11 +431,12 @@ exports.config = {
         }
 
         let scenario = step.scenario;
+        scenario.feature = step.feature;
         const logs = browser.getLogs('browser');
         logs.forEach((log) => {
             consoleLogs.push({
                 scenario: scenario,
-                stepName: step.step.name,
+                stepName: step.step.text,
                 date: new Date(log.timestamp).toLocaleString(),
                 message: log.message,
             });
