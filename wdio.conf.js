@@ -78,7 +78,7 @@ const getDurationTimeThreshold = (resultStep) => {
 
 let recordings = {};
 let consoleLogs = [];
-let proxy = null;
+let proxy = undefined;
 let beforeScenario = () => {};
 
 if (bmpPresent) {
@@ -161,7 +161,7 @@ exports.config = {
         maxInstances: 1,
         //
         browserName: 'chrome',
-        chromeOptions: {
+        'goog:chromeOptions': {
           args: [
             '--disable-infobars',
             '--window-size=1920,1080',
@@ -426,7 +426,7 @@ exports.config = {
 
         let scenario = step.scenario;
         const logs = browser.getLogs('browser');
-        logs.value.forEach(log => {
+        logs.forEach((log) => {
             consoleLogs.push({
                 scenario: scenario,
                 stepName: step.step.name,
