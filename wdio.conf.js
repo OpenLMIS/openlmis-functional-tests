@@ -425,7 +425,7 @@ exports.config = {
         }
 
         let scenario = step.scenario;
-        const logs = browser.log('browser');
+        const logs = browser.getLogs('browser');
         logs.value.forEach(log => {
             consoleLogs.push({
                 scenario: scenario,
