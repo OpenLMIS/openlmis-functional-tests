@@ -67,7 +67,7 @@ const getDurationTimeThreshold = (resultStep) => {
     durationTimeThresholds.features.find((feature) => {
       feature.name === resultStep.feature.name && feature.scenarios.some((scenario) => {
         scenario.name === resultStep.scenario.name && scenario.steps.some((step) => {
-            if (step.name === resultStep.step.name) {
+            if (step.name === resultStep.step.text) {
                 foundDuration = step.duration;
             }
         })
@@ -368,7 +368,7 @@ exports.config = {
     beforeScenario,
 
     beforeFeature: (uri, feature, scenarios) => {
-        let scenarioRecordingName = getRecordingName(feature);
+        let scenarioRecordingName = getRecordingName(feature.document.feature);
 
         recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
             resolution: '1920x1080', // Display resolution
@@ -386,14 +386,14 @@ exports.config = {
 
     afterFeature: (uri, feature, scenarios) => {
         featureObject = {
-            'name': feature.name,
+            'name': feature.document.feature.name,
             'duration': featureDuration,
             'scenarios': scenarioObjects
         };
         scenarioObjects = [];
         featureDuration = 0;
 
-        let scenarioRecordingName = getRecordingName(feature);
+        let scenarioRecordingName = getRecordingName(feature.document.feature);
         recordings[scenarioRecordingName].stop();
         if (!recordings[scenarioRecordingName].shouldKeep) {
             fs.unlinkSync(scenarioRecordingName);
@@ -407,7 +407,7 @@ exports.config = {
         const durationTimeThreshold = getDurationTimeThreshold(step);
 
         const stepObject = {
-            name: step.step.name,
+            name: step.step.text,
             duration: stepDuration,
             maxAllowed: durationTimeThreshold,
         };
