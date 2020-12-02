@@ -8,7 +8,11 @@ services:
   - command: yarn run local-webserver
     background: true
   post-process:
-  - cp -vr node_modules/htmlify-csv/assets/ build/performanceResults/
+  - mkdir build/performanceResults/assets
+  - cp node_modules/tablesorter/dist/css/theme.blue.css build/performanceResults/assets
+  - cp node_modules/tablesorter/dist/js/jquery.tablesorter.min.js build/performanceResults/assets
+  - cp node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js build/performanceResults/assets
+  - cp node_modules/jquery/dist/jquery.min.js build/performanceResults/assets
   - yarn run performance-report
 
 modules:
