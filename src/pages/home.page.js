@@ -1,5 +1,6 @@
 import Page from '../components/page';
 import waitForDisplayed from '../support/action/waitForDisplayed';
+import isVisible from '../support/check/isDisplayed';
 import checkInURLPath from '../support/check/checkInURLPath';
 import Action from '../components/action';
 import clickElement from '../support/action/clickElement';
@@ -71,9 +72,9 @@ class HomePage extends Page {
     checkIfScreenIsNotVisibleInNavbar(tabName, parent) {
         const parentSelector = `//a[normalize-space(text())="${parent}"]`;
         waitForDisplayed(parentSelector);
-        browser.click(parentSelector);
+        clickElement('click', parentSelector, parentSelector);
         const tabSelector = `${parentSelector}/parent::*//a[normalize-space(text())="${tabName}"]`;
-        waitForDisplayed(tabSelector, true);
+        isVisible(tabSelector, true);
     }
 
     /**

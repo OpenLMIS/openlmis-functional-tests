@@ -14,8 +14,7 @@ module.exports = (width) => {
 
     if (width === 'right') {
         widthValue = browser
-            .execute(() => $('.openlmis-flex-table').width())
-            .value;
+            .execute(() => $('.openlmis-flex-table').width());
     }
 
     browser.execute(width => $('.openlmis-flex-table').scrollLeft(width), widthValue);

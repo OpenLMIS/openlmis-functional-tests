@@ -1,6 +1,7 @@
 import Page from '../../components/page';
 import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Table from '../../components/table';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 /**
  * Approve Requisitions Page object represents the related view in OpenLMIS UI.
@@ -49,7 +50,7 @@ class ApproveRequisitionsPage extends Page {
      */
     getTotalCost() {
         const selector = '//dd';
-        browser.scroll(selector);
+        scrollToSelector(selector);
         browser.pause(1000);
         return browser.$(selector).getText();
     }

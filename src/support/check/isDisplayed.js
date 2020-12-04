@@ -10,13 +10,13 @@ export default (selector, falseCase) => {
      */
     const isDisplayed = $(selector).isDisplayed();
 
-    if (falseCase) {
-        expect(isDisplayed).not.toEqual(
+    if (falseCase == true) {
+        expect(isDisplayed).not.to.equal(
             true,
             `Expected element "${selector}" not to be displayed`
         );
     } else {
-        expect(isDisplayed).toEqual(
+        expect(isDisplayed).to.equal(
             true,
             `Expected element "${selector}" to be displayed`
         );

@@ -3,8 +3,7 @@ import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Button from '../../components/button';
 import Action from '../../components/action';
 import getSelectDropdownSelectorInTable from '../../support/lib/getSelectDropdownSelectorInTable';
-
-
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 class RequisitionTemplatesPage extends Page {
     constructor() {
@@ -28,7 +27,7 @@ class RequisitionTemplatesPage extends Page {
      */
     clickConfigureProgram(name) {
         const selector = `//td[normalize-space(text())="${name}"]/following-sibling::td/button[text()="Configure"]`;
-        browser.scroll(selector);
+        scrollToSelector(selector);
         new Button(
             'Configure',
             selector).click();

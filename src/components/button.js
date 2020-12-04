@@ -1,6 +1,7 @@
 import Action from './action';
 import getButtonSelector from '../support/lib/getButtonSelector';
 import waitForDisplayed from '../support/action/waitForDisplayed';
+import clickElement from '../support/action/clickElement';
 
 /**
  * Represents a single button in the OpenLMIS system.

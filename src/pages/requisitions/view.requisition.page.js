@@ -10,6 +10,7 @@ import RequisitionLineItem from '../../components/requisition-line-item';
 import Link from '../../components/link';
 import scroll from '../../support/action/scroll';
 import tableHorizontalScroll from '../../support/action/tableHorizontalScroll';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -54,7 +55,7 @@ class ViewRequisitionPage extends Page {
         const selector = this.getInputSelector(product, id);
         const td = browser.$(selector);
 
-        this.scrollToSelector(selector);
+        scrollToSelector(selector);
         td.setValue(value);
     }
 
@@ -93,7 +94,7 @@ class ViewRequisitionPage extends Page {
         const id = this.getColumnId(column);
         const selector = this.getInputSelector(product, id);
 
-        this.scrollToSelector(selector);
+        scrollToSelector(selector);
         return browser.$(selector).getValue();
     }
 
@@ -140,8 +141,8 @@ class ViewRequisitionPage extends Page {
         const selector = this.getInputSelector(product, id);
         const td = browser.$(selector);
 
-        this.scrollToSelector(selector);
-        td.clearElement();
+        scrollToSelector(selector);
+        td.clearValue();
     }
 
     /**
@@ -510,13 +511,6 @@ class ViewRequisitionPage extends Page {
         }, target.selector, target.index);
     }
 
-    scrollToSelector(target) {
-        browser.selectorExecute(target, (elements) => {
-            const element = $(elements[0]).parents('td')[0];
-            element.focus();
-        });
-    }
-
     scrollToTop() {
         scroll('top');
     }
@@ -554,8 +548,7 @@ class ViewRequisitionPage extends Page {
 
     getColumnId(columnName) {
         return browser
-            .execute(name => $(`th:contains('${name}')`).index(), columnName)
-            .value;
+            .execute(name => $(`th:contains('${name}')`).index(), columnName);
     }
 }
 

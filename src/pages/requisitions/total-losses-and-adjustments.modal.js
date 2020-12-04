@@ -2,6 +2,7 @@ import waitForDisplayed from '../../support/action/waitForDisplayed';
 import Modal from '../../components/modal';
 import Link from '../../components/link';
 import Select from '../../components/select';
+import scrollToSelector from '../../support/action/scrollToSelector';
 
 /**
  * Total Losses and Adjustments Modal object represents the related view in OpenLMIS UI.
@@ -42,7 +43,7 @@ class TotalLossesAndAdjustmentsModal extends Modal {
      */
     getTotalValue() {
         const selector = `//div[contains(@class, 'modal-body')]//dl//dd`;
-        browser.scroll(selector);
+        scrollToSelector(selector);
         browser.pause(1000);
         return browser.$(selector).getText();
     }
