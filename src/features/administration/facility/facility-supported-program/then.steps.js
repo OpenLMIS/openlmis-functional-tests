@@ -1,12 +1,8 @@
-import { defineSupportCode } from 'cucumber';
+var {Then} = require('cucumber');
 
 import FacilityListPage from '../../../../pages/administration/facility.list.page';
 
-defineSupportCode(({ Then }) => {
-
-    Then(
-        /^I should be brought to the facility list page$/,
-        () => FacilityListPage.waitForIsVisible()
-    );
-
-});
+Then(
+    /^I should be brought to the facility list page$/,
+    () => FacilityListPage.waitForIsVisible()
+);

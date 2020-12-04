@@ -2,6 +2,7 @@ import Page from '../components/page';
 import waitForDisplayed from '../support/action/waitForDisplayed';
 import checkInURLPath from '../support/check/checkInURLPath';
 import Action from '../components/action';
+import clickElement from '../support/action/clickElement';
 
 /**
  * Home Page object which user's land on and has navigation to further
@@ -81,7 +82,7 @@ class HomePage extends Page {
     clickTabInNavbar(tabName) {
         const selector = `//a[normalize-space(text())="${tabName}"]`;
         this.waitForIsVisible(selector);
-        browser.click(selector);
+        clickElement('click', selector, selector);
     }
 }
 

@@ -24,7 +24,7 @@ export default (selector, falseCase, exactly) => {
             + `${exactly} time(s)`
         );
     } else {
-        expect(nrOfElements.length).toBeGreaterThanOrEqual(
+        expect(nrOfElements.length).to.be.at.least(
             1,
             `Element with selector "${selector}" should exist on the page`
         );

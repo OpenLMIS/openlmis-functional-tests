@@ -1,11 +1,8 @@
-import { defineSupportCode } from 'cucumber';
+var {Then} = require('cucumber');
 
 import ProgramListPage from '../../../pages/administration/program.list.page';
 
-defineSupportCode(({ Then }) => {
-
-    Then(
-        /^I should be brought to the program list page$/,
-        () => ProgramListPage.waitForIsVisible()
-    );
-});
+Then(
+    /^I should be brought to the program list page$/,
+    () => ProgramListPage.waitForIsVisible()
+);

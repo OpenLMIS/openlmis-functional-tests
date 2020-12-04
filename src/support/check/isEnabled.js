@@ -12,12 +12,12 @@ export default (selector, falseCase) => {
     const isEnabled = $(selector).isEnabled();
 
     if (falseCase) {
-        expect(isEnabled).not.toEqual(
+        expect(isEnabled).not.to.equal(
             true,
             `Expected element "${selector}" not to be enabled`
         );
     } else {
-        expect(isEnabled).toEqual(
+        expect(isEnabled).to.equal(
             true,
             `Expected element "${selector}" to be enabled`
         );

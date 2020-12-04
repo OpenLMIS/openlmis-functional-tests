@@ -1,12 +1,8 @@
-import { defineSupportCode } from 'cucumber';
+var {When} = require('cucumber');
 
 import UserProfilePage from '../../pages/user.profile.page';
 
-defineSupportCode(({ When }) => {
-
-    When(
-        /^I go to the user profile page$/,
-        () => UserProfilePage.open()
-    );
-
-});
+When(
+    /^I go to the user profile page$/,
+    () => UserProfilePage.open()
+);

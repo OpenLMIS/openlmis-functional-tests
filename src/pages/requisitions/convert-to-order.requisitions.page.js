@@ -46,7 +46,7 @@ class ConvertRequisitionsPage extends Page {
      */
     selectAll() {
         const selector = '//th/input[@type="checkbox"]';
-        browser.scroll(selector);
+        scrollToSelector(selector);
         browser.$(selector).click();
     }
 

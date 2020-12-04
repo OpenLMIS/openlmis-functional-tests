@@ -13,9 +13,9 @@ export default (selector, falseCase) => {
 
     if (falseCase) {
         expect(isSelected)
-            .not.toEqual(true, `"${selector}" should not be selected`);
+            .not.to.equal(true, `"${selector}" should not be selected`);
     } else {
         expect(isSelected)
-            .toEqual(true, `"${selector}" should be selected`);
+            .to.equal(true, `"${selector}" should be selected`);
     }
 };

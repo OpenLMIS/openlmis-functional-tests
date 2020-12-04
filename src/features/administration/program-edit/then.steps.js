@@ -1,11 +1,8 @@
-import { defineSupportCode } from 'cucumber';
+var {Then} = require('cucumber');
 
 import ProgramEditPage from '../../../pages/administration/program.edit.page';
 
-defineSupportCode(({ Then }) => {
-
-    Then(
-        /^I should be brought to the program edit page$/,
-        () => ProgramEditPage.waitForIsVisible()
-    );
-});
+Then(
+    /^I should be brought to the program edit page$/,
+    () => ProgramEditPage.waitForIsVisible()
+);
