@@ -28,7 +28,7 @@ class ViewRequisitionPage extends Page {
      * Clears all enabled inputs in the requisition as well as total loses and adjustments.
      */
     clearForm() {
-        browser.$$('tr a:enabled').value.forEach((element) => {
+        browser.$$('tr a:enabled').forEach((element) => {
             this.scrollToCell(element);
             element.click();
 
@@ -37,9 +37,9 @@ class ViewRequisitionPage extends Page {
             loadingModal.waitForHide();
         });
 
-        browser.$$('td input[type="text"]:enabled').value.forEach((element) => {
+        browser.$$('td input[type="text"]:enabled').forEach((element) => {
             this.scrollToCell(element);
-            element.clearElement();
+            element.clearValue();
         });
     }
 
