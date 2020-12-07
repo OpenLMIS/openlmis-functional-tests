@@ -1,5 +1,6 @@
 import Page from '../../components/page';
 import waitForDisplayed from '../../support/action/waitForDisplayed';
+import waitForExist from '../../support/action/waitForExist';
 import getButtonSelector from '../../support/lib/getButtonSelector';
 import loadingModal from '../../components/loading-modal';
 import ConfirmationModal from '../../components/confirmation-modal';
@@ -534,7 +535,7 @@ class ViewRequisitionPage extends Page {
 
     checkAutoSavingSpinner() {
         const spinner = `//*[contains(@class, "saving-add-active")]`;
-        waitForDisplayed(spinner, true);
+        waitForExist(spinner, true);
     }
 
     checkIfButtonIsVisible(button) {
