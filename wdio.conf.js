@@ -9,7 +9,9 @@ const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
 const path = require('path');
-let fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
+const parse = require('papaparse');
+
+const fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
 const durationTimeThresholds = yaml.safeLoad(fileContents);
 
 // configure proxy usage based on env setting - workaround for Taurus not supporting multiple
@@ -65,8 +67,8 @@ const DEFAULT_DISPLAY_ID = '0';
 
 const getRecordingName = (feature) => `${recordingsDir}/${feature.name}.mp4`;
 const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
-const getFailureMessage = (stepDuration, durationTimeThreshold) => 'Poor performance for this step.\n' +
-`The time duration of this step should not exceed ${durationTimeThreshold}s but is currently ${stepDuration}s.`;
+const getFailureMessage = (feature, scenario, step, stepDuration, maxAllowed) => `${feature}: ${scenario}: ${step}: `
+  + `The time duration should not exceed ${maxAllowed}s but is ${stepDuration}s.\n`;
 
 const getDurationTimeThreshold = (resultStep) => {
     let foundDuration = '';
@@ -405,7 +407,7 @@ exports.config = {
         delete recordings[scenarioRecordingName];
     },
 
-    afterStep: ({uri, feature, step}, context, {error, result, duration, passed}) => {
+    afterStep: ({ step }, context, { duration, passed }) => {
         stepDuration = duration / 1000;
         const durationTimeThreshold = getDurationTimeThreshold(step);
 
@@ -417,17 +419,12 @@ exports.config = {
         stepObjects.push(stepObject);
         scenarioDuration += stepDuration;
 
-        if (passed == false) {
+        if (passed === false) {
             const scenarioRecordingName = getRecordingName(step.feature);
             recordings[scenarioRecordingName].shouldKeep = true;
 
             const filepath = path.join(errorShotsDir, 'ERROR_chrome_' + new Date(Date.now()).toISOString() + '.png');
             browser.saveScreenshot(filepath);
-        }
-
-        if (durationTimeThreshold && stepDuration > durationTimeThreshold) {
-            stepResults.status = 'failed';
-            stepResults.failureException = getFailureMessage(stepDuration, durationTimeThreshold);
         }
 
         let scenario = step.scenario;
@@ -443,12 +440,13 @@ exports.config = {
         });
     },
 
-    afterScenario: (uri, feature, scenario, result, sourceLocation) => {
-        let scenarioObject = {
+    afterScenario: (uri, feature, scenario) => {
+        const scenarioObject = {
             name: scenario.name,
             duration: scenarioDuration,
-            steps: stepObjects
-        }
+            steps: stepObjects,
+        };
+
         scenarioObjects.push(scenarioObject);
         stepObjects = [];
 
@@ -491,6 +489,31 @@ exports.config = {
     //
     // Gets executed after all workers got shut down and the process is about to
     // exit. It is not possible to defer the end of the process using a promise.
-    // onComplete: function onComplete(exitCode) {
-    // }
+    onComplete: function onComplete() {
+        const performanceErrors = [];
+        const performanceResults = fs.readFileSync(stepPerformanceResultsFile, 'utf8');
+        const results = parse.parse(performanceResults, { delimiter: ',', skipEmptyLines: true });
+        const output = results.data;
+
+        if (output.length > 1) {
+            for (let i = 1; i < output.length; i += 1) {
+                const duration = parseFloat(output[i][3]);
+                const maxAllowed = parseFloat(output[i][4]);
+
+                if (!Number.isNaN(duration) && !Number.isNaN(maxAllowed) && duration > maxAllowed) {
+                    const message = getFailureMessage(output[i][0], output[i][1], output[i][2], duration, maxAllowed);
+                    performanceErrors.push(message);
+                }
+            }
+        }
+
+        if (performanceErrors.length > 0) {
+            let message = 'Poor performance for:\n';
+            performanceErrors.forEach((error) => {
+                message += error;
+            });
+
+            throw new Error(message);
+        }
+    },
 };
