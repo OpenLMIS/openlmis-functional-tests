@@ -47,7 +47,7 @@ export default class Table {
      *                              [undefined, your_value].
      * @param {String} buttonLabel  the button label
      * @param {String} columnName   inform in which column the button exists (optional)
-     * @param {boolean} waitForHide  informs whether it should wait for modal to close after clicking button, default true (optional) 
+     * @param {boolean} waitForHide  informs whether it should wait for modal to close after clicking button, default true (optional)
      */
     click(columnValues, buttonLabel, columnName = 'Actions', waitForHide = true) {
         const previousColumns = `${this.selector}` +
@@ -57,7 +57,7 @@ export default class Table {
             `//following-sibling::td[count(${previousColumns}) + 1 - ${columnValues.length}]` +
             `//button[normalize-space(text())="${buttonLabel}"] | //input[normalize-space(@value)="${buttonLabel}"]`;
 
-        isDisplayed(selector, waitForHide);
+        isDisplayed(selector);
         new Button(buttonLabel, selector, waitForHide).click();
     }
 

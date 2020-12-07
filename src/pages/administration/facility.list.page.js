@@ -40,8 +40,7 @@ class FacilityListPage extends Page {
 
        getColumnId(columnName) {
         return browser
-            .execute(name => $(`tr:contains('${name}')`).index(), columnName)
-            .value;
+            .execute(name => $(`tr:contains('${name}')`).index(), columnName);
        }
 }
 

@@ -11,6 +11,7 @@ import Link from '../../components/link';
 import scroll from '../../support/action/scroll';
 import tableHorizontalScroll from '../../support/action/tableHorizontalScroll';
 import scrollToSelector from '../../support/action/scrollToSelector';
+import isDisplayed from '../../support/check/isDisplayed';
 
 /**
  * Product Grid Page object represents the related view in OpenLMIS UI.
@@ -32,7 +33,7 @@ class ViewRequisitionPage extends Page {
             this.scrollToCell(element);
             element.click();
 
-            browser.$$(getButtonSelector('Remove')).value.forEach(button => button.click());
+            browser.$$(getButtonSelector('Remove')).forEach(button => button.click());
             browser.$(getButtonSelector('Update')).click();
             loadingModal.waitForHide();
         });
@@ -150,7 +151,7 @@ class ViewRequisitionPage extends Page {
      */
     checkIfIsEditable() {
         const numberOfEditableInputs = 0;
-        browser.$$('td input[type="text"]:enabled').value.forEach((element) => {
+        browser.$$('td input[type="text"]:enabled').forEach((element) => {
             this.scrollToCell(element);
             this.numberOfEditableInputs++;
         });
@@ -261,7 +262,7 @@ class ViewRequisitionPage extends Page {
      */
     clickApproveButton() {
         this.approveButton.click();
-    }    
+    }
 
     /**
      * Opens text area to add comment.
@@ -380,7 +381,7 @@ class ViewRequisitionPage extends Page {
         const tomorrow = new Date();
         tomorrow.setDate(new Date().getDate() + 1);
 
-        browser.isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
+        isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
             [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join('/')}")]`);
     }
 
@@ -470,7 +471,7 @@ class ViewRequisitionPage extends Page {
 
     get approveButton() {
         return new Button('Approve');
-    }    
+    }
 
     get addCommentButton() {
         return new Button('Add Comment');
@@ -502,7 +503,7 @@ class ViewRequisitionPage extends Page {
 
     get historyLink() {
         return new Link('View History');
-    }    
+    }
 
     scrollToCell(target) {
         browser.execute((selector, index) => {
@@ -515,8 +516,8 @@ class ViewRequisitionPage extends Page {
         scroll('top');
     }
 
-    scrollToTheRightOfTable() {	
-        tableHorizontalScroll('right');	
+    scrollToTheRightOfTable() {
+        tableHorizontalScroll('right');
     }
 
     getInputSelector(product, columnNumber) {

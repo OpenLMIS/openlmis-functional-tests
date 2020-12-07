@@ -10,7 +10,7 @@ export default (selector, falseCase) => {
      */
     const isDisplayed = $(selector).isDisplayed();
 
-    if (falseCase == true) {
+    if (falseCase === true) {
         expect(isDisplayed).not.to.equal(
             true,
             `Expected element "${selector}" not to be displayed`

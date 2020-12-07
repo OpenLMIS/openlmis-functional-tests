@@ -12,9 +12,9 @@ module.exports = (label, option, section = '') => {
     // Workaround for an issue with rendering a list of available options for this select.
     // Without it the list is rendered below the select instead of above it. Because of that,
     // a test can not select an option based on the name.
-    // scroll('bottom');
-    // scroll('top');
-    // scroll('bottom');
+    scroll('bottom');
+    scroll('top');
+    scroll('bottom');
 
     if (option) {
         // Deals with selects for which options might load asynchronously.

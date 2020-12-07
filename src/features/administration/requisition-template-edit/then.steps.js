@@ -41,7 +41,7 @@ Then(
 Then(
     /^I should see option "([^"]*)?" in rows "([^"]*)?"$/,
     (option, rows) => {
-        rows.split(',').forEach(row => expect(RequisitionTemplatesPage.isOptionVisible(row, option)).to.equal(true));            
+        rows.split(',').forEach(row => expect(RequisitionTemplatesPage.isOptionVisible(row, option)).to.equal(true));
     }
 );
 

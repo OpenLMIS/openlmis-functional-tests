@@ -1,6 +1,7 @@
 var {When} = require('cucumber');
 
 import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition.page';
+import scrollToSelector from '../../../../support/action/scrollToSelector';
 
 When(
     /^I confirm Submit Date Physical Stock Count Completed modal$/,
@@ -24,5 +25,5 @@ When(
 
 When(
     /^I scroll to Proceed button$/,
-    () => browser.scroll('//h2[contains(text(), "Initiate Report and Requisition")]')
+    () => scrollToSelector('//h2[contains(text(), "Initiate Report and Requisition")]')
 );

@@ -111,7 +111,7 @@ class RequisitionTemplatesPage extends Page {
      */
     isAllTagsPresent(tagCount) {
         this.scrollToTags();
-        const tags = browser.$$('//table//select[@id="tag"]').value;
+        const tags = browser.$$('//table//select[@id="tag"]');
         return tags.length === tagCount;
     }
 
@@ -120,7 +120,7 @@ class RequisitionTemplatesPage extends Page {
      */
     isAllEmptyTagMessagesPresent(msgCount) {
         this.scrollToTags();
-        const messages = browser.$$(this.getEmptyTagMessageSelector()).value;
+        const messages = browser.$$(this.getEmptyTagMessageSelector());
         return messages.length === msgCount;
     }
 
@@ -128,10 +128,10 @@ class RequisitionTemplatesPage extends Page {
      * Clear all tag selections.
      */
     clearAllTagSelections() {
-        const tags = browser.$$('//table//select[@id="tag"]').value;
+        const tags = browser.$$('//table//select[@id="tag"]');
         new Action(() => {
-            for (let tag in tags) {
-                this.scrollToTags(tag);
+            for (let tagInd = 0; tagInd < tags.length; tagInd += 1) {
+                this.scrollToTags(tagInd);
                 this.clearTagSelection(0);
             }
         }, false).execute();
