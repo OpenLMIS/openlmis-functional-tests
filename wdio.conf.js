@@ -183,7 +183,6 @@ exports.config = {
             '--disable-dev-shm-usage'
           ]
         },
-        acceptSslCerts: true,
         acceptInsecureCerts: true,
         proxy,
     }],
