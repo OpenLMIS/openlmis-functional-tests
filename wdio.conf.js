@@ -377,22 +377,22 @@ exports.config = {
     // },
     beforeScenario,
 
-    beforeFeature: (uri, feature, scenarios) => {
-        let scenarioRecordingName = getRecordingName(feature.document.feature);
-
-        recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
-            resolution: '1920x1080', // Display resolution
-            display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : DEFAULT_DISPLAY_ID,
-            fps: 60
-        });
-
-        recordings[scenarioRecordingName].promise
-            .then(result => {
-                process.stdout.write(result.stdout);
-                process.stderr.write(result.stderr);
-            })
-            .catch(error => console.error(error))
-    },
+    // beforeFeature: (uri, feature, scenarios) => {
+    //     let scenarioRecordingName = getRecordingName(feature.document.feature);
+    //
+    //     recordings[scenarioRecordingName] = recordScreen(scenarioRecordingName, {
+    //         resolution: '1920x1080', // Display resolution
+    //         display: process.env.DISPLAY_ID ? process.env.DISPLAY_ID : DEFAULT_DISPLAY_ID,
+    //         fps: 60
+    //     });
+    //
+    //     recordings[scenarioRecordingName].promise
+    //         .then(result => {
+    //             process.stdout.write(result.stdout);
+    //             process.stderr.write(result.stderr);
+    //         })
+    //         .catch(error => console.error(error))
+    // },
 
     afterFeature: (uri, feature, scenarios) => {
         featureObject = {
@@ -403,13 +403,13 @@ exports.config = {
         scenarioObjects = [];
         featureDuration = 0;
 
-        let scenarioRecordingName = getRecordingName(feature.document.feature);
-        recordings[scenarioRecordingName].stop();
-        if (!recordings[scenarioRecordingName].shouldKeep) {
-            fs.unlinkSync(scenarioRecordingName);
-        }
-
-        delete recordings[scenarioRecordingName];
+        // let scenarioRecordingName = getRecordingName(feature.document.feature);
+        // recordings[scenarioRecordingName].stop();
+        // if (!recordings[scenarioRecordingName].shouldKeep) {
+        //     fs.unlinkSync(scenarioRecordingName);
+        // }
+        //
+        // delete recordings[scenarioRecordingName];
     },
 
     afterStep: ({ step }, context, { duration, passed }) => {
@@ -425,8 +425,8 @@ exports.config = {
         scenarioDuration += stepDuration;
 
         if (passed === false) {
-            const scenarioRecordingName = getRecordingName(step.feature);
-            recordings[scenarioRecordingName].shouldKeep = true;
+            // const scenarioRecordingName = getRecordingName(step.feature);
+            // recordings[scenarioRecordingName].shouldKeep = true;
 
             const filepath = path.join(errorShotsDir, 'ERROR_chrome_' + new Date(Date.now()).toISOString() + '.png');
             browser.saveScreenshot(filepath);
