@@ -379,11 +379,10 @@ class ViewRequisitionPage extends Page {
     }
 
     checkDatePhysicalStockCountCompleted() {
-        const tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
+        const today = new Date();
 
         isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent[contains(text(), "${
-            [tomorrow.getDate(), tomorrow.getMonth() + 1, tomorrow.getFullYear()].join('/')}")]`);
+            [today.getDate(), today.getMonth() + 1, today.getFullYear()].join('/')}")]`);
     }
 
     /**
