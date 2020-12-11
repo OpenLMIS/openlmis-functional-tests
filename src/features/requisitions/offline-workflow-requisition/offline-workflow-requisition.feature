@@ -14,10 +14,10 @@ Feature: Offline requisition workflow
     When I set "Requested quantity" as "10" for "Abortiva" product
     And I set "Requested quantity explanation" as "test" for "Abortiva" product
     And I wait "10" seconds for UI adjustment
-    And I enable offline mode
-    Then the offline indicator should be visible
+#    And I enable offline mode
+#    Then the offline indicator should be visible
 
-    When I go to view requisition screen
+    And I go to view requisition screen
     And I search for my requisitions in "Nandumbo Health Center" facility
     Then I should see requisition table
     And I should be able to see check icon for "Family Planning" program and current monthly period in the "Offline" column
@@ -31,6 +31,6 @@ Feature: Offline requisition workflow
     When I navigate to the Non full supply products tab
     Then I should be brought to the non-full supply products list page
 
-    When I disable offline mode
-    Then the offline indicator should not be visible
+#    When I disable offline mode
+#    Then the offline indicator should not be visible
     And I delete the requisition

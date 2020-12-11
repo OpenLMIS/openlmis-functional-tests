@@ -13,8 +13,8 @@ Feature: Offline mode requisition
     When I select requisition for program "Family Planning" and period "Apr2017"
     Then I should be brought to the product grid screen
 
-    When I enable offline mode
-    Then the offline indicator should be visible
+#    When I enable offline mode
+#    Then the offline indicator should be visible
 
     When I navigate to view requisition screen
     Then I should be brought to the view requisition screen
@@ -25,8 +25,8 @@ Feature: Offline mode requisition
     When I select requisition for program "Family Planning" and period "Apr2017"
     Then I should be brought to the product grid screen
 
-    When I disable offline mode
-    Then the offline indicator should not be visible
+#    When I disable offline mode
+#    Then the offline indicator should not be visible
     And I delete the requisition
 
     When I logout
