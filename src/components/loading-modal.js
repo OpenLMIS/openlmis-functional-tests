@@ -13,7 +13,7 @@ class LoadingModal {
         browser.pause(700);
         waitForDisplayed('.loading-modal', true);
         browser.pause(100);
-        waitForDisplayed('.fade', true);
+        waitForDisplayed('//div[contains(@class, "fade")]/div[contains(@class, "loading")]', true);
     }
 
 }
