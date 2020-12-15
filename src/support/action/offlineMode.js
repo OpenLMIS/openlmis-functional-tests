@@ -6,16 +6,9 @@
 module.exports = (enable) => {
 
     if (enable) {
-        browser.cdp('Network', 'enable');
-        browser.cdp('Network', 'emulateNetworkConditions', {
-            offline: true,
-            latency: 0,
-            downloadThroughput: 0,
-            uploadThroughput: 0,
-            connectionType: 'none',
-        });
+        browser.setNetworkConditions({ latency: 0, throughput: 0, offline: true });
     } else {
-        browser.cdp('Network', 'disable');
+        browser.deleteNetworkConditions();
     }
 
 };
