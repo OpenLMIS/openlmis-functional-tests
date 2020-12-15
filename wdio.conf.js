@@ -4,7 +4,7 @@
 const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
-const features = glob.sync('src/features/**/*.feature');
+const features = glob.sync('src/features/requisitions/view-requisitions/offline-requisition.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
@@ -174,14 +174,15 @@ exports.config = {
         //
         browserName: 'chrome',
         'goog:chromeOptions': {
-          args: [
-            '--disable-infobars',
-            '--window-size=1920,1080',
-            '--no-sandbox',
-            '--disable-gpu',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage'
-          ]
+            args: [
+                '--disable-infobars',
+                '--window-size=1920,1080',
+                '--no-sandbox',
+                '--disable-gpu',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--remote-debugging-port=9222',
+            ],
         },
         acceptInsecureCerts: true,
         proxy,
