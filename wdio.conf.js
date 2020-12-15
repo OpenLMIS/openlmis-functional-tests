@@ -4,7 +4,7 @@
 const glob = require('glob');
 
 const steps = glob.sync('src/features/**/*.steps.js');
-const features = glob.sync('src/features/requisitions/view-requisitions/offline-requisition.feature');
+const features = glob.sync('src/features/**/*.feature');
 const recordScreen = require('record-screen');
 const fs = require('fs-extra');
 const yaml = require('js-yaml');
@@ -181,7 +181,6 @@ exports.config = {
                 '--disable-gpu',
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
-                '--remote-debugging-port=9222',
             ],
         },
         acceptInsecureCerts: true,

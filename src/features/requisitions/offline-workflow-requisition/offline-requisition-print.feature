@@ -4,10 +4,10 @@ Feature: Offline requisition workflow: Printing a requisition
     Given I have logged with username "srmanager1" and password "password"
 
     When I initiate a requisition for "Family Planning" program
-#    And I enable offline mode
-#    Then the offline indicator should be visible
-    Then I should be able to see "Print" button
-#    And I should not be able to click on the "Print" button
+    And I enable offline mode
+    Then the offline indicator should be visible
+    And I should be able to see "Print" button
+    And I should not be able to click on the "Print" button
 
     When I go to view requisition screen
     And I search for my requisitions in "Nandumbo Health Center" facility
@@ -17,8 +17,8 @@ Feature: Offline requisition workflow: Printing a requisition
     When I select requisition for program "Family Planning" and period "Jan2017"
     Then I should be brought to the product grid screen
 
-#    When I disable offline mode
-#    Then the offline indicator should not be visible
+    When I disable offline mode
+    Then the offline indicator should not be visible
     And I should be able to see "Print" button
     And I should be able to click on the "Print" button
     And I delete the requisition
