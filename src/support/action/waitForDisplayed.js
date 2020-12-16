@@ -1,17 +1,17 @@
 /**
  * Wait for the given element to become visible
  * @param  {String}   selector  Element selector
- * @param  {String}   falseCase Whether or not to expect a visible or hidden
- *                              state
+ * @param  {Boolean}   falseCase Whether or not to expect a visible or hidden state
+ * @param  {Number}   timeout Maximum number of milliseconds to wait for
  *
  * @todo  merge with waitfor
  */
-export default (selector, falseCase) => {
+export default (selector, falseCase, timeout) => {
     /**
      * Maximum number of milliseconds to wait for
-     * @type {Int}
+     * @type {Number}
      */
-    const ms = 50000;
+    const ms = 80000;
 
-    $(selector).waitForDisplayed({ timeout: ms, reverse: !!falseCase });
+    $(selector).waitForDisplayed({ timeout: timeout || ms, reverse: !!falseCase });
 };

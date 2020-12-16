@@ -79,7 +79,7 @@ When(
     /^I refresh page$/,
     () => {
         browser.refresh();
-        waitForDisplayed('//h2');
+        waitForDisplayed('//h2', false, 500000);
     }
 );
 
@@ -90,7 +90,6 @@ When(
             switchToPage(pageNumber);
             loadingModal.waitForHide();
         }).execute();
-        
     }
 );
 

@@ -66,7 +66,7 @@ class LoginPage extends Page {
      * Wait for this page/modal to be visible.
      */
     waitForIsVisible() {
-        waitForDisplayed('.auth-modal');
+        waitForDisplayed('.auth-modal', false, 500000);
     }
 }
 
