@@ -58,14 +58,22 @@ app
             // Body
             for (let i = 1; i < output.length; i++) {
                 const rows = output[i];
+                const duration = parseFloat(rows[3]);
+                const maxAllowed = parseFloat(rows[4]);
 
-                html += '\t\t<tr>\n';
+                if (!Number.isNaN(maxAllowed)) {
+                    html += '\t\t<tr>\n';
 
-                for (let j = 0; j < rows.length; j++) {
-                    html += `\t\t\t<td>${rows[j]}</td>\n`;
+                    for (let j = 0; j < rows.length; j++) {
+                        if (Number.isNaN(duration) || duration > maxAllowed) {
+                            html += `\t\t\t<td style="color: red; font-weight: bold;">${rows[j]}</td>\n`;
+                        } else {
+                            html += `\t\t\t<td>${rows[j]}</td>\n`;
+                        }
+                    }
+
+                    html += '\t\t</tr>\n';
                 }
-
-                html += '\t\t</tr>\n';
             }
 
             html += '\t</tbody>\n';
@@ -86,7 +94,6 @@ app
     });
 
 app.parse(process.argv);
-
 
 // Creates HTML's code
 function createTemplate(table) {
@@ -120,20 +127,11 @@ function createTemplate(table) {
 <script src="assets/jquery.tablesorter.widgets.min.js"></script>
 <script>
     $(document).ready(function(){
-        var $table = $('table').tablesorter({
+        $('table').tablesorter({
             theme: 'blue',
             widgets: ["zebra", "filter"],
             widgetOptions : {
                 filter_columnFilters: true
-            }
-        });
-
-        $("table > tbody  > tr").each(function() {
-            const maxAllowed = parseFloat($(this).find("td:last").text());
-            const duration = parseFloat($(this).find("td:eq(3)").text());
-
-            if (isNaN(duration) || (!isNaN(maxAllowed) && duration > maxAllowed)) {
-                $(this).children().css({'color': 'red', 'font-weight': 'bold'});
             }
         });
     });
@@ -143,4 +141,3 @@ function createTemplate(table) {
 
     return html;
 }
-
