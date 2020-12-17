@@ -1,7 +1,8 @@
 Feature: Converting requisitions to orders
 
     Scenario: Administrator should be able to convert one requisition to order
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
 
         When I navigate to Convert Requisitions to Order screen
         Then I should be brought to Convert Requisitions to Order screen
@@ -16,7 +17,7 @@ Feature: Converting requisitions to orders
         And I select the requisition for "Essential Meds" program and "2017Q2" period to convert to order
         And I click on the "Convert to Order" button
         Then I should see an error notification saying "Supplying depot not selected"
-        
+
         When I select "Balaka District Warehouse" as the supplying depot for "Essential Meds" program and "2017Q2" period
         And I click on the "Convert to Order" button
         And I confirm the convert

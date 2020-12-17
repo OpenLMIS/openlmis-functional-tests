@@ -1,7 +1,8 @@
 Feature: Delete Skipped Requisition
 
   Scenario: Administrator should be able to delete a skipped requisition
-    Given I have logged with username "administrator" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "administrator" and password "password"
     And I have initiated a requisition for "Family Planning" program
 
     When I click on the "Skip" button

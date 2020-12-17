@@ -1,7 +1,8 @@
 Feature: Authorizing Requisitions
 
   Scenario: Store Manager should not be able to authorize the requisition with one required column omitted
-    Given I have logged with username "smanager1" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "smanager1" and password "password"
     And I have navigated to a requisition for "Lilongwe Health Center" facility, "ARV" program and "Mar2017" period
 
     When I set "Total received quantity" as empty for "ARV0001" product

@@ -1,7 +1,8 @@
 Feature: Supply Partner Edit
 
     Scenario: Administrator should not be able to change supply partner code
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
         And I have navigated to the supply partner list page
         And I created supply partner with code "FTSP", name "FTSP", and without associations
 

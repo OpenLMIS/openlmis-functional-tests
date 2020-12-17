@@ -1,7 +1,8 @@
 Feature: Product grid calculations
 
   Scenario: Administrator should be able to add new Adjustment Reasons
-    Given I have logged with username "administrator" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "administrator" and password "password"
     And I have navigated to the requisition templates page
 
     When I select "Family Planning" program for configuration
@@ -34,7 +35,7 @@ Feature: Product grid calculations
     Then I should see assignment for "Facility return" reason and "30" quantity inside the modal
     And I should be able to see the Total value updated to "20"
 
-  Scenario: Administrator should be able to update new Adjustment Reasons 
+  Scenario: Administrator should be able to update new Adjustment Reasons
     When I click on the "Update" button
     Then I should be able to see the value of "Total losses and adjustments" column for "Stomachica" product equal to "20"
     Then I should be able to see the invalid value of "Total consumed quantity" column for "Stomachica" product
@@ -54,7 +55,7 @@ Feature: Product grid calculations
     Then I should be able to see "Stolen" option on the dropdown list
     And I click on the "Cancel" button
 
-  Scenario: Administrator should be able to cancel any Adjustment Reason without saving it 
+  Scenario: Administrator should be able to cancel any Adjustment Reason without saving it
     When I set "Beginning balance" as "0" for "Ortho-Novum" product
     And I set "Total received quantity" as "10" for "Ortho-Novum" product
     And I set "Total consumed quantity" as "10" for "Ortho-Novum" product

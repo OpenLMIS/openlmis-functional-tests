@@ -1,7 +1,8 @@
 Feature: Stock-based requisitions: Calc Order Qty ISA with empty Requested quantity column
 
     Scenario: Vsrmanager should be able to submit and authorize a requisition with empty Requested quantity column
-        Given I have logged with username "vsrmanager1" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "vsrmanager1" and password "password"
 
         When I go to initiate requisition screen
         Then I should be brought to the initiate requisition screen

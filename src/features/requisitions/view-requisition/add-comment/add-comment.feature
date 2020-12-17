@@ -1,7 +1,8 @@
 Feature: Adding comment to requisition
 
   Scenario: Storeroom Manager should be able to add a comment to initiated requisition
-    Given I have logged with username "srmanager4" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager4" and password "password"
     And I have initiated a requisition for "Family Planning" program
     And I have completed all required fields of the requisition
 

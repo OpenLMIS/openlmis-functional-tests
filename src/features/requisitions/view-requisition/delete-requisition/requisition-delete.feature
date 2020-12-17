@@ -1,7 +1,8 @@
 Feature: Delete Requisition
 
   Scenario: Store Manager should be able to delete a submitted requisition for home facility
-    Given I have logged with username "srmanager3" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager3" and password "password"
     And I have submitted a requisition for "Family Planning" program
     And I have logged out
     And I have logged with username "smanager3" and password "password"

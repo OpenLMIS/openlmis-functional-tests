@@ -1,7 +1,8 @@
 Feature: Offline requisition workflow
 
   Scenario: Storeroom Manager should be able to see initiated offline requisition with correct values
-    Given I have logged with username "srmanager1" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager1" and password "password"
 
     When I initiate the "Emergency" requisition for "Family Planning" program
     And I click on the "Add Product" button

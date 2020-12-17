@@ -1,7 +1,8 @@
 Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested quantity column values
 
     Scenario: Vsrmanager should be able to submit and authorize a requisition with entered Requested quantity values
-        Given I have logged with username "vsrmanager1" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "vsrmanager1" and password "password"
 
         When I go to initiate requisition screen
         Then I should be brought to the initiate requisition screen
@@ -50,7 +51,7 @@ Feature: Stock-based requisitions: Calc Order Qty ISA with entered Requested qua
         And I set "Requested quantity explanation" as "test" for "Rotavirus" product
         And I set "Requested quantity explanation" as "test" for "Safety Box" product
         And I set "Requested quantity explanation" as "test" for "Syringe 0.05ml" product
-        
+
         And I click on the "Submit & Authorize" button
         And I confirm the submit
         Then I should see a successful notification saying "Requisition has been submitted!"

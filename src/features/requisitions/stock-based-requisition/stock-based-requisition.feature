@@ -1,7 +1,8 @@
 Feature: Stock based requisition: calculating Stock on Hand
 
     Scenario: User should be able to submit new Physical Inventory
-        Given I have logged with username "divo2" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "divo2" and password "password"
 
         When I navigate to Physical Inventory page
         And I start a new Physical Inventory for "EPI" program
@@ -32,7 +33,7 @@ Feature: Stock based requisition: calculating Stock on Hand
 
         When I navigate to Physical Inventory page
         And I start a new Physical Inventory for "EPI" program
-        Then I should be brought to the Physical Inventory grid screen 
+        Then I should be brought to the Physical Inventory grid screen
 
         When I set "Current Stock" as "150" for "Safety Box - each" product
         And I set "Current Stock" as "150" for "IPV - 5 dose,injection" product
@@ -54,7 +55,7 @@ Feature: Stock based requisition: calculating Stock on Hand
     Scenario: User should see the same values in "Stock on Hand" and "Current stock" columns after adding a physical inventory with the date earlier than the beginning of the requisition's processing period
         When I navigate to Physical Inventory page
         And I start a new Physical Inventory for "EPI" program
-        Then I should be brought to the Physical Inventory grid screen 
+        Then I should be brought to the Physical Inventory grid screen
 
         When I set "Current Stock" as "180" for "Safety Box - each" product
         And I set "Current Stock" as "180" for "IPV - 5 dose,injection" product
@@ -75,7 +76,7 @@ Feature: Stock based requisition: calculating Stock on Hand
     Scenario: User should see the same values in "Stock on Hand" column as values in "Current stock" from the physical inventory submitted with the date of 31/12/2016
         When I navigate to Physical Inventory page
         And I start a new Physical Inventory for "EPI" program
-        Then I should be brought to the Physical Inventory grid screen 
+        Then I should be brought to the Physical Inventory grid screen
 
         When I set "Current Stock" as "150" for "Safety Box - each" product
         And I set "Current Stock" as "150" for "IPV - 5 dose,injection" product
@@ -91,7 +92,7 @@ Feature: Stock based requisition: calculating Stock on Hand
         Then I should be able to see the value of "Stock on hand" column for "IPV" product equal to "180"
         And I should be able to see the value of "Stock on hand" column for "PCV10" product equal to "180"
         And I should be able to see the value of "Stock on hand" column for "Safety Box" product equal to "180"
-    
+
     Scenario: User should see the same value in "Beginning balance" column as in "Current stock" from the physical inventory submitted with the date of 31/12/2016
         When I proceed to requisition for "Depósito Distrital Lichinga" facility, "EPI" program, "2017Q1" period and "Initiated" status
         Then I should not be able to edit "Beginning balance" column for "Safety Box" product

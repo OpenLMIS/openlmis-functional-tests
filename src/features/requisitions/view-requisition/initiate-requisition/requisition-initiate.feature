@@ -1,7 +1,8 @@
 Feature: Initiate Requisition
 
   Scenario: Storeroom Manager should be able to initiate requisition for home facility
-    Given I have logged with username "srmanager2" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager2" and password "password"
 
     When I go to initiate requisition screen
     Then I should be brought to the initiate requisition screen

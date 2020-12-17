@@ -1,6 +1,7 @@
 Feature: Reason Add
 
     Background:
+        Given I navigate to the login page
         Given I have logged with username "administrator" and password "password"
         Given I have navigated to the reason list page
 

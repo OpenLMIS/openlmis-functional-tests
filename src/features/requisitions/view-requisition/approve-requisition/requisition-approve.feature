@@ -1,7 +1,8 @@
 Feature: Approving and rejecting Requisitions
 
   Scenario: Storeroom manager should not be able to navigate to Approve Requisitions screen
-    Given I have logged with username "srmanager4" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager4" and password "password"
     When I click on the "Requisitions" tab
     Then I should not see "Approve" tab under "Requisitions"
 

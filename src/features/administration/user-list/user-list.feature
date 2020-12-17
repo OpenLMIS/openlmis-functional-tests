@@ -1,7 +1,8 @@
 Feature: User List
 
     Scenario: Administrator should be able to view users
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
         When I go to the user list page
         Then I should be brought to the user list page
 

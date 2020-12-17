@@ -1,7 +1,8 @@
 Feature: Program Edit
 
     Background:
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
         And I have navigated to the program list page
 
     Scenario: Administrator should be able to edit program date physical stock count completed

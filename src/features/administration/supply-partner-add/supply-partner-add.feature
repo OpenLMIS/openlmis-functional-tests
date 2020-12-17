@@ -1,7 +1,8 @@
 Feature: Supply Partner Add
 
     Scenario: Administrator should be able to add new supply partner
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
         And I have navigated to the supply partner list page
 
         When I click on the "Add Supply Partner" button

@@ -1,7 +1,8 @@
 Feature: Offline mode requisition
 
   Scenario: Storeroom Manager should be able to see offline requisition
-    Given I have logged with username "srmanager2" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager2" and password "password"
     And I have initiated a requisition for "Family Planning" program
 
     When I go to view requisition screen

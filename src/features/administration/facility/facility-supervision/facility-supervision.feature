@@ -1,7 +1,8 @@
 Feature: Supervised facility selection
 
  Scenario: Storeroom Manager should not be able to select the "Supervised Facility" option because he has no supervision roles
-        Given I have logged with username "srmanager4" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "srmanager4" and password "password"
 
         When I go to initiate requisition screen
         Then I should be brought to the initiate requisition screen

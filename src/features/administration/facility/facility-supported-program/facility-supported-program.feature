@@ -1,7 +1,8 @@
 Feature: Facility supported programs
 
      Scenario: Administrator should remove the supported program from the Storeroom Manager's facility
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
 
         When I go to the facility list page
         Then I should be brought to the facility list page

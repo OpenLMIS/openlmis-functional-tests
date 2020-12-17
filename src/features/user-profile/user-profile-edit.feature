@@ -1,6 +1,7 @@
 Feature: User Profile Edit
 
     Background:
+        Given I navigate to the login page
         Given I have logged with username "vnurse1" and password "password"
         Given I have navigated to the user profile page
 

@@ -1,6 +1,7 @@
 Feature: Supervisory Node Edit
 
     Scenario: Administrator should be able to edit supervisory node basic properties
+        Given I navigate to the login page
         Given I have logged with username "administrator" and password "password"
         Given I have navigated to the supervisory node list page
 

@@ -29,7 +29,6 @@ Given(
 Given(
     /^I have logged with username "([^"]*)?" and password "([^"]*)?"$/,
     (username, password) => {
-        LoginPage.open();
         LoginPage.waitForIsVisible();
 
         LoginPage.username = username;

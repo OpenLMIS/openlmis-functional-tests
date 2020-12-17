@@ -1,7 +1,8 @@
 Feature: Final approving and rejecting Requisitions
 
   Scenario: Program supervisor should be able to approve requisition with In_Approval status
-    Given I have logged with username "psupervisor" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "psupervisor" and password "password"
 
     When I proceed to requisition for "Lilongwe Health Center" facility, "ARV" program, "Apr2017" period and "In approval" status
     And I set "Approved quantity" as empty for "ARV0001" product

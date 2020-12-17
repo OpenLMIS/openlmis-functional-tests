@@ -1,10 +1,11 @@
 Feature: Read-only approved requisition
 
     Scenario: Storeroom Manager should not be able to see requisition on Initiate Report and Requisition screen
-        Given I have logged with username "psupervisor" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "psupervisor" and password "password"
         And I have approved a requisition for "Family Planning" program and "Jan2017" period
         And I have logged out
-        
+
         Given I have logged with username "srmanager2" and password "password"
 
         When I go to Initiate Report and Requisition screen for "Family Planning" program
@@ -29,7 +30,7 @@ Feature: Read-only approved requisition
         Then I should not be able to edit the requisition
         And I should not be able to skip any products
 
-    Scenario: Program Supervisor should not be able to see action buttons     
+    Scenario: Program Supervisor should not be able to see action buttons
         And I should not see "Sync with Server" button
         And I should not see "Submit" button
         And I should not see "Authorize" button
@@ -44,7 +45,7 @@ Feature: Read-only approved requisition
         Then I should see the Total losses and adjustments modal
         And I should not see "Add" button
         And I should not see "Update" button
-        
-    Scenario: Program Supervisor should not be able to edit requisition on Non full supply products tab        
+
+    Scenario: Program Supervisor should not be able to edit requisition on Non full supply products tab
         When I navigate to the Non full supply products tab
         Then I should not be able to neither edit any field in the requisition, nor add any product

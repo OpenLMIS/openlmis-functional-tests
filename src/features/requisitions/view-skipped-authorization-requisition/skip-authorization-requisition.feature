@@ -1,7 +1,8 @@
 Feature: Skipping the authorization step
 
     Scenario: Administrator should be able to set Skipping Authorization Step option
-        Given I have logged with username "administrator" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "administrator" and password "password"
 
         When I navigate to the program list page
         And I click edit button for "Family Planning" program

@@ -2,7 +2,8 @@ Feature: Date Physical Stock Count Completed
 
   Scenario: Administrator should be able to submit form with date physical stock count completed
 
-    Given I have logged with username "administrator" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "administrator" and password "password"
     And I have enabled Date Physical Stock Count Completed for "Family Planning" program
     And I have submitted a requisition for "Family Planning" program for date stock count completed
 

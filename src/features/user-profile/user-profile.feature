@@ -1,7 +1,8 @@
 Feature: User Profile
 
     Background:
-        Given I have logged with username "vnurse1" and password "password"
+        Given I navigate to the login page
+        And I have logged with username "vnurse1" and password "password"
 
     Scenario: User should be able to view its profile
         When I go to the user profile page

@@ -1,7 +1,8 @@
 Feature: Offline requisition workflow: Printing a requisition
 
   Scenario: Storeroom Manager should not be able to print a requisition when in offline mode
-    Given I have logged with username "srmanager1" and password "password"
+    Given I navigate to the login page
+    And I have logged with username "srmanager1" and password "password"
 
     When I initiate a requisition for "Family Planning" program
     And I enable offline mode

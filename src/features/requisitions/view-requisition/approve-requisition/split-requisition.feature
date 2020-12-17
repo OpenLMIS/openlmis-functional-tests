@@ -4,7 +4,8 @@ Feature: Splitting requisitions for multiple suppliers
    so that each partner only supplies the products they are configured by the administrator to supply.
 
    Scenario: District Store Manager should be able to approve a requisition which will be split
-      Given I have logged with username "dsrmanager" and password "password"
+      Given I navigate to the login page
+      And I have logged with username "dsrmanager" and password "password"
 
       When I navigate to approve requisitions screen
       Then I should be redirected to approve requisitions screen
