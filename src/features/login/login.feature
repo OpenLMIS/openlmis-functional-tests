@@ -3,10 +3,8 @@ Feature: Login
   I want to be able to Login and Logout
   so that I may access the home page
 
-  Background:
-    Given I navigate to the login page
-
   Scenario: administrator user logs in and is brought to the home page
+    Given I navigate to the login page
     Given I enter the username "administrator"
     Given I enter the password "password"
     When I submit the form
