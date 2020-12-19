@@ -525,7 +525,7 @@ exports.config = {
 
                     const testcase = {
                         _attributes: {
-                            classname: feature,
+                            classname: `Performance.${feature}`,
                             name: `${feature}.${scenario}`,
                         },
                         error: 'Max allowed time duration exceeded in step(s)',
