@@ -10,6 +10,7 @@ const yaml = require('js-yaml');
 const path = require('path');
 const parse = require('papaparse');
 const video = require('wdio-video-reporter');
+const convert = require('xml-js');
 
 const fileContents = fs.readFileSync('./durationTimeThresholds.yaml', 'utf8');
 const durationTimeThresholds = yaml.safeLoad(fileContents);
@@ -65,8 +66,7 @@ const featurePerformanceResultsStream = fs.createWriteStream(featurePerformanceR
 const SOME_FEATURE_TESTS_FAILED = 1;
 
 const getConsoleLogFileName = (scenario) => `${consoleLogDir}/${scenario.feature.name}.txt`;
-const getFailureMessage = (feature, scenario, step, stepDuration, maxAllowed) => `${feature}: ${scenario}: ${step}: `
-  + `The time duration should not exceed ${maxAllowed}s but is ${stepDuration}s.\n`;
+const getNameForXml = (name) => (!name ? '' : name.replace(/["':]/g, '').replace(/[-&\s/\\]/g, '_'));
 
 const getDurationTimeThreshold = (resultStep) => {
     let foundDuration = '';
@@ -473,7 +473,7 @@ exports.config = {
             fs.removeSync(`${recordingsDir}/rawSeleniumVideoGrabs`);
         }
 
-        const performanceErrors = [];
+        const features = {};
         const performanceResults = fs.readFileSync(stepPerformanceResultsFile, 'utf8');
         const results = parse.parse(performanceResults, { delimiter: ',', skipEmptyLines: true });
         const output = results.data;
@@ -484,19 +484,68 @@ exports.config = {
                 const maxAllowed = parseFloat(output[i][4]);
 
                 if (!Number.isNaN(duration) && !Number.isNaN(maxAllowed) && duration > maxAllowed) {
-                    const message = getFailureMessage(output[i][0], output[i][1], output[i][2], duration, maxAllowed);
-                    performanceErrors.push(message);
+                    const featureName = getNameForXml(output[i][0]);
+                    const scenarioName = getNameForXml(output[i][1]);
+
+                    if (!features[featureName]) {
+                        features[featureName] = {};
+                    }
+
+                    if (!features[featureName][scenarioName]) {
+                        features[featureName][scenarioName] = [];
+                    }
+
+                    features[featureName][scenarioName].push({ step: output[i][2], duration, maxAllowed });
                 }
             }
         }
 
-        if (performanceErrors.length > 0) {
-            let message = 'Poor performance for:\n';
-            performanceErrors.forEach((error) => {
-                message += error;
-            });
+        if (Object.keys(features).length > 0) {
+            const testsuites = { testsuite: [] };
 
-            throw new Error(message);
+            for (const feature in features) {
+                const scenarios = features[feature];
+                const testsuite = {
+                    _attributes: {
+                        name: feature,
+                        tests: `${Object.keys(scenarios).length}`,
+                        failures: `${Object.keys(scenarios).length}`,
+                    },
+                    testcase: [],
+                };
+
+                for (const scenario in scenarios) {
+                    const steps = scenarios[scenario];
+                    let error = '';
+
+                    steps.forEach((step) => {
+                        error += `${step.step}: The time duration should not exceed`
+                          + ` ${step.maxAllowed}s but is ${step.duration}s.\n`;
+                    });
+
+                    const testcase = {
+                        _attributes: {
+                            classname: feature,
+                            name: `${feature}.${scenario}`,
+                        },
+                        error: 'Max allowed time duration exceeded in step(s)',
+                        'system-err': { _cdata: error },
+                    };
+
+                    testsuite.testcase.push(testcase);
+                }
+
+                testsuites.testsuite.push(testsuite);
+            }
+
+            const js = { _declaration: { _attributes: { version: '1.0', encoding: 'utf-8' } }, testsuites };
+            const xml = convert.js2xml(js, { compact: true, spaces: 2 });
+
+            fs.writeFile('build/WDIO.xunit.performance.xml', xml, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
         }
     },
 };
