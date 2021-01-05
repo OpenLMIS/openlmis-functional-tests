@@ -12,7 +12,7 @@ features:
       - name: "Storeroom Manager should be able to sync requisition with the server"
         steps:
           - name: "I click on the \"Sync with Server\" button"
-            duration: 1
+            duration: 5
   - name: "Submit Requisition"
     scenarios:
       - name: "Storeroom manager should not be able to submit the requisition with Requested quantity explanation column omitted"
