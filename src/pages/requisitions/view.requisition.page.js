@@ -382,7 +382,7 @@ class ViewRequisitionPage extends Page {
         const today = new Date();
 
         isDisplayed(`//strong[contains(text(), "Date physical stock count completed")]/parent::li[text()[contains(., "${
-            [today.getDate(), today.getMonth() + 1, today.getFullYear()].join('/')}")]]`);
+            [`0${today.getDate()}`.slice(-2), `0${today.getMonth() + 1}`.slice(-2), today.getFullYear()].join('/')}")]]`);
     }
 
     /**
