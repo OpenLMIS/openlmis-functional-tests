@@ -4,7 +4,7 @@ import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.req
 
 When(
     /^I go to initiate requisition screen$/,
-    () => InitiateRequisitionPage.open()
+    () => InitiateRequisitionPage.navigateToPage()
 );
 
 When(

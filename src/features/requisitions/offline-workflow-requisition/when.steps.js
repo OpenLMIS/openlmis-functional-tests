@@ -7,7 +7,7 @@ import ViewRequisitionPage from '../../../pages/requisitions/view.requisition.pa
 When(
     /^I initiate the "([^"]*)?" requisition for "([^"]*)?" program$/,
     (label, program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         new Checkbox(label).click();

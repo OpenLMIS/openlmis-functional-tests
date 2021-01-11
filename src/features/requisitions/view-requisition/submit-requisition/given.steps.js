@@ -6,7 +6,7 @@ import InitiateRequisitionPage from '../../../../pages/requisitions/initiate.req
 Given(
     /^I have initiated a requisition for "([^"]*)?" program$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);

@@ -4,7 +4,7 @@ import ProgramListPage from '../../../pages/administration/program.list.page';
 
 When(
     /^I go to the program list page$/,
-    () => ProgramListPage.open()
+    () => ProgramListPage.navigateToPage()
 );
 
 When(

@@ -32,7 +32,7 @@ When(
 When(
     /^I go to the requisition templates page$/,
     () => {
-        RequisitionTemplatesPage.open();
+        RequisitionTemplatesPage.navigateToPage();
         RequisitionTemplatesPage.waitForIsVisible();
     }
 );

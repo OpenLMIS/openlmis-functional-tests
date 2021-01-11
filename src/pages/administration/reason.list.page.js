@@ -10,6 +10,8 @@ class ReasonListPage extends Page {
         super({
             header: 'Reasons',
             uri: 'administration/reasons',
+            navParent: 'Administration',
+            navChild: 'Reasons',
         });
     }
 

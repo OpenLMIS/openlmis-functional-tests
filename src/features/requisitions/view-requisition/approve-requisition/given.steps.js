@@ -7,7 +7,7 @@ import waitForNotification from '../../../../support/action/waitForNotification'
 Given(
     /^I have authorized a requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period/,
     (facility, program, period) => {
-        ViewRequisitionsPage.open();
+        ViewRequisitionsPage.navigateToPage();
         ViewRequisitionsPage.waitForIsVisible();
 
         ViewRequisitionsPage.searchForFacility(facility);

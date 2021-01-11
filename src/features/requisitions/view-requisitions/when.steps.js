@@ -5,7 +5,7 @@ import getCurrentMonthlyPeriodName from '../../../support/lib/getCurrentMonthlyP
 
 When(
     /^I go to view requisition screen$/,
-    () => ViewRequisitionsPage.open()
+    () => ViewRequisitionsPage.navigateToPage()
 );
 
 When(

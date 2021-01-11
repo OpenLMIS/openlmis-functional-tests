@@ -37,6 +37,7 @@ Feature: Supply Partner Add
         And I add supply partner
         Then I should get an error message
         And I click on the "Close" button
+        And I don't add supply partner
 
     Scenario: Administrator should be able to close modal without creating a resource
         Given I have navigated to the supply partner list page

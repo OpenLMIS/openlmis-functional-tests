@@ -4,7 +4,7 @@ import SupervisoryNodeListPage from '../../../pages/administration/supervisory.n
 
 When(
     /^I go to the supervisory node list page$/,
-    () => SupervisoryNodeListPage.open()
+    () => SupervisoryNodeListPage.navigateToPage()
 );
 
 When(

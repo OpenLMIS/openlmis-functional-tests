@@ -5,7 +5,7 @@ import SupervisoryNodeListPage from '../../../pages/administration/supervisory.n
 Given(
     /^I have navigated to the supervisory node list page$/,
     () => {
-        SupervisoryNodeListPage.open();
+        SupervisoryNodeListPage.navigateToPage();
         SupervisoryNodeListPage.waitForIsVisible();
     }
 );

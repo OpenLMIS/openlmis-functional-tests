@@ -56,6 +56,7 @@ class SupervisoryNodeEditPage extends Page {
         const prefix = `//label[text()="${sectionName}"]/following-sibling`;
 
         chooseSelectOption('Supervisory Node', nodeName, `${prefix}::*`);
+        scroll('bottom');
         new Button('Add', `${prefix}::section[1]//child::button[text()="Add"]`).click();
     }
 

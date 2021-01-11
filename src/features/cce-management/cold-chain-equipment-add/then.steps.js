@@ -6,7 +6,7 @@ import ColdChainEquipmentAddModal from '../../../pages/cce-management/cold-chain
 Then(
         /^I should be brought to the cce inventory list page$/,
         () => {
-                ColdChainEquipmentInventoryListPage.open();
+                ColdChainEquipmentInventoryListPage.navigateToPage();
                 ColdChainEquipmentInventoryListPage.waitForIsVisible();
         }
 );

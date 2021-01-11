@@ -6,7 +6,7 @@ import RequisitionTemplateConfigurationSettingsPage from '../../../pages/adminis
 Given(
     /^I have removed "([^"]*)?" facility type from "([^"]*)?" template$/,
     (facility, template) => {
-        RequisitionTemplatesPage.open();
+        RequisitionTemplatesPage.navigateToPage();
         RequisitionTemplatesPage.waitForIsVisible();
         RequisitionTemplatesPage.clickConfigureProgram(template);
         RequisitionTemplatesPage.openTemplateSettingsTab();
@@ -20,7 +20,7 @@ Given(
 Given(
     /^I have added "([^"]*)?" facility type to "([^"]*)?" template$/,
     (facility, template) => {
-        RequisitionTemplatesPage.open();
+        RequisitionTemplatesPage.navigateToPage();
         RequisitionTemplatesPage.waitForIsVisible();
         RequisitionTemplatesPage.clickConfigureProgram(template);
         RequisitionTemplatesPage.openTemplateSettingsTab();

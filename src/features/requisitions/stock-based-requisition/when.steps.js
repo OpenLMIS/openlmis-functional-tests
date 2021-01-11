@@ -9,7 +9,7 @@ import PhysicalInventoryProductAddModal from '../../../pages/stock-management/ph
 When(
     /^I initiate a requisition for "([^"]*)?" program$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);

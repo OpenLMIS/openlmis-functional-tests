@@ -42,7 +42,7 @@ When(
 When(
     /^I proceed to requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
     (facility, program, period) => {
-        ViewRequisitionsPage.open();
+        ViewRequisitionsPage.navigateToPage();
         ViewRequisitionsPage.waitForIsVisible();
 
         ViewRequisitionsPage.searchForFacility(facility);

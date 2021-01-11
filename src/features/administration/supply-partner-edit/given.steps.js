@@ -6,7 +6,7 @@ import SupplyPartnerAddModal from '../../../pages/administration/supply.partner.
 Given(
     /^I created supply partner with code "([^"]*)?", name "([^"]*)?", and without associations$/,
     (code, name) => {
-        SupplyPartnerListPage.open();
+        SupplyPartnerListPage.navigateToPage();
         SupplyPartnerListPage.waitForIsVisible();
         SupplyPartnerListPage.clickAddSupplyPartner();
 

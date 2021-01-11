@@ -12,7 +12,7 @@ import switchToPage from '../../../../support/action/switchToPage';
 Given(
     /^I have enabled Date Physical Stock Count Completed for "([^"]*)?" program$/,
     (program) => {
-        ProgramListPage.open();
+        ProgramListPage.navigateToPage();
         ProgramListPage.waitForIsVisible();
         ProgramListPage.clickEditProgram(program);
         ProgramEditPage.waitForIsVisible();
@@ -32,7 +32,7 @@ Given(
 Given(
     /^I have submitted a requisition for "([^"]*)?" program for date stock count completed$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);

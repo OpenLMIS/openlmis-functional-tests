@@ -5,7 +5,7 @@ import UserProfilePage from '../../pages/user.profile.page';
 Given(
     /^I have navigated to the user profile page$/,
     () => {
-        UserProfilePage.open();
+        UserProfilePage.navigateToPage();
         UserProfilePage.waitForIsVisible();
     }
 );

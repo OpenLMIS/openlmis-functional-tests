@@ -4,7 +4,7 @@ import SupplyPartnerListPage from '../../../pages/administration/supply.partner.
 
 When(
     /^I go to the supply partner list page$/,
-    () => SupplyPartnerListPage.open()
+    () => SupplyPartnerListPage.navigateToPage()
 );
 
 When(

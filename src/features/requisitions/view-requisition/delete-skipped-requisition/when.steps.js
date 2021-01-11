@@ -12,7 +12,7 @@ When(
 When(
     /^I go to Initiate Report and Requisition screen for "([^"]*)?" program$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);

@@ -11,7 +11,7 @@ When(
 When(
     /^I proceed to requisition for "([^"]*)?" program with "([^"]*)?" status$/,
     (program, status) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);

@@ -6,7 +6,7 @@ import ProductGridPage from '../../../../pages/requisitions/view.requisition.pag
 Given(
     /^I have navigated to the view requisition page for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
     (facility, program, period) => {
-        ViewRequisitionsPage.open();
+        ViewRequisitionsPage.navigateToPage();
         ViewRequisitionsPage.waitForIsVisible();
 
         ViewRequisitionsPage.searchForFacility(facility);

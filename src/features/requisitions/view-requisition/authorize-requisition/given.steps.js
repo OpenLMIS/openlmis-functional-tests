@@ -6,7 +6,7 @@ import ViewRequisitionPage from '../../../../pages/requisitions/view.requisition
 Given(
     /^I have navigated to a requisition for "([^"]*)?" facility, "([^"]*)?" program and "([^"]*)?" period$/,
     (facility, program, period) => {
-        ViewRequisitionsPage.open();
+        ViewRequisitionsPage.navigateToPage();
         ViewRequisitionsPage.waitForIsVisible();
 
         ViewRequisitionsPage.searchForFacility(facility);

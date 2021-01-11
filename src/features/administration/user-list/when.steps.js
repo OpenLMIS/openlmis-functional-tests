@@ -4,7 +4,7 @@ import UserListPage from '../../../pages/administration/user.list.page';
 
 When(
     /^I go to the user list page$/,
-    () => UserListPage.open()
+    () => UserListPage.navigateToPage()
 );
 
 When(

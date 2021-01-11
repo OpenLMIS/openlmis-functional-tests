@@ -11,7 +11,7 @@ import switchToPage from '../../../../support/action/switchToPage';
 Given(
     /^I have navigated to Initiate Report and Requisition screen for "([^"]*)?" program$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);
@@ -31,7 +31,7 @@ Given(
 Given(
     /^I have submitted a requisition for "([^"]*)?" program$/,
     (program) => {
-        InitiateRequisitionPage.open();
+        InitiateRequisitionPage.navigateToPage();
         InitiateRequisitionPage.waitForIsVisible();
 
         InitiateRequisitionPage.searchForProgram(program);
@@ -39,7 +39,7 @@ Given(
 
         InitiateRequisitionPage.clickProceedButton();
         ViewRequisitionPage.waitForIsVisible();
-        
+
         ViewRequisitionPage.clearForm();
         switchToPage('2');
         browser.pause(4000);

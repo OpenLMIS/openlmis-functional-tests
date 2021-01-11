@@ -14,6 +14,8 @@ class InitiateRequisitionPage extends Page {
         super({
             header: 'Initiate Report and Requisition',
             uri: 'requisitions/initiate',
+            navParent: 'Requisitions',
+            navChild: 'Create/Authorize',
         });
     }
 
@@ -61,7 +63,7 @@ class InitiateRequisitionPage extends Page {
      *
      * @param {String} period  Period.
      * @param {String} hidden  True if should not be displayed.
-     */    
+     */
     waitForPeriod(period, hidden) {
         this.periodTable.waitFor([period], hidden);
     }

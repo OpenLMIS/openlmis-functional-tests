@@ -4,7 +4,7 @@ import FacilityListPage from '../../../../pages/administration/facility.list.pag
 
 When(
     /^I go to the facility list page$/,
-    () => FacilityListPage.open()
+    () => FacilityListPage.navigateToPage()
 );
 
 When(
