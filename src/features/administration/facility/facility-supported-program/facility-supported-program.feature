@@ -32,8 +32,8 @@ Feature: Facility supported programs
         And I log out
 
      Scenario: Administrator should be able to add a supported program to the Storeroom Manager's facility
-        Given I have logged with username "administrator" and password "password"
-        And I refresh page
+        Given I refresh page
+        And I have logged with username "administrator" and password "password"
 
         When I go to the facility list page
         Then I should be brought to the facility list page

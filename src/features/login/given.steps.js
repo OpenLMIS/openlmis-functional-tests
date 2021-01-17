@@ -37,6 +37,6 @@ Given(
         LoginPage.clickSubmit();
         HomePage.waitForIsVisible();
         HomePage.isDisplayed();
-        browser.pause(5000);
+        browser.pause(10000);
     }
 );
