@@ -20,4 +20,4 @@ for SERVICE in ${SERVICES}; do
 done
 
 echo "DEBUG: Waiting another 60 seconds for right assignment regeneration"
-sleep 60
+sleep 120
