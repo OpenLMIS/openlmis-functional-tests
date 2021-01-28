@@ -8,6 +8,7 @@ Feature: Initiate Requisition
     Then I should be brought to the initiate requisition screen
 
     When I select "Family Planning" from the "Program" list
+    And I wait "90" seconds for UI adjustment
 
     When I click on the "Search" button
     Then I should see periods table
