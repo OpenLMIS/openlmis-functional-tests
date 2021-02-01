@@ -190,9 +190,8 @@ Feature: Adding comment to requisition
     And I should be redirected to approve requisitions screen
 
   Scenario: Program Supervisor should be able to see all comments added to the requisition
-    Given I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
-
-    When I enter view requisition screen
+    When I have navigated to a requisition for "Kankao Health Facility" facility, "Family Planning" program and "2017Q4" period
+    And I enter view requisition screen
     Then I should see the "Sending this to CMST" comment for "Approved" status added today by "Francis Chirwa"
     And I should not be able to edit any saved requisition comment
 

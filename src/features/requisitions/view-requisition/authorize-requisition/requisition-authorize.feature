@@ -3,9 +3,10 @@ Feature: Authorizing Requisitions
   Scenario: Store Manager should not be able to authorize the requisition with one required column omitted
     Given I navigate to the login page
     And I have logged with username "smanager1" and password "password"
-    And I have navigated to a requisition for "Lilongwe Health Center" facility, "ARV" program and "Mar2017" period
-
-    When I set "Total received quantity" as empty for "ARV0001" product
+    
+    When I have navigated to a requisition for "Lilongwe Health Center" facility, "ARV" program and "Mar2017" period
+    And I wait "50" seconds for UI adjustment
+    And I set "Total received quantity" as empty for "ARV0001" product
     Then I should see the auto-saving spinner
 
     When I click on the "Authorize" button
