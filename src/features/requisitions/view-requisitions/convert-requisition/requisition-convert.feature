@@ -4,7 +4,8 @@ Feature: Converting requisitions to orders
         Given I navigate to the login page
         And I have logged with username "administrator" and password "password"
 
-        When I navigate to Convert Requisitions to Order screen
+        When I wait "3" seconds for UI adjustment
+        And I navigate to Convert Requisitions to Order screen
         Then I should be brought to Convert Requisitions to Order screen
 
         When I click on the "Convert to Order" button

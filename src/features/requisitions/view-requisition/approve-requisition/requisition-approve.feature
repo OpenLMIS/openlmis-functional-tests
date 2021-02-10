@@ -23,7 +23,8 @@ Feature: Approving and rejecting Requisitions
   Scenario: District Store Manager should be able to approve requisition for home facility
     Given I have logged with username "dsrmanager" and password "password"
 
-    When I navigate to approve requisitions screen
+    When I wait "2" seconds for UI adjustment
+    And I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
     And I should see a requisition for "Family Planning" program, "2018Q1" period inside the table
 
@@ -54,7 +55,8 @@ Feature: Approving and rejecting Requisitions
     And I have logged out
     And I have logged with username "dsrmanager" and password "password"
 
-    When I navigate to approve requisitions screen
+    When I wait "2" seconds for UI adjustment
+    And I navigate to approve requisitions screen
     Then I should be redirected to approve requisitions screen
     And I should see a requisition for "Family Planning" program, "2018Q2" period inside the table
 
