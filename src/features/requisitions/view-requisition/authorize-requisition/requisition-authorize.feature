@@ -4,8 +4,8 @@ Feature: Authorizing Requisitions
     Given I navigate to the login page
     And I have logged with username "smanager1" and password "password"
     
-    When I have navigated to a requisition for "Lilongwe Health Center" facility, "ARV" program and "Mar2017" period
-    And I wait "50" seconds for UI adjustment
+    When I wait "50" seconds for UI adjustment
+    And I have navigated to a requisition for "Lilongwe Health Center" facility, "ARV" program and "Mar2017" period
     And I set "Total received quantity" as empty for "ARV0001" product
     Then I should see the auto-saving spinner
 
