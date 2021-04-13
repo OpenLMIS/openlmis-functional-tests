@@ -25,6 +25,7 @@ Feature: Facility supported programs
         And I refresh page
 
         When I go to initiate requisition screen
+        And I wait "2" seconds for UI adjustment
         Then I should be brought to the initiate requisition screen
         When I select "My Facility" checkbox
         Then I should not be able to see "Essential Meds" option on the dropdown list
