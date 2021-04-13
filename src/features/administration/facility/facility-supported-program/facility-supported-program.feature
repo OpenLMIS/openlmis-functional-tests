@@ -28,6 +28,7 @@ Feature: Facility supported programs
         And I wait "2" seconds for UI adjustment
         Then I should be brought to the initiate requisition screen
         When I select "My Facility" checkbox
+        And I wait "2" seconds for UI adjustment
         Then I should not be able to see "Essential Meds" option on the dropdown list
         And I log out
 

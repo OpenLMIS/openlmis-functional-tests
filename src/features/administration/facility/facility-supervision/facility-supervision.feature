@@ -1,6 +1,6 @@
 Feature: Supervised facility selection
 
- Scenario: Storeroom Manager should not be able to select the "Supervised Facility" option because he has no supervision roles
+     Scenario: Storeroom Manager should not be able to select the "Supervised Facility" option because he has no supervision roles
         Given I navigate to the login page
         And I have logged with username "srmanager4" and password "password"
 
@@ -63,10 +63,11 @@ Feature: Supervised facility selection
         Then I should see a successful notification saying "User roles updated successfully!"
         And I log out
 
- Scenario: Storeroom Manager should not be able to select the "Supervised Facility" option because he has no supervision roles
+     Scenario: Storeroom Manager should not be able to select the "Supervised Facility" option because he has no supervision roles
         Given I have logged with username "srmanager4" and password "password"
 
         When I go to initiate requisition screen
+        And I wait "2" seconds for UI adjustment
         Then I should be brought to the initiate requisition screen
         And I should not be able to select "Supervised Facility" checkbox
         And I log out
